@@ -1,0 +1,57 @@
+<html>
+<head>
+<title> TOP 40 UDP error generating IP addresses (2 graphs)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html"; charset=iso-8859-1>
+<META HTTP-EQUIV="Refresh" CONTENT="30" >
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache" >
+<META HTTP-EQUIV="Expires" CONTENT="Fri, 19 May 1999 23:37:00 GMT">
+
+<hr>
+<H3>  TOP 40 UDP error generating IP addresses
+</H3> 
+<p>
+This graphical version of the udp error list is also paired with an ASCII report.
+The 
+<a href="udpreport.txt"> ASCII udp report </a> 
+shows sampled UDP destination ports for each IP source.
+Note that high numbers of packets destined for ports 137 and 1434 are not a good sign.
+
+<p>
+We sort on a weight and display the top N udp "error generating sources" 
+with the weight generated roughly as follows: 
+<br> 
+<br> 
+per ip source: udp sent pkts - udp recv packets * total ICMP errors.
+<br> 
+<br> 
+Note: we are showing the errors per sample period (30 seconds).
+There are four counters.  
+<br>
+<br>
+The counter tags are U:R:Un:P and they mean:
+<br>
+<br>
+U: UDP packets sent by an IP source.
+<br>
+R: UDP packets sent back to that IP source.
+<br>
+Un: ICMP unreachable packets sent back to the IP source.
+<br>
+P: ICMP ping packets sent by the IP source.
+<br>
+<hr>
+<p><img src="topn_udperror1.png"> </p>
+<hr>
+<p><img src="topn_udperror2.png"> </p>
+<hr>
+<p><img src="topn_udperror3.png"> </p>
+<hr>
+<p><img src="topn_udperror4.png"> </p>
+</body>
+</html>
+
+

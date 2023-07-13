@@ -1,0 +1,7 @@
+Linux Roznice
+------------------
+
+1. Instalcja
+    Osadzic skrypt /etc/init.d/S44firewall, /etc/init.d/S44APclientd, S50dnsmasq
+    
+2. Zainstalowac i skonfigurowac emulacje polecenia nvram

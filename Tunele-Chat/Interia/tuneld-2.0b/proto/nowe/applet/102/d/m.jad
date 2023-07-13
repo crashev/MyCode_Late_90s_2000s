@@ -1,0 +1,172 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   m.java
+
+package d;
+
+import a.a;
+import a.g;
+import a.i;
+import a.n;
+import a.r;
+import b.c;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.TextComponent;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            n, b, g, i, 
+//            x
+
+class m extends i
+{
+
+    public m(d.n n1)
+    {
+        r = 0;
+        j = n1;
+        d();
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+label1:
+            {
+                boolean flag = x.bd;
+                if(component == l)
+                {
+                    setVisible(false);
+                    if(!flag)
+                        break label0;
+                }
+                String s = m.getText();
+                c c1 = null;
+                if(j.p.w != 155)
+                {
+                    c1 = j.p.p;
+                } else
+                {
+                    for(int i1 = 0; i1 < j.o.size(); i1++)
+                    {
+                        b b1 = (b)j.o.elementAt(i1);
+                        if(b1.p.e())
+                        {
+                            if(b1.w != 155)
+                                c1 = b1.p;
+                            i1 = j.o.size() + 1;
+                        }
+                    }
+
+                }
+                if(c1 == null)
+                {
+                    j.p.n();
+                    if(!flag)
+                        break label1;
+                }
+                if(s.length() <= 0)
+                    break label1;
+                if(j.v.bT == 0)
+                {
+                    j.e();
+                    if(!flag)
+                        break label1;
+                }
+                if(r == 0)
+                {
+                    c1.a('V', a.r.a(s.length() + 1) + a.r.c(s) + '\0');
+                    if(!flag)
+                        break label1;
+                }
+                j.z.e(s);
+            }
+            setVisible(false);
+        }
+    }
+
+    void c()
+    {
+        setBackground(x.bb[16]);
+        k.a(x.Y);
+        k.b(x.bb[27]);
+        l.a(x.Y);
+        l.b(x.bb[27]);
+        n.b(x.bb[19]);
+        o.b(x.bb[19]);
+    }
+
+    void d()
+    {
+        a(true);
+        add(k = new a.c());
+        k.setBounds(25, 57, 75, 24);
+        add(l = new a.c(a("TV\025H!\177")));
+        l.setBounds(100, 57, 75, 24);
+        add(m = new n(false));
+        m.setBounds(55, 29, 135, 22);
+        add(n = new g(a("YW\007M:/")));
+        n.setBounds(10, 30, 60, 22);
+        n.a(x.bc[2]);
+        add(o = new g(2));
+        o.setBounds(10, 3, 180, 22);
+        o.a(x.bc[2]);
+    }
+
+    void a(int i1)
+    {
+        r = i1;
+        o.a(r != 0 ? a("[W\027]tOV\001N;xA") : a("OV\001N0\u016F\030\017W;w\u0121"));
+        k.a(r != 0 ? a("QW\004E>") : a("FB\025O5\177"));
+        setVisible(true);
+        m.requestFocus();
+    }
+
+    private static String a(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x15;
+                break;
+
+            case 1: // '\001'
+                k1 = 56;
+                break;
+
+            case 2: // '\002'
+                k1 = 96;
+                break;
+
+            case 3: // '\003'
+                k1 = 36;
+                break;
+
+            default:
+                k1 = 84;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    d.n j;
+    a.c k;
+    a.c l;
+    n m;
+    g n;
+    g o;
+    static final int p = 0;
+    static final int q = 1;
+    int r;
+}

@@ -1,0 +1,698 @@
+16:19:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:19:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:19:27 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:19:27 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:21:38 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:21:38 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:33:44 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:33:44 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:14:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:14:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:15:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:15:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:16:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:16:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:19:42 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:19:42 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:55:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:55:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:59:24 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:59:24 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:25:22 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:25:22 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:34:50 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:34:50 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:36:50 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:36:50 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:01:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:01:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:13:19 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:13:19 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:14:37 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:14:37 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:15:04 -> [?] Opening configuration file 
+17:15:04 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:15:04 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:15:04 -> [!] Error opening LOCAL config file [Router1] - skipping 
+17:15:04 -> [?] Trying to connect to MAINSERVER again 
+17:15:04 -> [!] Connected to MAINSERVER 192.168.0.2[5000](iSock: 8)
+17:15:04 -> [?] Trying to open SSL channel again 
+17:15:04 -> [!] SSL Accepted - channel opened 
+17:15:04 -> [?] Downloading latest config...
+17:15:04 -> [REPLY]: =CONFIG-YOURSELF
+ 
+17:15:04 -> (15)[Stats-Traffic] - Exectuing Now! 
+17:15:04 -> (15)[Stats-IpTraffic] - Exectuing Now! 
+17:15:05 -> [GARBAGE]: [PTHREAD] A jak teraz? 
+ 
+17:15:06 -> [SIGNAL]: Got signal 2 
+17:15:40 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:15:40 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:15:57 -> [?] Opening configuration file 
+17:15:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:15:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:15:57 -> [!] Error opening LOCAL config file [Router1] - skipping 
+17:15:57 -> [?] Trying to connect to MAINSERVER again 
+17:15:57 -> [!] Connected to MAINSERVER 192.168.0.2[5000](iSock: 8)
+17:15:57 -> [?] Trying to open SSL channel again 
+17:15:57 -> [!] SSL Accepted - channel opened 
+17:15:57 -> [?] Downloading latest config...
+17:15:57 -> [REPLY]: =CONFIG-YOURSELF
+ 
+17:15:57 -> (15)[Stats-Traffic] - Exectuing Now! 
+17:15:57 -> (15)[Stats-IpTraffic] - Exectuing Now! 
+17:15:57 -> [GARBAGE]: [PTHREAD] A jak teraz? 
+ 
+17:16:07 -> [GARBAGE]: [PTHREAD] Konczymy 
+ 
+17:16:13 -> [SIGNAL]: Got signal 2 
+17:26:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:26:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:06:20 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:06:20 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:06:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:06:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:06:37 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:06:37 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:37:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:37:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:45:17 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:45:17 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:49:15 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:49:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+23:08:53 -> [!] Error opening config file: Router1 - file corrupted or first run?
+23:08:53 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:15:38 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:15:38 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:15:44 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:15:44 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:17:11 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:17:11 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:17:47 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:17:47 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:18:25 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:18:25 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:19:24 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:19:24 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:20:21 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:20:21 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:22:13 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:22:13 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:22:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:22:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:23:01 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:23:01 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:23:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:23:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:30:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:30:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:30:39 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:30:39 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:31:19 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:31:19 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:33:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:33:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:33:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:33:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:35:13 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:35:13 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:38:42 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:38:42 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:39:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:39:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:40:22 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:40:22 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:46:34 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:46:34 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+01:03:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+01:03:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+14:56:07 -> [!] Error opening config file: Router1 - file corrupted or first run?
+14:56:07 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+19:32:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+19:32:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+19:33:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+19:33:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+19:34:02 -> [!] Error opening config file: Router1 - file corrupted or first run?
+19:34:02 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+14:41:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+14:41:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+14:43:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+14:43:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+14:44:25 -> [!] Error opening config file: Router1 - file corrupted or first run?
+14:44:25 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+14:50:22 -> [!] Error opening config file: Router1 - file corrupted or first run?
+14:50:22 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:08:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:08:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:09:06 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:09:06 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:09:45 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:09:45 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:09:53 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:09:53 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:33 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:33 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:35 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:35 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:35 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:35 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:36 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:36 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:36 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:36 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:36 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:36 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:12:37 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:12:37 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:23 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:23 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:24 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:24 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:25 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:25 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:25 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:25 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:26 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:26 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:26 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:26 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:27 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:27 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:28 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:28 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:13:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:13:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:01 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:01 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:17:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:17:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:18:17 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:18:17 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:18:20 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:18:20 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:18:20 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:18:20 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:18:21 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:18:21 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:15 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:15 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:15 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:15 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:20:17 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:20:17 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:22:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:22:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:22:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:22:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:22:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:22:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:22:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:22:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:25:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:25:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:25:38 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:25:38 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:25:38 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:25:38 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:26:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:26:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:26:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:26:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:13 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:13 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:14 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:14 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:14 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:14 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:15 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:15 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:17 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:17 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:24 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:24 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:26 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:26 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:27 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:27 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:27 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:27 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:28 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:28 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:33 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:33 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:33 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:33 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:33 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:33 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:27:34 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:27:34 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:26 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:26 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:27 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:27 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:27 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:27 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:28 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:28 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:28:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:28:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:42 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:42 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:42 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:42 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:42 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:42 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:43 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:43 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:43 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:43 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:43 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:43 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:44 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:44 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:44 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:44 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:45 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:45 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:45 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:45 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:47 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:47 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:48 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:48 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:48 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:48 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:48 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:48 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:49 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:49 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:49 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:49 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:49 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:49 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:50 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:50 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:51 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:51 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:51 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:51 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:52 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:52 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:52 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:52 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:53 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:53 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:53 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:53 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:55 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:55 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:29:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:29:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:30:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:30:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:31:55 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:31:55 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:31:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:31:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:31:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:31:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:31:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:31:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:31:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:31:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:31:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:31:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:00 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:00 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:00 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:00 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:01 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:01 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:02 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:02 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:02 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:02 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:03 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:03 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:03 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:03 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:04 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:04 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:04 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:04 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:06 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:06 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:06 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:06 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:07 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:07 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:07 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:07 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:08 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:08 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:08 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:08 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:10 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:10 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:11 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:11 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:11 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:11 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:13 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:13 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:13 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:13 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:14 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:14 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:14 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:14 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:42 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:42 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:43 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:43 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:44 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:44 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:45 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:45 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:45 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:45 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:47 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:47 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:48 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:48 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:48 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:48 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:55 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:55 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:55 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:55 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:32:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:32:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:03 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:03 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:04 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:04 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:04 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:04 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:04 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:04 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:06 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:06 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:06 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:06 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:06 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:06 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:07 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:07 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:07 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:07 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:08 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:08 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:09 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:09 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:20 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:20 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:56 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:56 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:57 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:57 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:33:59 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:33:59 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:34:00 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:34:00 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:34:00 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:34:00 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:34:00 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:34:00 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:34:00 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:34:00 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:34:01 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:34:01 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:34:01 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:34:01 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:35 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:35 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:36 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:36 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:36 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:36 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:37 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:37 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:37 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:37 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:37 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:37 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:38 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:38 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:39 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:39 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:39 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:39 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:40 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:40 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:40 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:40 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:40 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:40 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:36:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:36:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:37:45 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:37:45 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:38:12 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:38:12 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:38:35 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:38:35 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:43:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:43:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:45:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:45:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:48:19 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:48:19 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:48:55 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:48:55 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:49:13 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:49:13 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:50:44 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:50:44 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:51:17 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:51:17 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+15:54:32 -> [!] Error opening config file: Router1 - file corrupted or first run?
+15:54:32 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:37:03 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:37:03 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+18:41:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+18:41:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:48:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:48:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:48:05 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:48:05 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:49:08 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:49:08 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:49:08 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:49:08 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:49:34 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:49:34 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:49:34 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:49:34 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:50:47 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:50:47 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:50:47 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:50:47 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:51:54 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:51:54 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:51:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:51:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:52:52 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:52:52 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+16:53:34 -> [!] Error opening config file: Router1 - file corrupted or first run?
+16:53:34 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:12:41 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:12:41 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:13:23 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:13:23 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:15:11 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:15:11 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:16:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:16:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:16:52 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:16:52 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:17:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:17:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:17:58 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:17:58 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:07:30 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:07:30 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:08:15 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:08:15 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:09:29 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:09:29 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:09:31 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:09:31 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:11:46 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:11:46 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:16:15 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:16:15 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+17:16:19 -> [!] Error opening config file: Router1 - file corrupted or first run?
+17:16:19 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:46:16 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:46:16 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config
+00:46:24 -> [!] Error opening config file: Router1 - file corrupted or first run?
+00:46:24 -> [?] Its OK not to have local config file, however user's network wont be availble till server download proper config

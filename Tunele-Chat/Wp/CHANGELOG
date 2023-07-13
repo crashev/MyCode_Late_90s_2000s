@@ -1,0 +1,13 @@
+v0.4.1 - zwiekszenie statycznego bufora
+
+v0.4 - mozliwosc wejscia na dowolny nick zarejestrowany bez hasla (!)
+     - pare innych drobiazgow
+
+v0.3 - pozbycie sie if.h (BSD go nie lubilo)
+     - "reczna" implementacja dprintf
+
+v0.2 - wycinanie krzakow po czatowych obrazkach
+     - ident i realname pobierany z klienta
+     - poprawiona generacja odpowiedniego nicka
+
+v0.1 - pierwsza wersja

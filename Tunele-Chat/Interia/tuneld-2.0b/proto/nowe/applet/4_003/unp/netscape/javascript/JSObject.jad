@@ -1,0 +1,64 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   JSObject.java
+
+package netscape.javascript;
+
+import java.applet.Applet;
+
+public final class JSObject
+{
+
+    private static native void initClass();
+
+    private JSObject(int jsobj_addr)
+    {
+        internal = jsobj_addr;
+    }
+
+    public native Object getMember(String s);
+
+    public native Object getSlot(int i);
+
+    public native void setMember(String s, Object obj);
+
+    public native void setSlot(int i, Object obj);
+
+    public native void removeMember(String s);
+
+    public native Object call(String s, Object aobj[]);
+
+    public native Object eval(String s);
+
+    public native String toString();
+
+    public static native JSObject getWindow(Applet applet);
+
+    protected native void finalize();
+
+    public native boolean equals(Object obj);
+
+    private int internal;
+
+    static 
+    {
+        String liveConnectLibrary = null;
+        String OSName = System.getProperty("os.name", null);
+        try
+        {
+            liveConnectLibrary = System.getProperty("netscape.jsj.dll", null);
+        }
+        catch(Exception e)
+        {
+            liveConnectLibrary = null;
+        }
+        if(liveConnectLibrary == null && OSName.indexOf("Mac") == -1)
+            liveConnectLibrary = "LiveConnect";
+        if(liveConnectLibrary != null)
+        {
+            System.loadLibrary(liveConnectLibrary);
+            initClass();
+        }
+    }
+}

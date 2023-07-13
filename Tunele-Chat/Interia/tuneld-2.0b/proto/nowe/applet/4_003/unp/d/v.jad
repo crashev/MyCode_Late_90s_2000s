@@ -1,0 +1,72 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   v.java
+
+package d;
+
+import java.util.Vector;
+
+class v
+{
+
+    public v(String s, int i, int j)
+    {
+        c = false;
+        a = s;
+        b = i;
+        e = j;
+        d = new Vector();
+    }
+
+    void a(String s)
+    {
+        d.addElement(s);
+    }
+
+    private static String b(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i = ac.length;
+        int k;
+        for(int j = 0; j < i; j++)
+        {
+            switch(j % 5)
+            {
+            case 0: // '\0'
+                k = 0x5e;
+                break;
+
+            case 1: // '\001'
+                k = 40;
+                break;
+
+            case 2: // '\002'
+                k = 21;
+                break;
+
+            case 3: // '\003'
+                k = 16;
+                break;
+
+            default:
+                k = 80;
+                break;
+            }
+            ac[j] ^= k;
+        }
+
+        return new String(ac);
+    }
+
+    String a;
+    int b;
+    boolean c;
+    Vector d;
+    int e;
+    public static final String f[] = {
+        b("$Ieb1-Rt0\0237\u01315~1~Ct~1\u011C"), b("$Ieb1-Rt0\0237\u01315~1~Xgy&?\006"), b("$Ieb1-Rt0\0237\u01315t?~E|~9=Rtd1p")
+    };
+    public static final String g = "Czy si\u0119 zgadzasz?";
+
+}

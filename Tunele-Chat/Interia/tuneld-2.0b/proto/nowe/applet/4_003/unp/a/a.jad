@@ -1,0 +1,306 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   a.java
+
+package a;
+
+import java.awt.*;
+import java.awt.event.*;
+
+// Referenced classes of package a:
+//            i
+
+public abstract class a extends Component
+    implements MouseListener, MouseMotionListener
+{
+
+    public final void a(Font font)
+    {
+        m = font;
+    }
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+        d = 2;
+        repaint();
+    }
+
+    public void mouseDragged(MouseEvent mouseevent)
+    {
+        short word0;
+label0:
+        {
+            int i1 = mouseevent.getX();
+            int j1 = mouseevent.getY();
+            word0 = d;
+            if(i1 < 0 || j1 < 0 || i1 > a || j1 > b)
+            {
+                d = 0;
+                if(!q)
+                    break label0;
+            }
+            d = 2;
+        }
+        if(word0 != d)
+            repaint();
+    }
+
+    public final boolean isEnabled()
+    {
+        return c;
+    }
+
+    public a()
+    {
+        this(false);
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+label0:
+        {
+            boolean flag = q;
+            int i1 = mouseevent.getX();
+            int j1 = mouseevent.getY();
+            if(i1 < 0 || j1 < 0 || i1 > a || j1 > b)
+            {
+                d = 0;
+                if(!flag)
+                    break label0;
+            }
+            if(c)
+            {
+                b();
+                d = 1;
+                if(!flag)
+                    break label0;
+            }
+            d = 0;
+        }
+        repaint();
+    }
+
+    public void mouseMoved(MouseEvent mouseevent)
+    {
+    }
+
+    public a(boolean flag)
+    {
+        a = 0;
+        b = 0;
+        c = true;
+        d = 0;
+        p = 0;
+        if(flag)
+        {
+            addMouseListener(this);
+            addMouseMotionListener(this);
+        }
+    }
+
+    public final void repaint()
+    {
+        Graphics g1 = getGraphics();
+        if(g1 != null)
+        {
+            paint(g1);
+            g1.dispose();
+        }
+    }
+
+    public abstract void paint(Graphics g1);
+
+    public final void update(Graphics g1)
+    {
+        paint(g1);
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+        d = 1;
+        repaint();
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+        d = 0;
+        repaint();
+    }
+
+    public final void a(Color color)
+    {
+        l = color;
+    }
+
+    public int a()
+    {
+        int i1;
+label0:
+        {
+            boolean flag = q;
+            if(n == null)
+            {
+                i1 = 10;
+                if(!flag)
+                    break label0;
+            }
+            if(m != null)
+            {
+                i1 = getFontMetrics(m).stringWidth(n) + 10;
+                if(!flag)
+                    break label0;
+            }
+            i1 = n.length() * 5 + 10;
+        }
+        return i1;
+    }
+
+    void b()
+    {
+        if(getParent() != null)
+            try
+            {
+                ((i)getParent()).a(this);
+            }
+            catch(Exception exception)
+            {
+                exception.printStackTrace();
+            }
+    }
+
+    public void b(Color color)
+    {
+        if(o != color)
+        {
+            o = color;
+            repaint();
+        }
+    }
+
+    public final void a(int i1)
+    {
+        p = (short)i1;
+    }
+
+    public final int getHeight()
+    {
+        return b;
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        a = k1;
+        b = l1;
+        super.setBounds(i1, j1, k1, l1);
+    }
+
+    public final void setEnabled(boolean flag)
+    {
+        if(c != flag)
+        {
+            c = flag;
+            repaint();
+        }
+    }
+
+    public final int getWidth()
+    {
+        return a;
+    }
+
+    public String c()
+    {
+        return n;
+    }
+
+    public void a(String s)
+    {
+        n = s;
+    }
+
+    public void a(String s, boolean flag)
+    {
+        n = s;
+        if(flag)
+            repaint();
+    }
+
+    void a(Graphics g1, int i1, int j1)
+    {
+        FontMetrics fontmetrics;
+        String s;
+        boolean flag;
+label0:
+        {
+            flag = q;
+            if(n == null || n.length() <= 0)
+                break MISSING_BLOCK_LABEL_344;
+            if(!c)
+            {
+                g1.setColor(Color.gray);
+                if(!flag)
+                    break label0;
+            }
+            if(o != null)
+            {
+                g1.setColor(o);
+                if(!flag)
+                    break label0;
+            }
+            g1.setColor(Color.black);
+        }
+        if(m != null)
+            g1.setFont(m);
+        fontmetrics = g1.getFontMetrics();
+        if(p == 0)
+        {
+            g1.drawString(n, i1 + 3, (j1 + (b + fontmetrics.getHeight()) / 2) - 3);
+            if(!flag)
+                break MISSING_BLOCK_LABEL_344;
+        }
+        if(p == 1)
+        {
+            g1.drawString(n, (i1 + a) - fontmetrics.stringWidth(n) - 2, (j1 + (b + fontmetrics.getHeight()) / 2) - 3);
+            if(!flag)
+                break MISSING_BLOCK_LABEL_344;
+        }
+        if(p != 2)
+            break MISSING_BLOCK_LABEL_344;
+        if(fontmetrics.stringWidth(n) <= a - 5)
+            break MISSING_BLOCK_LABEL_302;
+        s = n;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        s = s.substring(0, s.length() - 1);
+_L2:
+        if(s.length() > 0 && fontmetrics.stringWidth(s) > a - 5) goto _L1; else goto _L3
+_L3:
+        g1.drawString(s, i1 + (a - fontmetrics.stringWidth(s)) / 2, (j1 + (b + fontmetrics.getHeight()) / 2) - 3);
+        if(!flag)
+            break MISSING_BLOCK_LABEL_344;
+        g1.drawString(n, i1 + (a - fontmetrics.stringWidth(n)) / 2, (j1 + (b + fontmetrics.getHeight()) / 2) - 3);
+    }
+
+    int a;
+    int b;
+    boolean c;
+    short d;
+    static final short e = 0;
+    static final short f = 1;
+    static final short g = 2;
+    static final short h = 9;
+    public static final short i = 0;
+    public static final short j = 1;
+    public static final short k = 2;
+    Color l;
+    Font m;
+    String n;
+    Color o;
+    short p;
+    public static boolean q;
+}

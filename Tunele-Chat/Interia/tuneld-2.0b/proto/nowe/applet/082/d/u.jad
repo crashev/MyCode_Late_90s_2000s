@@ -1,0 +1,805 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   u.java
+
+package d;
+
+import INTChat;
+import a.r;
+import c.a;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.image.*;
+import java.util.Hashtable;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            x
+
+public class u
+    implements Runnable
+{
+
+    public static void a()
+    {
+        c--;
+        if(c == 0)
+        {
+            f = false;
+            synchronized(d)
+            {
+                d.notify();
+            }
+            d = null;
+        }
+    }
+
+    public static void a(String s1)
+    {
+        String as[];
+        int i1;
+        as = a.r.a(s1, ';');
+        g.removeAllElements();
+        i1 = 0;
+        if(!ba) goto _L2; else goto _L1
+_L1:
+        a(as[i1 + 1], as[i1], null, null);
+        i1 += 2;
+_L2:
+        if(i1 >= as.length - 1)
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public u(INTChat intchat)
+    {
+        b = intchat;
+        if(g == null)
+            g = new Vector();
+        if(h == null)
+            h = new Vector();
+        if(i == null)
+            i = new Vector();
+        String s1 = b.getParameter(b("W>\001//_\023\007!'S\023\r$!T"));
+        if(s1 != null)
+            l = s1;
+        s1 = b.getParameter(b("W>\001//_\023\027\"/I\023\r$!T"));
+        if(s1 != null)
+            m = s1;
+        s1 = b.getParameter(b("W>\001//_\023\025</]\023\r$!T"));
+        if(s1 != null)
+            n = s1;
+        k = b.createImage(1, 1);
+        Graphics g1 = k.getGraphics();
+        g1.setColor(Color.white);
+        g1.fillRect(0, 0, 1, 1);
+        if(b.getParameter(b("E \013*-B(;*.F8; +@?")) == null) goto _L2; else goto _L1
+_L1:
+        String as[];
+        int i1;
+        as = a.r.a(c.a.b(b.getParameter(b("E \013*-B(;*.F8; +@?"))), ' ');
+        i1 = 0;
+        if(!ba) goto _L4; else goto _L3
+_L3:
+        o.put(as[i1], k);
+        i1++;
+_L4:
+        if(i1 < as.length) goto _L3; else goto _L2
+_L2:
+    }
+
+    public static void b()
+    {
+        Toolkit toolkit;
+        int j1;
+        boolean flag;
+        flag = ba;
+        toolkit = Toolkit.getDefaultToolkit();
+        j1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        toolkit.prepareImage((Image)h.elementAt(j1), -1, -1, null);
+_L5:
+        if(j1 % 10 == 0)
+            try
+            {
+                Thread.sleep(10L);
+            }
+            catch(Exception _ex) { }
+        j1++;
+_L2:
+        if(j1 < h.size()) goto _L1; else goto _L3
+_L3:
+        j1 = h.size();
+        if(flag) goto _L5; else goto _L4
+_L4:
+        if(!flag) goto _L7; else goto _L6
+_L6:
+        int k1 = 0;
+        if(!flag) goto _L9; else goto _L8
+_L8:
+        int i1 = toolkit.checkImage((Image)h.elementAt(k1), -1, -1, null);
+        if((i1 & 0x20) != 0 || (i1 & 0x80) != 0 || (i1 & 0x40) != 0)
+            j1--;
+        k1++;
+_L9:
+        if(k1 < h.size()) goto _L8; else goto _L10
+_L10:
+        try
+        {
+            Thread.sleep(50L);
+        }
+        catch(Exception _ex) { }
+_L7:
+        do
+        {
+            if(j1 > 0)
+                continue; /* Loop/switch isn't completed */
+            h.removeAllElements();
+        } while(flag);
+        break; /* Loop/switch isn't completed */
+        if(true) goto _L6; else goto _L11
+_L11:
+    }
+
+    public static void a(Graphics g1, Image aimage[], int i1, int j1, int k1, int l1)
+    {
+        int i2;
+        boolean flag;
+        flag = ba;
+        i2 = j1 + 9;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        g1.drawImage(aimage[1], i1, i2, null);
+        g1.drawImage(aimage[5], (i1 + k1) - 9, i2, null);
+_L5:
+        i2 += 24;
+_L2:
+        if(i2 <= (j1 + l1) - 24) goto _L1; else goto _L3
+_L3:
+        i2 = i1 + 9;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        if(!flag) goto _L7; else goto _L6
+_L6:
+        g1.drawImage(aimage[3], i2, (j1 + l1) - 9, null);
+        g1.drawImage(aimage[7], i2, j1, null);
+_L9:
+        i2 += 24;
+_L7:
+        if(i2 <= (i1 + k1) - 24)
+            continue; /* Loop/switch isn't completed */
+        g1.drawImage(aimage[0], i1, j1, null);
+        g1.drawImage(aimage[7], (i1 + k1) - 33, j1, null);
+        g1.drawImage(aimage[6], (i1 + k1) - 9, j1, null);
+        g1.drawImage(aimage[2], i1, (j1 + l1) - 24, null);
+        g1.drawImage(aimage[3], (i1 + k1) - 33, (j1 + l1) - 9, null);
+        g1.drawImage(aimage[4], (i1 + k1) - 9, (j1 + l1) - 24, null);
+        if(!flag)
+            return;
+        if(true) goto _L9; else goto _L8
+_L8:
+        if(true) goto _L6; else goto _L10
+_L10:
+    }
+
+    public static int a(Image image)
+    {
+        int i1;
+        boolean flag;
+        flag = ba;
+        if(image == null)
+            return -1;
+        h.removeAllElements();
+        R = new Image[2][2];
+        i1 = 0;
+_L6:
+        int j1 = 0;
+_L2:
+        R[i1][j1] = a(image, 86 + 60 * i1 + 10 * j1, 24, 9, 5);
+        ++j1;
+_L8:
+        2;
+_L4:
+        JVM INSTR icmplt 29;
+           goto _L1 _L2
+_L1:
+        ++i1;
+        2;
+        if(flag) goto _L4; else goto _L3
+_L3:
+        JVM INSTR icmplt 27;
+           goto _L5 _L6
+_L5:
+        S = new Image[4][2];
+        false;
+        if(flag) goto _L8; else goto _L7
+_L7:
+        i1;
+_L14:
+        j1 = 0;
+_L10:
+        S[i1][j1] = a(image, 55 + 26 * i1, 141 + 25 * j1, 25, 24);
+        ++j1;
+_L16:
+        2;
+_L12:
+        JVM INSTR icmplt 94;
+           goto _L9 _L10
+_L9:
+        ++i1;
+        4;
+        if(flag) goto _L12; else goto _L11
+_L11:
+        JVM INSTR icmplt 92;
+           goto _L13 _L14
+_L13:
+        F = new Image[7];
+        false;
+        if(flag) goto _L16; else goto _L15
+_L15:
+        i1;
+_L18:
+        F[i1] = a(image, 28 + 17 * i1, 199, 16, 16);
+        ++i1;
+_L20:
+        7;
+        JVM INSTR icmplt 158;
+           goto _L17 _L18
+_L17:
+        H = new Image[2];
+        x = new Image[2];
+        G = new Image[2];
+        N = new Image[3][2];
+        false;
+        if(flag) goto _L20; else goto _L19
+_L19:
+        i1;
+_L22:
+        H[i1] = a(image, 68, 68 + i1 * 12, 11, 11);
+        x[i1] = a(image, 28, i1 * 25 + 141, 26, 24);
+        G[i1] = a(image, 12 * i1 + 68, 44, 10, 10);
+        N[0][i1] = a(image, 182 * i1 + 1, 109, 63, 30);
+        N[1][i1] = a(image, 182 * i1 + 65, 109, 57, 30);
+        N[2][i1] = a(image, 182 * i1 + 123, 109, 59, 30);
+        ++i1;
+_L24:
+        2;
+        JVM INSTR icmplt 226;
+           goto _L21 _L22
+_L21:
+        L = new Image[3];
+        K = new Image[3];
+        v = new Image[3];
+        w = new Image[3];
+        I = new Image[3];
+        J = new Image[3];
+        C = new Image[3];
+        D = new Image[3];
+        t = new Image[3];
+        u = new Image[3];
+        y = new Image[3];
+        A = new Image[3];
+        q = new Image[3];
+        r = new Image[3];
+        s = new Image[3];
+        O = new Image[2][3];
+        T = new Image[3][3];
+        U = new Image[3][3];
+        V = new Image[3][3];
+        P = new Image[2][3];
+        Q = new Image[2][3];
+        z = new Image[8];
+        B = new Image[8];
+        false;
+        if(flag) goto _L24; else goto _L23
+_L23:
+        i1;
+_L34:
+        L[i1] = a(image, 159, i1 * 25 + 141, 17, 24);
+        K[i1] = a(image, 177, i1 * 25 + 141, 17, 24);
+        v[i1] = a(image, 195, i1 * 25 + 141, 26, 24);
+        w[i1] = a(image, 222, i1 * 25 + 141, 26, 24);
+        I[i1] = a(image, 329, 141 + 25 * i1, 17, 24);
+        J[i1] = a(image, 347, 141 + 25 * i1, 17, 24);
+        C[i1] = a(image, 177 + 10 * i1, 2, 9, 24);
+        D[i1] = a(image, 207 + 10 * i1, 2, 9, 24);
+        t[i1] = a(image, 276, i1 * 25 + 141, 52, 24);
+        u[i1] = a(image, 249, i1 * 25 + 141, 25, 24);
+        y[i1] = a(image, 1, i1 * 25 + 141, 26, 24);
+        A[i1] = a(image, 46, 25 * i1 + 33, 10, 24);
+        q[i1] = a(image, 18 * i1 + 1, 1, 17, 30);
+        r[i1] = a(image, 257, 25 * i1 + 33, 23, 24);
+        s[i1] = a(image, 281, 25 * i1 + 33, 23, 24);
+        j1 = 0;
+_L26:
+        O[j1][i1] = a(image, 72 * j1 + 113, 25 * i1 + 33, 71, 24);
+        ++j1;
+_L28:
+        2;
+        JVM INSTR icmplt 904;
+           goto _L25 _L26
+_L25:
+        false;
+        if(flag) goto _L28; else goto _L27
+_L27:
+        j1;
+_L30:
+        T[i1][j1] = a(image, 305 + 10 * j1, 33 + 25 * i1, 9, 24);
+        U[i1][j1] = a(image, 335 + 10 * j1, 33 + 25 * i1, 9, 24);
+        V[i1][j1] = a(image, 275 + 10 * j1 + 30 * i1, 2, 9, 24);
+        ++j1;
+        3;
+_L32:
+        JVM INSTR icmplt 947;
+           goto _L29 _L30
+_L29:
+        P[0][i1] = a(image, 10 * i1 + 86, 2, 9, 21);
+        P[1][i1] = a(image, 10 * i1 + 56, 3, 9, 26);
+        Q[0][i1] = a(image, 10 * i1 + 146, 2, 9, 21);
+        Q[1][i1] = a(image, 10 * i1 + 116, 3, 9, 26);
+        z[i1] = a(image, 1, 25 * i1 + 33, 9, 24);
+        z[i1 + 4] = a(image, 36, 83 - 25 * i1, 9, 24);
+        B[i1] = a(image, 57, 25 * i1 + 33, 9, 24);
+        B[i1 + 4] = a(image, 92, 83 - 25 * i1, 9, 24);
+        ++i1;
+        3;
+        if(flag) goto _L32; else goto _L31
+_L31:
+        JVM INSTR icmplt 556;
+           goto _L33 _L34
+_L33:
+        z[3] = a(image, 11, 98, 24, 9);
+        z[7] = a(image, 11, 33, 24, 9);
+        B[3] = a(image, 67, 98, 24, 9);
+        B[7] = a(image, 67, 33, 24, 9);
+        X = a(image, 69, 56, 4, 10);
+        h.size();
+        if(flag) goto _L28; else goto _L35
+_L35:
+        return;
+    }
+
+    static void a(String s1, String s2, Image image, Image image1)
+    {
+        x x1 = new x();
+        x1.b = s2;
+        x1.a = s1;
+        x1.c = null;
+        x1.d = image;
+        g.addElement(x1);
+    }
+
+    public static int c()
+    {
+        return g.size();
+    }
+
+    public static boolean a(int i1)
+    {
+        x x1;
+        int ai[];
+        int l1;
+        PixelGrabber pixelgrabber;
+        boolean flag;
+        flag = ba;
+        if(i1 >= g.size())
+            return false;
+        x1 = (x)g.elementAt(i1);
+        if(x1.e != null)
+        {
+            Y = x1.e;
+            return true;
+        }
+        byte byte0 = 4;
+        byte byte1 = 10;
+        ai = new int[byte0 * byte1];
+        l1 = 0;
+        pixelgrabber = null;
+        try
+        {
+            pixelgrabber = new PixelGrabber(X, 0, 0, byte0, byte1, ai, 0, byte0);
+            pixelgrabber.startGrabbing();
+        }
+        catch(Exception _ex)
+        {
+            l1 = 4;
+        }
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        try
+        {
+            Thread.sleep(200L);
+        }
+        catch(InterruptedException _ex)
+        {
+            l1 = 4;
+        }
+        l1++;
+_L2:
+        if(l1 > 3)
+            break; /* Loop/switch isn't completed */
+        pixelgrabber;
+        if(flag) goto _L4; else goto _L3
+_L3:
+        if(pixelgrabber != null && ((pixelgrabber.getStatus() & 0x20) == 0 && (pixelgrabber.getStatus() & 0x80) == 0)) goto _L1; else goto _L5
+_L5:
+        if(l1 > 3) goto _L7; else goto _L6
+_L6:
+        pixelgrabber;
+_L4:
+        JVM INSTR ifnull 177;
+           goto _L8 _L7
+_L8:
+        if((pixelgrabber.getStatus() & 0x80) == 0) goto _L9; else goto _L7
+_L7:
+        String as[];
+        String s1 = b.getHTMLPage(m + x1.b + b("\t/\b;"), 1);
+        as = a.r.a(s1, ';');
+        if(as.length <= 40) goto _L9; else goto _L10
+_L10:
+        int k1;
+        int i2;
+        i2 = 0;
+        k1 = 0;
+_L15:
+        int j1 = 0;
+_L12:
+        ai[4 * k1 + j1] = -Integer.parseInt(as[i2++], 16);
+        ++j1;
+        4;
+_L14:
+        JVM INSTR icmplt 242;
+           goto _L11 _L12
+_L11:
+        ++k1;
+        10;
+        if(flag) goto _L14; else goto _L13
+_L13:
+        JVM INSTR icmplt 240;
+           goto _L9 _L15
+_L9:
+        Y = new Color[40];
+        k1 = 0;
+_L21:
+        j1 = 0;
+_L17:
+        Y[4 * k1 + j1] = new Color(ai[4 * k1 + j1]);
+        j1++;
+_L22:
+        j1;
+        4;
+_L19:
+        JVM INSTR icmplt 298;
+           goto _L16 _L17
+_L16:
+        ++k1;
+        10;
+        if(flag) goto _L19; else goto _L18
+_L18:
+        JVM INSTR icmplt 296;
+           goto _L20 _L21
+_L20:
+        x1.e = Y;
+        g.setElementAt(x1, i1);
+        if(!flag)
+        {
+            Object obj = null;
+            return true;
+        }
+          goto _L22
+    }
+
+    public void d()
+    {
+        Image aimage[];
+        W = new Image[3][3];
+        aimage = new Image[9];
+        if(b.getParameter(b("E9\020=)I\023\r$!")) == null) goto _L2; else goto _L1
+_L1:
+        int i1;
+        a(b.downloadImage(b.getParameter(b("E9\020=)I\023\r$!")), true), aimage, 3, 3, 9, 24);
+        b.updateProgress(6);
+        b();
+        i1 = 0;
+_L7:
+        int j1 = 0;
+_L4:
+        W[i1][j1] = aimage[3 * i1 + j1];
+        ++j1;
+        3;
+_L6:
+        JVM INSTR icmplt 75;
+           goto _L3 _L4
+_L3:
+        ++i1;
+        3;
+        if(ba) goto _L6; else goto _L5
+_L5:
+        JVM INSTR icmplt 73;
+           goto _L2 _L7
+_L2:
+        b.updateProgress(7);
+        Object obj = null;
+        j = b.downloadImage(l + b("N!\005.#\t+\r/"));
+        if(j == null)
+            j = k;
+        if(b.getParameter(b("V9\r3\031E9\020=)I?")) == null);
+        M = new Image[5];
+        a(b.downloadImage(b("D$\005=\031U)\027&3U/\001:iV9\r3\031E9\020:h@%\002"), true), M, 1, 5, 28, 24);
+        b.updateProgress(8);
+        if(d == null)
+        {
+            d = new Thread(this, b("d$\005=kN!\005.#T\000\013(\"B>"));
+            f = true;
+            d.start();
+        }
+        b.updateProgress(9);
+        c++;
+        return;
+    }
+
+    public static Image a(Component component, String s1, boolean flag)
+    {
+        if(s1.length() == 0)
+            return null;
+        Image image = (Image)o.get(s1);
+        if(image == null)
+        {
+            if(flag)
+            {
+                image = b.downloadImage(l + s1 + b("\t+\r/"));
+                o.put(s1, image == null ? ((Object) (k)) : ((Object) (image)));
+                return image;
+            }
+            i.addElement(s1);
+            p.put(s1, component);
+            o.put(s1, j);
+            if(!e && f)
+                synchronized(d)
+                {
+                    d.notify();
+                }
+            return j;
+        }
+        if(image != k)
+            return image;
+        else
+            return null;
+    }
+
+    public static Image b(int i1)
+    {
+        if(i1 >= g.size())
+            return null;
+        x x1 = (x)g.elementAt(i1);
+        if(x1.d == null)
+        {
+            x1.d = b.downloadImage(m + x1.b + b("\t+\r/"), true);
+            g.setElementAt(x1, i1);
+        }
+        return x1.d;
+    }
+
+    private static boolean a(Image image, Image aimage[], int i1, int j1, int k1, int l1)
+    {
+        int i2;
+        boolean flag;
+        flag = ba;
+        if(image == null || aimage == null)
+            return false;
+        i2 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        false;
+_L8:
+        int j2;
+        j2;
+        if(!flag) goto _L4; else goto _L3
+_L3:
+        aimage[i2 * j1 + j2] = a(image, j2 * k1, i2 * l1, k1, l1);
+        j2++;
+_L4:
+        if(j2 < j1) goto _L3; else goto _L5
+_L5:
+        i2++;
+_L2:
+        if(i2 < i1) goto _L1; else goto _L6
+_L6:
+        true;
+        if(flag) goto _L8; else goto _L7
+_L7:
+        return;
+    }
+
+    private static Image a(Image image, int i1, int j1, int k1, int l1)
+    {
+        if(image == null)
+        {
+            return null;
+        } else
+        {
+            FilteredImageSource filteredimagesource = new FilteredImageSource(image.getSource(), new CropImageFilter(i1, j1, k1, l1));
+            Image image1 = b.createImage(filteredimagesource);
+            h.addElement(image1);
+            return image1;
+        }
+    }
+
+    public static void b(Image image)
+    {
+        a = image;
+        E = new Image[44];
+        if(image != null)
+        {
+            a(image, E, 1, E.length, 15, 15);
+            b();
+        }
+    }
+
+    public void run()
+    {
+        boolean flag = ba;
+          goto _L1
+_L15:
+        1;
+_L13:
+        e;
+        if(!flag) goto _L3; else goto _L2
+_L2:
+        i.elementAt(0);
+_L6:
+        (String);
+        String s1;
+        s1;
+        Component component;
+        Image image = b.downloadImage(l + s1 + b("\t+\r/"));
+        o.put(s1, image == null ? ((Object) (k)) : ((Object) (image)));
+        i.removeElementAt(0);
+        component = (Component)p.get(s1);
+        if(component == null) goto _L3; else goto _L4
+_L4:
+        p.remove(s1);
+        component;
+        if(flag) goto _L6; else goto _L5
+_L5:
+        repaint();
+_L3:
+        if(i.size() > 0) goto _L2; else goto _L7
+_L7:
+        e = false;
+        if(flag) goto _L3; else goto _L8
+_L8:
+        if(!flag) goto _L10; else goto _L9
+_L9:
+        synchronized(d)
+        {
+            try
+            {
+                d.wait();
+            }
+            catch(Exception _ex) { }
+        }
+_L10:
+        if(!f)
+            continue; /* Loop/switch isn't completed */
+        d;
+        if(flag || flag) goto _L6; else goto _L11
+_L11:
+        if(d == null)
+            continue; /* Loop/switch isn't completed */
+        i.size();
+        if(flag) goto _L13; else goto _L12
+_L12:
+        JVM INSTR ifeq 145;
+           goto _L1 _L9
+_L1:
+        if(f) goto _L15; else goto _L14
+_L14:
+    }
+
+    public static Image c(int i1)
+    {
+        x x1 = (x)g.elementAt(i1);
+        if(x1.c == null)
+        {
+            x1.c = b.downloadImage(m + x1.b + b("x:\r,1\t+\r/"));
+            g.setElementAt(x1, i1);
+        }
+        return x1.c;
+    }
+
+    private static String b(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x27;
+                break;
+
+            case 1: // '\001'
+                k1 = 76;
+                break;
+
+            case 2: // '\002'
+                k1 = 100;
+                break;
+
+            case 3: // '\003'
+                k1 = 73;
+                break;
+
+            default:
+                k1 = 70;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    static Image a;
+    private static INTChat b;
+    public static int c = 0;
+    static Thread d;
+    static boolean e = false;
+    static boolean f = false;
+    static Vector g;
+    static Vector h;
+    static Vector i;
+    public static Image j;
+    public static Image k;
+    public static String l = b("D$\005=\031U)\027&3U/\001:iD$\005=\031N!\003:i");
+    public static String m = b("D$\005=\031U)\027&3U/\001:iT'\r'\031N!\003:i");
+    public static String n = b("D$\005=\031U)\027&3U/\001:iV9\r3\031N!\003:i");
+    public static Hashtable o = new Hashtable();
+    static Hashtable p = new Hashtable();
+    public static Image q[];
+    public static Image r[];
+    public static Image s[];
+    public static Image t[];
+    public static Image u[];
+    public static Image v[];
+    public static Image w[];
+    public static Image x[];
+    public static Image y[];
+    public static Image z[];
+    public static Image A[];
+    public static Image B[];
+    public static Image C[];
+    public static Image D[];
+    public static Image E[];
+    public static Image F[];
+    public static Image G[];
+    public static Image H[];
+    public static Image I[];
+    public static Image J[];
+    public static Image K[];
+    public static Image L[];
+    public static Image M[];
+    public static Image N[][];
+    public static Image O[][];
+    public static Image P[][];
+    public static Image Q[][];
+    public static Image R[][];
+    public static Image S[][];
+    public static Image T[][];
+    public static Image U[][];
+    public static Image V[][];
+    public static Image W[][];
+    public static Image X;
+    public static Color Y[];
+    public static final Font Z[] = {
+        new Font(b("q)\026-'I-"), 1, 12), new Font(b("q)\026-'I-"), 0, 12), new Font(b("q)\026-'I-"), 1, 11), new Font(b("q)\026-'I-"), 0, 11), new Font(b("f>\r(*"), 1, 13), new Font(b("f>\r(*"), 0, 13)
+    };
+    public static boolean ba;
+
+}

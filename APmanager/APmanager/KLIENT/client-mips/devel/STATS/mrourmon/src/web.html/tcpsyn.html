@@ -1,0 +1,54 @@
+<html>
+<head>
+<title> TOP 40 tcp syn generating IP addresses (4 graphs)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html"; charset=iso-8859-1>
+<META HTTP-EQUIV="Refresh" CONTENT="30" >
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache" >
+<META HTTP-EQUIV="Expires" CONTENT="Fri, 19 May 1999 23:37:00 GMT">
+
+<hr>
+<H3>  TOP 40 tcp syn generating IP addresses, syn count/fin count/rst count (back to this ip)
+</H3> 
+<p>
+We sort on syn count per sample period (30 seconds).  The syns/fins/reset and total tcp pkts in both directions are shown. 
+Syns are counted as sent from a particular ip src.  Fins and resets are counted as pkts being
+sent back to a particular ip src.  Syns, Fins, and resets as well as ordinary
+packets sent/to from a particular ip src are included in the total count.  The total count is
+thus a hopefully close approximation of all TCP pkts sent to/from an individual
+address and may be viewed as a count of TCP work.  We compute and show a percent
+that is simply the percent of tcp control packets divided by the total number of packets.
+<p>
+In general, it is not good if the percent is high (near 100%) because that means
+that there is only TCP control, and little data.
+If the percent of tcp control (syns/fins/resets) to total packets is 90% or above we
+give the ip source a "W" flag.  If the percent is between 50..90% we give the ip source
+a "w" flag, else we say nothing.  We have determined that P2P apps such as gnutella
+and kazaa may appear as syn scanners, but with this weight measure, they typically
+score a combined weight of 30% or less in terms of control/total packets.
+That said, a VERY successful scanning/worm might of course have a lot "successful"
+two-way traffic as well (to say nothing a very successful gnutella worm combination).
+
+<p>
+Guide to legend info below.  A 2-tuple of legend/syn count is displayed. The top legend includes the
+following information:
+<br> 
+<br> 
+ip address: f (count of fins): r (count of resets): t (total 2-way pkts): percent of control/total: W or w flag
+<br> 
+<br> 
+Underneath the legend we show the total syn count which is used for the topn syn sort.
+</p>
+<hr>
+<p><img src="topn_tcp_syn1.png"> </p>
+<hr>
+<p><img src="topn_tcp_syn2.png"> </p>
+<hr>
+<p><img src="topn_tcp_syn3.png"> </p>
+<hr>
+<p><img src="topn_tcp_syn4.png"> </p>
+</body>
+</html>

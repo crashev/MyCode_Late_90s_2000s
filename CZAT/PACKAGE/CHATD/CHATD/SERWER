@@ -1,0 +1,86 @@
+-Serwer
+
+    Serwer CHATU jest aplikacja, ktorej zadaniem jest obsluga uzytkownikow
+CZATU. Obsluguje polaczenia, rozmowy na kanalach, rozmowy prywatne, wszelkie
+zadarzenia itd. Serwer zostal napisany w jezyku C. Celem ktory mial by
+osiagniety przez serwer to - maly i szybki kod, obsluga wielu uzytkownikow
+na raz, obsluga wielu kanalow oraz oczywiscie obsluga wczesniej ustalonego
+protokolu, ktorym SERWER rozmawia z APLETAMI.
+Serwer jest aplikacja jedno-procesowa, nie ma tu obslugi kazdego polaczenia
+przez odzielny proces, nie ma tu watkow, ktore by niepotrzebnie zabieraly
+zasoby i pamiec. Jeden proces dzieki NIE-BLOKUJACYM sie ganiazdom i 
+modelu asynchronicznym aplikacji obsluguje wiele polaczen przychodzacych
+i rozmowy w tym samym czasie, bez koniecznosci blokowania czegokolwiek.
+
+Krotko o kodzie:
+
+Serwer startujac wykonuje nastepujace czynnosci:
+    1) otwiera plik debug.log, w ktorym zapisuje wszystko co dzieje sie
+       na czacie,plik ten sluzy do sledzenia bledow
+
+       [120]     if ( (outlog=fopen("logs/debug.log","a+"))==NULL)
+    
+    2) Otwiera gniazdo sieciowe na ktorym bedzie nasluchiwal i ustawia
+       je w tryb NONBLOCK(nieblokujace)
+
+       [133]     pin=socket(PF_INET,SOCK_STREAM,0);
+       [142] 	 if (fcntl(pin,F_SETFL,O_NONBLOCK)<0)
+       [152]     if (bind(pin,(struct sockaddr *)&sckin,sizeof(sckin))<0) 
+
+    3) Ustawia kolejke oczekujacych polaczen, odcina sie od konsoli,zamyka
+       otwarte deskryptory (stdin,stdout,stderr) oraz przechodzi do dzialania 
+       "w tle" [fork()]
+       
+       [159] listen(pin,2);
+       [163] if (fork()) exit(0);
+       [164] if (setsid()&&fork()) exit(0);
+       [165] for (a=0;a<3;a++) {close(a);}    
+
+    4) W tym momencie nastepuje wejscie w PETLE GLOWNA, ktora wszystko
+    obsluguje t.j. caly protkol, nowe polaczenia itd.
+
+       [174] while (1) {...
+
+Serwer nasluchuje na wczesniej zdefiniowanym porcie oczekujac na uzytkownikow.
+Kazdy uzytkownik ktory przylaczy sie do SERWERA witany jest wiadomoscia:
+
+*YWitamy na czacie.
+
+Po takim zaproszeniu, klient powinien zidentyfikowac swoje zamiary poprzez
+podanie swojej ksywki i kanalu, na ktory chce sie przylaczyc wedlug PROTOKOLu.
+Po poprawnej identyfikacji przy braku bledu kazdy uzytkownik opisany zostaje
+poprzez strukture:
+
+	struct nicker
+        { 
+	    char nick[20]; 
+	    char host[255];
+	    char kanal[20];
+	    int dom;
+	    
+	};
+
+gdzie nick to ksywka uzytkownika, host to jego nazwa hostu(nie uzywane 
+domyslnie), kanal to nazwa kanalu , na ktory sie przylaczyl oraz dom
+to numer deskryptora ktory posiada dany uzytkownik.
+    Serwer jak bylo juz wspomniane dziala asynchronicznie, nie blokuje sie
+przy odczytywaniu czy tez przy obsludze nowego polaczenia. Mozna powiedziec,
+ze dziala w petli, ktora krazy i obsluguje zdarzenia, jesli cos napotka
+to odczytuje i interpretuje.Do sprawdzania czy w danym gniazdku(socket) klienta
+sie cos dzieje sluza funkcje select()+FD_SET()+FD_ISSET().
+    Serwer obsluguje takze wiele polaczen, ich maksymalna ilosc jest zdefinio-
+wana poprzez zmienna MAXUSR.Do obslugi polaczn sluzy tablica cli[] a ich ilosc
+aktualnie obslugiwanych okresla zmienna kolejka. Jesli uzytkownik sie przylaczy,
+zostaje zwiekszona wartosc kolejka++ i zostaje on obsluzony. Po poprawnej
+identyfikacji ilosc uzytkownikow(ilu++) zostaje zwiekszona a kolejka zwolniona
+kolejka--. Tablica struktur przetrzymujaca uzytkownikow obecnych na serwerze
+to nick[ilu]. Przy przylaczeniu sie uzytkownika zostaje on dodany wlasnie
+do tej tablicy struktur. Jesli uzytkownik sie odlaczy nastepuje reorganizacja
+tej tablicy w zaleznosci od tego na ktorym miejscu sie znajdowal. Celem
+reorganizacji jest utrzymywanie spojnej tablicy struktur,zeby nie bylo gdzies
+dziur w niej, miejsca zwolnionego przez uzytkownika, ktore nie jest uzywane.
+
+
+
+
+

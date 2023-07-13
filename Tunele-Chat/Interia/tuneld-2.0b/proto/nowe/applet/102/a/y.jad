@@ -1,0 +1,41 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   y.java
+
+package a;
+
+
+class y
+{
+
+    void a(y y1)
+    {
+        if(y1 != null)
+        {
+            d = y1.d;
+            c = y1.c;
+            a = y1.a;
+            f = y1.f;
+            b = y1.b;
+            e = y1.e;
+        }
+    }
+
+    y()
+    {
+        a = 0;
+        b = 0;
+        c = 0;
+        d = false;
+        e = false;
+        f = false;
+    }
+
+    short a;
+    short b;
+    short c;
+    boolean d;
+    boolean e;
+    boolean f;
+}

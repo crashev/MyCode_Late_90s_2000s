@@ -1,0 +1,1956 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   b.java
+
+package d;
+
+import INTChat;
+import a.a;
+import a.ba;
+import a.d;
+import a.e;
+import a.i;
+import a.j;
+import a.k;
+import a.l;
+import a.r;
+import a.s;
+import a.u;
+import a.z;
+import b.c;
+import java.awt.Choice;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.PrintStream;
+import java.util.Enumeration;
+import java.util.EventObject;
+import java.util.Hashtable;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            n, g, y, w, 
+//            i, f, x, p, 
+//            j, k, r, m, 
+//            l, h, t
+
+final class b extends j
+    implements ItemListener, s, ActionListener
+{
+
+    void a(int i1)
+    {
+        if(y == 0)
+            n.v.c(i1, w);
+        bn.b(i1 >= 3 || y == 1);
+        bm.q = i1 >= 3 || y == 1;
+        if(bq == i1)
+            return;
+        bq = i1;
+        d.y.a(N, O, i1);
+        if(o != null && o.c != null)
+            o.c.b(i1);
+    }
+
+    public void f()
+    {
+        if(bm != null)
+            bm.c();
+        if(bn != null)
+            bn.c();
+        if(o != null)
+            o.a();
+        if(q != null)
+            q.g();
+        if(bo > 0)
+            bo--;
+        if(p != null && p.w)
+        {
+            b.c.f();
+            p.d();
+            Graphics g1 = getGraphics();
+            Graphics g2 = a(75, 15, false);
+            if(g1 != null && g2 != null)
+            {
+                g2.setColor(x.bb[0]);
+                g2.fillRect(0, 0, 75, 15);
+                g2.setColor(x.bb[19]);
+                g2.drawString(h("glVO?\027") + b.c.f() + h("\027Hk&"), 1, 14);
+                g1.drawImage(b(), super.a - 130, super.b - 48, null);
+                g1.dispose();
+            }
+        }
+    }
+
+    void g()
+    {
+label0:
+        {
+            if(y == 1)
+            {
+                y y1 = null;
+                b b1 = n.a(null, w, 0);
+                if(b1 != null)
+                    y1 = b1.o.b(u);
+                be.setVisible(y1 != null && (y1.n || B && y1.o));
+                if(!be.isVisible())
+                    n.z.u.b(u);
+                if(!x.bd)
+                    break label0;
+            }
+            be.setVisible(false);
+        }
+    }
+
+    void a(String s1, int i1)
+    {
+        u = s1;
+        v = a.r.c(s1);
+        w = i1;
+        bp = bB = null;
+        bn.d(null);
+        bm.a(null);
+        W.a(s1);
+        if(o != null)
+            o.c();
+        if(s != null)
+        {
+            remove(s);
+            s = null;
+            setBounds(getBounds());
+        }
+        bC = -1;
+        br = -1;
+        z = B = false;
+    }
+
+    public void itemStateChanged(ItemEvent itemevent)
+    {
+label0:
+        {
+            boolean flag = x.bd;
+            bh.a(false);
+            U.setVisible(false);
+            bi.a(false);
+            V.setVisible(false);
+            Object obj = itemevent.getSource();
+            if(obj == Q)
+            {
+                bn.a('\003', "" + (char)Q.getSelectedIndex());
+                if(!flag)
+                    break label0;
+            }
+            if(obj == R)
+            {
+                bm.b(R.getSelectedIndex());
+                if(!flag)
+                    break label0;
+            }
+            e(itemevent.getItem().toString());
+            return;
+        }
+        bn.requestFocus();
+    }
+
+    void a(String s1, String s2)
+    {
+        if(s2 != null)
+        {
+            bm.a(s1, s2);
+            if(!isVisible() && W.c(x.bb[y != 0 ? 9 : 8]))
+                n.B.repaint(W.x, W.y, W.getWidth(), W.getHeight());
+        }
+    }
+
+    void b(String s1, boolean flag)
+    {
+        byte byte0 = ((byte)(flag ? 8 : 0));
+        a(((String) (null)), z.s + '\001' + (char)byte0 + "~" + s1);
+    }
+
+    void c(String s1)
+    {
+        b(s1, false);
+    }
+
+    void d(String s1)
+    {
+label0:
+        {
+label1:
+            {
+                boolean flag;
+label2:
+                {
+                    flag = x.bd;
+                    if(y != 0)
+                        break label1;
+                    if(w == 155 && br == -1)
+                    {
+                        c(h("xG}kk^@8k\177VQ8ejS@jgrVKa(oRVl(rN\u0167\u011Dk\177XKa"));
+                        if(!flag)
+                            break label2;
+                    }
+                    if(br != -1 && by)
+                    {
+                        s1 = "" + '\b' + z.s + '\001' + '\n' + bB + h("\r\005") + z.t + '\001' + '\0' + s1;
+                        p.a('J', a.r.c(s1));
+                        if(!flag)
+                            break label2;
+                    }
+                    if(bo > 0 && bp != null && bp.equals(s1))
+                    {
+                        c(h("GWbma\027Fp\177l[\u01208bp\u014B\005lg%YDhavV\u0167}\u0153"));
+                        if(!flag)
+                            break label2;
+                    }
+                    if(z)
+                    {
+                        c(s1, false);
+                        if(!flag)
+                            break label2;
+                    }
+                    p.a('\001', a.r.c(s1));
+                    bo = 500;
+                    bp = s1;
+                    if(br == 1 || br == 4)
+                        c(h("cRwbd\027RqiaXHw\u0153\u0102\027_w{qV\u0167y(rNV\u015AikV\005|g%zJ|mwVQwzd"));
+                }
+                if(!flag)
+                    break label0;
+            }
+            if(y == 1)
+            {
+                c(s1, false);
+                if(!u.equals(n.bk))
+                    p.a('\003', v + '\0' + a.r.b(a.r.c(s1), v));
+            }
+        }
+    }
+
+    void a(String s1, char c1)
+    {
+label0:
+        {
+            boolean flag = x.bd;
+            if(c1 == '\017')
+            {
+                c(s1 + h("\027RadjPJoi\u0147\027Vq\u0111"));
+                if(!flag)
+                    break label0;
+            }
+            if(c1 == '\016')
+            {
+                c(s1 + h("\027_yenY\u0120\u015A(j\\Kw(uELni"));
+                if(!flag)
+                    break label0;
+            }
+            if(c1 == '\020')
+            {
+                c(s1 + h("\027_oqn[@8flR\005jg\177ZDoad\027UjqrVQva`"));
+                if(!flag)
+                    break label0;
+            }
+            if(c1 == '\021')
+            {
+                c(s1 + h("\027Hy(jPWyflT_}flR\005vi%^Iw\u0153\u0102\027Ujas\304R"));
+                if(!flag)
+                    break label0;
+            }
+            if(c1 == '\022')
+            {
+                c(s1 + h("\027_qokXWw\177d\u0175\005L\177j]@8rdGWw{\177RKqm%\032\005hzd@AwxjSJzflR\005rmvC\005bio\u012EQa"));
+                if(!flag)
+                    break label0;
+            }
+            if(c1 == '\r')
+                c(s1 + h("\027Kqm%GWbqo\u0132\u01678\\rXO}oj\027_yxwXVbmk^D8%%GWy\177aXUwljUKqm%]@k|%MDr\u0111qN"));
+        }
+        c(false);
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+            boolean flag1;
+label1:
+            {
+label2:
+                {
+                    flag1 = x.bd;
+                    if(component == W)
+                    {
+                        n.a(this);
+                        if(!flag1)
+                            break label0;
+                    }
+                    if(component == bd)
+                    {
+                        n.k.saveTalk(c.a.a(bm.i()), d.x.l);
+                        if(!flag1)
+                            break label0;
+                    }
+                    if(component == be)
+                    {
+                        n.z.b(u);
+                        if(!flag1)
+                            break label0;
+                    }
+                    if(component == bf)
+                    {
+                        n.t.a(10, u);
+                        if(!flag1)
+                            break label0;
+                    }
+                    if(component != bb)
+                        break label1;
+                    if(y != 0 || n.c(0) > 1)
+                    {
+                        a(h("_Mr"));
+                        if(!flag1)
+                            break label2;
+                    }
+                    c(h("gJoak^@vm\u015E\027UwrjDQy\u010F%TMwklV\u01598\177%]@|f|Z\005hgnXOm"));
+                }
+                if(!flag1)
+                    break label0;
+            }
+label3:
+            {
+label4:
+                {
+                    if(component != bg)
+                        break label3;
+                    if(w == 155)
+                    {
+                        n();
+                        if(!flag1)
+                            break label4;
+                    }
+                    n.x.a(0);
+                }
+                if(!flag1)
+                    break label0;
+            }
+label5:
+            {
+label6:
+                {
+                    String s2;
+label7:
+                    {
+                        if(p == null)
+                        {
+                            c(h("uWyc%GJ\u015A\u010DfM@vad\027_8{`ER}z`Z"));
+                            if(!flag1)
+                                break label0;
+                        }
+                        if(component != bc && component != bn)
+                            break label5;
+                        bm.g();
+                        String s1 = bn.k();
+                        if(s1 == null)
+                            break label6;
+                        if(bq < 3 && y == 0 && d.n.a(s1.toLowerCase(), w))
+                        {
+                            b(h("gWw{lZ\\8flR\005m\u0174|@D\u011F(rBI\177iwN_u\373r\027L8iaE@k\373r\027VlzjY\005O_R"), true);
+                            return;
+                        }
+                        s2 = bn.e();
+                        if(s2.length() > 490)
+                        {
+                            int i1 = s2.lastIndexOf(' ', 489);
+                            if(i1 < 0)
+                                i1 = 490;
+                            bn.d(s2.substring(i1));
+                            s2 = s2.substring(0, i1);
+                            if(!flag1)
+                                break label7;
+                        }
+                        bn.d(null);
+                    }
+                    bn.c(s2);
+                    d(s2);
+                }
+                bn.requestFocus();
+                if(!flag1)
+                    break label0;
+            }
+label8:
+            {
+                char c1;
+label9:
+                {
+                    if(component != bj && component != bk && component != bl)
+                        break label8;
+                    if(component == bj)
+                    {
+                        c1 = bj.d() ? '\001' : '\002';
+                        if(!flag1)
+                            break label9;
+                    }
+                    if(component == bk)
+                    {
+                        c1 = bk.d() ? '\004' : '\005';
+                        if(!flag1)
+                            break label9;
+                    }
+                    c1 = bl.d() ? '\016' : '\017';
+                }
+                bn.a('\002', "" + c1);
+                bn.requestFocus();
+                if(!flag1)
+                    break label0;
+            }
+label10:
+            {
+label11:
+                {
+                    if(component == bh)
+                    {
+                        U.setVisible(bh.d());
+                        if(!flag1)
+                            break label0;
+                    }
+                    if(component == bi)
+                    {
+                        V.setVisible(bi.d());
+                        if(!flag1)
+                            break label0;
+                    }
+                    if(component != ba)
+                        break label10;
+                    if(br != 1)
+                    {
+                        n.d(this);
+                        if(!flag1)
+                            break label11;
+                    }
+                    b(h("xGji\177\\L8fd\027Fbif^@8ejS@jgrVKae%D\u01208\177|\u0175\u0120{rjY@"), true);
+                }
+                if(!flag1)
+                    break label0;
+            }
+            if(component != X && component != Y)
+                break label0;
+            boolean flag = component == X;
+            X.setVisible(!flag);
+            Y.setVisible(flag);
+            W.setVisible(!flag);
+            b(flag);
+            if(flag)
+            {
+                n.c(this);
+                a(100, 100, 480, 300);
+                if(!flag1)
+                    break label0;
+            }
+            n.e(this);
+        }
+    }
+
+    public void actionPerformed(ActionEvent actionevent)
+    {
+label0:
+        {
+            boolean flag = x.bd;
+            Object obj = actionevent.getSource();
+            bn.requestFocus();
+            if(obj == O[5])
+            {
+                n.z.a(P, actionevent.getActionCommand());
+                if(!flag)
+                    break label0;
+            }
+            if(obj == O[0])
+            {
+                bn.a(actionevent.getActionCommand());
+                if(!flag)
+                    break label0;
+            }
+            e(actionevent.getActionCommand());
+        }
+    }
+
+    public void a(boolean flag, boolean flag1, boolean flag2, int i1, int j1)
+    {
+        bj.a(flag);
+        bk.a(flag1);
+        bl.a(flag2);
+        Q.select(i1);
+    }
+
+    public void h()
+    {
+        z = false;
+        bn.d(null);
+        bm.a(null);
+        a(false, false, false, 0, 0);
+    }
+
+    public Image a(String s1, boolean flag)
+    {
+        if((n.v.bF || br != -1) && s1.indexOf(h("^FwfZ")) < 0)
+            return null;
+        else
+            return d.x.a(bm, s1, flag);
+    }
+
+    void e(String s1)
+    {
+label0:
+        {
+            y y1;
+            boolean flag;
+label1:
+            {
+label2:
+                {
+                    flag = x.bd;
+                    y1 = null;
+                    b b1 = y != 0 ? n.a(null, w, 0) : this;
+                    if(b1 != null && b1.o != null)
+                        y1 = b1.o.b(P);
+                    if(n.M)
+                        break label0;
+                    if(!s1.equals(h("\\DumwV")))
+                        break label1;
+                    if(br != -1 || w == 155)
+                    {
+                        n();
+                        if(!flag)
+                            break label2;
+                    }
+                    n.z.b(P);
+                }
+                if(!flag)
+                    break label0;
+            }
+label3:
+            {
+label4:
+                {
+                    if(y1 == null)
+                    {
+                        c(h("yL}(\177YDtm\177^Jvg%B\u0159a|nXRvanV\005w(k^Fs}%") + P);
+                        if(!flag)
+                            break label0;
+                    }
+                    if(!s1.equals(h("GWq~")))
+                        break label3;
+                    if(y == 1)
+                    {
+                        c(h("|JumkSD8xw^S8b`DQ8flRAw{q\u012EUvi%YD8xw^Sqm"));
+                        if(!flag)
+                            break label4;
+                    }
+                    if(br != -1 && (bq < 3 || y1.d >= 7))
+                    {
+                        n();
+                        if(!flag)
+                            break label4;
+                    }
+                    n.b(P, 1, w);
+                }
+                if(!flag)
+                    break label0;
+            }
+label5:
+            {
+label6:
+                {
+                    if(!s1.equals(h("^K~g")))
+                        break label5;
+                    if(bq >= 3 && bq < 5)
+                    {
+                        p.a('\006', a.r.c(P) + '\0');
+                        if(!flag)
+                            break label6;
+                    }
+                    n.p.c(y1.a + h("\027VliqBV\"(") + y.E[y1.d]);
+                }
+                if(!flag)
+                    break label0;
+            }
+label7:
+            {
+label8:
+                {
+                    if(s1.equals(h("^BvgwBO")))
+                    {
+                        if(!y1.a.equals(n.bk))
+                            y1.h = !y1.h;
+                        if(!flag)
+                            break label0;
+                    }
+                    if(bq < 3)
+                    {
+                        k();
+                        if(!flag)
+                            break label0;
+                    }
+                    if(s1.equals(h("@\\jrp\u0130")))
+                    {
+                        p.a('@', a.r.c(P) + h("7$") + '\002' + z.s + '\001' + '\013' + n.bm + '\0' + '\007' + z.s + a.r.c(h("\027Raz\177BFq\u014A%tL\u0101(\177\027Uwcj]P8)")));
+                        if(!flag)
+                            break label0;
+                    }
+                    if(!s1.equals(h("UDv")) && !s1.equals(h("UDvau")))
+                        break label7;
+                    String s2 = a.r.a(n.bp) + a.r.c(P) + '\0' + '\002' + z.s + '\001' + '\013' + n.bm + '\0' + '\007' + z.s + a.r.c(h("\027Ay\u014A-V\f8Kl\027Gyfd\027") + n.bp + h("\027Hqf+\027Ky(qRK8xj\\\326r\b"));
+                    if(s1.equals(h("UDv")))
+                    {
+                        p.a('D', s2);
+                        if(!flag)
+                            break label8;
+                    }
+                    p.a('L', s2);
+                }
+                if(!flag)
+                    break label0;
+            }
+label9:
+            {
+label10:
+                {
+                    if(!s1.equals(h("UImm")))
+                        break label9;
+                    if(y1.d == 0)
+                    {
+                        c(P + h("\027Kqm%]@k|%MDjmoRVlzj@Dvq"));
+                        if(!flag)
+                            break label10;
+                    }
+                    if(y1.d == 1)
+                    {
+                        p.a('\t', a.r.c(P) + h("7$\030"));
+                        if(!flag)
+                            break label10;
+                    }
+                    if(y1.d == 2)
+                        p.a('\t', a.r.c(P) + h("7%\030"));
+                }
+                if(!flag)
+                    break label0;
+            }
+            if(s1.equals(h("MDzdj\\Pr")))
+            {
+                p.a('O', a.r.c(P) + '\0');
+                c(P + h("\027O}{q\027_yjiXNw\177dY\\8fd\027Qae%GJsgoB"));
+                y1.l = !y1.l;
+                if(!flag)
+                    break label0;
+            }
+            if(s1.equals(h("XU")))
+                p.a('B', a.r.c(P) + '\0');
+        }
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        char c1;
+        boolean flag;
+label0:
+        {
+            flag = x.bd;
+            c1 = '\0';
+            if(s != null)
+            {
+                s.setBounds(1, 1, 246, l1 - 2);
+                c1 = '\372';
+            }
+            if(n.M)
+            {
+                bm.setBounds(c1, 0, k1 - c1, l1 - 28);
+                if(!flag)
+                    break label0;
+            }
+            if(!e() && y != 0 && n.q != null && n.q.A)
+            {
+                bm.setBounds(c1, 0, k1 - c1, (l1 - 55) / 2 - 1);
+                n.q.bm.setBounds(c1, (l1 - 55) / 2 + 1, k1 - c1, (l1 - 55) / 2 - 1);
+                if(!flag)
+                    break label0;
+            }
+            bm.setBounds(c1, 0, k1 - c1, l1 - 56);
+        }
+label1:
+        {
+label2:
+            {
+label3:
+                {
+                    if(n.M)
+                        break label2;
+                    S.setBounds(c1, l1 - 50, c1 != 0 ? 313 : 418, 24);
+                    T.setBounds(k1 - 51, l1 - 53, 52, 24);
+                    U.setBounds(c1 + 80, l1 - 120, 87, 66);
+                    if(k1 - c1 > 395)
+                    {
+                        V.setBounds(c1 + 250, 3, 145, l1 - 56);
+                        if(!flag)
+                            break label3;
+                    }
+                    V.setBounds((c1 + k1) - 145, 3, 145, l1 - 56);
+                }
+                bn.setBounds(c1, l1 - 23, k1 - 60 - c1, 22);
+                if(!flag)
+                    break label1;
+            }
+            bn.setBounds(c1, l1 - 23, k1 - 60 - c1, 22);
+        }
+        if(t != null)
+            t.setBounds((k1 - 310) / 2, (l1 - 300) / 2, 310, 300);
+        bc.setBounds(k1 - 51, l1 - 24, 54, 24);
+        super.setBounds(i1, j1, k1, l1);
+    }
+
+    void c(String s1, boolean flag)
+    {
+        if(s1.charAt(0) == '\023')
+            s1 = n.a(s1.substring(1));
+        a(n.bk, z.s + '\001' + (char)n.v.bZ + n.bk + (flag ? " " : h("\r\005")) + z.t + '\001' + '\0' + s1);
+    }
+
+    public b(n n1, String s1, int i1, int j1, c c1)
+    {
+label0:
+        {
+            super(s1, true);
+            w = 0;
+            z = false;
+            A = false;
+            B = false;
+            bo = 0;
+            bp = "";
+            bq = -1;
+            br = -1;
+            by = false;
+            bz = false;
+            bA = false;
+            bB = null;
+            bC = -2;
+            bD = 0;
+            n = n1;
+            u = s1;
+            v = a.r.c(s1);
+            y = i1;
+            w = j1;
+            p = c1;
+            W = new e(n.B.m, true);
+            W.a(s1);
+            b(420, 200);
+            m();
+            if(i1 != 1)
+                o = new w(n, this);
+            a(s1, j1);
+            bm.a(!n.v.bK, !n.v.bQ, !n.v.bR);
+            i();
+            if(y != 0 || n.bc == null)
+                break label0;
+            if(n.bc.f > 2)
+            {
+                n.bc = null;
+                if(!x.bd)
+                    break label0;
+            }
+            bm.a(n.bc);
+            n.bc.f++;
+        }
+        if(n.bd != null)
+            bm.a(n.bd, n.be);
+        B = s1.equals(n.bk);
+    }
+
+    void b(String s1, String s2)
+    {
+label0:
+        {
+            if(bz)
+            {
+                by = true;
+                bz = false;
+                c(h("]@k|`\u016C\005\177g\u015ETL}e%T_y|d\r\005") + a.r.f(s1));
+                if(!x.bd)
+                    break label0;
+            }
+            if(q == null)
+            {
+                q = new f(n, this, s2);
+                q.h();
+            }
+            q.p = s2;
+            q.setVisible(true);
+        }
+        p.w = true;
+    }
+
+    public void setVisible(boolean flag)
+    {
+        bm.b(flag);
+        bn.c(flag);
+        if(flag)
+            W.b(x.bb[y != 0 ? 6 : 5]);
+        super.setVisible(flag);
+    }
+
+    public void a()
+    {
+        if(bm != null)
+        {
+            bm.a();
+            bm = null;
+        }
+        if(bn != null)
+        {
+            bn.a();
+            bn = null;
+        }
+        if(o != null)
+        {
+            o.c();
+            o = null;
+        }
+        if(q != null)
+        {
+            q.a();
+            q = null;
+        }
+        if(r != null)
+        {
+            r.a();
+            r = null;
+        }
+        if(s != null)
+        {
+            s.a();
+            s = null;
+        }
+        if(V != null)
+        {
+            V.a();
+            V = null;
+        }
+        if(U != null)
+        {
+            U.a();
+            U = null;
+        }
+        if(p != null)
+            p = null;
+        super.a();
+    }
+
+    void f(String s1)
+    {
+label0:
+        {
+            if(y == 0 && bq < 3 && bn.g() >= 5)
+            {
+                a(bn, 9, ((String) (null)), 0, 0);
+                if(!x.bd)
+                    break label0;
+            }
+            Image image = a(s1, true);
+            if(image != null)
+                bn.a('\005', s1);
+        }
+        bn.requestFocus();
+    }
+
+    void i()
+    {
+label0:
+        {
+            setBackground(x.bb[0]);
+            S.setBackground(x.bb[0]);
+            a(x.J[0]);
+            if(y == 0)
+            {
+                W.a(x.S);
+                W.b(x.bb[7]);
+                if(!x.bd)
+                    break label0;
+            }
+            if(y == 1)
+            {
+                W.a(x.T);
+                W.b(x.bb[6]);
+            }
+        }
+        bi.a(x.B);
+        bj.a(x.V[0]);
+        bk.a(x.V[1]);
+        bl.a(x.V[2]);
+        bh.a(x.V[3]);
+        Y.a(d.x.z);
+        X.a(x.A);
+        ba.a(x.C);
+        ba.a(x.J[3]);
+        be.a(x.C);
+        be.a(x.C[3]);
+        bf.a(x.C);
+        bf.a(x.C[4]);
+        bd.a(x.C);
+        bd.a(x.J[2]);
+        bb.a(x.y);
+        bc.a(x.x);
+        bg.a(x.C);
+        bg.a(x.J[1]);
+        if(q != null)
+            q.h();
+        if(r != null)
+            r.f();
+        if(s != null)
+            s.c();
+        if(isVisible())
+        {
+            repaint();
+            S.repaint();
+            T.repaint();
+        }
+    }
+
+    void j()
+    {
+        String s1 = a.r.f(n.k.getHTMLPage(h("_@tx*_@tx+_Qud"), 0));
+        if(s1.length() <= 0) goto _L2; else goto _L1
+_L1:
+        String as[];
+        int i1;
+        c(h("c@uiqN\005hghXFa(?"));
+        as = a.r.b(s1, '\n');
+        i1 = 0;
+        if(!x.bd) goto _L4; else goto _L3
+_L3:
+        a(((String) (null)), as[i1]);
+        i1++;
+_L4:
+        if(i1 < as.length) goto _L3; else goto _L2
+_L2:
+    }
+
+    void c(boolean flag)
+    {
+        if(B != flag)
+        {
+            B = flag;
+            g();
+        }
+    }
+
+    void k()
+    {
+        b(h("yL}(hVVb(pGWy\177k^@\u015C(aX\005oqrX\u0167yflV\005lmo\027Nwe`YAa"), false);
+    }
+
+    public void a(String s1)
+    {
+        if(n != null)
+        {
+            n.b(this);
+            if(n.l != null)
+                n.l.a();
+        }
+    }
+
+    void l()
+    {
+        if(t == null)
+            t = new e.d(p, n.bk);
+        add(t, 0);
+        t.setBounds((super.a - 310) / 2, (super.b - 300) / 2, 310, 300);
+        t.e();
+    }
+
+    public void g(String s1)
+    {
+        bC = a.r.a(s1, 0, 4);
+        bD = a.r.a(s1, 4, 4);
+    }
+
+    public void a(Component component, int i1, String s1, int j1, int k1)
+    {
+        int j2;
+        String s3;
+        boolean flag;
+label0:
+        {
+label1:
+            {
+                flag = x.bd;
+                P = s1;
+                if(i1 == 2)
+                {
+                    n.k.openHTMLWindow(s1);
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(n.M)
+                    break MISSING_BLOCK_LABEL_3158;
+                if(i1 != 0)
+                    break label0;
+                y y1 = null;
+                String s2;
+                if(y != 0)
+                {
+                    b b2 = n.a(null, w, 0);
+                    if(b2 != null)
+                        y1 = b2.o.b(s1);
+                    s2 = P;
+                } else
+                {
+                    y1 = o.b(s1);
+                    s2 = y1 == null ? h("YL}ggRFvq") : y1.a;
+                }
+                if(y1 != null)
+                {
+                    d.y.a(O, s2, s1.equals(n.bk), y1.h, y1.d, true, y1.l, y1.n);
+                    if(!flag)
+                        break label1;
+                }
+                d.y.a(O, s2, s1.equals(n.bk), false, -1, false, false, false);
+            }
+            N.show(this, j1, k1);
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label2:
+        {
+            if(i1 == 1)
+            {
+                f(s1);
+                if(!flag)
+                    break MISSING_BLOCK_LABEL_3158;
+            }
+            if(i1 == 9)
+            {
+                b(h("yD8xj\\Jr}%XB\353dkNH8b`DQ8gbEDvafM@va`\027Ky(l[J\u0143\u010F%XGji\177\\Jo(aX\005") + 5, true);
+                if(!flag)
+                    break MISSING_BLOCK_LABEL_3158;
+            }
+            if(i1 != 3)
+                break MISSING_BLOCK_LABEL_3158;
+            bn.c("\\" + s1);
+            int l1 = s1.indexOf(' ');
+            if(l1 < 0)
+                l1 = s1.length();
+            s3 = s1.substring(0, l1).toLowerCase();
+            if(l1 < s1.length())
+            {
+                s1 = s1.substring(l1 + 1);
+                if(!flag)
+                    break label2;
+            }
+            s1 = "";
+        }
+label3:
+        {
+label4:
+            {
+                P = s1;
+                if(!s3.equals(h("PAba`]@k|")) && !s3.equals(h("@M}z`^V")))
+                    break label3;
+                if(w == 155)
+                {
+                    n();
+                    if(!flag)
+                        break label4;
+                }
+                if(P.length() > 0)
+                    p.a('V', a.r.a(P.length() + 1) + a.r.c(P) + '\0');
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label5:
+        {
+label6:
+            {
+                if(s3.equals(h("^K~g")) || s3.equals(h("@Mwav")))
+                {
+                    e(h("^K~g"));
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(s3.equals(h("^BvgwBO")) || s3.equals(h("^BvgwR")))
+                {
+                    e(h("^BvgwBO"));
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(s3.equals(h("^BvgwRJ~n")))
+                {
+                    e(h("^BvgwBO"));
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(s3.equals(h("GWq~")))
+                {
+                    e(h("GWq~"));
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(!s3.equals(h("]Jqf")))
+                    break label5;
+                int i2 = s1.indexOf(' ');
+                if(i2 < 0)
+                    i2 = s1.length();
+                String s4 = s1.substring(0, i2);
+                t t1 = n.y.c(s4);
+                if(t1 != null)
+                {
+                    n.a(s4, t1.m, t1.o, false);
+                    if(!flag)
+                        break label6;
+                }
+                if(bq >= 3)
+                {
+                    int k3 = 14011;
+                    if(i2 < s1.length())
+                        try
+                        {
+                            k3 = Integer.parseInt(s1.substring(i2 + 1));
+                            System.out.println(h("GJj|%") + k3);
+                        }
+                        catch(Exception _ex)
+                        {
+                            c(h("yL}xwVRql\u0147XRa(cXWuiq\027UwzqB"));
+                            k3 = 14011;
+                        }
+                    t t2 = n.y.a(s4, k3);
+                    n.a(s4, t2.m, k3, false);
+                    if(!flag)
+                        break label6;
+                }
+                c(h("yL}(\177YDtm\177^Jvg%GJsgoB\005") + s4);
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("DDnm")))
+        {
+            a(((Component) (bd)));
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(!s3.equals(h("GWq~d[I")))
+            break MISSING_BLOCK_LABEL_1031;
+        j2 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        b b1 = (b)n.o.elementAt(j2);
+        if(b1.y == 1)
+        {
+            b1.c(s1, false);
+            if(!b1.u.equals(n.bk))
+                p.a('\003', v + '\0' + a.r.b(a.r.c(s1), b1.v));
+        }
+        j2++;
+_L2:
+        if(j2 < n.o.size()) goto _L1; else goto _L3
+_L3:
+        break MISSING_BLOCK_LABEL_3158;
+        int i3;
+        if(s3.equals(h("ZV\177")))
+        {
+            n.w.b(true);
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("R]q|")))
+        {
+            n.k.exitChat();
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(bq < 3)
+        {
+            k();
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("CJhaf")))
+        {
+            p.a('C', a.r.c(s1) + "\0");
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("\\L{c")))
+        {
+            e(h("@\\jrp\u0130"));
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(!s3.equals(h("\\L{clG")) && !s3.equals(h("UDvau")))
+            break MISSING_BLOCK_LABEL_1493;
+        j2 = 0;
+        i3 = 0;
+_L5:
+        if((j2 = s1.indexOf('.', j2)) < 0)
+        {
+            c(h("yL}xwVRql\u0147XRa(cXWuiq\027lH"));
+            return;
+        }
+        ++i3;
+_L7:
+        3;
+        JVM INSTR icmplt 1221;
+           goto _L4 _L5
+_L4:
+        s3.equals(h("UDvau"));
+        if(flag) goto _L7; else goto _L6
+_L6:
+        JVM INSTR ifeq 1406;
+           goto _L8 _L9
+_L8:
+        break MISSING_BLOCK_LABEL_1274;
+_L9:
+        break MISSING_BLOCK_LABEL_1406;
+        p.a('E', a.r.a(n.bp) + s1 + h("7$") + '\002' + n.bm + '\0' + '\007' + z.s + '\001' + '\013' + a.r.c(h("\027Ay\u014A-V\f8Kl\027Gyfd\027") + n.bp + h("\027Hqf+\027Ky(qRK8xj\\\326r\b")));
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1488;
+        p.a('F', s1 + h("7$") + '\002' + n.bk + '\0' + '\007' + z.s + '\001' + '\013' + a.r.c(h("\027RaxwXVq\u014A-V\f8Kl\u012E\005b(uXNwbp\026%")));
+        if(!flag)
+            break MISSING_BLOCK_LABEL_3158;
+        if(s3.equals(h("UDv")))
+        {
+            e(h("UDv"));
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("UDv|lZ@")))
+        {
+            int k2 = s1.indexOf(' ');
+            if(k2 < 0)
+                k2 = s1.length();
+            s1 = s1.substring(0, k2);
+            try
+            {
+                int l2 = Integer.parseInt(s1);
+                n.bp = l2;
+                c(h("UDv|lZ@85%") + n.bp + h("\027Hqf+"));
+            }
+            catch(Exception _ex)
+            {
+                c(h("yL}xjGWy\177kV\005kc\u0147VAvad\027Nwe`YAa(^UDv|lZ@8aiXV{Wh^Km|X"));
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("BKzik")))
+        {
+            p.a('H', a.r.c(s1) + '\0');
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("BKzik^U")))
+        {
+            p.a('G', a.r.c(s1) + '\0');
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(s3.equals(h("UImm")))
+        {
+            e(h("UImm"));
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+        if(!s3.equals(h("UImmd[I")))
+            break MISSING_BLOCK_LABEL_1922;
+        if(y == 1 || bq < 3 || o == null) goto _L11; else goto _L10
+_L10:
+        Enumeration enumeration = o.f.elements();
+        if(!flag) goto _L13; else goto _L12
+_L12:
+        enumeration.nextElement();
+_L21:
+        (y);
+        y y2;
+        y2;
+        y2.d;
+_L17:
+        JVM INSTR ifle 1907;
+           goto _L14 _L15
+_L14:
+        break MISSING_BLOCK_LABEL_1840;
+_L15:
+        continue; /* Loop/switch isn't completed */
+        y2.a.equals(n.bk);
+        if(flag) goto _L17; else goto _L16
+_L16:
+        JVM INSTR ifne 1907;
+           goto _L18 _L19
+_L18:
+        break MISSING_BLOCK_LABEL_1863;
+_L19:
+        continue; /* Loop/switch isn't completed */
+        p;
+        if(flag) goto _L21; else goto _L20
+_L20:
+        '\t';
+        a.r.c(y2.a) + h("7$\030");
+        a();
+_L13:
+        if(enumeration.hasMoreElements()) goto _L12; else goto _L11
+_L11:
+        if(!flag)
+            break MISSING_BLOCK_LABEL_3158;
+label7:
+        {
+label8:
+            {
+label9:
+                {
+label10:
+                    {
+                        if(s3.equals(h("MDzdj\\Pr")))
+                        {
+                            e(h("MDzdj\\Pr"));
+                            if(!flag)
+                                break MISSING_BLOCK_LABEL_3158;
+                        }
+                        if(!s3.equals(h("_@tx")))
+                            break label7;
+                        if(s1.length() == 0)
+                            s1 = h("_@tx");
+                        if(s1.equals(h("_@tx")))
+                        {
+                            j();
+                            if(!flag)
+                                break label8;
+                        }
+                        if(br != -1)
+                            break label9;
+                        String s5 = n.a(s1);
+                        if(s5.length() < 3)
+                        {
+                            c(h("YL}(\177YDtm\177^Jvg%GJugfN\005|dd\027Q}b%\\JumkS\\"));
+                            if(!flag)
+                                break label10;
+                        }
+                        d('\023' + s1);
+                    }
+                    if(!flag)
+                        break label8;
+                }
+                n();
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label11:
+        {
+label12:
+            {
+                if(bq != 4)
+                {
+                    k();
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(s3.equals(h("S@z}b")))
+                {
+                    r.a = !r.a;
+                    c(h("\\Jv{j[D8") + r.a);
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(s3.equals(h("RWjgwD")))
+                {
+                    r.b = !r.b;
+                    c(h("UI}l|\027") + r.b);
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(s3.equals(h("ZJll")))
+                {
+                    p.a('A', a.r.c(s1) + '\0');
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(!s3.equals(h("Y@oopRVl")) && !s3.equals(h("TMyfbRBmmvC")))
+                    break label11;
+                if(s1.length() == 0)
+                {
+                    b(h("GJ|io\027IwolY\005\177g\u015ETLy(fMDli"), true);
+                    if(!flag)
+                        break label12;
+                }
+                if(br != -1)
+                    p.a('Q', a.r.c(s1) + '\0');
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label13:
+        {
+label14:
+            {
+                if(!s3.equals(h("ZJ|mwVQ}gcQ")) && !s3.equals(h("FPqrjQC")))
+                    break label13;
+                if(s != null)
+                {
+                    p.a('I', h("6%\030\t\0057"));
+                    if(!flag)
+                        break label14;
+                }
+                p.a('I', "\0");
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label15:
+        {
+label16:
+            {
+                if(s3.equals(h("PP}{qXC~")) || s3.equals(h("BK\177}`DQ")))
+                {
+                    by = bz = false;
+                    c(h("yL}(oRVlm\u015E\027Om\u0174%PJ\u0143klRH8k\177VQy"));
+                    if(!flag)
+                        break MISSING_BLOCK_LABEL_3158;
+                }
+                if(!s3.equals(h("ZJ|mwVQ}")) && !s3.equals(h("ZJ|mwVQ}l")) && !s3.equals(h("ZJ|mwVQ}`lSA}f")))
+                    break label15;
+                if(s3.equals(h("ZJ|mwVQ}`lSA}f")))
+                {
+                    s1 = "\005";
+                    if(!flag)
+                        break label16;
+                }
+                if(s3.equals(h("ZJ|mwVQ}l")))
+                {
+                    s1 = "\006";
+                    if(!flag)
+                        break label16;
+                }
+                if(br == -1 && s1.length() == 0)
+                {
+                    c(h("GJ|io\027IwolY\005\177g\u015ETLy(fMDli"));
+                    return;
+                }
+            }
+label17:
+            {
+                if(q != null)
+                    q.b(true);
+                if(br == -1)
+                {
+                    p.a('I', "\001" + a.r.c(s1) + '\0');
+                    if(!flag)
+                        break label17;
+                }
+                p.a('I', "\001");
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label18:
+        {
+label19:
+            {
+                if(!s3.equals(h("PP}{q")))
+                    break label18;
+                if(br == -1)
+                {
+                    c(h("zJ|mwVFri%]@k|%@\\\u015A\u010DfMJvi"));
+                    if(!flag)
+                        break label19;
+                }
+                bz = true;
+                if(s1.length() > 0)
+                    bB = s1;
+                if(s != null)
+                {
+                    p.a('I', h("6%\031\t\0057"));
+                    if(!flag)
+                        break label19;
+                }
+                p.a('I', "\001");
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label20:
+        {
+label21:
+            {
+label22:
+                {
+                    if(s3.equals(h("XU")))
+                    {
+                        e(h("XU"));
+                        if(!flag)
+                            break MISSING_BLOCK_LABEL_3158;
+                    }
+                    if(s3.equals(h("VIq~`")))
+                    {
+                        n.l.a(true);
+                        c(h("VIq~`\027RtifMJvm"));
+                        if(!flag)
+                            break MISSING_BLOCK_LABEL_3158;
+                    }
+                    if(!s3.equals(h("FPqr")))
+                        break label20;
+                    if(br == -1 && s1.length() == 0)
+                    {
+                        c(h("GJ|io\027KyrrR\005i}lMP"));
+                        if(!flag)
+                            break label21;
+                    }
+                    if(br != -1)
+                        p.a('I', h("6%\031\t\0057"));
+                    if(q != null)
+                        q.b(true);
+                    if(r == null)
+                    {
+                        r = new e.b(s1, n.k, s, p);
+                        if(!flag)
+                            break label22;
+                    }
+                    r.g(s1);
+                }
+                r.b(true);
+            }
+            if(!flag)
+                break MISSING_BLOCK_LABEL_3158;
+        }
+label23:
+        {
+            if(s3.equals(h("DFwz`D")))
+            {
+                if(s != null)
+                    s.e();
+                if(!flag)
+                    break MISSING_BLOCK_LABEL_3158;
+            }
+            if(!s3.equals(h("S@tzdYN")))
+                break MISSING_BLOCK_LABEL_3158;
+            if(br == -1 || s == null)
+            {
+                c(h("zJ|mwVFri%]@k|%@\\\u015A\u010DfMJvi"));
+                if(!flag)
+                    break MISSING_BLOCK_LABEL_3158;
+            }
+            if(s1.length() == 0)
+            {
+                c(h("GJ|io\027IwolY\005~akVIq{qN\005i}lMP"));
+                return;
+            }
+            int j3 = s.d(s1);
+            if(j3 != -1)
+            {
+                p.a('[', "" + '\002' + a.r.a(j3, 4));
+                if(!flag)
+                    break label23;
+            }
+            c(h("YL}(\177YDtm\177^Jvg%QLvii^Vlq%X\005hgaVKae%[J\177ak^@"));
+        }
+        return;
+    }
+
+    private void m()
+    {
+        int i1;
+        boolean flag;
+        flag = x.bd;
+        S = new i();
+        S.a(this);
+        S.add(bj = new d(null, false));
+        S.add(bk = new d(null, false));
+        S.add(bl = new d(null, false));
+        S.add(bh = new d(null, false));
+        S.add(bi = new d(null, false));
+        S.add(bd = new a.b());
+        S.add(ba = new a.b());
+        S.add(be = new a.b());
+        S.add(bf = new a.b());
+        S.add(bg = new a.b());
+        S.add(Q = new Choice());
+        S.add(R = new Choice());
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        Q.add(r.i[i1]);
+_L5:
+        i1++;
+_L2:
+        if(i1 < r.i.length) goto _L1; else goto _L3
+_L3:
+        i1 = 0;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        if(!flag) goto _L7; else goto _L6
+_L6:
+        this;
+_L10:
+        R;
+        String.valueOf(r.j[i1]);
+        add();
+        i1++;
+_L7:
+        if(i1 < r.j.length) goto _L6; else goto _L8
+_L8:
+        R.select(1);
+        Q.setFont(x.bc[1]);
+        R.setFont(x.bc[1]);
+        Q.addItemListener(this);
+        R.addItemListener(this);
+        bj.setBounds(0, 0, 25, 24);
+        bk.setBounds(27, 0, 25, 24);
+        bl.setBounds(54, 0, 25, 24);
+        bh.setBounds(81, 0, 25, 24);
+        Q.setBounds(110, 0, 90, 22);
+        R.setBounds(205, 0, 50, 22);
+        ba.setBounds(258, 0, 26, 24);
+        bd.setBounds(285, 0, 26, 24);
+        bf.setBounds(312, 0, 26, 24);
+        bi.setBounds(339, -1, 26, 24);
+        bg.setBounds(366, 0, 26, 24);
+        be.setBounds(393, 0, 26, 24);
+        be.setVisible(false);
+        this;
+        if(flag) goto _L10; else goto _L9
+_L9:
+        n;
+        bo;
+        x.I.length;
+        JVM INSTR icmpge 604;
+           goto _L11 _L12
+_L11:
+        break MISSING_BLOCK_LABEL_586;
+_L12:
+        break MISSING_BLOCK_LABEL_604;
+        bi.a(x.I[n.bo]);
+        bi.setVisible(!n.v.bI);
+        add(bc = new a.b());
+        T = new i();
+        T.a(this);
+        T.add(Y = new a.b());
+        T.add(X = new a.b());
+        T.add(bb = new a.b());
+        Y.setBounds(0, 0, 26, 24);
+        X.setBounds(0, 0, 26, 24);
+        bb.setBounds(26, 0, 26, 24);
+        Y.setVisible(false);
+        if(y == 0)
+        {
+            Y.setEnabled(false);
+            X.setEnabled(false);
+        }
+        add(V = new d.k(this));
+        add(bn = new l(this, n.bg));
+        add(U = new d.j(bn, bh));
+        add(bm = new k(this, n.bf));
+        add(T);
+        add(S);
+        N = new PopupMenu();
+        N.addActionListener(this);
+        add(N);
+        O = d.y.a(this, this);
+        d.y.a(O, n.z.A.b);
+        bn.b(y == 1);
+        bm.q = y == 1;
+        return;
+    }
+
+    void a(boolean flag, String s1)
+    {
+label0:
+        {
+            boolean flag1;
+label1:
+            {
+label2:
+                {
+label3:
+                    {
+label4:
+                        {
+                            flag1 = x.bd;
+                            n.l.a(flag);
+                            if(!flag)
+                                break label1;
+                            if(s1 == null || s1.length() == 0)
+                                return;
+                            if(s1.charAt(0) != '\006')
+                                break label3;
+                            br = 3;
+                            o.a(h("zJ|mwVQwz"), 0, 7);
+                            if(o.b(n.bk) == null)
+                            {
+                                c(h("CWoi%EJbej@D8cjYQjgiXRyfd"));
+                                if(!flag1)
+                                    break label4;
+                            }
+                            c(h("EJbxjT_\u0101\u014Ad\027Vq\u0111%EJbej@D8cjYQjgiXRyfd"));
+                        }
+                        o.h();
+                        if(!flag1)
+                            break label2;
+                    }
+label5:
+                    {
+                        if(s1.charAt(0) == '\005')
+                        {
+                            br = 2;
+                            if(!flag1)
+                                break label2;
+                        }
+                        if(s1.charAt(0) == e.b.bb)
+                        {
+                            br = 4;
+                            bB = s1.substring(1);
+                            bm.u = true;
+                            W.a(h("\027tMA_\r\005") + bB + " ");
+                            if(s == null)
+                                add(s = new e.e(bB, n.k, p));
+                            if(r != null)
+                                r.a(s);
+                            if(bC > 0)
+                                n.t.a(s.b(bC, bD), h("cR\353b%YL{c%CJ\"(") + n.bk);
+                            if(o != null)
+                            {
+                                o.a(h("zJ|mwVQwz"), 0, 7);
+                                o.h();
+                            }
+                            setBounds(getBounds());
+                            n.k.openHelp(bC <= 0 && !n.bq ? h("FPqrZBV}z") : h("FPqrZGIyq`E"));
+                            if(d.x.b() != n.U)
+                            {
+                                n.a(x.q);
+                                n.v.k();
+                            }
+                            if(!flag1)
+                                break label2;
+                        }
+                        if(br == 1)
+                            o.c(bB, false);
+                        bB = s1;
+                        W.a(h("pJ\u0143\u010F%t_y|`ELq2%") + bB);
+                        o.a(h("zJ|mwVQwz"), 0, 7);
+                        if(o.b(n.bk) == null)
+                        {
+                            c(h("CWoi%EJbej@D8ejS@jgrVKy"));
+                            if(!flag1)
+                                break label5;
+                        }
+                        c(h("EJbxjT_\u0101\u014Ad\027Vq\u0111%EJbej@D8ejS@jgrVKy"));
+                    }
+                    n.a(n.G);
+                    o.a(bB, 0, 8);
+                    br = 1;
+                    o.h();
+                }
+                if(bA)
+                {
+                    if(by)
+                        a(((Component) (bn)), 3, h("PP}{q"), 0, 0);
+                    if(q != null)
+                        a(((Component) (bn)), 3, h("ZJ|mwVQ}"), 0, 0);
+                    bA = false;
+                }
+                if(!flag1)
+                    break label0;
+            }
+label6:
+            {
+                by = bz = false;
+                if(br == 3)
+                {
+                    c(h("EJbej@D8cjYQjgiXRyfd\027_ycj\u0173Fbq\u0147V\005ka\u011C"));
+                    if(!flag1)
+                        break label6;
+                }
+                if(br == 1)
+                {
+                    c(h("T_y|%ZJ|mwXRyf|\027_ycj\u0173Fbq\u0147\027Vq\u0111"));
+                    if(!flag1)
+                        break label6;
+                }
+                if(br == 4)
+                {
+                    c(h("FPqr%MDsg\u0141T_a\u014A%DL\u0101"));
+                    n.k.openHelp(h("FPqrZRK|"));
+                }
+            }
+            W.a(u);
+            br = -1;
+            p.w = false;
+            o.c(bB, true);
+            o.c(h("zJ|mwVQwz"), false);
+            bB = null;
+            q = null;
+            o.i();
+            o.d();
+            if(s != null)
+            {
+                remove(s);
+                s = null;
+                setBounds(getBounds());
+            }
+        }
+        n.B.b(-1);
+    }
+
+    void n()
+    {
+        b(h("xU{b`\027Ra\u014A\u0100T_wfd\027Ky(uXNwbp\027Hwl`EJoikNH"), true);
+    }
+
+    void a(int i1, boolean flag)
+    {
+        int j1;
+        boolean flag1;
+        flag1 = x.bd;
+        if(i1 == n.bo && flag)
+            break MISSING_BLOCK_LABEL_192;
+        n.bo = i1;
+        if(!flag)
+            break MISSING_BLOCK_LABEL_151;
+        j1 = 0;
+        if(!flag1) goto _L2; else goto _L1
+_L1:
+        (b)n.o.elementAt(j1);
+_L5:
+        bi;
+        x.I[i1];
+        a();
+        j1++;
+_L2:
+        if(j1 < n.o.size()) goto _L1; else goto _L3
+_L3:
+        n.l.a('\005', "" + (char)i1, -1);
+        this;
+        if(flag1) goto _L5; else goto _L4
+_L4:
+        bq;
+        JVM INSTR ifle 146;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_126;
+_L7:
+        break MISSING_BLOCK_LABEL_146;
+        if(br == -1)
+            n.v.c(true);
+        if(!flag1)
+            break MISSING_BLOCK_LABEL_192;
+        bi.a(x.I[i1]);
+        p.a('\005', "" + (char)i1);
+    }
+
+    private static String h(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x37;
+                break;
+
+            case 1: // '\001'
+                k1 = 37;
+                break;
+
+            case 2: // '\002'
+                k1 = 24;
+                break;
+
+            case 3: // '\003'
+                k1 = 8;
+                break;
+
+            default:
+                k1 = 5;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    n n;
+    w o;
+    c p;
+    f q;
+    e.b r;
+    e.e s;
+    e.d t;
+    String u;
+    String v;
+    int w;
+    String x;
+    int y;
+    boolean z;
+    boolean A;
+    boolean B;
+    static final int C = 0;
+    static final int D = 1;
+    static final char E = 13;
+    static final char F = 14;
+    static final char G = 15;
+    static final char H = 16;
+    static final char I = 17;
+    static final char J = 18;
+    static final char K = 19;
+    static final char L = 20;
+    static final char M = 2;
+    PopupMenu N;
+    MenuItem O[];
+    String P;
+    Choice Q;
+    Choice R;
+    i S;
+    i T;
+    d.j U;
+    d.k V;
+    e W;
+    a.b X;
+    a.b Y;
+    a.b Z;
+    a.b ba;
+    a.b bb;
+    a.b bc;
+    a.b bd;
+    a.b be;
+    a.b bf;
+    a.b bg;
+    d bh;
+    d bi;
+    d bj;
+    d bk;
+    d bl;
+    k bm;
+    l bn;
+    int bo;
+    String bp;
+    int bq;
+    short br;
+    static final short bs = -1;
+    static final short bt = 1;
+    static final short bu = 2;
+    static final short bv = 3;
+    static final short bw = 4;
+    static final int bx = 155;
+    boolean by;
+    boolean bz;
+    boolean bA;
+    String bB;
+    int bC;
+    int bD;
+}

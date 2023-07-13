@@ -1,0 +1,11 @@
+1. hardwired filter that counts
+	tcp/udp/icmp/xtra pkts, not bytes
+
+2. make the omupdate.pl program deal with 10..100 top flows 
+in graphs of 10 at a time a la what the new top port facility does.
+
+3. rewrite drawtopn totally ... make the graphs horizontal as opposed
+to vertical.  Throw out the DNS code as it doesn't work on linux.
+It isn't reasonable anymore for the back-end to do DNS within 30
+seconds.  Too many attackers ... caching does help.  But not
+clear if it is enough to get done within the time period.

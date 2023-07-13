@@ -1,0 +1,4 @@
+cat > /etc/init.d/S60fw2 << EOF
+iptables -A FORWARD -i eth1 -o vlan0 -j ACCEPT
+EOF
+chmod +x /etc/init.d/S60fw2

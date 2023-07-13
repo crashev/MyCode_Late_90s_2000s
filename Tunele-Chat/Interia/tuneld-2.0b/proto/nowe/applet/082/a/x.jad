@@ -1,0 +1,76 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   x.java
+
+package a;
+
+
+// Referenced classes of package a:
+//            v, a
+
+public class x
+{
+
+    String a()
+    {
+        if(h != null)
+            return h.f;
+        else
+            return null;
+    }
+
+    public x(String s, String s1, int i)
+    {
+        b = false;
+        c = 0;
+        d = 0;
+        e = 0;
+        f = 0;
+        a = s1;
+        e = i;
+        g = new int[1][2];
+        f = 1;
+        if(s != null)
+            h = new v(s, (short)0, 0, 0, 0, 0);
+    }
+
+    void a(int ai[][], int i)
+    {
+        int j;
+        if(i > f)
+            g = new int[i][2];
+        f = i;
+        j = 0;
+        if(a.q == 0) goto _L2; else goto _L1
+_L1:
+        g[j][0] = ai[j][0];
+        g[j][1] = ai[j][1];
+        j++;
+_L2:
+        if(j >= f)
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public void a(String s)
+    {
+        b = true;
+        a = s;
+    }
+
+    public String b()
+    {
+        return a;
+    }
+
+    String a;
+    boolean b;
+    int c;
+    int d;
+    public int e;
+    int f;
+    int g[][];
+    v h;
+}

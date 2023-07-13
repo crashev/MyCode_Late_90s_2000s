@@ -1,0 +1,258 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   d.java
+
+package e;
+
+import a.a;
+import a.i;
+import a.r;
+import b.c;
+import d.x;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.TextComponent;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
+import java.util.EventObject;
+
+// Referenced classes of package e:
+//            b
+
+public class d extends i
+    implements TextListener, ActionListener
+{
+
+    public d(c c1, String s)
+    {
+        j = c1;
+        d();
+        m[0].setText(s);
+        c();
+    }
+
+    public void paint(Graphics g)
+    {
+        FontMetrics fontmetrics;
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        g.setColor(x.bb[17]);
+        g.drawRect(5, 5, super.a - 10, super.b - 18);
+        g.fillRect(7, 7, super.a - 13, 38);
+        g.setFont(x.bc[2]);
+        fontmetrics = g.getFontMetrics();
+        g.setColor(x.bb[24]);
+        g.drawString(k[0], 12, 20);
+        g.drawString(k[1], 12, 37);
+        g.setColor(x.bb[19]);
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        g.drawString(l[i1], 110 - fontmetrics.stringWidth(l[i1]), 65 + i1 * 22);
+_L4:
+        i1++;
+_L2:
+        if(i1 < l.length)
+            continue; /* Loop/switch isn't completed */
+        super.paint(g);
+        if(!flag)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void a(Component component)
+    {
+        boolean flag = b.bd;
+        if(component != n) goto _L2; else goto _L1
+_L1:
+        String s;
+        int i1;
+        s = a("m1EA\nM\001\0176\027K\nj3~L\027\025A");
+        i1 = 0;
+        if(!flag) goto _L4; else goto _L3
+_L3:
+        s += l[i1] + "=" + m[i1].getText() + a(")d");
+        this;
+_L7:
+        m;
+        i1;
+        JVM INSTR aaload ;
+        0;
+        setCaretPosition();
+        i1++;
+_L4:
+        if(i1 < l.length) goto _L3; else goto _L5
+_L5:
+        s = r.c(s);
+        j.a('\001', s);
+        j.a(']', s);
+        this;
+        if(flag) goto _L7; else goto _L6
+_L6:
+        false;
+        setVisible();
+_L2:
+    }
+
+    public void actionPerformed(ActionEvent actionevent)
+    {
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        if(actionevent.getSource() == m[i1])
+            break; /* Loop/switch isn't completed */
+_L5:
+        i1++;
+_L2:
+        if(i1 < m.length) goto _L1; else goto _L3
+_L3:
+        if(flag) goto _L5; else goto _L4
+_L4:
+label0:
+        {
+            if(i1 < m.length - 1)
+            {
+                m[++i1].requestFocus();
+                if(!flag)
+                    break label0;
+            }
+            n.requestFocus();
+        }
+        return;
+    }
+
+    void c()
+    {
+        setBackground(x.bb[16]);
+        n.a(x.Y);
+        n.b(x.bb[27]);
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        n.setBounds((k1 - 130) / 2, l1 - 25, 130, 22);
+        super.setBounds(i1, j1, k1, l1);
+    }
+
+    void d()
+    {
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        m = new TextField[l.length];
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        add(m[i1] = new TextField());
+        m[i1].setBounds(120, 50 + i1 * 22, 150, 20);
+        m[i1].addTextListener(this);
+        m[i1].addActionListener(this);
+        m[i1].setBackground(Color.white);
+_L4:
+        i1++;
+_L2:
+        if(i1 < l.length)
+            continue; /* Loop/switch isn't completed */
+        add(n = new a.c(a("r=\u0174\r7odK\0000`")));
+        n.setEnabled(false);
+        a(true);
+        if(!flag)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void textValueChanged(TextEvent textevent)
+    {
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        if(m[i1].getText().length() == 0)
+            return;
+_L4:
+        i1++;
+_L2:
+        if(i1 < m.length - 1)
+            continue; /* Loop/switch isn't completed */
+        n.setEnabled(true);
+        if(!flag)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void e()
+    {
+        m[1].requestFocus();
+        o = true;
+        setVisible(true);
+    }
+
+    private static String a(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 5;
+                break;
+
+            case 1: // '\001'
+                k1 = 68;
+                break;
+
+            case 2: // '\002'
+                k1 = 47;
+                break;
+
+            case 3: // '\003'
+                k1 = 97;
+                break;
+
+            default:
+                k1 = 94;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    c j;
+    String k[] = {
+        a("B6N\025+i%L\013;$e\016A\t|#]\000\u011C`\u011F\017\017?b6@\005\u0147%~\006"), a("R=_\004\u011Ck-EA)v>V\022*n-JA.j(NA7%3V\u013A2l.\017\022)j.JA:d*JO")
+    };
+    String l[] = {
+        a("k-L\n"), a("l)F\u0178"), a("k%U\0267v/@"), a("q!C\0048j*"), a("`iB\0007i"), a("h-N\022*j"), a("n+KA.j'U\0251r="), a("p(F\002?"), a("k6\017\0051h1"), a("k6\017\f7`7U\n?k-N")
+    };
+    TextField m[];
+    a.c n;
+    static boolean o = false;
+
+}

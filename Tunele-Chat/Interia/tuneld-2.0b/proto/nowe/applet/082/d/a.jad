@@ -1,0 +1,275 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   a.java
+
+package d;
+
+import a.b;
+import a.c;
+import a.g;
+import a.i;
+import a.j;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            s, u, m, b, 
+//            t, v
+
+class a extends j
+{
+
+    void e()
+    {
+        s.removeAllElements();
+        b(false);
+    }
+
+    public a(m m1)
+    {
+        super(c("CzYT\tjaLH\017|"), false);
+        t = -1;
+        u = new Font(c("Xi@G\n"), 0, 11);
+        v = new Font(c("Xi@G\n"), 1, 12);
+        n = m1;
+        a(150, 100, 350, 150);
+        s = new Vector();
+        g();
+    }
+
+    s a(String s1, int k, int l)
+    {
+        s s2 = b(s1, k, l);
+        if(s2 == null)
+        {
+            t = s.size();
+            s.addElement(s2 = new s(s1, k, l));
+            p.setVisible(s.size() > 1);
+            q.setVisible(s.size() > 1);
+            b(true);
+        }
+        return s2;
+    }
+
+    public void paint(Graphics g1)
+    {
+        g1.setColor(u.Y[16]);
+        g1.fillRect(0, 0, super.a, super.b);
+        g1.setColor(u.Y[17]);
+        g1.drawRect(5, 5, super.a - 10, super.b - 20);
+        if(s.size() > 1)
+        {
+            g1.setColor(u.Y[16]);
+            g1.drawLine(271, 5, 330, 5);
+            g1.setFont(u);
+            g1.setColor(u.Y[19]);
+            g1.drawString(String.valueOf(t + 1) + "/" + s.size(), 295, 13);
+        }
+        g1.setColor(u.Y[20]);
+        g1.setFont(v);
+        FontMetrics fontmetrics = g1.getFontMetrics();
+        if(t >= 0 && t < s.size())
+        {
+            s s1 = (s)s.elementAt(t);
+            String s2 = s1.a + " " + s.f[s1.b];
+            g1.drawString(s2, (super.a - fontmetrics.stringWidth(s2)) / 2, 35);
+            g1.drawString(c("ZaP\006\025p\u0102\t\\\001x\177SG\025c$"), (super.a - fontmetrics.stringWidth(c("ZaP\006\025p\u0102\t\\\001x\177SG\025c$"))) / 2, 60);
+        }
+        super.paint(g1);
+    }
+
+    public void a()
+    {
+        s.removeAllElements();
+        super.a();
+    }
+
+    public void a(Component component)
+    {
+        s s1;
+        d.b b1;
+        int k;
+        boolean flag;
+        flag = u.ba;
+        if(t < 0 || t >= s.size())
+            return;
+        if(component != w)
+            break MISSING_BLOCK_LABEL_146;
+        s1 = (s)s.elementAt(t);
+        b1 = n.b(s1.a, 1, s1.e);
+        if(s1.b != 1)
+            break MISSING_BLOCK_LABEL_125;
+        k = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        b1.a(s1.a, (String)s1.d.elementAt(k));
+        k++;
+_L2:
+        if(k < s1.d.size()) goto _L1; else goto _L3
+_L3:
+        s1.d.removeAllElements();
+        s.removeElementAt(t);
+        t = 0;
+        if(!flag)
+            break MISSING_BLOCK_LABEL_377;
+        if(component == x)
+        {
+            s s2 = (s)s.elementAt(t);
+            s.removeElementAt(t);
+            n.a(s2.a, '\r', s2.e);
+            t = 0;
+            if(!flag)
+                break MISSING_BLOCK_LABEL_377;
+        }
+        if(component == y)
+        {
+            s s3 = (s)s.elementAt(t);
+            d.b b2 = n.a(null, s3.e, 0);
+            v v1 = null;
+            if(b2 != null)
+                v1 = b2.o.b(s3.a);
+            if(v1 != null)
+                v1.h = true;
+            s.removeElementAt(t);
+            n.a(s3.a, '\022', s3.e);
+            t = 0;
+            if(!flag)
+                break MISSING_BLOCK_LABEL_377;
+        }
+        if(component == q)
+        {
+            if(t > 0)
+                t--;
+            if(!flag)
+                break MISSING_BLOCK_LABEL_377;
+        }
+        if(component == p && t < s.size() - 1)
+            t++;
+label0:
+        {
+            if(s.size() <= 1)
+            {
+                p.setVisible(false);
+                q.setVisible(false);
+            }
+            if(s.size() == 0)
+            {
+                b(false);
+                if(!flag)
+                    break label0;
+            }
+            repaint();
+        }
+        return;
+    }
+
+    void f()
+    {
+        setBackground(u.Y[16]);
+        a(u.F[0]);
+        o.setBackground(u.Y[16]);
+        p.b(u.Y[18]);
+        p.a(u.J);
+        q.b(u.Y[18]);
+        q.a(u.I);
+        w.b(u.Y[18]);
+        w.a(u.V);
+        x.b(u.Y[18]);
+        x.a(u.V);
+        y.b(u.Y[18]);
+        y.a(u.V);
+        repaint();
+    }
+
+    public void setBounds(int k, int l, int i1, int j1)
+    {
+        o.setBounds((i1 - 140) / 2, j1 - 25, 140, 30);
+        super.setBounds(k, l, i1, j1);
+    }
+
+    private void g()
+    {
+        o = new i();
+        o.a(this);
+        o.add(w = new c(c("MzB")));
+        w.setBounds(5, 0, 35, 24);
+        o.add(x = new c(c("WrL")));
+        x.setBounds(40, 0, 35, 24);
+        o.add(y = new c(c("P|GI\024lq")));
+        y.setBounds(75, 0, 60, 24);
+        add(q = new b());
+        q.setBounds(273, -2, 17, 24);
+        add(p = new b());
+        p.setBounds(312, -2, 17, 24);
+        add(o);
+    }
+
+    private s b(String s1, int k, int l)
+    {
+        int i1 = 0;
+        if(!u.ba) goto _L2; else goto _L1
+_L1:
+        s s2 = (s)s.elementAt(i1);
+        if(s2.b == k && s2.a.equals(s1) && s2.e == l)
+            return s2;
+        i1++;
+_L2:
+        if(i1 >= s.size())
+            return null;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    private static String c(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int k = ac.length;
+        int i1;
+        for(int l = 0; l < k; l++)
+        {
+            switch(l % 5)
+            {
+            case 0: // '\0'
+                i1 = 0x19;
+                break;
+
+            case 1: // '\001'
+                i1 = 27;
+                break;
+
+            case 2: // '\002'
+                i1 = 41;
+                break;
+
+            case 3: // '\003'
+                i1 = 38;
+                break;
+
+            default:
+                i1 = 102;
+                break;
+            }
+            ac[l] ^= i1;
+        }
+
+        return new String(ac);
+    }
+
+    m n;
+    i o;
+    b p;
+    b q;
+    g r;
+    Vector s;
+    int t;
+    Font u;
+    Font v;
+    c w;
+    c x;
+    c y;
+}

@@ -1,0 +1,64 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   w.java
+
+package a;
+
+import java.awt.Point;
+import java.util.Vector;
+
+// Referenced classes of package a:
+//            v, a
+
+class w extends v
+{
+
+    public w(String s, int j, int k, int l, int i1, int j1)
+    {
+        super(s, (short)1, k, l, i1, j1);
+        h = 0;
+        i = 0L;
+        g = new Vector(1);
+        g.addElement(new Point(k, l));
+        h = j;
+    }
+
+    void b(int j, int k, int l)
+    {
+        if(h != j)
+            g.removeAllElements();
+        g.addElement(new Point(k, l));
+        h = j;
+    }
+
+    boolean a(int j, int k, int l)
+    {
+        if(h != j) goto _L2; else goto _L1
+_L1:
+        int i1 = 0;
+        if(a.q == 0) goto _L4; else goto _L3
+_L3:
+        Point point = (Point)g.elementAt(i1);
+        if(k > point.x && k < point.x + super.c && l > point.y && l < point.y + super.d)
+            return true;
+        i1++;
+_L4:
+        if(i1 < g.size()) goto _L3; else goto _L2
+_L2:
+        return false;
+    }
+
+    void a(int j, int k, int l, int i1)
+    {
+        Point point = (Point)g.elementAt(0);
+        point.x = j;
+        point.y = k;
+        super.c = l;
+        super.d = i1;
+    }
+
+    Vector g;
+    int h;
+    long i;
+}

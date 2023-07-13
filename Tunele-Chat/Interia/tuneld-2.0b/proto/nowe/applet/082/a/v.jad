@@ -1,0 +1,47 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   v.java
+
+package a;
+
+
+class v
+{
+
+    public v(String s, short word0, int i, int j, int k, int l)
+    {
+        a = i;
+        b = j;
+        c = k;
+        d = l;
+        e = word0;
+        f = s;
+    }
+
+    boolean a(int i, int j, int k)
+    {
+        return j > a && j < a + c && k > b && k < b + d;
+    }
+
+    void a(int i, int j)
+    {
+        a = i;
+        b = j;
+    }
+
+    void a(int i, int j, int k, int l)
+    {
+        a = i;
+        b = j;
+        c = k;
+        d = l;
+    }
+
+    int a;
+    int b;
+    int c;
+    int d;
+    short e;
+    String f;
+}

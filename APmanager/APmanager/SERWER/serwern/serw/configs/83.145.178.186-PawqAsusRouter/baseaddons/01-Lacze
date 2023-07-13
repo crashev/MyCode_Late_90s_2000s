@@ -1,0 +1,5 @@
+#max interfejsu radiowego
+nvram set pawq_lacze_down=20480
+nvram commit
+
+

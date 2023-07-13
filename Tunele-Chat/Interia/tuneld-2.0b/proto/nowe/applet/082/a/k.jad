@@ -1,0 +1,1425 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   k.java
+
+package a;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Hashtable;
+import java.util.Vector;
+
+// Referenced classes of package a:
+//            i, x, r, v, 
+//            y, a, t, s, 
+//            w, q, u
+
+public class k extends i
+    implements AdjustmentListener, KeyListener, MouseListener, MouseMotionListener
+{
+
+    private void a(Graphics g1, int i1, int j1)
+    {
+        int k1;
+        int l1;
+        int k2;
+        k2 = a.q;
+        if(g1 != null)
+        {
+            H++;
+            F.removeAllElements();
+            if(H > 50)
+            {
+                H = 0;
+                E.clear();
+            }
+        }
+        if(G.size() == 0)
+        {
+            N = -1;
+            return;
+        }
+        k1 = 0;
+        l1 = i1;
+        boolean flag = false;
+        L.x = i1;
+        L.y = j1;
+        if(q && r)
+            l1 = B;
+        if(k2 == 0) goto _L2; else goto _L1
+_L1:
+        L.y += ((x)G.elementAt(k1++)).c;
+_L2:
+        if(L.y >= 0) goto _L4; else goto _L3
+_L3:
+        k1;
+        G.size();
+        if(k2 != 0) goto _L6; else goto _L5
+_L5:
+        JVM INSTR icmplt 113;
+           goto _L4 _L1
+_L4:
+        if(L.y > 0 && k1 > 0)
+            L.y -= ((x)G.elementAt(--k1)).c;
+        N = k1;
+        if(k2 == 0) goto _L8; else goto _L7
+_L7:
+        x x1;
+        int i2;
+        int j2;
+label0:
+        {
+            x1 = (x)G.elementAt(k1);
+            x1.d = L.y;
+            if(x1.b)
+            {
+                b(x1);
+                return;
+            }
+            if(x1.a.charAt(0) == '\b')
+            {
+                g1.setColor(W);
+                g1.fillRect(l1 - 2, L.y + 4, (super.a - 25 - l1) + 8, x1.c);
+                i2 = 1;
+                if(k2 == 0)
+                    break label0;
+            }
+            i2 = 0;
+        }
+label1:
+        {
+            if(!q || D != k1)
+                break label1;
+            if(v)
+            {
+                g1.setColor(Color.red);
+                g1.drawRect(2, L.y + 4, super.a - 22, x1.c - 1);
+                if(k2 == 0)
+                    break label1;
+            }
+            g1.setColor(W);
+            g1.fillRect(2, L.y + 4, super.a - 20, x1.c);
+        }
+        k1++;
+        if(q && r)
+        {
+            g1.setFont(a.r.a(0, 1, 1));
+            g1.setColor(r.e[2]);
+            g1.drawString(A, i1, L.y + R);
+        }
+        if(x1.h != null)
+        {
+            x1.h.a(l1, (L.y - R) + x1.g[0][1]);
+            F.addElement(x1.h);
+        }
+        if(x1.a.length() > P.length)
+            P = new char[x1.a.length()];
+        x1.a.getChars(0, x1.a.length(), P, 0);
+        U.a(T);
+        a(g1, T);
+        j2 = 0;
+        if(k2 == 0) goto _L10; else goto _L9
+_L9:
+        L.x = l1;
+        L.y += x1.g[j2][1];
+        a(g1, P, i2, x1.g[j2][0], L.x, L.y, U);
+        if(K != x1.g[j2][1] || L.x > super.a - 20)
+        {
+            b(x1);
+            return;
+        }
+        i2 = x1.g[j2][0];
+        j2++;
+_L10:
+        if(j2 < x1.f) goto _L9; else goto _L8
+_L8:
+        k1;
+        G.size();
+_L6:
+        JVM INSTR icmpge 781;
+           goto _L11 _L12
+_L11:
+        continue; /* Loop/switch isn't completed */
+_L12:
+        break; /* Loop/switch isn't completed */
+        if(L.y < super.b) goto _L7; else goto _L13
+_L13:
+    }
+
+    public void a(String s1)
+    {
+        G.removeAllElements();
+        J = 0;
+        I.setValue(0);
+        m();
+    }
+
+    public void a(String s1, String s2, int i1)
+    {
+        c(new x(s1, s2, i1));
+    }
+
+    private v b(int i1, int j1)
+    {
+        int k1 = 0;
+        if(a.q == 0) goto _L2; else goto _L1
+_L1:
+        v v1 = (v)F.elementAt(k1);
+        if(v1.a(H, i1, j1))
+            return v1;
+        k1++;
+_L2:
+        if(k1 >= F.size())
+            return null;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    private x c(int i1, int j1)
+    {
+        int k1;
+        int l1;
+label0:
+        {
+            l1 = a.q;
+            k1 = 0;
+            j1 -= 3;
+            if(N >= 0)
+            {
+                k1 = N;
+                if(l1 == 0)
+                    break label0;
+            }
+            return null;
+        }
+_L6:
+        if(k1 < G.size()) goto _L2; else goto _L1
+_L1:
+        D = -1;
+        this;
+        if(l1 != 0) goto _L4; else goto _L3
+_L3:
+        repaint();
+        return null;
+_L2:
+        G.elementAt(k1);
+_L4:
+        (x);
+        x x1;
+        x1;
+        if(x1.d + x1.c > j1)
+            break; /* Loop/switch isn't completed */
+        k1++;
+        if(l1 == 0) goto _L6; else goto _L5
+_L5:
+        D = k1;
+        repaint();
+        return (x)G.elementAt(D);
+    }
+
+    public void c()
+    {
+        if(l)
+        {
+            if(n != null)
+                n.a();
+            if(n != null && n.c)
+                m();
+        }
+    }
+
+    private void a(Graphics g1, char ac[], int i1, int j1, int k1, int l1, y y1)
+    {
+        int k2;
+        k2 = a.q;
+        L.x = k1;
+        K = R;
+        if(k2 == 0) goto _L2; else goto _L1
+_L1:
+        int i2 = a(ac, i1, j1);
+        if(i2 < 0)
+            i2 = j1;
+        if(X != null)
+            X.f += new String(ac, i1, i2 - i1);
+        int j2 = a.r.a(k, ac, i1, i2);
+        if(g1 != null && l1 > -5 && l1 < super.b + 20)
+        {
+            g1.drawChars(ac, i1, i2 - i1, L.x, l1);
+            if(y1.e)
+                g1.drawLine(L.x, l1 + 1, L.x + j2, l1 + 1);
+        }
+        L.x += j2;
+        if(i2 >= 0 && i2 < j1)
+        {
+            i1 = a(g1, ac, i2, j1, y1);
+            if(k2 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        i1 = i2;
+_L2:
+        if(i1 < j1) goto _L1; else goto _L3
+_L3:
+    }
+
+    private void a(Graphics g1, y y1)
+    {
+        short word0;
+label0:
+        {
+            int i1 = a.q;
+            word0 = w ? y1.c : T.c;
+            if(!x)
+                y1 = T;
+            if(!y1.d && !y1.f)
+                y1.b = 0;
+            if(y1.d && !y1.f)
+            {
+                y1.b = 1;
+                if(i1 == 0)
+                    break label0;
+            }
+            if(!y1.d && y1.f)
+            {
+                y1.b = 2;
+                if(i1 == 0)
+                    break label0;
+            }
+            if(y1.d && y1.f)
+                y1.b = 3;
+        }
+        if(g1 != null)
+        {
+            g1.setFont(a.r.a(y1.a, y1.b, Q));
+            g1.setColor(r.e[word0]);
+        }
+        k = getFontMetrics(a.r.a(y1.a, y1.b, Q));
+    }
+
+    public void keyPressed(KeyEvent keyevent)
+    {
+        int j1 = a.q;
+        int i1 = keyevent.getKeyCode();
+        if(q && D >= 0 && D < G.size())
+        {
+            x x1 = (x)G.elementAt(D);
+            switch(i1)
+            {
+            default:
+                break;
+
+            case 65: // 'A'
+                j.a(this, 5, x1.a, x1.e, D);
+                if(j1 == 0)
+                    break;
+                // fall through
+
+            case 68: // 'D'
+                l();
+                if(j1 == 0)
+                    break;
+                // fall through
+
+            case 83: // 'S'
+                j.a(this, 6, x1.a, x1.e, D);
+                if(j1 == 0)
+                    break;
+                // fall through
+
+            case 69: // 'E'
+                j.a(this, 4, x1.a, x1.e, D);
+                if(j1 == 0)
+                    break;
+                // fall through
+
+            case 38: // '&'
+                if(D > 0)
+                {
+                    D--;
+                    I.setValue(I.getValue() - x1.c);
+                    m();
+                    return;
+                }
+                if(j1 == 0)
+                    break;
+                // fall through
+
+            case 40: // '('
+                if(D < G.size() - 1)
+                {
+                    D++;
+                    I.setValue(I.getValue() + x1.c);
+                    repaint();
+                    return;
+                }
+                break;
+            }
+        }
+        switch(i1)
+        {
+        case 37: // '%'
+        case 39: // '\''
+        default:
+            break;
+
+        case 36: // '$'
+            I.setValue(0);
+            if(j1 == 0)
+                break;
+            // fall through
+
+        case 35: // '#'
+            I.setValue(I.getMaximum());
+            if(j1 == 0)
+                break;
+            // fall through
+
+        case 33: // '!'
+            I.setValue(I.getValue() - super.b);
+            if(j1 == 0)
+                break;
+            // fall through
+
+        case 34: // '"'
+            I.setValue(I.getValue() + super.b);
+            if(j1 == 0)
+                break;
+            // fall through
+
+        case 38: // '&'
+            I.setValue(I.getValue() - 30);
+            if(j1 == 0)
+                break;
+            // fall through
+
+        case 40: // '('
+            I.setValue(I.getValue() + 30);
+            break;
+        }
+        m();
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+    }
+
+    public void a(boolean flag, String as[])
+    {
+        FontMetrics fontmetrics;
+        int i1;
+        int j1;
+        j1 = a.q;
+        z = as;
+        A = new String();
+        C = new int[as.length];
+        B = 0;
+        fontmetrics = getFontMetrics(a.r.a(0, 1, 1));
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        A += as[i1] + b("\007gz");
+        C[i1] = fontmetrics.stringWidth(as[i1] + b("\007gz"));
+        B += C[i1];
+_L4:
+        i1++;
+_L2:
+        if(i1 < as.length)
+            continue; /* Loop/switch isn't completed */
+        B += 10;
+        r = flag;
+        e();
+        repaint();
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    private int a(x x1)
+    {
+        short word0;
+        int i1;
+        int j1;
+        int l1;
+        int i2;
+        i2 = a.q;
+        word0 = 0;
+        i1 = 0;
+        j1 = 0;
+        l1 = 4;
+        x1.b = false;
+        if(x1.h != null)
+            x1.h.a(-1000, 0, getFontMetrics(a.r.a(0, 1, Q)).stringWidth(x1.h.f), R);
+        if(q && r)
+            l1 = B;
+        V.a(T);
+        a(((Graphics) (null)), T);
+        if(x1.a.length() > P.length)
+            P = new char[x1.a.length()];
+        x1.a.getChars(0, x1.a.length(), P, 0);
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        K = R;
+        a(P, j1, x1.a.length(), l1);
+_L5:
+        int k1;
+        k1;
+label0:
+        {
+            if(k1 > 0)
+            {
+                j1 = k1;
+                if(i2 == 0)
+                    break label0;
+            }
+            if(i2 == 0)
+                break; /* Loop/switch isn't completed */
+        }
+        O[word0][0] = k1;
+        O[word0++][1] = K;
+        i1 += K;
+_L2:
+        if(j1 < x1.a.length()) goto _L1; else goto _L3
+_L3:
+        x1.a(O, word0);
+        x1.c = i1;
+        i1;
+        if(i2 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public Vector d()
+    {
+        return G;
+    }
+
+    public boolean imageUpdate(Image image, int i1, int j1, int k1, int l1, int i2)
+    {
+        w w1;
+        int i3;
+        i3 = a.q;
+        if(!l)
+            return false;
+        if((i1 & 0x80) != 0 || (i1 & 0x40) != 0)
+            return false;
+        w1 = (w)E.get(image);
+        if(w1 == null || w1.h != H)
+            return false;
+        long l2 = System.currentTimeMillis();
+        if(l2 - w1.i < 20L && i1 == 16)
+            try
+            {
+                Thread.sleep(100L);
+            }
+            catch(Exception _ex) { }
+        w1.i = l2;
+        if(!y)
+            return true;
+        k k2 = this;
+        JVM INSTR monitorenter ;
+        Graphics g1;
+        int j2;
+        g1 = getGraphics();
+        if(g1 == null)
+        {
+            boolean flag = true;
+            return flag;
+        }
+        g1.setColor(Color.white);
+        j2 = 0;
+        if(i3 == 0) goto _L2; else goto _L1
+_L1:
+        w1.g.elementAt(j2);
+_L5:
+        (Point);
+        Point point;
+        point;
+        g1.fillRect(point.x, point.y, ((v) (w1)).c, ((v) (w1)).d);
+        g1.drawImage(image, point.x, point.y, this);
+        j2++;
+_L2:
+        if(j2 < w1.g.size()) goto _L1; else goto _L3
+_L3:
+        a.r.a(g1, 0, 0, super.a, super.b, false);
+        g1;
+        if(i3 != 0) goto _L5; else goto _L4
+_L4:
+        dispose();
+        break MISSING_BLOCK_LABEL_272;
+        k2;
+        JVM INSTR monitorexit ;
+        throw ;
+        local;
+        k2;
+        JVM INSTR monitorexit ;
+        JVM INSTR ret 14;
+        return true;
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+        setCursor(Cursor.getPredefinedCursor(0));
+    }
+
+    private int a(Graphics g1, char ac[], int i1, int j1, y y1)
+    {
+        int k1;
+        int l2;
+        l2 = a.q;
+        k1 = i1 + 1;
+        if(i1 > j1 - 2)
+            return k1;
+        ac[i1];
+        JVM INSTR tableswitch 1 8: default 796
+    //                   1 225
+    //                   2 72
+    //                   3 265
+    //                   4 796
+    //                   5 305
+    //                   6 627
+    //                   7 796
+    //                   8 786;
+           goto _L1 _L2 _L3 _L4 _L1 _L5 _L6 _L1 _L7
+_L1:
+        break; /* Loop/switch isn't completed */
+_L3:
+        switch(ac[i1 + 1])
+        {
+        case 1: // '\001'
+            y1.d = true;
+            if(l2 == 0)
+                break MISSING_BLOCK_LABEL_208;
+            // fall through
+
+        case 2: // '\002'
+            y1.d = false;
+            if(l2 == 0)
+                break MISSING_BLOCK_LABEL_208;
+            // fall through
+
+        case 4: // '\004'
+            y1.f = true;
+            if(l2 == 0)
+                break MISSING_BLOCK_LABEL_208;
+            // fall through
+
+        case 5: // '\005'
+            y1.f = false;
+            if(l2 == 0)
+                break MISSING_BLOCK_LABEL_208;
+            // fall through
+
+        case 14: // '\016'
+            y1.e = true;
+            if(l2 == 0)
+                break MISSING_BLOCK_LABEL_208;
+            // fall through
+
+        case 15: // '\017'
+            y1.e = false;
+            if(l2 == 0)
+                break MISSING_BLOCK_LABEL_208;
+            // fall through
+
+        default:
+            i1--;
+            break;
+        }
+        a(g1, y1);
+        k1 = i1 + 2;
+        if(l2 == 0)
+            break; /* Loop/switch isn't completed */
+_L2:
+        if(ac[i1 + 1] < r.e.length)
+        {
+            y1.c = (short)ac[i1 + 1];
+            a(g1, y1);
+            k1 = i1 + 2;
+        }
+        if(l2 == 0)
+            break; /* Loop/switch isn't completed */
+_L4:
+        if(ac[i1 + 1] < r.l.length)
+        {
+            y1.a = (short)ac[i1 + 1];
+            a(g1, y1);
+            k1 = i1 + 2;
+        }
+        if(l2 == 0)
+            break; /* Loop/switch isn't completed */
+_L5:
+        Image image;
+        int l1;
+        String s1;
+        image = null;
+        l1 = a.r.a(ac, '\005', i1 + 1, j1);
+        if(l1 < 0)
+            break; /* Loop/switch isn't completed */
+        s1 = new String(ac, i1 + 1, l1 - i1 - 1);
+        image = j.a(s1, false);
+        if(image == null) goto _L9; else goto _L8
+_L8:
+        int i2;
+        int k2;
+        i2 = image.getWidth(null);
+        k2 = image.getHeight(null);
+        if(K < k2)
+            K = k2;
+        if(g1 == null || L.y + 5 <= 0 || L.y - k2 >= super.b) goto _L11; else goto _L10
+_L10:
+        w w1 = (w)E.get(image);
+        if(w1 == null) goto _L13; else goto _L12
+_L12:
+        if(p && w1.h != H)
+            F.addElement(w1);
+        w1.b(H, L.x, (L.y - k2) + 5);
+        if(l2 == 0) goto _L14; else goto _L13
+_L13:
+        w w2;
+        E.put(image, w2 = new w(s1, H, L.x, (L.y - k2) + 5, i2, k2));
+        if(p)
+            F.addElement(w2);
+_L14:
+        g1.drawImage(image, L.x, (L.y - k2) + 5, this);
+_L11:
+        L.x += i2;
+_L9:
+        k1 = l1 + 1;
+        if(l2 == 0)
+            break; /* Loop/switch isn't completed */
+_L6:
+label0:
+        {
+            if(g1 == null)
+                break label0;
+            if(ac[i1 + 1] == '\001')
+            {
+                int j2 = a.r.a(ac, '\006', i1 + 2, j1);
+                if(j2 < 0)
+                    j2 = j1;
+                if(j2 > i1 + 2)
+                {
+                    String s2 = new String(ac, i1 + 2, j2 - i1 - 2);
+                    X = new v("", (short)2, L.x, L.y - R, k.stringWidth(s2), R);
+                }
+                if(l2 == 0)
+                    break label0;
+            }
+            if(ac[i1 + 1] == '\002' && X != null)
+            {
+                F.addElement(X);
+                X = null;
+            }
+        }
+        k1 = i1 + 2;
+        if(l2 == 0)
+            break; /* Loop/switch isn't completed */
+_L7:
+        k1 = i1 + 1;
+        if(l2 == 0);
+        return k1;
+    }
+
+    public void a(u u1)
+    {
+        n = new t(u1);
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        S = true;
+        super.setBounds(i1, j1, k1, l1);
+        I.setBounds(k1 - 18, 2, 16, l1 - 4);
+        I.setBlockIncrement(l1 - 3);
+        I.setValue(I.getMaximum());
+    }
+
+    public void a(boolean flag, boolean flag1, boolean flag2)
+    {
+        y = flag;
+        w = flag1;
+        x = flag2;
+        j();
+    }
+
+    public void b(boolean flag)
+    {
+        l = flag;
+        if(!l && m != null)
+            m.b(this);
+    }
+
+    public void a(Image image)
+    {
+        o = image;
+    }
+
+    private synchronized void e()
+    {
+        int i1;
+        int j1;
+        int k1;
+        k1 = a.q;
+        i1 = 0;
+        j1 = 0;
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        i1 += a((x)G.elementAt(j1));
+_L4:
+        j1++;
+_L2:
+        if(j1 < G.size())
+            continue; /* Loop/switch isn't completed */
+        J = i1;
+        h();
+        if(k1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public synchronized x a(int i1)
+    {
+        int j1;
+        int k1;
+        k1 = a.q;
+        j1 = 0;
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        j1++;
+_L2:
+        if(j1 >= G.size()) goto _L4; else goto _L3
+_L3:
+        ((x)G.elementAt(j1)).e;
+        i1;
+        if(k1 != 0) goto _L6; else goto _L5
+_L5:
+        JVM INSTR icmpne 12;
+           goto _L4 _L1
+_L4:
+        if(G.size() == 0)
+            break MISSING_BLOCK_LABEL_70;
+        j1;
+        G.size();
+_L6:
+        JVM INSTR icmpne 72;
+           goto _L7 _L8
+_L7:
+        break MISSING_BLOCK_LABEL_70;
+_L8:
+        break MISSING_BLOCK_LABEL_72;
+        return null;
+        x x1;
+label0:
+        {
+            x1 = (x)G.elementAt(j1);
+            G.removeElementAt(j1);
+            J -= x1.c;
+            if(D > j1)
+            {
+                D--;
+                if(k1 == 0)
+                    break label0;
+            }
+            if(D == j1)
+                D = -1;
+        }
+        c(false);
+        I.setValue(I.getValue() - x1.c);
+        repaint();
+        return x1;
+    }
+
+    public x f()
+    {
+        if(D < 0 || D >= G.size())
+            return null;
+        else
+            return (x)G.elementAt(D);
+    }
+
+    public void adjustmentValueChanged(AdjustmentEvent adjustmentevent)
+    {
+        m();
+    }
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+        if(mouseevent.getClickCount() >= 2 && mouseevent.getX() > B && q)
+        {
+            x x1 = c(mouseevent.getX(), mouseevent.getY());
+            if(x1 != null)
+                j.a(this, 6, x1.a, x1.e, D);
+        }
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+label0:
+        {
+            x x1;
+label1:
+            {
+                int i1;
+label2:
+                {
+                    i1 = a.q;
+                    requestFocus();
+                    v v1 = b(mouseevent.getX(), mouseevent.getY());
+                    if(u && v1 != null)
+                    {
+                        j.a(this, v1.e, v1.f, mouseevent.getX(), mouseevent.getY());
+                        if(v1.e == 0)
+                            setCursor(Cursor.getDefaultCursor());
+                        if(i1 == 0)
+                            break label0;
+                    }
+                    if(!q)
+                        break label0;
+                    x1 = c(mouseevent.getX(), mouseevent.getY());
+                    if(x1 == null)
+                        return;
+                    if(!r || mouseevent.getX() >= B - 10)
+                        break label1;
+                    if(mouseevent.getX() > C[0] + C[1])
+                    {
+                        j.a(this, 5, x1.a, x1.e, D);
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(mouseevent.getX() > C[0])
+                    {
+                        l();
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    j.a(this, 6, x1.a, x1.e, D);
+                }
+                D = -1;
+                if(i1 == 0)
+                    break label0;
+            }
+            if(mouseevent.getModifiers() == 4 || r.s)
+                j.a(this, 5, x1.a, x1.e, D);
+        }
+    }
+
+    public void mouseDragged(MouseEvent mouseevent)
+    {
+    }
+
+    public k(s s1, q q1)
+    {
+        this(s1);
+        m = q1;
+    }
+
+    public void keyTyped(KeyEvent keyevent)
+    {
+        keyevent.consume();
+    }
+
+    public void mouseMoved(MouseEvent mouseevent)
+    {
+label0:
+        {
+            int i1 = a.q;
+            if(!u)
+                break label0;
+            if(b(mouseevent.getX(), mouseevent.getY()) != null)
+            {
+                setCursor(Cursor.getPredefinedCursor(12));
+                if(i1 == 0)
+                    break label0;
+            }
+            if(q && r && mouseevent.getX() < B - 10 && mouseevent.getY() <= J + 2)
+            {
+                setCursor(Cursor.getPredefinedCursor(12));
+                if(i1 == 0)
+                    break label0;
+            }
+            setCursor(Cursor.getPredefinedCursor(0));
+        }
+    }
+
+    public k(s s1)
+    {
+        int i1 = a.q;
+        super();
+        l = true;
+        n = null;
+        p = false;
+        q = false;
+        r = false;
+        s = true;
+        t = false;
+        u = true;
+        v = false;
+        w = true;
+        x = true;
+        z = null;
+        A = null;
+        B = 0;
+        D = -1;
+        H = 0;
+        J = 0;
+        K = 0;
+        M = 0;
+        N = -1;
+        Q = 1;
+        R = 0;
+        S = false;
+        T = new y();
+        U = new y();
+        V = new y();
+        j = s1;
+        L = new Point(0, 0);
+        I = new Scrollbar(1);
+        add(I);
+        I.setMinimum(0);
+        I.setValue(-1);
+        I.setUnitIncrement(30);
+        I.addAdjustmentListener(this);
+        J = 0;
+        G = new Vector();
+        E = new Hashtable();
+        F = new Vector();
+        R = r.j[Q] + 4;
+        O = new int[20][2];
+        P = new char[512];
+        addKeyListener(this);
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        if(i1 != 0)
+        {
+            int j1 = i.i;
+            i.i = ++j1;
+        }
+    }
+
+    public void g()
+    {
+        I.setValue(I.getMaximum());
+        m();
+    }
+
+    public synchronized void paint(Graphics g1)
+    {
+        Graphics g2;
+        int i1;
+label0:
+        {
+            i1 = a.q;
+            if(!l)
+                return;
+            if(m != null)
+            {
+                g2 = m.a(this, super.a, super.b);
+                if(i1 == 0)
+                    break label0;
+            }
+            g2 = a(super.a, super.b, true);
+        }
+label1:
+        {
+            if(S)
+            {
+                S = false;
+                if(super.a != M)
+                    e();
+                M = super.a;
+                c(true);
+            }
+            g2.setColor(Color.white);
+            g2.fillRect(0, 0, super.a, super.b);
+            if(o != null)
+                g2.drawImage(o, (super.a - 18 - o.getWidth(null)) / 2, (super.b - 2 - o.getHeight(null)) / 2, null);
+            if(n != null)
+            {
+                n.a(g2, super.a - 18, super.b - 2);
+                if(super.a > 55)
+                    a(g2, 4, -I.getValue());
+                v v1 = n.b();
+                if(v1 != null)
+                    F.addElement(v1);
+                if(i1 == 0)
+                    break label1;
+            }
+            if(super.a > 55)
+                a(g2, 4, 2 - I.getValue());
+        }
+label2:
+        {
+            a.r.a(g2, 0, 0, super.a, super.b, false);
+            if(m != null)
+            {
+                g1.drawImage(m.a(this), 0, 0, null);
+                if(i1 == 0)
+                    break label2;
+            }
+            g1.drawImage(b(), 0, 0, null);
+        }
+        g1.dispose();
+    }
+
+    private int a(char ac[], int i1, int j1)
+    {
+_L5:
+        i1++;
+        if(i1 >= j1) goto _L2; else goto _L1
+_L1:
+        ac[i1];
+        16;
+        if(a.q != 0) goto _L4; else goto _L3
+_L3:
+        JVM INSTR icmpgt 3;
+           goto _L2 _L5
+_L2:
+        i1;
+        j1;
+_L4:
+        JVM INSTR icmplt 32;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_30;
+_L7:
+        break MISSING_BLOCK_LABEL_32;
+        return -1;
+        return i1;
+    }
+
+    public void a()
+    {
+        b(false);
+        if(n != null)
+            n = null;
+        if(G != null)
+            G.removeAllElements();
+        if(E != null)
+        {
+            E.clear();
+            E = null;
+        }
+        j = null;
+        if(m != null)
+            m = null;
+        super.a();
+    }
+
+    public synchronized void b(int i1)
+    {
+        Q = i1;
+        R = r.j[Q] + 4;
+        S = true;
+        repaint();
+    }
+
+    public void keyReleased(KeyEvent keyevent)
+    {
+        keyevent.consume();
+    }
+
+    private void h()
+    {
+        c(I.getValue() >= I.getMaximum() - 50);
+    }
+
+    private void c(boolean flag)
+    {
+        I.setMaximum((J - super.b) + 10);
+        if(flag)
+            I.setValue(I.getMaximum());
+    }
+
+    public String i()
+    {
+        StringBuffer stringbuffer;
+        String s2;
+        int k1;
+        int l1;
+        l1 = a.q;
+        stringbuffer = new StringBuffer();
+        s2 = b("\"nw");
+        k1 = 0;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        String s1;
+        int i1;
+        i1 = -2;
+        s1 = a.r.e(((x)G.elementAt(k1)).a);
+        if(l1 == 0) goto _L4; else goto _L3
+_L3:
+        s1;
+_L10:
+        5;
+        i1 + 2;
+        indexOf();
+        int j1;
+        j1;
+        j1;
+        i1;
+_L7:
+        JVM INSTR icmple 131;
+           goto _L5 _L4
+_L5:
+        j1;
+        i1 + 20;
+        if(l1 != 0) goto _L7; else goto _L6
+_L6:
+        JVM INSTR icmpge 131;
+           goto _L8 _L4
+_L8:
+        s1.substring(0, i1 + 1) + b("Rh?N") + s1.substring(j1);
+        if(l1 != 0) goto _L10; else goto _L9
+_L9:
+        s1;
+_L4:
+        if((i1 = s1.indexOf(s2, i1 + 2)) > -1) goto _L3; else goto _L11
+_L11:
+        stringbuffer.append(s1);
+        stringbuffer.append("\n");
+        if(l1 != 0) goto _L4; else goto _L12
+_L12:
+        k1++;
+_L2:
+        if(k1 >= G.size())
+            return stringbuffer.toString();
+        if(true) goto _L1; else goto _L13
+_L13:
+    }
+
+    private int a(char ac[], int i1, int j1, int k1)
+    {
+        int j2;
+        int i3;
+        i3 = a.q;
+        j2 = i1;
+        L.x = k1;
+        if(super.a <= 55)
+            return j1;
+        if(i3 == 0) goto _L2; else goto _L1
+_L1:
+        a(ac, j2, j1);
+_L13:
+        int l1;
+        l1;
+        int i2;
+        int k2;
+label0:
+        {
+            if(l1 < 0)
+            {
+                l1 = j1;
+                if(i3 == 0)
+                    break label0;
+            }
+            if(t && ac[l1] == '\n')
+                return l1 + 1;
+        }
+        i2 = a.r.a(k, ac, j2, l1);
+        if(L.x + i2 <= super.a - 25)
+            break MISSING_BLOCK_LABEL_236;
+        k2 = l1;
+        if(i3 == 0) goto _L4; else goto _L3
+_L3:
+        l1 = a.r.a(ac, ' ', l1 - 1);
+_L4:
+        if(j2 >= l1) goto _L6; else goto _L5
+_L5:
+        L.x + a.r.a(k, ac, j2, l1);
+        super.a - 25;
+        if(i3 != 0) goto _L8; else goto _L7
+_L7:
+        JVM INSTR icmpgt 120;
+           goto _L6 _L3
+_L6:
+        j2;
+        l1;
+_L8:
+        JVM INSTR icmpge 184;
+           goto _L9 _L10
+_L9:
+        break MISSING_BLOCK_LABEL_181;
+_L10:
+        break MISSING_BLOCK_LABEL_184;
+        return l1;
+        for(l1 = k2; l1 > j2 + 1 && L.x + a.r.a(k, ac, j2, --l1) > super.a - 25;);
+        return l1;
+        L.x += i2;
+        if(l1 < j1)
+        {
+            int l2 = K;
+            j2 = a(null, ac, l1, j1, V);
+            if(L.x > super.a - 25)
+            {
+                K = l2;
+                return l1;
+            }
+            if(i3 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        j2 = j1;
+_L2:
+        if(j2 < j1) goto _L1; else goto _L11
+_L11:
+        j2;
+        if(i3 != 0 || i3 != 0) goto _L13; else goto _L12
+_L12:
+        return;
+    }
+
+    private void b(x x1)
+    {
+        int i1 = x1.c;
+        int j1 = a(x1);
+        J += j1 - i1;
+        h();
+        m();
+    }
+
+    public void j()
+    {
+        e();
+        m();
+    }
+
+    public int k()
+    {
+        return G.size();
+    }
+
+    public synchronized x l()
+    {
+        if(D < 0 || D >= G.size())
+            return null;
+        J -= ((x)G.elementAt(D)).c;
+        x x1 = (x)G.elementAt(D);
+        G.removeElementAt(D);
+        j.a(this, 7, x1.a, x1.e, D);
+        if(D >= G.size())
+            D = G.size() - 1;
+        c(false);
+        repaint();
+        return x1;
+    }
+
+    public void m()
+    {
+        repaint(2, 2, super.a - 20, super.b - 4);
+    }
+
+    public void a(String s1, String s2)
+    {
+        c(new x(s1, s2, 0));
+    }
+
+    public synchronized void c(x x1)
+    {
+        boolean flag = false;
+        if(I.getValue() >= I.getMaximum() - 100)
+            flag = true;
+        if(G.size() > 0 && J == 0)
+            S = true;
+        int i1 = a(x1);
+        x1.c = i1;
+        G.addElement(x1);
+        if(!q && !p && G.size() > 1000)
+        {
+            J -= ((x)G.elementAt(0)).c;
+            G.removeElementAt(0);
+        }
+        J += i1;
+        c(flag && s);
+        if(G.size() == 1 && q)
+            D = 0;
+        if(J - super.b - i1 < I.getValue())
+            m();
+    }
+
+    private static String b(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x27;
+                break;
+
+            case 1: // '\001'
+                k1 = 27;
+                break;
+
+            case 2: // '\002'
+                k1 = 90;
+                break;
+
+            case 3: // '\003'
+                k1 = 60;
+                break;
+
+            default:
+                k1 = 36;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    s j;
+    FontMetrics k;
+    boolean l;
+    q m;
+    t n;
+    Image o;
+    public boolean p;
+    public boolean q;
+    public boolean r;
+    public boolean s;
+    public boolean t;
+    public boolean u;
+    public boolean v;
+    boolean w;
+    boolean x;
+    static boolean y = false;
+    String z[];
+    String A;
+    int B;
+    int C[];
+    int D;
+    Hashtable E;
+    Vector F;
+    Vector G;
+    int H;
+    Scrollbar I;
+    int J;
+    int K;
+    Point L;
+    int M;
+    int N;
+    int O[][];
+    char P[];
+    int Q;
+    int R;
+    boolean S;
+    y T;
+    y U;
+    y V;
+    static final Color W = new Color(230, 230, 230);
+    v X;
+
+}

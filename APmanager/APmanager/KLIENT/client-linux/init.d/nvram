@@ -1,0 +1,49 @@
+#
+#!/bin/sh
+#
+# Nvram Emulator :) - Pawel Furtak '2006
+#
+# ustawienia
+
+#S44firewall
+WAN_IFNAME="eth0";
+#S49QoS
+PAWQ_LACZE_DOWN="1024";
+PAWQ_LACZE_DEV="eth1";
+#S50upload
+PAWQ_QOS_UP="250";
+PAWQ_QOS_IF="eth0";
+
+
+if [ "$1" != "get" ]; then
+    exit;
+fi
+
+if [ ! $2 ]; then
+    exit;
+fi
+
+#S44firewall
+    if [ "$2" == "wan_ifname" ]; then
+	echo "$WAN_IFNAME";
+    fi
+    
+#S49QoS
+    if [ "$2" == "pawq_lacze_down" ]; then
+	echo "$PAWQ_LACZE_DOWN";
+    fi
+
+    if [ "$2" == "pawq_lacze_dev" ]; then
+	echo "$PAWQ_LACZE_DEV";
+    fi
+
+#S50upload
+
+    if [ "$2" == "pawq_qos_up" ]; then
+	echo "$PAWQ_QOS_UP";
+    fi
+
+    if [ "$2" == "pawq_qos_if" ]; then
+	echo "$PAWQ_QOS_IF";
+    fi
+

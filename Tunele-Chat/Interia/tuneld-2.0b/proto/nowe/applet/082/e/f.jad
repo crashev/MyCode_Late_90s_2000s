@@ -1,0 +1,198 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   f.java
+
+package e;
+
+import a.*;
+
+// Referenced classes of package e:
+//            b
+
+class f extends x
+{
+
+    public f()
+    {
+        super(null, null, 0);
+        m = false;
+    }
+
+    public f(String s, String as[], int i1, String s1, boolean flag, int j1)
+    {
+        super(null, null, 0);
+        m = false;
+        a(s, as, i1, s1, flag, j1);
+    }
+
+    void a(boolean flag)
+    {
+        m = flag;
+        a(f());
+    }
+
+    void c()
+    {
+        a(f());
+    }
+
+    void a(String s, String as[], int i1, String s1, boolean flag, int j1)
+    {
+        j = s;
+        k = as;
+        l = (short)i1;
+        n = s1 == null || s1.length() <= 0 ? null : s1;
+        m = flag;
+        i = j1;
+        a(f());
+    }
+
+    String d()
+    {
+        String s;
+        int i1;
+        int j1;
+        j1 = b.Z;
+        s = b("\021Klm \004Rpdk\021UgdhC") + i + b("@@ak$\031Xh0") + j.replace('\n', ' ') + "\n";
+        s += b("\021Twk \020^~dh") + (n == null ? "" : n) + "\n";
+        s += b("\021Tqi>\032Itn<C") + l + "\n";
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        s;
+        new StringBuffer();
+        JVM INSTR swap ;
+        append();
+        b("\021Tqi>");
+        append();
+        i1;
+        append();
+        b("\027\022");
+        append();
+        k[i1];
+        append();
+        "\n";
+        append();
+        toString();
+_L5:
+        s;
+        i1++;
+_L2:
+        if(i1 < k.length) goto _L1; else goto _L3
+_L3:
+        s += "\n";
+        s;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    String e()
+    {
+        String s;
+        int i1;
+        int j1;
+        j1 = b.Z;
+        s = r.a(j.length()) + r.e(j) + '\0';
+        s += n == null ? r.a(0) + '\0' : r.a(n.length()) + n + '\0';
+        s += r.a(k.length, 1);
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        s;
+        new StringBuffer();
+        JVM INSTR swap ;
+        append();
+        r.a(k[i1].length());
+        append();
+        r.e(k[i1]);
+        append();
+        '\0';
+        append();
+        toString();
+_L5:
+        s;
+        i1++;
+_L2:
+        if(i1 < k.length) goto _L1; else goto _L3
+_L3:
+        s;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    String f()
+    {
+        String s;
+        int i1;
+        int j1;
+        j1 = b.Z;
+        s = z.s + '\001' + '\002' + b("\032bAX\017#~\025w\023p;") + i;
+        s += b("f;fM\000>nF\003A") + (m ? b("\035Bfu \004^") : b("\016T\025n8\031Wtw(\013")) + z.t + '\001' + '\0' + "\n";
+        s += b("\036iPJ\002p;") + j + "\n";
+        s += b("\020zYX\0020t[@A%yGX\033/p\017\031") + (n != null && n.length() != 0 ? n + " " + '\005' + n + '\005' : b("(iTR")) + "\n";
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        if(i1 == l)
+            s += z.s + '\001' + '\006';
+        s + b("\005\177E\027A") + (char)(i1 + 65) + b("p;") + k[i1];
+_L5:
+        s;
+        if(i1 == l)
+            s += z.t + '\001' + '\0';
+        s += "\n";
+        i1++;
+_L2:
+        if(i1 < k.length) goto _L1; else goto _L3
+_L3:
+        s;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    private static String b(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x4a;
+                break;
+
+            case 1: // '\001'
+                k1 = 27;
+                break;
+
+            case 2: // '\002'
+                k1 = 53;
+                break;
+
+            case 3: // '\003'
+                k1 = 57;
+                break;
+
+            default:
+                k1 = 97;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    int i;
+    String j;
+    String k[];
+    short l;
+    boolean m;
+    String n;
+}

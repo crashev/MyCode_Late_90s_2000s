@@ -1,0 +1,214 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   t.java
+
+package a;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+
+// Referenced classes of package a:
+//            u, a, v
+
+class t
+    implements ImageObserver
+{
+
+    void a()
+    {
+label0:
+        {
+            boolean flag = a.q;
+            k++;
+            switch(j)
+            {
+            default:
+                break;
+
+            case 0: // '\0'
+                f = (h * k) / (float)x;
+                g = (i * k) / (float)x;
+                if(f >= h)
+                {
+                    j = 1;
+                    k = 0.0F;
+                    f = h;
+                    g = i;
+                }
+                c = true;
+                if(!flag)
+                    break;
+                // fall through
+
+            case 1: // '\001'
+                if(a.e > 0 && k > (float)a.e)
+                {
+                    k = 0.0F;
+                    j = 2;
+                }
+                if(!flag)
+                    break;
+                // fall through
+
+            case 2: // '\002'
+                f = (h * ((float)x - k / 2.0F)) / (float)x;
+                g = (i * ((float)x - k / 2.0F)) / (float)x;
+                if(f < 3F)
+                {
+                    j = 4;
+                    k = 0.0F;
+                    f = 1.0F;
+                    g = 1.0F;
+                }
+                c = true;
+                break;
+            }
+            if(a.c == 3 || a.c == 6)
+            {
+                f = h;
+                if(!flag)
+                    break label0;
+            }
+            if(a.c == 2 || a.c == 5)
+            {
+                g = i;
+                if(!flag)
+                    break label0;
+            }
+            if(a.c == 7)
+            {
+                g = i;
+                f = h;
+            }
+        }
+    }
+
+    void a(Graphics g1, float f1, float f2)
+    {
+        int i1;
+        boolean flag;
+label0:
+        {
+            flag = a.q;
+            c = false;
+            if(j >= 4)
+                return;
+            i1 = a.b;
+            if(i1 == 0)
+            {
+                d = (f1 - f) / 2.0F;
+                if(!flag)
+                    break label0;
+            }
+            d = f1 - (float)(int)f;
+        }
+label1:
+        {
+            if(i1 == 0 || i1 == 3)
+            {
+                e = (f2 - g) / 2.0F;
+                if(!flag)
+                    break label1;
+            }
+            if(i1 == 1)
+            {
+                e = 0.0F;
+                if(!flag)
+                    break label1;
+            }
+            if(i1 == 2)
+            {
+                e = f2 - (float)(int)g;
+                if(!flag)
+                    break label1;
+            }
+            if(i1 == 4)
+            {
+                d = f1 - f / 2.0F - ((f / h) * (f1 - f)) / 2.0F - f / 2.0F;
+                e = f2 - g / 2.0F - ((g / i) * (f2 - g)) / 2.0F - g / 2.0F;
+            }
+        }
+label2:
+        {
+            if(a.c >= 4)
+            {
+                g1.drawImage(a.a, (int)d, (int)e, this);
+                if(!flag)
+                    break label2;
+            }
+            g1.drawImage(a.a, (int)d, (int)e, (int)f, (int)g, this);
+        }
+    }
+
+    public t(u u1)
+    {
+        b = null;
+        c = false;
+        d = 0.0F;
+        e = 0.0F;
+        f = 0.0F;
+        g = 0.0F;
+        h = 0.0F;
+        i = 0.0F;
+        j = 0;
+        k = 0.0F;
+        a = u1;
+        k = 0.0F;
+        h = a.a.getWidth(null);
+        i = a.a.getHeight(null);
+        if(a.d != null)
+            b = new v(a.d, (short)2, 0, 0, 0, 0);
+    }
+
+    public boolean imageUpdate(Image image, int i1, int j1, int k1, int l1, int i2)
+    {
+        if(j >= 4)
+        {
+            return false;
+        } else
+        {
+            c = true;
+            return true;
+        }
+    }
+
+    v b()
+    {
+        if(b != null && j < 4 && d > 0.0F)
+        {
+            b.a((int)d, (int)e, (int)f, (int)g);
+            return b;
+        } else
+        {
+            return null;
+        }
+    }
+
+    u a;
+    v b;
+    boolean c;
+    float d;
+    float e;
+    float f;
+    float g;
+    float h;
+    float i;
+    short j;
+    float k;
+    static final short l = 0;
+    static final short m = 1;
+    static final short n = 2;
+    static final short o = 3;
+    static final short p = 4;
+    static final short q = 0;
+    static final short r = 2;
+    static final short s = 3;
+    static final short t = 4;
+    static final short u = 5;
+    static final short v = 6;
+    static final short w = 7;
+    static int x = 120;
+
+}

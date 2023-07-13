@@ -1,0 +1,17 @@
+Log MYSQL-Transfer Patch by Pawel Furtak <pawelf@komunix.pl>
+------------------------------------------------------------
+
+Install(against pure-ftpd-1.0.20):
+# patch -p0 < pureftp-logmysql.patch
+
+And then use config directive:
+
+AltLog                     mysql:/var/log/mysql.conf
+
+Where mysql.conf should be like this:
+
+USER: pawq
+PASSWORD: pawq
+DBNAME: pureftpd
+TABLE: xfers
+SOCK: localhost

@@ -1,0 +1,295 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   k.java
+
+package d;
+
+import a.*;
+import java.awt.*;
+import java.awt.event.*;
+
+// Referenced classes of package d:
+//            b, x
+
+class k extends i
+    implements FocusListener, MouseListener, MouseMotionListener
+{
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+        int j1;
+        int k1;
+        int l1;
+        boolean flag;
+        flag = x.bd;
+        int i1 = mouseevent.getX();
+        j1 = mouseevent.getY();
+        if(i1 < 30 && j1 > super.b - 15 && o > 0)
+        {
+            o--;
+            repaint();
+            if(!flag)
+                break MISSING_BLOCK_LABEL_233;
+        }
+        if(i1 > super.a - 30 && j1 > super.b - 15 && o < n - 1)
+        {
+            o++;
+            repaint();
+            if(!flag)
+                break MISSING_BLOCK_LABEL_233;
+        }
+        k1 = -1;
+        l1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        o * l + l1;
+_L7:
+        p.length;
+        JVM INSTR icmplt 143;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_142;
+_L4:
+        break MISSING_BLOCK_LABEL_143;
+        return;
+        if(j1 <= 5 + 18 * l1 || j1 >= 23 + 18 * l1)
+            continue; /* Loop/switch isn't completed */
+        k1 = o * l + l1;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+        l1++;
+_L2:
+        if(l1 <= l) goto _L1; else goto _L5
+_L5:
+        k1;
+        if(flag) goto _L7; else goto _L6
+_L6:
+        if(k1 >= 0)
+        {
+            setVisible(false);
+            j.bi.a(false);
+            j.a(k1, true);
+        }
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseDragged(MouseEvent mouseevent)
+    {
+    }
+
+    public k(b b1)
+    {
+        l = 10;
+        m = -1;
+        n = 2;
+        o = 0;
+        o = 0;
+        j = b1;
+        k = r.a(0, 0, 0);
+        setVisible(false);
+        setBackground(Color.white);
+        addFocusListener(this);
+        addMouseListener(this);
+        addMouseMotionListener(this);
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseMoved(MouseEvent mouseevent)
+    {
+        int i1;
+        boolean flag;
+        flag = x.bd;
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        if(mouseevent.getY() <= 5 + 18 * i1 || mouseevent.getY() >= 23 + 18 * i1)
+            continue; /* Loop/switch isn't completed */
+        if(o * l + i1 >= p.length)
+            i1 = -1;
+        if(m != i1)
+        {
+            m = i1;
+            repaint();
+        }
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L5:
+        i1++;
+_L2:
+        if(i1 <= l) goto _L1; else goto _L3
+_L3:
+        if(flag) goto _L5; else goto _L4
+_L4:
+    }
+
+    public void paint(Graphics g)
+    {
+        Graphics g1;
+        int i1;
+        int j1;
+        boolean flag;
+        flag = x.bd;
+        g1 = a(super.a, super.b);
+        g1.setColor(Color.white);
+        g1.fillRect(0, 0, super.a, super.b);
+        r.a(g1, 0, 0, super.a, super.b, false);
+        g1.setColor(Color.black);
+        g1.setFont(k);
+        i1 = 5;
+        j1 = l * o;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        g1.drawImage(x.I[j1], 5, i1, null);
+        g1.drawString(p[j1], 25, 10 + i1);
+        j1++;
+        i1 += 18;
+_L2:
+        if(j1 >= l * (o + 1)) goto _L4; else goto _L3
+_L3:
+        j1;
+        p.length;
+        if(flag) goto _L6; else goto _L5
+_L5:
+        JVM INSTR icmplt 87;
+           goto _L4 _L1
+_L4:
+        if(m < 0)
+            break MISSING_BLOCK_LABEL_206;
+        m;
+        l;
+_L6:
+        JVM INSTR icmpge 206;
+           goto _L7 _L8
+_L7:
+        break MISSING_BLOCK_LABEL_171;
+_L8:
+        break MISSING_BLOCK_LABEL_206;
+        g1.setColor(x.bb[15]);
+        g1.drawRoundRect(3, 3 + 18 * m, super.a - 7, 18, 5, 5);
+        FontMetrics fontmetrics = g1.getFontMetrics();
+        if(o > 0)
+            g1.drawString(a("\032A"), 5, super.b - 5);
+        if(o < n - 1)
+            g1.drawString(a("\030C"), super.a - 5 - fontmetrics.stringWidth(a("\030C")), super.b - 5);
+        g.drawImage(b(), 0, 0, null);
+        return;
+    }
+
+    public void setVisible(boolean flag)
+    {
+        super.setVisible(flag);
+        if(flag)
+            requestFocus();
+    }
+
+    public void a()
+    {
+        k = null;
+        j = null;
+        super.a();
+    }
+
+    public void focusLost(FocusEvent focusevent)
+    {
+        if(isVisible())
+        {
+            setVisible(false);
+            j.bi.a(false);
+        }
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+        m = -1;
+        repaint();
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+label0:
+        {
+label1:
+            {
+                if(l1 <= 50)
+                    break label0;
+                l = (l1 - 17) / 18;
+                if(l <= 0)
+                    break label1;
+                if(p.length % l == 0)
+                {
+                    n = p.length / l;
+                    if(!x.bd)
+                        break label1;
+                }
+                n = p.length / l + 1;
+            }
+            o = 0;
+        }
+        super.setBounds(i1, j1, k1, l1);
+    }
+
+    public void focusGained(FocusEvent focusevent)
+    {
+    }
+
+    private static String a(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x26;
+                break;
+
+            case 1: // '\001'
+                k1 = 125;
+                break;
+
+            case 2: // '\002'
+                k1 = 97;
+                break;
+
+            case 3: // '\003'
+                k1 = 91;
+                break;
+
+            default:
+                k1 = 2;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    b j;
+    Font k;
+    int l;
+    int m;
+    int n;
+    int o;
+    static final String p[] = {
+        a("Q\030\0224\u0140I]\f2"), a("L\030\022/gK]\017:rT\034\026?\u011B\006\036\0164n"), a("\\\034\026(v_\031\0332\u0140C\020A(k\u013F"), a("E\025\002\u0142\"V\022\0077kT\t\016,c\u0121"), a("Q\u0126\0022gM\034\f{qO\u0164"), a("K\034\f{\u0159Q\024\004/l_]\017:qR\017\2221"), a("E\025\002>\"K\024A(k\u013F]\023\"a\\\030\u0166"), a("L\030\022/gK]\033:xB\017\016(l_"), a("Q\016\033\"qR\026\016{oO]\0169mL\u0164\0255g"), a("N\020\fu,\b]\t6o\bSO"), 
+        a("\\\034\n4aN\034\u0123>o\006\016\b\u0142"), a("L\030\022/gK]\033(xI\026\016,cH\004"), a("E\007\0241\u011B\006\016\b\u0142\"H\024\004+gQ\023\b>"), a("L\030\022/gK]\0226wR\023\030"), a("U\007\0240cK]\f2\u0140I\u0126\0022"), a("V\u0164\n:o\006\007\004{\u0159K\024\0048jS"), a("G\021\004{oO]\026(v_\031@"), a("\u0164\022\003.xO\034\n{xC]\f5kC\\"), a("L\030\022/gK]\0172gQ\024\0175{"), a("T\022\0336cQ\024\0006\"H\034A+pO\013\b>"), 
+        a("\\\034\023:x\006\n\023:aG\020"), a("K\034\f{x\u0164\034\f:lC]\022>pE\030"), a("B\007\b\u0100\"U\u0178A6mL\030A.pI\031\0332l_"), a("L\030\022/gK]\017:\"V\034\0212gT\022\0220w"), a("K\034\f{lO\030\022+mB\007\b:lM\u0164"), a("K\034\f{xG\021\016/lC]\022+mL\017\033>lO\030"), a("D\u0164\005\u0142\"K\024\r8xC\u017AA1cM]\006)\361D"), a("\\\034A8jQ\024\r0\u011B\006\007\f\"iG\020"), a("B\007\b\u0100\"U\u0178A6mL\030A2oO\030\0172l_"), a("L\030\022/gK]\026{vI\034\r>aO\030"), 
+        a("L\030\022/gK]\0214eI\031\017\""), a("K\b\022!g\006\036\016\u0100\"V\017\033>eT\004\u011D\u015C"), a("R\030\r>dI\023\0241\u011B"), a("L\030\022/gK]\017:\"I\037\b>f\\\024\004"), a("K\004\u013A7\u011B\n]\f\"\u0159J\u0164Ou,"), a("K\b\022!g\006\007\000?xQ\022\0172\u0105"), a("A\034\005:o\006\r\023!g\\]\n4o\325\017\u0178"), a("O\031\u0178{lG]\n:u\u013F"), a("i]\023:l_\\"), a("H\024\002w\"R\004\r0m\006\027\u0178!{M]\0214iG\007\000\u015C"), 
+        a("V\022\025)xC\037\0241\u011B\006\r\0166mE\004"), a("T\022\033?cL\u0164A8c\u0164\b\0220k"), a("U\007\0240cKSOu"), a("U\t\023>q\006\r\016?\"M\022\017/pI\021\u0164"), a("l\030\022/gK]\0023mT\004"), a("k\034\f{mE\025\016/\u011B\006\023\000{rO\n\016"), a("k\034\f{xG\027\u0178/g\006\016\004)aC"), a("g\021\004{xC]\f5kC]\0023{R\017\024(")
+    };
+
+}

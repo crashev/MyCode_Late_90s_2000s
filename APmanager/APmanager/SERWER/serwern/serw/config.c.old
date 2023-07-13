@@ -1,0 +1,234 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+
+#include <sys/types.h>
+#include <dirent.h>
+
+#include "common.h"
+#include "dbmod.h"
+#include "server.h"
+
+//#define CONFIGS_DIR	"configs"
+
+
+/*
+select al.macaddr, al.hostip from access_lists al, access_points ap
+where ap.apid = al.apid AND ap.apip='192.168.1.1';
+
+  config_make_ethers("192.168.1.1");
+  config_make_ethers("192.168.1.2");
+  config_make_package("192.168.1.1");
+  config_make_package("192.168.1.2");
+*/
+
+static int
+exist(char *pcPath)
+{
+	struct stat st;
+        return(stat(pcPath, &st));
+}
+
+
+
+static int
+prepare_configs_dir(char *pcPtr) 
+{
+	    struct stat st;
+	    if (stat(pcPtr, &st)<0) {
+	    if (mkdir(pcPtr, 0777)<0) {
+			return -1;
+		}
+		return 0;
+	    } else if (!S_ISDIR(st.st_mode)) {
+		return -1;
+	    }    
+
+	    return 0;
+	
+}
+
+int 
+config_make_ethers(char *pcHostIp, char *pcName) 
+{
+	    PGconn *pgconn;
+	    PGresult *pgres;
+	    FILE *fEthers;
+	    char cPath[255];
+	    int iRow,iCol;
+	    int iX,iY;
+	    
+	    bzero(cPath, sizeof(cPath));
+	    snprintf(cPath, sizeof(cPath) - 8, "%s/%s-%s/ethers", CONFIGS_DIR, pcHostIp, pcName);
+
+	    if ( (fEthers = fopen(cPath, "w"))==NULL )
+		return -1;
+	
+	    pgconn = pgsql_polacz("apcenterd", "ap.bunczuczny.$%^", "komunix_pawelf_apcenterd");    
+	    if (!pgconn) {
+		fclose(fEthers);
+	    	pgsql_zakoncz(pgconn);
+		return -1;
+	    }
+	    /* Ok now real SQL thingie */
+	
+	    pgres = pgsql_query(pgconn, "select al.macaddr, al.hostip from access_lists al, access_points ap where ap.id = al.aid AND ap.apip='%s' AND ap.apname='%s';", pcHostIp, pcName);
+
+	    if (!pgres) {
+		fclose(fEthers);
+		pgsql_zakoncz(pgconn);
+	        return -1;	
+	    }
+
+	
+	    iRow = PQntuples(pgres);   // ile rekordow
+	    iCol = PQnfields(pgres); // ile kolumn ma resultat
+	
+	for (iX = 0; iX<iRow; iX++) {
+//	    for (iY=0; iY<iCol; iY++) {
+		fprintf(fEthers, "%s,id:*\t%s\n",PQgetvalue(pgres, iX, 0), PQgetvalue(pgres, iX, 1));
+//	    }
+//		fprintf(fEthers,"\n");
+	}
+	PQclear(pgres);
+	PQfinish(pgconn);
+	fclose(fEthers);
+	return 0;
+}
+
+
+int
+config_make_clientsconfig(char *pcHostIp, char *pcName) 
+{
+	FILE *fPackage;
+	FILE *fConfig;
+	char cTmpBuf[1024];
+	char cPath[255];
+
+        bzero(cPath, sizeof(cPath));
+        snprintf(cPath, sizeof(cPath) - 8, "%s/%s-%s", CONFIGS_DIR, pcHostIp, pcName);
+        if (prepare_configs_dir(cPath)<0)
+		return -1;
+
+	strcat(cPath, "/clients.sh");
+	/* if exist then lets make nice package */
+	fPackage = fopen(cPath, "w");
+	if (!fPackage)
+	    return -1;
+	    
+	/* Headers */
+	fprintf(fPackage,"#!/bin/sh\n#Package ver 1.0\n");
+
+	bzero(cPath, sizeof(cPath));
+	snprintf(cPath, sizeof(cPath) - 1,"%s/%s-%s/ethers", CONFIGS_DIR, pcHostIp, pcName);
+	if ( (fConfig = fopen(cPath, "r")) == NULL) {
+	    fclose(fPackage);
+	    return -1;
+	}
+	fprintf(fPackage,"cat > /etc/ethers << EOF\n");
+	bzero(cTmpBuf, sizeof(cTmpBuf));
+	
+	while (fgets(cTmpBuf, sizeof(cTmpBuf) - 1, fConfig)) {
+	    fprintf(fPackage,"%s", cTmpBuf);
+	    bzero(cTmpBuf, sizeof(cTmpBuf));
+	}
+	fprintf(fPackage,"EOF\n");
+	fprintf(fPackage,"wifi;\n");
+	fprintf(fPackage,"killall -9 dnsmasq;/etc/init.d/S50dnsmasq;\n");	
+	fprintf(fPackage,"/etc/init.d/S44firewall;\n");	
+	fclose(fConfig);
+	fclose(fPackage);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+int
+config_make_config(char *pcHostIp, char *pcName) 
+{
+	FILE *fPackage;
+	char cPath[255];
+
+        bzero(cPath, sizeof(cPath));
+        snprintf(cPath, sizeof(cPath) - 8, "%s/%s-%s", CONFIGS_DIR, pcHostIp, pcName);
+        if (prepare_configs_dir(cPath)<0)
+		return -1;
+		
+
+	strcat(cPath, "/package.sh");
+
+	fPackage = fopen(cPath, "w");
+	if (!fPackage)
+	    return -1;
+	    
+	// Headers 
+	fprintf(fPackage,"#!/bin/sh\n#Package ver 1.0\n");
+
+	fclose(fPackage);
+	
+	return 0;
+}
+
+
+int
+config_make_additional(char *pcHostIp, char *pcFile, char *pcDir, char *pcName) 
+{
+	FILE	 *fPackage;
+	FILE	 *fAdd;
+	char 	 cTmpBuf[1024];
+	char 	 cPath[255];
+	char     cPackagePath[255];
+	DIR	 *dir;
+	struct   dirent *dS;
+	int 	 iLen;
+	
+	bzero(cPackagePath, sizeof(cPackagePath));		
+        bzero(cPath, sizeof(cPath));
+        snprintf(cPackagePath, sizeof(cPackagePath) - 1, "%s/%s-%s/%s", CONFIGS_DIR, pcHostIp, pcName, pcFile);
+	
+
+        if (exist(cPackagePath)<0) 
+		    return -1; // no addons dir
+    
+	snprintf(cPath, sizeof(cPath) - 1,"%s/%s-%s/%s/", CONFIGS_DIR, pcHostIp, pcName, pcDir);
+        if (exist(cPath)<0) 
+		    return -1; // no addons dir
+	
+	/* list addons files and attach 'em */
+	dir = opendir(cPath);
+	if (!dir) 
+	    return -1;
+	
+	/* if exist then lets make package+addons */
+	fPackage = fopen(cPackagePath, "a");
+	if (!fPackage)
+	    return -1;
+	    
+	while ( (dS = readdir(dir)) ) 
+	{
+	    if ( (!strcmp(dS->d_name, "."))||(!strcmp(dS->d_name, "..")) )
+		continue;
+	    
+	    bzero(cPath, sizeof(cPath));
+	    snprintf(cPath, sizeof(cPath) - 1,"%s/%s-%s/%s/%s", CONFIGS_DIR, pcHostIp, pcName, pcDir, dS->d_name);
+	    fAdd = fopen(cPath, "r");
+	    if (!fAdd)
+		break;
+	    bzero(cTmpBuf, sizeof(cTmpBuf));
+	    while ( (iLen = fread(cTmpBuf, 1, sizeof(cTmpBuf) - 1, fAdd)) ) {
+		    fwrite(cTmpBuf, 1, iLen, fPackage);
+		    bzero(cTmpBuf, sizeof(cTmpBuf));
+	    }
+	    fclose(fAdd);
+	}
+	
+	fclose(fPackage);
+	closedir(dir);
+	return 0;
+}

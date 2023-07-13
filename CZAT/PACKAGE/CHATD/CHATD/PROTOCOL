@@ -1,0 +1,115 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Opis protokolu CHAT DAEMONA 				   +  
++ Wykonal: Pawel Furtak, Daniel Sorbian, Maciej Sarnowski  +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+a) Polecenia klienta
+b) Polecenia serwera
+
+a) Polecenia klienta 
+    Po podlaczeniu do serwera uzytkownik identyfikuje siebie w postaci
+
+    nazwauzytkownika:#kanal
+    
+    gdzie 
+    - nazwauzytkownika - to ksywka ktorej bedzie uzywal
+    - #kanal - nazwa kanalu do ktorego chce sie przylaczyc dany uzytkownik
+
+    Kazde polecenie protokolu wydane przez klienta po wejsciu na kanal rozpo-
+czyna sie od znaku '+'. Dostepne polecenia klienta:
+
+
++QUIT - zamyka polaczenie i wychodzi z czata
++SEND - polecenie do wysylania wiadomosci na kanal, skladnia:
+
+    Skladnia:
+
+        +SEND:STYL:KOLOR=wiadomosc
+
+         gdzie 
+	  - STYL moze miec wartosci: NORMAL,BOLDDD,ITALIC,BOLITA
+	  - KOLOR wartosc liczbowa, aplet rozpoznaje 8 kolorow(0..7)
+	  - wiadomosc - tekst ktory zostanie wyslany na kanal
+    
+    Jesli polecenie zostalo wydane zgodnie z protokolem serwer wysle ta
+    wiadomosc do wszystkich uzytkownikow na danym kanale,takze do nas
+    w postaci:
+    
+    XI<naszaksywka> tekst
+    
+    gdzie X to znak opisujacy aktualnie wybrany styl, a I to liczba 
+    reprezentujaca kolor, taka postac jest odpowiednio interpretowana przez
+    aplet.
+
++USERINFO - polecenie nie dostepne z poziomu apletu, ale znajduje sie w
+    protokole, aby poprawnie dzialalo wymaga aktywowania w serwerze,
+    - podaje ono adres internetowy danego uzytkownika CZATU, zreygnowano
+    z niego przy domyslnych ustawieniach ze wzgledu na to,ze resolvowanie
+    hostow uzytkownikow zajmuje pewne zasoby, ktore moglyby spowodowac
+    zablokowanie serwera dla innych uzytkownikow
+    Skladnia:
+
+	+USERINFO nazwauzytkownika
+
+    Odpowiedz:
+    
+	=USERINFO:nazwauzytkownika:adres-internetowy
+
+    W przypadku bledu(nie ma takiego uzytkownika):
+    
+	=USERINFO:Uzytkownik nazwauzytkownika:nie zostal znaleziony
+
++PRIVMSG - polecenie wysylajace wiadomosc prywatna do uzytkownika
+
+	Skladnia:
+    
+            +PRIVMSG X :YI TEKST
+	    
+	    gdzie
+	    - X - numer deskryptora uzytkownika
+	    - Y - znak reprezentujacy styl uzywanego pisma
+	          NORMAL 	  = '*'
+		  BOLD   	  = '&'
+		  ITALIC	  = '$'
+        	  BOLD + ITALIC   = '#'
+	    - I - wartosc liczbowa uzywanego koloru, aplet rozpoznaje 8 
+		  kolorow(0..7)
+	    - TEKST - tekst prywatnej wiadomosci
+
+
+b) Polecenia od serwera:
+
+=JOIN  - informuje o przylaczeniu sie/wejsciu nowego uzytkownika na kanal
+
+    Skladnia:
+
+        =join:ksywka:desc
+	
+	gdzie
+	- ksywka - nazwa uzytkownika
+	- desc	 - numer deskryptora, ktory uzywa dany uzytkownik
+
+=PART  - informuje o wyjsciu/odlaczeniu sie uzytkownika z kanalu
+    
+    Skladnia
+
+	=part:ksywka:00
+	
+	gdzie
+	- ksywka - nazwa uzytkownika, ktory opuscil kanal
+	- 00 stala wartosc
+	
+=ADDLIST - po przylaczeniu sie na kanal addlist podaje nam wszystkich
+	   obecnych w danym pokoju/kanale
+    
+    Skladnia:
+
+	=addlist:nazwauzytkownika:desc
+	
+	gdzie
+	- nazwauzytkownika - ksywka osoby obecnej na kanale
+	- desc - numer deskryptora uzywanego przez danego uzytkownika
+	
+Procz tego serwer wysyla jeszcze tekst wysylany przez uzytkownikow na kanal,
+format tego zostal opisany przy okazji polecenia +SEND.    
+    

@@ -1,0 +1,545 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   y.java
+
+package d;
+
+import a.r;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            u, x
+
+final class y
+{
+
+    y a(boolean flag)
+    {
+        if(flag)
+            return c(true);
+        else
+            return J;
+    }
+
+    static void a(MenuItem amenuitem[], Vector vector)
+    {
+        d.u.a((Menu)amenuitem[5], vector);
+    }
+
+    public y(String s1, int i1, int j1, boolean flag, boolean flag1, boolean flag2, boolean flag3, 
+            boolean flag4)
+    {
+label0:
+        {
+            boolean flag5 = x.bd;
+            super();
+            b = " ";
+            c = 0;
+            d = 0;
+            e = 0;
+            f = 0;
+            g = 0;
+            h = false;
+            i = false;
+            j = false;
+            k = false;
+            l = false;
+            m = false;
+            n = false;
+            o = false;
+            a = s1;
+            j = flag1;
+            if(j)
+            {
+                c = 0;
+                if(!flag5)
+                    break label0;
+            }
+            if(!j && i1 < x.I.length)
+            {
+                c = i1;
+                if(!flag5)
+                    break label0;
+            }
+            c = 0;
+        }
+        d = j1;
+        i = flag;
+        k = j1 > 0 && flag2;
+        f = a(s1, d, k);
+        n = flag3;
+        o = flag4;
+    }
+
+    void a()
+    {
+        a = null;
+        b = null;
+        I = null;
+        J = null;
+    }
+
+    static MenuItem[] a(ActionListener actionlistener, ItemListener itemlistener)
+    {
+        MenuItem amenuitem[];
+        int i1;
+        boolean flag;
+        flag = x.bd;
+        amenuitem = new MenuItem[F.length];
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        if(i1 == 5)
+        {
+            amenuitem[i1] = new Menu(F[i1]);
+            if(!flag)
+                continue; /* Loop/switch isn't completed */
+        }
+        if(!r.s && (i1 == 3 || i1 == 6 || i1 == 10))
+        {
+            amenuitem[i1] = new CheckboxMenuItem(F[i1]);
+            ((CheckboxMenuItem)amenuitem[i1]).addItemListener(itemlistener);
+            if(!flag)
+                continue; /* Loop/switch isn't completed */
+        }
+        amenuitem;
+_L5:
+        i1;
+        new MenuItem(F[i1]);
+        JVM INSTR aastore ;
+        i1++;
+_L2:
+        if(i1 < amenuitem.length) goto _L1; else goto _L3
+_L3:
+        amenuitem[0].setFont(x.bc[2]);
+        amenuitem[5].addActionListener(actionlistener);
+        amenuitem[0].addActionListener(actionlistener);
+        amenuitem;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    void a(Graphics g1, int i1, int j1, boolean flag, boolean flag1, boolean flag2)
+    {
+        boolean flag3;
+label0:
+        {
+            flag3 = x.bd;
+            if(i && !flag1)
+            {
+                g1.setFont(x.bc[2]);
+                if(!flag3)
+                    break label0;
+            }
+            g1.setFont(x.bc[3]);
+        }
+label1:
+        {
+label2:
+            {
+label3:
+                {
+                    if(h)
+                    {
+                        g1.setColor(D);
+                        if(!flag3)
+                            break label1;
+                    }
+                    if(!flag1)
+                        break label2;
+                    if(d == 7 || d == 4)
+                    {
+                        g1.setColor(A);
+                        if(!flag3)
+                            break label3;
+                    }
+                    if(d == 8)
+                    {
+                        g1.setColor(z);
+                        if(!flag3)
+                            break label3;
+                    }
+                    if(m)
+                    {
+                        g1.setColor(C);
+                        if(!flag3)
+                            break label3;
+                    }
+                    if(d == 0)
+                    {
+                        g1.setColor(x);
+                        if(!flag3)
+                            break label3;
+                    }
+                    g1.setColor(y);
+                }
+                if(!flag3)
+                    break label1;
+            }
+            if(d == 2)
+            {
+                g1.setColor(z);
+                if(!flag3)
+                    break label1;
+            }
+            if(d == 3 || d == 4 || d == 5)
+            {
+                g1.setColor(A);
+                if(!flag3)
+                    break label1;
+            }
+            if(m)
+            {
+                g1.setColor(C);
+                if(!flag3)
+                    break label1;
+            }
+            if(k)
+            {
+                g1.setColor(B);
+                if(!flag3)
+                    break label1;
+            }
+            if(d == 0)
+            {
+                g1.setColor(x);
+                if(!flag3)
+                    break label1;
+            }
+            g1.setColor(y);
+        }
+label4:
+        {
+label5:
+            {
+label6:
+                {
+                    if(n)
+                        g1.drawImage(x.C[3], 6, j1 - 2, null);
+                    if(!flag)
+                        break label5;
+                    if(j)
+                    {
+                        g1.drawImage(x.J[4], 15, j1 - 2, null);
+                        if(!flag3)
+                            break label6;
+                    }
+                    g1.drawImage(x.I[c], 25, j1 - 2, null);
+                }
+                g1.drawString(a, 45, j1 + 10);
+                if(!flag3)
+                    break label4;
+            }
+            g1.drawString(a, 25, j1 + 10);
+        }
+        if(flag2)
+        {
+            g1.setColor(x.bb[15]);
+            g1.drawRoundRect(4, j1 - 4, 174, 18, 5, 5);
+        }
+        g = j1 - 4;
+    }
+
+    y b(boolean flag)
+    {
+        if(flag)
+            return c(false);
+        else
+            return I;
+    }
+
+    y c(boolean flag)
+    {
+        y y1;
+        boolean flag1;
+        flag1 = x.bd;
+        y1 = flag ? J : I;
+        if(!flag) goto _L2; else goto _L1
+_L7:
+        y1 = y1.J;
+_L1:
+        if(y1 == null) goto _L4; else goto _L3
+_L3:
+        y1;
+        if(flag1) goto _L6; else goto _L5
+_L5:
+        n;
+        JVM INSTR ifeq 27;
+           goto _L4 _L7
+_L4:
+        if(!flag1) goto _L8; else goto _L2
+_L2:
+        if(!flag1) goto _L10; else goto _L9
+_L9:
+        y1 = y1.I;
+_L10:
+        if(y1 == null) goto _L8; else goto _L11
+_L11:
+        y1;
+        if(flag1) goto _L6; else goto _L12
+_L12:
+        n;
+        JVM INSTR ifeq 55;
+           goto _L8 _L9
+_L8:
+        y1;
+_L6:
+        return;
+    }
+
+    int a(String s1, int i1, boolean flag)
+    {
+        int j1;
+        int k1;
+        boolean flag1;
+label0:
+        {
+            flag1 = x.bd;
+            j1 = 0;
+            if(i1 == 8)
+            {
+                j1 = 5;
+                if(!flag1)
+                    break label0;
+            }
+            if(i1 == 7)
+            {
+                j1 = 6;
+                if(!flag1)
+                    break label0;
+            }
+            if(i1 == 3 || i1 == 5 || i1 == 4)
+            {
+                j1 = 7;
+                if(!flag1)
+                    break label0;
+            }
+            if(i1 > 0)
+            {
+                j1 = 8;
+                if(!flag1)
+                    break label0;
+            }
+            j1 = 10;
+        }
+        j1 <<= 24;
+        k1 = 0;
+        if(!flag1) goto _L2; else goto _L1
+_L1:
+        j1 |= ((byte)a.r.c(s1.charAt(k1)) & 0xff) << 8 * (2 - k1);
+        k1++;
+_L2:
+        if(k1 >= 3) goto _L4; else goto _L3
+_L3:
+        k1;
+        if(flag1) goto _L6; else goto _L5
+_L5:
+        s1.length();
+        JVM INSTR icmplt 93;
+           goto _L4 _L1
+_L4:
+        j1;
+_L6:
+        return;
+    }
+
+    static void a(PopupMenu popupmenu, MenuItem amenuitem[], int i1)
+    {
+        int j1;
+        boolean flag;
+        flag = x.bd;
+        popupmenu.removeAll();
+        j1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        popupmenu.remove(amenuitem[j1]);
+_L5:
+        j1++;
+_L2:
+        if(j1 < popupmenu.getItemCount()) goto _L1; else goto _L3
+_L3:
+        j1 = 6;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        int k1;
+label0:
+        {
+            if(i1 == 5)
+            {
+                j1 = 8;
+                if(!flag)
+                    break label0;
+            }
+            if(i1 >= 3)
+                j1 = amenuitem.length;
+        }
+        k1 = 0;
+        if(!flag) goto _L7; else goto _L6
+_L6:
+        if(k1 == 1 || k1 == 6 || k1 == 7)
+            popupmenu.addSeparator();
+        popupmenu.add(amenuitem[k1]);
+        k1++;
+_L7:
+        if(k1 >= j1)
+            return;
+        if(true) goto _L6; else goto _L8
+_L8:
+    }
+
+    static void a(MenuItem amenuitem[], String s1, boolean flag, boolean flag1, int i1, boolean flag2, boolean flag3, boolean flag4)
+    {
+        int j1;
+        boolean flag5;
+        flag5 = x.bd;
+        amenuitem[0].setLabel(s1);
+        if(!flag)
+            break MISSING_BLOCK_LABEL_55;
+        j1 = 1;
+        if(!flag5) goto _L2; else goto _L1
+_L1:
+        amenuitem[j1].setEnabled(j1 < 3);
+        j1++;
+_L2:
+        if(j1 < amenuitem.length) goto _L1; else goto _L3
+_L3:
+        break MISSING_BLOCK_LABEL_212;
+        if(i1 >= 0)
+            break MISSING_BLOCK_LABEL_104;
+        j1 = 1;
+        if(!flag5) goto _L5; else goto _L4
+_L4:
+        amenuitem[j1].setEnabled(false);
+_L8:
+        j1++;
+_L5:
+        if(j1 < amenuitem.length) goto _L4; else goto _L6
+_L6:
+        amenuitem[8].setEnabled(true);
+        if(flag5) goto _L8; else goto _L7
+_L7:
+        if(!flag5)
+            break MISSING_BLOCK_LABEL_212;
+        j1 = 1;
+        if(!flag5) goto _L10; else goto _L9
+_L9:
+        amenuitem[j1].setEnabled(true);
+        j1++;
+_L10:
+        if(j1 < amenuitem.length) goto _L9; else goto _L11
+_L11:
+        if(!r.s)
+        {
+            ((CheckboxMenuItem)amenuitem[3]).setState(flag1);
+            ((CheckboxMenuItem)amenuitem[6]).setState(i1 == 2);
+            ((CheckboxMenuItem)amenuitem[10]).setState(flag3);
+        }
+        amenuitem[5].setEnabled(i1 > 0);
+        amenuitem[6].setEnabled(i1 > 0);
+        amenuitem[4].setEnabled(flag4);
+        if(i1 != 7 && i1 != 8) goto _L13; else goto _L12
+_L12:
+        j1 = 1;
+        if(!flag5) goto _L15; else goto _L14
+_L14:
+        amenuitem[j1].setEnabled(false);
+_L16:
+        j1++;
+_L15:
+        if(j1 < amenuitem.length) goto _L14; else goto _L13
+_L13:
+        if(!flag5)
+            return;
+          goto _L16
+    }
+
+    private static String a(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x40;
+                break;
+
+            case 1: // '\001'
+                k1 = 95;
+                break;
+
+            case 2: // '\002'
+                k1 = 31;
+                break;
+
+            case 3: // '\003'
+                k1 = 25;
+                break;
+
+            default:
+                k1 = 71;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    String a;
+    String b;
+    int c;
+    int d;
+    int e;
+    int f;
+    int g;
+    boolean h;
+    boolean i;
+    boolean j;
+    boolean k;
+    boolean l;
+    boolean m;
+    boolean n;
+    boolean o;
+    static final int p = 0;
+    static final int q = 1;
+    static final int r = 2;
+    static final int s = 3;
+    static final int t = 4;
+    static final int u = 5;
+    static final int v = 7;
+    static final int w = 8;
+    static final Color x = new Color(80, 80, 80);
+    static final Color y;
+    static final Color z;
+    static final Color A;
+    static final Color B = new Color(255, 172, 0);
+    static final Color C = new Color(0, 153, 0);
+    static final Color D;
+    static final String E[] = {
+        a(".6zc&2:u|44-pn&.&"), a(":>m|-%,kk(7>q`"), a("\"3j|"), a("//"), a("!;rp)"), a("!;rp)`7pw(20h`"), "", a("-0{|5!+pk"), a("'0lzg#%~m&")
+    };
+    static final String F[] = {
+        a(",0xp)"), a("0-vo"), a(")1yv"), a(")8qv555"), a("+>r|5!"), a("$0?c)!5pt>#7"), a("\"3j|"), a("7&mc2\u0147"), a("\">q"), a("\">qp7"), 
+        a(":>}u(+*u")
+    };
+    static final int G = 5;
+    static final int H = 0;
+    y I;
+    y J;
+
+    static 
+    {
+        y = Color.black;
+        z = Color.blue;
+        A = Color.red;
+        D = Color.lightGray;
+    }
+}

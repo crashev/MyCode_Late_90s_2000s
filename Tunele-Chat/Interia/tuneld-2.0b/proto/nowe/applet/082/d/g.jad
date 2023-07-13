@@ -1,0 +1,538 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   g.java
+
+package d;
+
+import INTChat;
+import a.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Hashtable;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            q, m, f, u, 
+//            b
+
+class g extends m
+    implements ActionListener, Runnable
+{
+
+    void a(long l1)
+    {
+        if(l1 - E > 60000L)
+        {
+            E = l1;
+            (new Thread(this, c("|\f_IPJ\027[UFe\fyTVg\013"))).start();
+        }
+    }
+
+    public void a(ba ba1)
+    {
+        F = (q)super.n;
+        b(s.v.bK);
+    }
+
+    public void a(Graphics g1, ba ba1, boolean flag, int i1, int j1)
+    {
+        q q1;
+        boolean flag1;
+label0:
+        {
+            flag1 = d.u.ba;
+            q1 = (q)ba1;
+            if(((ba) (q1)).c == super.m)
+            {
+                g1.setFont(r.a(0, 1, 0));
+                if(!flag1)
+                    break label0;
+            }
+            g1.setFont(r.a(0, 0, 0));
+        }
+label1:
+        {
+            if(((ba) (q1)).g)
+            {
+                g1.setColor(u.Y[14]);
+                if(!flag1)
+                    break label1;
+            }
+            g1.setColor(u.Y[13]);
+        }
+        g1.drawString(((ba) (q1)).a + c(")W") + q1.n + ")", i1, j1);
+        if(flag)
+        {
+            g1.setColor(u.Y[15]);
+            g1.drawRoundRect(i1 - 4, (j1 + 6) - 18, 148 - i1, 16, 5, 5);
+        }
+    }
+
+    void a(q q1)
+    {
+        d(q1);
+        q1 = c(q1.m);
+        if(q1 != null)
+            q1.r = null;
+        b(B[0]);
+    }
+
+    int a(int i1)
+    {
+        q q1 = c(i1);
+        if(q1 != null)
+            return q1.n;
+        else
+            return 0;
+    }
+
+    public g(d.m m1)
+    {
+        E = 0L;
+        G = -1;
+        I = -5;
+        s = m1;
+        D = new Hashtable();
+        k();
+    }
+
+    private int b(q q1)
+    {
+        boolean flag = d.u.ba;
+        if(!((ba) (q1)).g) goto _L2; else goto _L1
+_L1:
+        int i1;
+        int j1;
+        i1 = 0;
+        j1 = 0;
+        if(!flag) goto _L4; else goto _L3
+_L3:
+        i1 + b((q)((ba) (q1)).b.elementAt(j1));
+_L7:
+        i1;
+        j1++;
+_L4:
+        if(j1 < ((ba) (q1)).b.size()) goto _L3; else goto _L5
+_L5:
+        q1.a(i1, q1.p);
+        i1;
+        if(flag) goto _L7; else goto _L6
+_L6:
+        return;
+_L2:
+        return q1.n;
+    }
+
+    public void paint(Graphics g1)
+    {
+        Graphics g2 = a(super.a, super.b, true);
+        g2.setFont(u.Z[3]);
+        g2.setColor(Color.white);
+        g2.fillRect(2, 2, super.a - 4, super.b - 4);
+        a(g2, 9, -super.o.getValue());
+        r.a(g2, 0, 0, super.a, super.b, false);
+        g1.drawImage(b(), 0, 0, null);
+        g1.dispose();
+    }
+
+    void b(int i1)
+    {
+        q q1 = c(i1);
+        if(q1 != null)
+            c(q1);
+    }
+
+    boolean c(q q1)
+    {
+        if(super.a(((ba) (q1)).a, B[0], false) != null)
+            return false;
+        if(((ba) (B[0])).b.size() >= 15)
+        {
+            s.a(c("D\036QHZd\036VUB)\026VT\u0178\u010E_JTHf\026\032NO|\035STMp\034R\033Il\fN\033Qf\bTZ\0038J"), true);
+            return false;
+        } else
+        {
+            q q2 = new q(((ba) (q1)).a, false, 0);
+            q2.n = q1.n;
+            q2.o = q1.o;
+            q2.m = q1.m;
+            q1.r = q2;
+            a(q2, B[0]);
+            b(B[0]);
+            return true;
+        }
+    }
+
+    String i()
+    {
+        String s1;
+        int i1;
+        boolean flag;
+        flag = d.u.ba;
+        s1 = "";
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        s1;
+        new StringBuffer();
+        JVM INSTR swap ;
+        append();
+        r.a(((q)((ba) (B[0])).b.elementAt(i1)).m);
+        append();
+        toString();
+_L5:
+        s1;
+        i1++;
+_L2:
+        if(i1 < ((ba) (B[0])).b.size()) goto _L1; else goto _L3
+_L3:
+        s1;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public ba b(String s1, boolean flag)
+    {
+        q q1;
+label0:
+        {
+            String as[] = r.a(s1, '|');
+            if(!flag && as.length == 4)
+            {
+                q1 = new q(as[0], flag, H);
+                if(F == null)
+                    F = q1;
+                q1.m = Integer.parseInt(as[1]);
+                q1.n = Integer.parseInt(as[2]);
+                q1.o = Integer.parseInt(as[3]);
+                if(q1.m == G)
+                {
+                    q1.e = true;
+                    F = q1;
+                }
+                D.put(new Integer(q1.m), q1);
+                if(!d.u.ba)
+                    break label0;
+            }
+            q1 = new q(as[0], flag, H);
+            if(as.length > 1)
+                q1.m = Integer.parseInt(as[1]);
+        }
+        return q1;
+    }
+
+    public void actionPerformed(ActionEvent actionevent)
+    {
+label0:
+        {
+            boolean flag = d.u.ba;
+            F = (q)super.n;
+            String s1 = actionevent.getActionCommand();
+            if(s1.equals(c("y\r@^Im\u0105")))
+            {
+                b(true);
+                if(!flag)
+                    break label0;
+            }
+            if(s1.equals(c("f\013M\310Qs")))
+            {
+                b(false);
+                if(!flag)
+                    break label0;
+            }
+            if(s1.equals(c("m\020\032NO|\035STMp\034R")))
+            {
+                if(c(F))
+                    s.v.g();
+                if(!flag)
+                    break label0;
+            }
+            if(s1.equals(c("|\fO\u017F")))
+            {
+                a(F);
+                s.v.g();
+                if(!flag)
+                    break label0;
+            }
+            if(s1.equals(c("|\fNZT`\032TRB")))
+            {
+                b b1 = s.a(null, F.m, 0);
+                if(b1 == null);
+                if(!flag)
+                    break label0;
+            }
+            if(!s1.equals(c("e\026IOB)\017UPL`")));
+        }
+        repaint();
+    }
+
+    void j()
+    {
+        super.p = u.G;
+        repaint();
+    }
+
+    void a(String s1)
+    {
+        int i1;
+        int j1;
+        int k1;
+        int l1;
+        String as[];
+        boolean flag;
+        flag = d.u.ba;
+        if(s1 == null)
+            return;
+        j1 = 0;
+        k1 = 0;
+        i1 = s1.indexOf(' ');
+        l1 = 0;
+        try
+        {
+            l1 = Integer.parseInt(s1.substring(0, i1));
+        }
+        catch(Exception _ex) { }
+        as = r.a(s1.substring(i1 + 1), '|');
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        try
+        {
+            j1 = Integer.parseInt(as[i1]);
+        }
+        catch(Exception _ex)
+        {
+            if(!flag)
+                continue;
+        }
+_L4:
+        try
+        {
+            k1 = Integer.parseInt(as[i1 + 1]);
+        }
+        catch(Exception _ex)
+        {
+            if(!flag)
+                continue;
+        }
+        if(s.a(null, j1, 0) == null)
+        {
+            q q1 = (q)D.get(new Integer(j1));
+            if(q1 != null)
+                q1.a(k1, l1);
+        }
+        i1 += 2;
+_L2:
+        if(i1 < as.length)
+            continue; /* Loop/switch isn't completed */
+        b(B[0]);
+        b(B[1]);
+        repaint();
+        if(!flag)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    void a(String s1, int i1, int j1)
+    {
+        H = j1;
+        if(i1 >= 0)
+            G = i1;
+        try
+        {
+            a(s1, B[j1]);
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        b(B[j1]);
+    }
+
+    public void b(int i1, int j1)
+    {
+        F = (q)super.n;
+        u.setEnabled(s.c(0) < 10 && !((ba) (F)).g);
+        v.setEnabled(!((ba) (F)).g);
+        w.setEnabled(F.q != 0 && !((ba) (F)).g);
+        x.setEnabled(F.q == 0);
+        b b1 = s.a(null, F.m, 0);
+        z.setEnabled(!((ba) (F)).g && b1 != null && b1.bn >= 4);
+        t.show(this, i1, j1);
+    }
+
+    void a(int i1, int j1, long l1)
+    {
+        q q1;
+        boolean flag;
+        flag = d.u.ba;
+        if(j1 < 0)
+            return;
+        q1 = c(i1);
+        if(q1 == null || !q1.a(j1, l1))
+            break MISSING_BLOCK_LABEL_140;
+        if(q1.r != null)
+            b(B[0]);
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        int k1;
+        int i2;
+        q1 = (q)((ba) (q1)).c;
+        k1 = 0;
+        i2 = 0;
+        if(!flag) goto _L4; else goto _L3
+_L3:
+        k1 + ((q)((ba) (q1)).b.elementAt(i2)).n;
+_L7:
+        k1;
+        i2++;
+_L4:
+        if(i2 < ((ba) (q1)).b.size()) goto _L3; else goto _L5
+_L5:
+        q1.a(k1, l1);
+        if(flag) goto _L7; else goto _L6
+_L6:
+        JVM INSTR pop ;
+_L2:
+        if(((ba) (q1)).c != null) goto _L1; else goto _L8
+_L8:
+        repaint();
+    }
+
+    public void run()
+    {
+        a(s.k.getHTMLPage(c("{\020UVP'\017RK"), 0));
+    }
+
+    private void k()
+    {
+        setBackground(Color.white);
+        t = new PopupMenu();
+        t.add(v = new MenuItem(c("y\r@^Im\u0105")));
+        t.add(u = new MenuItem(c("f\013M\310Qs")));
+        t.addSeparator();
+        t.add(w = new MenuItem(c("m\020\032NO|\035STMp\034R")));
+        t.add(x = new MenuItem(c("|\fO\u017F")));
+        y = new MenuItem(c("g\020MB\003y\020Q\310I"));
+        z = new MenuItem(c("|\fNZT`\032TRB"));
+        A = new MenuItem(c("s\021[QG\u0173_JTH\372\025"));
+        add(t);
+        t.addActionListener(this);
+        B = new q[3];
+        int i1 = 0;
+label0:
+        do
+        {
+            a(B[i1] = new q(C[i1], true, 1), null);
+            i1++;
+            do
+            {
+                if(i1 < 2)
+                    continue label0;
+                B[0].f = true;
+            } while(d.u.ba);
+            break;
+        } while(true);
+    }
+
+    q c(int i1)
+    {
+        return (q)D.get(new Integer(i1));
+    }
+
+    q b(String s1)
+    {
+        return (q)a(s1, false);
+    }
+
+    void b(boolean flag)
+    {
+        s.a(((ba) (F)).a, F.m, F.o, flag);
+    }
+
+    void l()
+    {
+        int i1;
+        int j1;
+        i1 = ((ba) (B[0])).b.size();
+        j1 = 0;
+        if(!d.u.ba) goto _L2; else goto _L1
+_L1:
+        a((q)((ba) (B[0])).b.firstElement());
+        j1++;
+_L2:
+        if(j1 >= i1)
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    q a(String s1, int i1)
+    {
+        q q1 = new q(s1, false, 0, --I, i1);
+        a(q1, B[0]);
+        D.put(new Integer(q1.m), q1);
+        return q1;
+    }
+
+    private static String c(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 9;
+                break;
+
+            case 1: // '\001'
+                k1 = 127;
+                break;
+
+            case 2: // '\002'
+                k1 = 58;
+                break;
+
+            case 3: // '\003'
+                k1 = 59;
+                break;
+
+            default:
+                k1 = 35;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    d.m s;
+    PopupMenu t;
+    MenuItem u;
+    MenuItem v;
+    MenuItem w;
+    MenuItem x;
+    MenuItem y;
+    MenuItem z;
+    MenuItem A;
+    q B[];
+    final String C[] = {
+        c("Y\020QTIl_OWVk\026UUF"), c("Y\020QTIl_JNAe\026YAMl"), c("Y\020QTIl_JIZ~\036NUF")
+    };
+    Hashtable D;
+    long E;
+    q F;
+    int G;
+    int H;
+    int I;
+}

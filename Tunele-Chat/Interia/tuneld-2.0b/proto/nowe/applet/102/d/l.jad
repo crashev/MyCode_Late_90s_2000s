@@ -1,0 +1,324 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   l.java
+
+package d;
+
+import a.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            n, b, x, s
+
+class l extends i
+    implements MouseListener
+{
+
+    int c()
+    {
+        return 26 + (o - 1) * 16;
+    }
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+        int i1;
+        int j1;
+        Vector vector;
+        int k1;
+        i1 = mouseevent.getX();
+        j1 = mouseevent.getY();
+        vector = j.o;
+        k1 = 0;
+        if(!x.bd) goto _L2; else goto _L1
+_L1:
+        d.b b1 = (d.b)vector.elementAt(k1);
+        e e1 = b1.W;
+        if(!b1.e() && i1 > e1.x && i1 < e1.x + e1.getWidth() && j1 > e1.y && j1 < e1.y + e1.getHeight())
+        {
+            e1.a(true);
+            repaint();
+            j.a(b1);
+            return;
+        }
+        k1++;
+_L2:
+        if(k1 >= vector.size())
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    void a(int i1)
+    {
+        Vector vector;
+        int k1;
+        int i2;
+        int j2;
+        boolean flag1;
+        flag1 = x.bd;
+        if(j.M)
+            return;
+        vector = j.o;
+        boolean flag = true;
+        k1 = 0;
+        j2 = 0;
+        i2 = 0;
+        if(!flag1) goto _L2; else goto _L1
+_L1:
+        d.b b1 = (d.b)vector.elementAt(i2);
+        if(!b1.e())
+        {
+            j2++;
+            k1 += b1.W.a();
+        }
+        i2++;
+_L2:
+        if(i2 < vector.size()) goto _L1; else goto _L3
+_L3:
+        int j1;
+        int k2;
+        int l2;
+        int i3;
+        if(j2 == 0 || i1 == 0 || k1 == 0)
+            return;
+        j1 = k1 / i1 + 1;
+        k2 = j2 / j1;
+        if(k2 * j1 != j2)
+            k2++;
+        l2 = 0;
+        i3 = 0;
+        j2 = 0;
+        k1 = 0;
+        n[0][0] = n[0][2] = 0;
+        n[0][1] = vector.size();
+        if(j1 <= 1) goto _L5; else goto _L4
+_L4:
+        i2 = 0;
+        if(!flag1) goto _L7; else goto _L6
+_L6:
+        vector.elementAt(i2);
+_L9:
+        (d.b);
+        d.b b2;
+        b2;
+label0:
+        {
+            if(b2.e())
+                continue; /* Loop/switch isn't completed */
+            int l1 = b2.W.a();
+            if(j2 < k2)
+            {
+                j2++;
+                k1 += l1;
+                if(!flag1)
+                    break label0;
+            }
+            n[i3][2] = (i1 - k1) / j2;
+            n[i3][1] = i2;
+            n[++i3][0] = i2;
+            j2 = 1;
+            k1 = l1;
+        }
+        if(b2.W.d())
+            l2 = i3;
+        if(i3 == 9)
+            break; /* Loop/switch isn't completed */
+        i2++;
+_L7:
+        if(i2 < vector.size()) goto _L6; else goto _L5
+_L5:
+        n[i3];
+        if(flag1) goto _L9; else goto _L8
+_L8:
+        1;
+        vector.size();
+        JVM INSTR iastore ;
+        int j3;
+        int l3;
+        if(i3 > 0 || k1 > i1)
+            n[i3][2] = (i1 - k1) / j2;
+        j3 = 0;
+        k1 = 0;
+        l3 = 0;
+        if(!flag1) goto _L11; else goto _L10
+_L10:
+        k1 = 0;
+        i2 = n[l3][0];
+_L16:
+        if(!flag1) goto _L13; else goto _L12
+_L12:
+        int k3;
+label1:
+        {
+            d.b b3 = (d.b)vector.elementAt(i2);
+            if(b3.e())
+                continue; /* Loop/switch isn't completed */
+            k3 = b3.W.a() + n[l3][2];
+            if(l3 == l2)
+            {
+                b3.W.setBounds(k1, 16 * (j1 - 1), k3, 20);
+                if(!flag1)
+                    break label1;
+            }
+            b3.W.setBounds(k1, j3, k3, 20);
+        }
+        k1 += k3;
+        i2++;
+_L13:
+        if(i2 < n[l3][1]) goto _L12; else goto _L14
+_L14:
+        if(l3 != l2)
+            j3 += 16;
+        l3++;
+_L11:
+        if(l3 <= i3)
+            continue; /* Loop/switch isn't completed */
+        o = j1;
+        if(!flag1)
+            return;
+        if(true) goto _L16; else goto _L15
+_L15:
+        if(true) goto _L10; else goto _L17
+_L17:
+    }
+
+    public l(n n1)
+    {
+        m = new o();
+        o = 1;
+        p = 0;
+        j = n1;
+        n = new int[10][3];
+        add(k = new b());
+        add(l = new b());
+        l.setVisible(false);
+        addMouseListener(this);
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+    }
+
+    public void paint(Graphics g)
+    {
+        Graphics g1;
+        Vector vector;
+        boolean flag;
+        flag = x.bd;
+        g1 = a(super.a, super.b);
+        g1.setColor(x.bb[0]);
+        g1.fillRect(0, 0, super.a, super.b);
+        vector = j.o;
+        if(vector == null || vector.size() <= 0) goto _L2; else goto _L1
+_L1:
+        int i1 = 0;
+        if(!flag) goto _L4; else goto _L3
+_L3:
+        g1.drawImage(x.U[p][0], i1, super.b - 5, null);
+_L7:
+        i1 += 9;
+_L4:
+        if(i1 < super.a - 8) goto _L3; else goto _L5
+_L5:
+        int j1;
+        g1.drawImage(x.U[p][1], super.a - 9, super.b - 5, null);
+        j1 = 0;
+        if(flag && flag) goto _L7; else goto _L6
+_L11:
+        i1 = 0;
+        if(!flag) goto _L9; else goto _L8
+_L8:
+        d.b b1 = (d.b)vector.elementAt(i1);
+        e e1 = b1.W;
+        if(!b1.e() && e1.y <= j1 * 16 + 10 && e1.y >= j1 * 16)
+            e1.a(g1);
+        i1++;
+_L9:
+        if(i1 < vector.size()) goto _L8; else goto _L10
+_L10:
+        j1++;
+_L6:
+        if(j1 < o) goto _L11; else goto _L2
+_L2:
+        g.drawImage(b(), 0, 0, null);
+        super.paint(g);
+        return;
+    }
+
+    public void a()
+    {
+        if(m != null)
+            m = null;
+        if(j != null)
+            j = null;
+    }
+
+    public void a(Component component)
+    {
+        if(component == k || component == l)
+        {
+            boolean flag = component == l;
+            l.setVisible(!flag);
+            k.setVisible(flag);
+            j.r.setVisible(flag);
+            j.g();
+        }
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+    }
+
+    void b(int i1)
+    {
+label0:
+        {
+            int j1 = o;
+            if(i1 >= 0)
+                p = i1;
+            a(super.a - 20);
+            if(j1 != o)
+            {
+                j.g();
+                if(!x.bd)
+                    break label0;
+            }
+            repaint();
+        }
+    }
+
+    void d()
+    {
+        k.a(x.P);
+        l.a(x.O);
+        repaint();
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        k.setBounds(k1 - 17, -2, 17, 23);
+        l.setBounds(k1 - 17, -2, 17, 23);
+        super.setBounds(i1, j1, k1, l1);
+        repaint();
+    }
+
+    n j;
+    b k;
+    b l;
+    o m;
+    int n[][];
+    int o;
+    int p;
+}

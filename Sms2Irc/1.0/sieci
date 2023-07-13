@@ -1,0 +1,9 @@
+PlusGSM:
+from=<smsdeliv@text.plusgsm.pl>, size=346, class=0, nrcpts=1, msgid=<E15Up2y-0001Kv-00@smsa.plusgsm.pl>, proto=ESMTP, daemon=MTA, relay=smsa.plusgsm.pl [212.2.96.57]
+to=<PAWQ@pawq.eu.org>, delay=00:00:01, xdelay=00:00:00, mailer=local, pri=30036, dsn=2.0.0, stat=Sent
+Idea:
+from=<504812168@sms.idea.com.pl>, size=512, class=0, nrcpts=1, msgid=<997361309.20758.83@smsv.centertel.pl>, proto=ESMTP, daemon=MTA, relay=mix.centertel.pl [194.9.223.79]
+to=<pawq@pawq.eu.org>, delay=00:00:00, xdelay=00:00:00, mailer=local, pri=30013, dsn=2.0.0, stat=Sent
+EraGSM:
+From: 608071118@eranet.pl
+To: CRASHEV@EBOX.PL

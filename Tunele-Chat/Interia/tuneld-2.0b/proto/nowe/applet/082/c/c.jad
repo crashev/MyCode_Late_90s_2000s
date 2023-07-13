@@ -1,0 +1,377 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   c.java
+
+package c;
+
+import a.i;
+
+// Referenced classes of package c:
+//            a
+
+public final class c
+{
+
+    static int a(int k, int l, int i1)
+    {
+        return l ^ (k | ~i1);
+    }
+
+    void a()
+    {
+        j = 0L;
+        i = 0;
+        d[0] = 0x67452301;
+        d[1] = 0xefcdab89;
+        d[2] = 0x98badcfe;
+        d[3] = 0x10325476;
+    }
+
+    static int b(int k, int l, int i1)
+    {
+        return l ^ i1 & (k ^ l);
+    }
+
+    public c()
+    {
+        d = new int[4];
+        c = new int[16];
+        e = new byte[64];
+        h = new byte[64];
+        a();
+    }
+
+    public final String a(byte abyte0[])
+    {
+        StringBuffer stringbuffer;
+        int k;
+        int l;
+        int i1;
+        i1 = a.c;
+        stringbuffer = new StringBuffer();
+        k = 0;
+        l = abyte0.length;
+        if(i1 == 0) goto _L2; else goto _L1
+_L1:
+        stringbuffer.append(a(abyte0[k] >>> 4 & 0xf)).append(a(abyte0[k] & 0xf));
+_L5:
+        JVM INSTR pop ;
+        k++;
+_L2:
+        if(k < l) goto _L1; else goto _L3
+_L3:
+        stringbuffer;
+        if(i1 != 0) goto _L5; else goto _L4
+_L4:
+        toString();
+        return;
+    }
+
+    void b()
+    {
+        a(c, 0, h, 0, 16);
+        a(c);
+    }
+
+    byte[] c()
+    {
+        int k;
+        int k1;
+        k1 = a.c;
+        k = i;
+        if(k != 0)
+            System.arraycopy(h, 0, e, 0, k);
+        e[k++] = -128;
+        if(k <= 56)
+            break MISSING_BLOCK_LABEL_94;
+          goto _L1
+_L3:
+        this;
+_L5:
+        e;
+        k++;
+        0;
+        JVM INSTR bastore ;
+_L1:
+        if(k < 64) goto _L3; else goto _L2
+_L2:
+        a(c, 0, e, 0, 16);
+        this;
+        if(k1 != 0) goto _L5; else goto _L4
+_L4:
+        c;
+        a();
+        k = 0;
+        if(k1 == 0) goto _L7; else goto _L6
+_L6:
+        e;
+_L10:
+        k++;
+        0;
+        JVM INSTR bastore ;
+_L7:
+        if(k < 56) goto _L6; else goto _L8
+_L8:
+        a(c, 0, e, 0, 14);
+        c[14] = (int)j;
+        c[15] = (int)(j >>> 32);
+        a(c);
+        new byte[16];
+        if(k1 != 0) goto _L10; else goto _L9
+_L9:
+        byte abyte0[];
+        abyte0;
+        int l;
+        int i1;
+        l = 0;
+        i1 = 0;
+_L12:
+        int j1;
+        j1 = d[i1];
+        abyte0[l++] = (byte)j1;
+        abyte0[l++] = (byte)(j1 >>> 8);
+        abyte0[l++] = (byte)(j1 >>> 16);
+        abyte0;
+_L14:
+        l++;
+        (byte)(j1 >>> 24);
+        JVM INSTR bastore ;
+        if(++i1 < 4) goto _L12; else goto _L11
+_L11:
+        abyte0;
+        if(k1 != 0) goto _L14; else goto _L13
+_L13:
+        return;
+    }
+
+    void a(byte abyte0[], int k, int l)
+    {
+        byte byte0;
+        int i1;
+        i1 = a.c;
+        byte0 = 64;
+        j += l << 3;
+        if(i1 == 0) goto _L2; else goto _L1
+_L1:
+        System.arraycopy(abyte0, k, h, i, byte0 - i);
+        b();
+        l -= byte0 - i;
+        k + (byte0 - i);
+_L4:
+        k;
+        i = 0;
+_L2:
+        if(l >= byte0 - i) goto _L1; else goto _L3
+_L3:
+        l;
+        if(i1 == 0)
+        {
+            if(l > 0)
+            {
+                System.arraycopy(abyte0, k, h, i, l);
+                i += l;
+            }
+            return;
+        }
+          goto _L4
+    }
+
+    static int c(int k, int l, int i1)
+    {
+        return i1 ^ k & (l ^ i1);
+    }
+
+    static int a(int k, int l, int i1, int j1, int k1, int l1, int i2)
+    {
+        k += k1 + i2 + c(l, i1, j1);
+        k = k << l1 | k >>> -l1;
+        return k + l;
+    }
+
+    static int b(int k, int l, int i1, int j1, int k1, int l1, int i2)
+    {
+        k += k1 + i2 + a(l, i1, j1);
+        k = k << l1 | k >>> -l1;
+        return k + l;
+    }
+
+    static int c(int k, int l, int i1, int j1, int k1, int l1, int i2)
+    {
+        k += k1 + i2 + d(l, i1, j1);
+        k = k << l1 | k >>> -l1;
+        return k + l;
+    }
+
+    public final String b(byte abyte0[])
+    {
+        return a(c(abyte0));
+    }
+
+    void a(int ai[])
+    {
+        int k1 = a.c;
+        int k = d[0];
+        int l = d[1];
+        int i1 = d[2];
+        int j1 = d[3];
+        k = a(k, l, i1, j1, ai[0], 7, 0xd76aa478);
+        j1 = a(j1, k, l, i1, ai[1], 12, 0xe8c7b756);
+        i1 = a(i1, j1, k, l, ai[2], 17, 0x242070db);
+        l = a(l, i1, j1, k, ai[3], 22, 0xc1bdceee);
+        k = a(k, l, i1, j1, ai[4], 7, 0xf57c0faf);
+        j1 = a(j1, k, l, i1, ai[5], 12, 0x4787c62a);
+        i1 = a(i1, j1, k, l, ai[6], 17, 0xa8304613);
+        l = a(l, i1, j1, k, ai[7], 22, 0xfd469501);
+        k = a(k, l, i1, j1, ai[8], 7, 0x698098d8);
+        j1 = a(j1, k, l, i1, ai[9], 12, 0x8b44f7af);
+        i1 = a(i1, j1, k, l, ai[10], 17, -42063);
+        l = a(l, i1, j1, k, ai[11], 22, 0x895cd7be);
+        k = a(k, l, i1, j1, ai[12], 7, 0x6b901122);
+        j1 = a(j1, k, l, i1, ai[13], 12, 0xfd987193);
+        i1 = a(i1, j1, k, l, ai[14], 17, 0xa679438e);
+        l = a(l, i1, j1, k, ai[15], 22, 0x49b40821);
+        k = d(k, l, i1, j1, ai[1], 5, 0xf61e2562);
+        j1 = d(j1, k, l, i1, ai[6], 9, 0xc040b340);
+        i1 = d(i1, j1, k, l, ai[11], 14, 0x265e5a51);
+        l = d(l, i1, j1, k, ai[0], 20, 0xe9b6c7aa);
+        k = d(k, l, i1, j1, ai[5], 5, 0xd62f105d);
+        j1 = d(j1, k, l, i1, ai[10], 9, 0x2441453);
+        i1 = d(i1, j1, k, l, ai[15], 14, 0xd8a1e681);
+        l = d(l, i1, j1, k, ai[4], 20, 0xe7d3fbc8);
+        k = d(k, l, i1, j1, ai[9], 5, 0x21e1cde6);
+        j1 = d(j1, k, l, i1, ai[14], 9, 0xc33707d6);
+        i1 = d(i1, j1, k, l, ai[3], 14, 0xf4d50d87);
+        l = d(l, i1, j1, k, ai[8], 20, 0x455a14ed);
+        k = d(k, l, i1, j1, ai[13], 5, 0xa9e3e905);
+        j1 = d(j1, k, l, i1, ai[2], 9, 0xfcefa3f8);
+        i1 = d(i1, j1, k, l, ai[7], 14, 0x676f02d9);
+        l = d(l, i1, j1, k, ai[12], 20, 0x8d2a4c8a);
+        k = c(k, l, i1, j1, ai[5], 4, 0xfffa3942);
+        j1 = c(j1, k, l, i1, ai[8], 11, 0x8771f681);
+        i1 = c(i1, j1, k, l, ai[11], 16, 0x6d9d6122);
+        l = c(l, i1, j1, k, ai[14], 23, 0xfde5380c);
+        k = c(k, l, i1, j1, ai[1], 4, 0xa4beea44);
+        j1 = c(j1, k, l, i1, ai[4], 11, 0x4bdecfa9);
+        i1 = c(i1, j1, k, l, ai[7], 16, 0xf6bb4b60);
+        l = c(l, i1, j1, k, ai[10], 23, 0xbebfbc70);
+        k = c(k, l, i1, j1, ai[13], 4, 0x289b7ec6);
+        j1 = c(j1, k, l, i1, ai[0], 11, 0xeaa127fa);
+        i1 = c(i1, j1, k, l, ai[3], 16, 0xd4ef3085);
+        l = c(l, i1, j1, k, ai[6], 23, 0x4881d05);
+        k = c(k, l, i1, j1, ai[9], 4, 0xd9d4d039);
+        j1 = c(j1, k, l, i1, ai[12], 11, 0xe6db99e5);
+        i1 = c(i1, j1, k, l, ai[15], 16, 0x1fa27cf8);
+        l = c(l, i1, j1, k, ai[2], 23, 0xc4ac5665);
+        k = b(k, l, i1, j1, ai[0], 6, 0xf4292244);
+        j1 = b(j1, k, l, i1, ai[7], 10, 0x432aff97);
+        i1 = b(i1, j1, k, l, ai[14], 15, 0xab9423a7);
+        l = b(l, i1, j1, k, ai[5], 21, 0xfc93a039);
+        k = b(k, l, i1, j1, ai[12], 6, 0x655b59c3);
+        j1 = b(j1, k, l, i1, ai[3], 10, 0x8f0ccc92);
+        i1 = b(i1, j1, k, l, ai[10], 15, 0xffeff47d);
+        l = b(l, i1, j1, k, ai[1], 21, 0x85845dd1);
+        k = b(k, l, i1, j1, ai[8], 6, 0x6fa87e4f);
+        j1 = b(j1, k, l, i1, ai[15], 10, 0xfe2ce6e0);
+        i1 = b(i1, j1, k, l, ai[6], 15, 0xa3014314);
+        l = b(l, i1, j1, k, ai[13], 21, 0x4e0811a1);
+        k = b(k, l, i1, j1, ai[4], 6, 0xf7537e82);
+        j1 = b(j1, k, l, i1, ai[11], 10, 0xbd3af235);
+        i1 = b(i1, j1, k, l, ai[2], 15, 0x2ad7d2bb);
+        l = b(l, i1, j1, k, ai[9], 21, 0xeb86d391);
+        d[0] += k;
+        d[1] += l;
+        d[2] += i1;
+        d[3] += j1;
+        if(i.i != 0)
+            a.c = ++k1;
+    }
+
+    static int d(int k, int l, int i1)
+    {
+        return k ^ l ^ i1;
+    }
+
+    public final byte[] d()
+    {
+        byte abyte0[] = c();
+        a();
+        return abyte0;
+    }
+
+    static int d(int k, int l, int i1, int j1, int k1, int l1, int i2)
+    {
+        k += k1 + i2 + b(l, i1, j1);
+        k = k << l1 | k >>> -l1;
+        return k + l;
+    }
+
+    public final synchronized byte[] c(byte abyte0[])
+    {
+        a();
+        a(abyte0, 0, abyte0.length);
+        return d();
+    }
+
+    static char a(int k)
+    {
+        if(k >= 10 && k <= 15)
+            return (char)(97 + (k - 10));
+        if(k >= 0 && k <= 9)
+            return (char)(48 + k);
+        else
+            throw new Error(a("E\t\177C_BLf\020HD\005'\005JD\000b\007"));
+    }
+
+    public static final void a(int ai[], int k, byte abyte0[], int l, int i1)
+    {
+        while(i1-- > 0) 
+            ai[k++] = abyte0[l++] & 0xff | abyte0[l++] << 8 & 0xff00 | abyte0[l++] << 16 & 0xff0000 | abyte0[l++] << 24;
+    }
+
+    private static String a(String s)
+    {
+        char ac[] = s.toCharArray();
+        int k = ac.length;
+        int i1;
+        for(int l = 0; l < k; l++)
+        {
+            switch(l % 5)
+            {
+            case 0: // '\0'
+                i1 = 0x2d;
+                break;
+
+            case 1: // '\001'
+                i1 = 108;
+                break;
+
+            case 2: // '\002'
+                i1 = 7;
+                break;
+
+            case 3: // '\003'
+                i1 = 99;
+                break;
+
+            default:
+                i1 = 43;
+                break;
+            }
+            ac[l] ^= i1;
+        }
+
+        return new String(ac);
+    }
+
+    public static final int a = 16;
+    public static final int b = 64;
+    int c[];
+    int d[];
+    byte e[];
+    static final int f = 88;
+    byte g[];
+    byte h[];
+    int i;
+    long j;
+}

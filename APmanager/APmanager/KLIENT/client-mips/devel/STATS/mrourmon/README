@@ -1,0 +1,44 @@
+MORE INFO
+
+1. See http://ourmon.cat.pdx.edu/ourmon.html for releases,
+and a runtime page showing the system working.
+
+2. See web/info.html for information about the various filters
+and the system as a whole.
+
+3. See the INSTALL file for installation information.
+
+4. There exists a paper that introduces ourmon and discusses the problems
+associated with capturing high-speed DOS or TCP syn scanning attacks:
+
+See http://www.cs.pdx.edu/~jrb under papers:
+
+Ourmon versus IXIA: Monitoring Gigabit Speeds" , 
+Jim Binkley, Portland State University, PSU Technical Report 04-01, March 2004. 
+
+ACKNOWLEDGEMENTS
+
+1. Thanks to Tobias Oetiker for RRDTool which basically caused us
+to think "draw > 2 things at a time" ... hmmmm ....   given that
+we cannot afford a commercial SNMP RMON probe .... hmmmm ....
+
+2. trafshow and its creator Vladimir Vorobyev, who provided the
+starting code for ourmon and 
+
+3. also to the BPF creators of course.
+
+4. students who have worked on ourmon, including Sun Nan,
+Usha Ketineni, and Brunson Moody.  Bart Massey has helped
+a great deal optimizing the topn flow code.  Thanks to Dave Burns and Corey
+Bell for ideas, and to John Mchugh for encouragement.
+
+BUGS
+
+Sure.  Why not?  There are bound to be some.  
+
+We will be very happy to integrate significant bug fixes, listen to gritches,
+and take in improvements.  "Product" support is not guaranteed.  We will
+help if we have time.  Email: jrb@cs.pdx.edu.  
+
+
+

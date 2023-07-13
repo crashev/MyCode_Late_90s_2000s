@@ -1,0 +1,216 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   p.java
+
+package d;
+
+import INTChat;
+import a.i;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+// Referenced classes of package d:
+//            m, u
+
+class p extends i
+    implements MouseListener
+{
+
+    void c()
+    {
+        if(m)
+        {
+            n--;
+            repaint();
+        }
+    }
+
+    void a(String s, boolean flag)
+    {
+        boolean flag1;
+label0:
+        {
+label1:
+            {
+label2:
+                {
+                    flag1 = u.ba;
+                    k = s;
+                    if(s == null)
+                    {
+                        l = null;
+                        m = false;
+                        return;
+                    }
+                    int i1 = k.indexOf(a("]Fn|"));
+                    if(i1 < 0)
+                        i1 = k.indexOf(a("BEm"));
+                    if(i1 <= 0)
+                        break label1;
+                    if(k.indexOf(' ', i1) < 0)
+                    {
+                        l = k.substring(i1);
+                        if(!flag1)
+                            break label2;
+                    }
+                    l = k.substring(i1, k.indexOf(' ', i1));
+                }
+                setCursor(Cursor.getPredefinedCursor(12));
+                if(!flag1)
+                    break label0;
+            }
+            l = null;
+            setCursor(Cursor.getDefaultCursor());
+        }
+label3:
+        {
+            m = flag;
+            if(flag)
+            {
+                n = super.a - 200;
+                if(!flag1)
+                    break label3;
+            }
+            n = 105;
+        }
+        repaint();
+    }
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+        if(l != null)
+            j.k.openHTMLWindow(l);
+    }
+
+    public p(m m1)
+    {
+        k = null;
+        l = null;
+        m = false;
+        n = 0;
+        j = m1;
+        addMouseListener(this);
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+    }
+
+    public void paint(Graphics g)
+    {
+        Graphics g1;
+        int i1;
+        boolean flag;
+        flag = u.ba;
+        g1 = a(super.a, super.b);
+        i1 = 17;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        g1.drawImage(u.q[1], i1, 0, null);
+_L4:
+        i1 += 17;
+_L2:
+        if(i1 <= super.a)
+            continue; /* Loop/switch isn't completed */
+        g1.setFont(u.Z[0]);
+        g1.setColor(u.Y[3]);
+        if(!flag)
+        {
+            if(k != null)
+            {
+                FontMetrics fontmetrics = g1.getFontMetrics();
+                if(fontmetrics.stringWidth(k) > super.a - 105 && n + fontmetrics.stringWidth(k) < 200 || fontmetrics.stringWidth(k) < super.a - 105 && n < 105)
+                {
+                    m = false;
+                    n = 105;
+                }
+                g1.drawString(k, n, 18);
+            }
+            g1.drawImage(u.q[0], 0, 0, null);
+            int j1 = 17;
+label0:
+            do
+            {
+                g1.drawImage(u.q[1], j1, 0, null);
+                j1 += 17;
+                do
+                {
+                    if(j1 <= 87)
+                        continue label0;
+                    g1.drawImage(u.q[2], super.a - 17, 0, null);
+                    g1.drawString(a("tYny4Y\\u\u01576\\\b:"), 14, 18);
+                    g.drawImage(b(), 0, 0, null);
+                    g.dispose();
+                } while(flag);
+                break;
+            } while(true);
+            return;
+        }
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void setVisible(boolean flag)
+    {
+        m = flag;
+        super.setVisible(flag);
+        n = super.a / 2;
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+    }
+
+    private static String a(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x35;
+                break;
+
+            case 1: // '\001'
+                k1 = 50;
+                break;
+
+            case 2: // '\002'
+                k1 = 26;
+                break;
+
+            case 3: // '\003'
+                k1 = 12;
+                break;
+
+            default:
+                k1 = 85;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    m j;
+    String k;
+    String l;
+    boolean m;
+    int n;
+}

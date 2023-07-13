@@ -1,0 +1,474 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   c.java
+
+package b;
+
+import a.i;
+import a.r;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.zip.InflaterInputStream;
+
+// Referenced classes of package b:
+//            b, a
+
+public class c
+    implements Runnable
+{
+
+    void a()
+    {
+        i();
+        k();
+    }
+
+    private boolean b()
+    {
+        try
+        {
+            n = new Socket(c, g);
+            o = n.getOutputStream();
+            p = n.getInputStream();
+            j = true;
+            return true;
+        }
+        catch(Exception exception)
+        {
+            i();
+            a.a(' ', -1);
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean a(int i1)
+    {
+        return d == i1;
+    }
+
+    void c()
+    {
+        u = true;
+        v = false;
+        y = 0;
+        z = System.currentTimeMillis() - x;
+    }
+
+    public void d()
+    {
+label0:
+        {
+            y++;
+            if(!u)
+            {
+                long l1 = System.currentTimeMillis() - x;
+                if(l1 > z)
+                    z = l1;
+                if(!v && y > 200)
+                {
+                    v = true;
+                    a.a('#', -1);
+                }
+                if(y > 400)
+                    u = true;
+                if(B == 0)
+                    break label0;
+            }
+            if(y >= 100)
+            {
+                y = 0;
+                u = false;
+                x = System.currentTimeMillis();
+                a('T');
+            }
+        }
+    }
+
+    public c(b b1, String s1, int i1, int j1)
+    {
+        d = -1;
+        f = "";
+        g = 0;
+        h = 0;
+        i = false;
+        j = false;
+        k = false;
+        l = true;
+        m = true;
+        n = null;
+        o = null;
+        p = null;
+        u = true;
+        v = false;
+        w = false;
+        x = 0L;
+        y = 0;
+        a = b1;
+        c = s1 == null ? a.b : s1;
+        g = i1;
+        d = j1;
+        q = new byte[3];
+        r = new byte[300];
+        s = new byte[100];
+        if(A == null)
+            try
+            {
+                Socket socket = new Socket(c, 80);
+                A = a.r.m(socket.getLocalAddress().getHostAddress());
+            }
+            catch(IOException ioexception)
+            {
+                ioexception.printStackTrace();
+                A = "";
+            }
+    }
+
+    public boolean e()
+    {
+        return j;
+    }
+
+    public static long f()
+    {
+        return z;
+    }
+
+    public static String a(byte abyte0[], int i1)
+    {
+        StringBuffer stringbuffer = new StringBuffer();
+        try
+        {
+            ByteArrayInputStream bytearrayinputstream = new ByteArrayInputStream(abyte0, 0, i1);
+            InflaterInputStream inflaterinputstream = new InflaterInputStream(bytearrayinputstream);
+            do
+            {
+                int j1 = inflaterinputstream.read();
+                if(j1 == -1)
+                    break;
+                stringbuffer.append((char)j1);
+            } while(B == 0);
+            inflaterinputstream.close();
+            return stringbuffer.toString();
+        }
+        catch(Exception _ex)
+        {
+            return null;
+        }
+    }
+
+    public void g()
+    {
+        i();
+        q = null;
+        r = null;
+        s = null;
+        System.gc();
+    }
+
+    public int h()
+    {
+        return d;
+    }
+
+    public void i()
+    {
+        j = false;
+        k = true;
+        h = 0;
+        try
+        {
+            if(n != null)
+                n.close();
+            if(p != null)
+                p.close();
+            if(o != null)
+                o.close();
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+    }
+
+    public void a(char c1)
+    {
+        a(c1, ((String) (null)));
+    }
+
+    public void a(char c1, String s1)
+    {
+label0:
+        {
+            int i1;
+label1:
+            {
+                l = true;
+                i1 = s1 == null ? 3 : s1.length() + 3;
+                if(o == null || !j)
+                    break label0;
+                if(s.length < i1)
+                    s = new byte[i1];
+                if(s1 != null)
+                    a.r.a(s1, s, 3);
+                s[0] = (byte)(i1 & 0xff);
+                s[1] = (byte)(i1 >> 8 & 0xff);
+                s[2] = (byte)c1;
+                if(c1 == 'P')
+                {
+                    try
+                    {
+                        Thread.sleep(450L);
+                    }
+                    catch(InterruptedException _ex) { }
+                    if(B == 0)
+                        break label1;
+                }
+                if(c1 == 0)
+                    try
+                    {
+                        Thread.sleep(520L);
+                    }
+                    catch(InterruptedException _ex) { }
+            }
+            if(r.a)
+                a.r.a(b("eV")"[." + System.currentTimeMillis() / 100L + "]" + d + "SEND: LEN:" + i1 + ", CODE:" + (byte)c1 + ", MSG:" + s1, s1);
+            try
+            {
+                o.write(s, 0, i1);
+                o.flush();
+            }
+            catch(IOException ioexception)
+            {
+                ioexception.printStackTrace();
+                if(j)
+                    a.a('!', d);
+                i();
+            }
+        }
+    }
+
+    private boolean j()
+    {
+        String s1;
+        int i2;
+        i2 = B;
+        boolean flag = false;
+        s1 = new String();
+        int i1;
+        int j1;
+        int k1;
+        int l1;
+        k1 = p.read(q, 0, 3);
+        if(k1 < 3 || !j)
+        {
+            if(j)
+                a.a('!', d);
+            i();
+            return false;
+        }
+        i1 = q[1] << 8 & 0xffff | q[0] & 0xff;
+        j1 = q[2] & 0xff;
+        if(i1 < 3)
+        {
+            if(j)
+                a.a('!', d);
+            i();
+            return false;
+        }
+        if(r.length < i1 - 3)
+            r = new byte[i1 - 3];
+        if(j1 == 155)
+        {
+            c();
+            return true;
+        }
+        if(i1 <= 3)
+            break MISSING_BLOCK_LABEL_468;
+        l1 = 0;
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        k1 = p.read();
+        k1;
+        -1;
+_L8:
+        JVM INSTR icmpeq 205;
+           goto _L3 _L4
+_L3:
+        if(j) goto _L5; else goto _L4
+_L4:
+        if(j)
+            a.a('!', d);
+        i();
+        return false;
+_L5:
+        r[l1] = (byte)k1;
+        l1++;
+_L2:
+        if(l1 < i1 - 3) goto _L1; else goto _L6
+_L6:
+        j1;
+        139;
+        if(i2 != 0) goto _L8; else goto _L7
+_L7:
+        JVM INSTR icmpne 289;
+           goto _L9 _L10
+_L9:
+        break MISSING_BLOCK_LABEL_265;
+_L10:
+        break MISSING_BLOCK_LABEL_289;
+        s1 = a(r, i1 - 3);
+        if(s1 == null)
+            return true;
+        if(i2 == 0)
+            break MISSING_BLOCK_LABEL_468;
+        if(j1 == 154)
+        {
+            a('S', a.r.b(r, 0, i1 - 3));
+            return true;
+        }
+        if(!i)
+        {
+            s1 = a.r.b(r, 0, i1 - 3);
+            if(r.a)
+                a.r.a(d + "RECEIVED LEN:" + i1 + ",CODE:" + j1 + ",MSG:" + s1 + "BYTE:", s1);
+            if(i2 == 0)
+                break MISSING_BLOCK_LABEL_468;
+        }
+        if(r.a)
+            a.r.a(d + b("e_\022\035>\f[\022\032[\tH\031d[") + i1 + b("i-\024\021?\0007w") + j1, null);
+        if(!j)
+            break MISSING_BLOCK_LABEL_556;
+        if(i)
+        {
+            a.a(j1, r, i1 - 3, this);
+            if(i2 == 0)
+                break MISSING_BLOCK_LABEL_556;
+        }
+        a.a(j1, s1, this);
+        break MISSING_BLOCK_LABEL_556;
+        Exception exception;
+        exception;
+        exception.printStackTrace();
+        if(j)
+        {
+            a.a('!', d);
+            i();
+        }
+        return false;
+        return true;
+    }
+
+    public void k()
+    {
+        int i1 = B;
+        b = new Thread(this, "Chat-communication") + d);
+        b.start();
+        if(i.i)
+            B = ++i1;
+    }
+
+    void a(String s1)
+    {
+        b.setName(s1);
+    }
+
+    public void run()
+    {
+        if(!b())
+            a.a(' ', -1);
+        if(B == 0) goto _L2; else goto _L1
+_L1:
+        try
+        {
+            Thread.sleep(1L);
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        j();
+_L2:
+        if(!j || b == null)
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public void b(int i1)
+    {
+        g = i1;
+    }
+
+    public int l()
+    {
+        return g;
+    }
+
+    private static String b(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x45;
+                break;
+
+            case 1: // '\001'
+                k1 = 13;
+                break;
+
+            case 2: // '\002'
+                k1 = 87;
+                break;
+
+            case 3: // '\003'
+                k1 = 94;
+                break;
+
+            default:
+                k1 = 123;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    b a;
+    private Thread b;
+    String c;
+    int d;
+    public byte e[];
+    public String f;
+    int g;
+    public int h;
+    public boolean i;
+    boolean j;
+    public boolean k;
+    boolean l;
+    public boolean m;
+    private Socket n;
+    private OutputStream o;
+    private InputStream p;
+    byte q[];
+    byte r[];
+    byte s[];
+    static final int t = 100;
+    boolean u;
+    boolean v;
+    public boolean w;
+    long x;
+    int y;
+    static long z = 0L;
+    public static String A = null;
+    public static int B;
+
+}

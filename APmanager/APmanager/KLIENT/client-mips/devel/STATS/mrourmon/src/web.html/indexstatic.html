@@ -1,0 +1,832 @@
+<html>
+<head>
+<title> ourmon - network monitoring and anomaly detection system </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html"; charset=iso-8859-1>
+
+<H3>  OURMON:  Network Monitoring and Anomaly Detection System
+</H3>
+<hr>
+<p>
+Ourmon is an open-source network management and anomaly detection system. 
+It collects data using both multiple instances of the Berkeley Packet Filter, and also
+various hashed top N lists and then displays the data using RRDTOOL graphs, histograms,
+and perl reports.  Data is produced in near realtime every thirty seconds.
+Hourly reports are also produced from some of the top N lists and summarized on a daily
+basis, giving approximately one week of summarized reports.
+Ourmon is customizable and allows the user to create his or her own graphs by grouping BPF
+expressions (as used in tcpdump) into RRDTOOL-style graphs.  It 
+provides graphs, logging, and reports concerning various kinds of flow lists
+including conventional IP flows, top N syns, top N ports, ICMP and UDP errors, and
+syn scanners including 1-N ip src to ip dst, and 1-N ip src to L4 ports.     
+<p>
+Ourmon runs on Linux and FreeBSD.  This page updates every thirty seconds with
+fresh information.  A copy of this page that does NOT update every 30 seconds is called:
+<a href="indexstatic.html"> indexstatic.html </a>.
+The home page and latest release for ourmon can be found here: 
+<a href="http://ourmon.cat.pdx.edu/ourmon"> PSU ourmon </a>. 
+You may read a <a href="info.html"> technical explanation </a> 
+of ourmon.
+<p>
+Current samples of "ourmon" (rmon-like) data from the your core network 
+are shown below in graphs and reports.
+<hr>
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+data files of interest, back-end, then front-end 
+<tr>
+</tr>
+<tr>
+<TD> 
+<a href="portreport.txt"> 
+	portreport.txt (worm info)</a> 
+</td>
+<TD> 
+<a href="tcpworm.txt"> 
+	tcpworm.txt  (detailed tcp worm info)</a> 
+</td>
+<TD> 
+<a href="event_today.txt"> 
+	event log for today </a> 
+</td>
+<TD> 
+<a href="udpreport.txt"> 
+	udpreport.txt (udp-based worm info)</a> 
+</td>
+<TD> 
+<a href="time.log"> 
+	last time run </a> 
+</td>
+<TD> 
+<a href="rawtcpworm.txt"> 
+	raw tcpworm.txt input file </a> 
+</td>
+<TD> 
+<a href="mon.lite"> 
+	probe #1 mon.lite </a> 
+</td>
+<TD> 
+<a href="icmpcodes.txt"> 
+	icmp codes cheatsheet </a> 
+</td>
+</tr>
+</TABLE>
+
+<hr>
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+direct jump to sub-section of main pages
+<tr>
+</tr>
+<tr>
+<TD> 
+<a href="#packets"> 
+	pkts/drops</a> 
+</td>
+<TD> 
+<a href="#bpfs"> 
+	bpfs </a> 
+</td>
+<TD> 
+<a href="#bpf-subnets"> 
+	bpf-subnets </a> 
+</td>
+<TD> 
+<a href="#bpf-protocols"> 
+	bpf-protocols </a> 
+</td>
+<TD> 
+<a href="#errors"> 
+	bpf-errors </a> 
+</td>
+<TD> 
+<a href="#topnreports"> 
+	topn reports </a> 
+</td>
+<TD> 
+<a href="#topn"> 
+	topn </a> 
+</td>
+<TD> 
+<a href="#tcpsyn"> 
+	tcpsyn</a> 
+</td>
+<TD> 
+<a href="#tcpworm"> 
+	tcpworm</a> 
+</td>
+<TD> 
+<a href="#icmperror"> 
+	icmperrors</a> 
+</td>
+<TD> 
+<a href="#udperror"> 
+	udperrors</a> 
+</td>
+<TD> 
+<a href="#topn-ports"> 
+	topn-ports </a> 
+</td>
+<TD> 
+<a href="#scanning"> 
+	scanning </a> 
+</td>
+</tr>
+</TABLE>
+<hr>
+
+<A name=packets 
+<p> 
+probe #1 (p4) pkts/drops:
+<p> 
+<a href="pkts.html"> 
+	<img src="pkts.daily-png"> 
+</a> </p> </a>
+<p>
+
+<p> <a href="ipproto.html"> 
+	<img src="ipproto.daily-png">
+</a> </p>
+
+<p> BPF-based protocol packet counts
+</p>
+<p> <a href="bpf-protopkts.html"> 
+	<img src="bpf.protopkts.daily-png">
+</a> </p>
+
+<p> <a href="tcp3.html"> 
+	<img src="tcp3.daily-png" >
+</a> </p>
+
+<p> <a href="cast.html"> 
+	<img src="cast.daily-png" > 
+</a> </p>
+
+<p> <a href="size.html"> 
+	<img src="size.daily-png" > 
+</a> </p>
+
+<p> <a href="subnets.html" name=bpf-psunets> 
+	<img src="bpf.bpf-subnets.daily-png"> 
+</a> </p>
+
+<p> <a href="bpf-ports.html" name=bpf-protocols> 
+	<img src="bpf.ports.daily-png"> 
+</a> </p>
+<p> <a href="p2p.html"> 
+	<img src="bpf.p2pvsworld.daily-png"> 
+</a> </p>
+<p> <a href="bpf-vpns.html"> 
+	<img src="bpf.vpntuns.daily-png"> 
+</a> </p>
+<p> <a href="bpf-errors.html" name=errors> 
+	<img src="bpf.errors.daily-png"> 
+</a> </p>
+<p> <a href="bpf-unreach.html"> 
+	<img src="bpf.icmpunreach.daily-png"> 
+</a> </p>
+<p> <a href="bpf-tcpcontrol.html" name=tcpcontrol> 
+	<img src="bpf.tcpcontrol.daily-png"> 
+</a> </p>
+
+<hr>
+<h2> meta count of topn flows (all ip protocols) </h2>
+<p> <a href="flow.html" name=flow> 
+	<img src="flowcount.daily-png"> 
+</a> </p>
+
+<hr>
+<h2> top/current IP flows (all ip protocols) </h2>
+</A>
+<p> <a href="topn_ip.html" name=topn>
+	<img src="topn_ip1.png">
+</a><p>
+<hr>
+<h2> top IP/UDP/ICMP/SYN flows sorted by total counts for day N</h2>
+<p> 
+IP/UDP/ICMP flows are bits/second.  Syns are counted per sample period,
+and sorted by max syn count with total syn count, fin count, and resets shown.
+The "flow id" for syns is simply an ip address.  
+<p>
+<A name=topnreports> 
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+today, yesterday, day before yesterday, etc.
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="topn_today.txt"> 
+	today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topn.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topn.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topn.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topn.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topn.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topn.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topn.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topn.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="topudp_today.txt"> 
+	UDP today (hourly)  </a> 
+</td>
+<TD> 
+<a href="topudp.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topudp.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topudp.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topudp.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topudp.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topudp.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topudp.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topudp.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="topicmp_today.txt"> 
+	ICMP today (hourly)  </a> 
+</td>
+<TD> 
+<a href="topicmp.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topicmp.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topicmp.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topicmp.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topicmp.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topicmp.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topicmp.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topicmp.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="topsyn_today.txt"> 
+	top syn count today (hourly)  </a> 
+</td>
+<TD> 
+<a href="topsyn.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topsyn.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topsyn.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topsyn.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topsyn.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topsyn.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topsyn.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topsyn.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+</TABLE>
+<hr>
+<h2> top IP/UDP/ICMP src and destinations </h2>
+<p> 
+
+<p> 
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+ip/udp/icmp src today, yesterday, day before yesterday, etc.
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="topn_ipsrc_today.txt"> 
+	today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topn_ipsrc.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+
+<tr>
+<TD> 
+<a href="topudp_ipsrc_today.txt"> 
+	UDP today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipsrc.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+<tr>
+<TD> 
+<a href="topicmp_ipsrc_today.txt"> 
+	ICMP today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipsrc.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+</TABLE>
+
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+ip/udp/icmp dst today, yesterday, day before yesterday, etc.
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="topn_ipdst_today.txt"> 
+	today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topn_ipdst.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topn_ipdst.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+<tr>
+<TD> 
+<a href="topudp_ipdst_today.txt"> 
+	UDP today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topudp_ipdst.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+<tr>
+<TD> 
+<a href="topicmp_ipdst_today.txt"> 
+	ICMP today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="topicmp_ipdst.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+
+</TABLE>
+
+</TABLE>
+
+<hr>
+<h2> top worm (port signature) 24 hour batch reports, all filtered by weight and syn count </h2>
+<p> 
+
+
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+all worm port signatures, today, yesterday, etc.
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="allworm_today.txt"> 
+	all worms today (run hourly)  </a> 
+</td>
+<TD> 
+<a href="allworm.0.txt"> 
+	today - 1 day (run daily)</a> 
+</td>
+<TD> 
+<a href="allworm.1.txt"> 
+	today - 2 days </a> 
+</td>
+<TD> 
+<a href="allworm.2.txt"> 
+	today - 3 days </a> 
+</td>
+<TD> 
+<a href="allworm.3.txt"> 
+	today - 4 days </a> 
+</td>
+<TD> 
+<a href="allworm.4.txt"> 
+	today - 5 days </a> 
+</td>
+<TD> 
+<a href="allworm.5.txt"> 
+	today - 6 days </a> 
+</td>
+<TD> 
+<a href="allworm.6.txt"> 
+	today - 7 days </a> 
+</td>
+<TD> 
+<a href="allworm.7.txt"> 
+	today - 8 days </a> 
+</td>
+</tr>
+</TABLE>
+
+<hr>
+<h2> Weekly Event Logs </h2>
+<p> 
+<TABLE BORDER=2 CELLSPACING=0 CELLPADDING=0 >
+<caption >
+event log, today, and previous days 
+<TR>
+</tr>
+<tr>
+<TD> 
+<a href="event_today.txt"> 
+	front-end events for today </a> 
+</td>
+<TD> 
+<a href="event.0.txt"> 
+	events for previous day </a> 
+</td>
+<TD> 
+<a href="event.1.txt"> 
+	event - 2 days </a> 
+</td>
+<TD> 
+<a href="event.2.txt"> 
+	event - 3 days </a> 
+</td>
+<TD> 
+<a href="event.3.txt"> 
+	event - 4 days </a> 
+</td>
+<TD> 
+<a href="event.4.txt"> 
+	event - 5 days </a> 
+</td>
+<TD> 
+<a href="event.5.txt"> 
+	event - 6 days </a> 
+</td>
+<TD> 
+<a href="event.6.txt"> 
+	event - 7 days </a> 
+</td>
+<TD> 
+<a href="event.7.txt"> 
+	event - 8 days </a> 
+</td>
+</tr>
+</TABLE>
+
+<hr>
+<h2> top/current TCP flows </h2>
+<p> <a href="topn_tcp.html">
+	<img src="topn_tcp1.png">
+</a><p>
+
+<hr>
+<h2> top/current UDP flows </h2>
+<p> <a href="topn_udp.html">
+	<img src="topn_udp1.png">
+</a><p>
+
+<hr>
+<h2> top/current ICMP flows </h2>
+<p> <a href="topn_icmp.html">
+	<img src="topn_icmp1.png">
+</a><p>
+<hr>
+<h2> top/current TCP syn generating ip </h2>
+<p> <a href="tcpsyn.html" name=tcpsyn>
+	<img src="topn_tcp_syn1.png">
+</a></p>
+<br>
+<hr>
+Tcpworm report (expanded report version of portreport) 
+<br>
+<a href="tcpworm.txt"> tcpworm.txt </a> report (ASCII)
+<br>
+<br>
+<a href="portreport.txt"> portreport.txt </a> report (ASCII)
+<hr>
+<h2> counts of suspicious syn scanners based on topn syn information</h2>
+<p> <a href="tworm.html" name=tcpworm>
+	<img src="twormcount.daily-png">
+</a></p>
+<h2> top/current ICMP error generators </h2>
+<p> <a href="icmperror.html" name=icmperror>
+	<img src="topn_icmperror1.png">
+</a></p>
+<hr>
+<h2> top/current UDP error generators </h2>
+<p> <a href="udperror.html" name=udperror>
+	<img src="topn_udperror1.png">
+</a></p>
+
+<hr>
+<h2> top/current TCP ports </h2>
+<p> <a href="tcpports.html" name=topn-ports>
+	<img src="topn_tcp_port1.png">
+</a></p>
+
+<h2> top/current UDP ports </h2>
+<p> <a href="udpports.html">
+	<img src="topn_udp_port1.png">
+</a></p>
+
+<hr>
+<h2> Scanners - 1 IP source to many L3 and L4 destinations </h2>
+<hr>
+<p> 
+<a name=scanning></a>
+<h2> 
+Single IP source to many IP destinations 
+</h2>
+<p>
+<p> <a href="ipscan.html">
+	<img src="ip_scan1.png">
+</a></p>
+
+<hr>
+<p> 
+<h2>
+One IP src to many ip L4 ports (udp or tcp).
+</h2>
+<p> <a href="ipportscan.html">
+	<img src="ip_port_scan1.png">
+</a></p>
+<hr>
+<p> 
+<h2>
+TCP Port scanning.  One IP src to many TCP ports. 
+</h2>
+<p> <a href="tcpscan.html">
+	<img src="tcpport_port_scan1.png">
+</a></p>
+<hr>
+<p> 
+<h2>
+UDP Port scanning.  One IP src to many UDP ports. 
+</h2>
+<p> <a href="udpscan.html">
+	<img src="udpport_port_scan1.png">
+</a></p>
+
+</body>
+

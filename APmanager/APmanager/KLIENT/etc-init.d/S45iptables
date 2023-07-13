@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Skrypt ustawia znakowanie pakietow dla celow statystycznych
+#
+iptables -t mangle -F FORWARD
+iptables -t mangle -N PORTS
+iptables -t mangle -I FORWARD -j PORTS
+
+iptables -t mangle -A PORTS -p tcp --sport 20 -j MARK --set-mark 17
+iptables -t mangle -A PORTS -p tcp --dport 20 -j MARK --set-mark 18
+iptables -t mangle -A PORTS -p tcp --sport 21 -j MARK --set-mark 19
+iptables -t mangle -A PORTS -p tcp --dport 21 -j MARK --set-mark 20
+iptables -t mangle -A PORTS -p tcp --sport 22 -j MARK --set-mark 21
+iptables -t mangle -A PORTS -p tcp --dport 22 -j MARK --set-mark 22
+iptables -t mangle -A PORTS -p tcp --sport 25 -j MARK --set-mark 23
+iptables -t mangle -A PORTS -p tcp --dport 25 -j MARK --set-mark 24
+iptables -t mangle -A PORTS -p tcp --sport 80 -j MARK --set-mark 25
+iptables -t mangle -A PORTS -p tcp --dport 80 -j MARK --set-mark 26
+iptables -t mangle -A PORTS -p tcp --sport 110 -j MARK --set-mark 27
+iptables -t mangle -A PORTS -p tcp --dport 110 -j MARK --set-mark 28
+iptables -t mangle -A PORTS -p tcp --sport 119 -j MARK --set-mark 29
+iptables -t mangle -A PORTS -p tcp --dport 119 -j MARK --set-mark 30
+iptables -t mangle -A PORTS -p tcp --sport 143 -j MARK --set-mark 31
+iptables -t mangle -A PORTS -p tcp --dport 143 -j MARK --set-mark 32
+iptables -t mangle -A PORTS -p tcp --sport 443 -j MARK --set-mark 33
+iptables -t mangle -A PORTS -p tcp --dport 443 -j MARK --set-mark 34
+iptables -t mangle -A PORTS -p tcp --sport 993 -j MARK --set-mark 35
+iptables -t mangle -A PORTS -p tcp --dport 993 -j MARK --set-mark 36
+iptables -t mangle -A PORTS -p tcp --sport 995 -j MARK --set-mark 37
+iptables -t mangle -A PORTS -p tcp --dport 995 -j MARK --set-mark 38

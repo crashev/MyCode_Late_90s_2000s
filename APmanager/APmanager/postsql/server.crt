@@ -1,0 +1,64 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 0 (0x0)
+        Signature Algorithm: md5WithRSAEncryption
+        Issuer: C=PL, ST=Zachodniopomorskie, L=Koszalin, O=Internet Widgits Pty Ltd, CN=Pawel/emailAddress=crashev@ebox.pl
+        Validity
+            Not Before: Mar 19 17:22:56 2005 GMT
+            Not After : Apr 18 17:22:56 2005 GMT
+        Subject: C=PL, ST=Zachodniopomorskie, L=Koszalin, O=Internet Widgits Pty Ltd, CN=Pawel/emailAddress=crashev@ebox.pl
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:c7:d9:15:ca:a3:a9:a3:0d:c7:bf:28:2b:ba:1c:
+                    15:dc:e9:3b:a4:e4:7e:53:f0:f6:61:2d:b9:84:e1:
+                    9a:03:ce:b5:15:19:cd:13:ee:30:59:6c:99:0a:84:
+                    5b:95:31:27:9a:b7:38:20:6e:8c:55:3b:8a:7e:c6:
+                    dd:62:2b:8d:b3:e1:1e:d6:82:e0:0b:ff:e2:19:dc:
+                    a3:77:26:f0:68:be:a5:83:c3:99:1e:6c:d6:62:a3:
+                    6a:2d:4b:f7:ae:5c:38:41:0c:a8:7c:33:96:47:93:
+                    95:52:67:40:6d:bf:f2:01:69:ef:35:0b:4c:52:d8:
+                    21:f5:64:46:33:ef:fa:bc:ff
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                77:AD:56:25:8D:D6:45:1E:1A:03:B0:3C:28:40:D8:41:B1:87:FF:BA
+            X509v3 Authority Key Identifier: 
+                keyid:77:AD:56:25:8D:D6:45:1E:1A:03:B0:3C:28:40:D8:41:B1:87:FF:BA
+                DirName:/C=PL/ST=Zachodniopomorskie/L=Koszalin/O=Internet Widgits Pty Ltd/CN=Pawel/emailAddress=crashev@ebox.pl
+                serial:00
+
+            X509v3 Basic Constraints: 
+                CA:TRUE
+    Signature Algorithm: md5WithRSAEncryption
+        24:d2:26:78:db:6a:76:26:85:34:b1:6f:1f:e3:29:f3:1a:c2:
+        e7:69:fa:88:58:a5:ba:d6:c1:7d:2c:87:fd:f3:47:67:a1:e9:
+        dc:d6:7f:f8:af:07:c3:21:4c:e3:7f:0b:c3:29:42:d0:21:b1:
+        22:de:e4:9b:3c:6f:79:3c:8f:e2:64:81:db:f4:00:61:b9:47:
+        b9:c0:09:db:ea:23:b4:44:c9:55:db:5b:09:a7:29:34:87:c9:
+        fd:38:5d:4b:58:fd:07:f5:98:cb:15:d6:4a:7e:cd:34:f9:8a:
+        43:eb:88:1d:f2:40:e6:98:ba:00:c7:d6:ab:79:5e:b6:77:c1:
+        d6:96
+-----BEGIN CERTIFICATE-----
+MIIDiTCCAvKgAwIBAgIBADANBgkqhkiG9w0BAQQFADCBkDELMAkGA1UEBhMCUEwx
+GzAZBgNVBAgTElphY2hvZG5pb3BvbW9yc2tpZTERMA8GA1UEBxMIS29zemFsaW4x
+ITAfBgNVBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEOMAwGA1UEAxMFUGF3
+ZWwxHjAcBgkqhkiG9w0BCQEWD2NyYXNoZXZAZWJveC5wbDAeFw0wNTAzMTkxNzIy
+NTZaFw0wNTA0MTgxNzIyNTZaMIGQMQswCQYDVQQGEwJQTDEbMBkGA1UECBMSWmFj
+aG9kbmlvcG9tb3Jza2llMREwDwYDVQQHEwhLb3N6YWxpbjEhMB8GA1UEChMYSW50
+ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMQ4wDAYDVQQDEwVQYXdlbDEeMBwGCSqGSIb3
+DQEJARYPY3Jhc2hldkBlYm94LnBsMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB
+gQDH2RXKo6mjDce/KCu6HBXc6Tuk5H5T8PZhLbmE4ZoDzrUVGc0T7jBZbJkKhFuV
+MSeatzggboxVO4p+xt1iK42z4R7WguAL/+IZ3KN3JvBovqWDw5kebNZio2otS/eu
+XDhBDKh8M5ZHk5VSZ0Btv/IBae81C0xS2CH1ZEYz7/q8/wIDAQABo4HwMIHtMB0G
+A1UdDgQWBBR3rVYljdZFHhoDsDwoQNhBsYf/ujCBvQYDVR0jBIG1MIGygBR3rVYl
+jdZFHhoDsDwoQNhBsYf/uqGBlqSBkzCBkDELMAkGA1UEBhMCUEwxGzAZBgNVBAgT
+ElphY2hvZG5pb3BvbW9yc2tpZTERMA8GA1UEBxMIS29zemFsaW4xITAfBgNVBAoT
+GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEOMAwGA1UEAxMFUGF3ZWwxHjAcBgkq
+hkiG9w0BCQEWD2NyYXNoZXZAZWJveC5wbIIBADAMBgNVHRMEBTADAQH/MA0GCSqG
+SIb3DQEBBAUAA4GBACTSJnjbanYmhTSxbx/jKfMawudp+ohYpbrWwX0sh/3zR2eh
+6dzWf/ivB8MhTON/C8MpQtAhsSLe5Js8b3k8j+Jkgdv0AGG5R7nACdvqI7REyVXb
+WwmnKTSHyf04XUtY/Qf1mMsV1kp+zTT5ikPriB3yQOaYugDH1qt5XrZ3wdaW
+-----END CERTIFICATE-----

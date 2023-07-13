@@ -1,0 +1,629 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   b.java
+
+package c;
+
+import a.i;
+import a.r;
+
+// Referenced classes of package c:
+//            a
+
+public class b
+{
+
+    byte[] a(String s1)
+    {
+        byte abyte0[];
+        int i1;
+        int j1;
+        abyte0 = new byte[s1.length() / 2];
+        i1 = 0;
+        j1 = 0;
+        if(a.c == 0) goto _L2; else goto _L1
+_L1:
+        char c1 = s1.charAt(i1);
+        abyte0[j1] = (byte)(c1 > '9' ? (10 + (c1 - 65)) * 16 : (c1 - 48) * 16);
+        c1 = s1.charAt(i1 + 1);
+        abyte0[j1] += (byte)(c1 > '9' ? 10 + (c1 - 65) : c1 - 48);
+        i1 += 2;
+        j1++;
+_L2:
+        if(i1 >= s1.length() - 1)
+            return abyte0;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public b()
+    {
+        int i1 = a.c;
+        super();
+        g = new int[8][16];
+        h = new int[8][8];
+        i = new int[8][16];
+        j = new int[8][8];
+        m = new int[7][16];
+        n = new int[7][16];
+        o = new int[86];
+        p = new int[16];
+        q = new int[8][64];
+        d = new int[16][2];
+        if(i1 != 0)
+        {
+            int j1 = i.i;
+            i.i = ++j1;
+        }
+    }
+
+    public String a(byte abyte0[], String s1)
+    {
+        if(abyte0 == null)
+        {
+            return "";
+        } else
+        {
+            b(abyte0);
+            return b(s1);
+        }
+    }
+
+    public String b(String s1)
+    {
+        int i1;
+        i1 = a.c;
+        if(s1.length() == 0)
+            return new String();
+        if(i1 == 0) goto _L2; else goto _L1
+_L1:
+        s1;
+        new StringBuffer();
+        JVM INSTR swap ;
+        append();
+        '\001';
+        append();
+        toString();
+_L5:
+        s1;
+_L2:
+        if(s1.length() % 8 != 0) goto _L1; else goto _L3
+_L3:
+        new String();
+        if(i1 != 0) goto _L5; else goto _L4
+_L4:
+        String s2;
+        s2;
+        if(i1 == 0) goto _L7; else goto _L6
+_L6:
+        s1.substring(0, 8);
+_L10:
+        getBytes();
+        byte abyte0[];
+        abyte0;
+        a(abyte0);
+        s2 += a.r.a(abyte0);
+        s1 = s1.substring(8);
+_L7:
+        if(s1.length() > 0) goto _L6; else goto _L8
+_L8:
+        s2;
+        if(i1 != 0) goto _L10; else goto _L9
+_L9:
+        return;
+        JVM INSTR pop ;
+        return "";
+    }
+
+    int a(int i1, int j1)
+    {
+        return q[i1][j1];
+    }
+
+    void a(byte abyte0[], int i1)
+    {
+        int ai[][];
+        int j1;
+        int k1;
+        short word0;
+        int j3;
+        j3 = a.c;
+        ai = d;
+        k1 = j1 = 0;
+        word0 = 7;
+_L2:
+        int l1 = 0xff & abyte0[word0];
+        k1 = o[l1 & 0x55] | k1 << 1;
+        j1 = o[l1 >>> 1 & 0x55] | j1 << 1;
+        --word0;
+_L4:
+        JVM INSTR ifge 20;
+           goto _L1 _L2
+_L1:
+        i1;
+        if(j3 != 0) goto _L4; else goto _L3
+_L3:
+        int ai1[];
+        int i2;
+        if(i1 != 0)
+            ai1 = ai[i2 = 15];
+        else
+            ai1 = ai[i2 = 0];
+        word0 = 16;
+_L6:
+        int j2 = j1 >>> 15 | j1 << 17;
+        int l2 = ai1[0];
+        k1 ^= a(0, (j2 >>> 12 ^ l2 >>> 24) & 0x3f) | a(1, (j2 >>> 8 ^ l2 >>> 16) & 0x3f) | a(2, (j2 >>> 4 ^ l2 >>> 8) & 0x3f) | a(3, (j2 ^ l2) & 0x3f);
+        l2 = ai1[1];
+        k1 ^= a(4, (j1 >>> 11 ^ l2 >>> 24) & 0x3f) | a(5, (j1 >>> 7 ^ l2 >>> 16) & 0x3f) | a(6, (j1 >>> 3 ^ l2 >>> 8) & 0x3f) | a(7, (j2 >>> 16 ^ l2) & 0x3f);
+        j2 = k1;
+        k1 = j1;
+        j1 = j2;
+        if(i1 != 0)
+        {
+            if(--i2 >= 0)
+                ai1 = ai[i2];
+            if(j3 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        i2++;
+_L8:
+        if(i2 <= 15)
+            ai1 = ai[i2];
+        if(--word0 > 0) goto _L6; else goto _L5
+_L5:
+        int k2 = a(0, k1, j1) | (a(8, k1, j1) | (a(16, k1, j1) | a(24, k1, j1) << 2) << 2) << 2;
+        j1 = a(4, k1, j1) | (a(12, k1, j1) | (a(20, k1, j1) | a(28, k1, j1) << 2) << 2) << 2;
+        k1 = k2;
+        byte byte0 = 7;
+        int i3 = j1;
+        abyte0[byte0] = (byte)(i3 & 0xff);
+        abyte0[--byte0] = (byte)((i3 >>>= 8) & 0xff);
+        abyte0[--byte0] = (byte)((i3 >>>= 8) & 0xff);
+        abyte0[--byte0] = (byte)(i3 >>> 8 & 0xff);
+        i3 = k1;
+        abyte0[--byte0] = (byte)(i3 & 0xff);
+        abyte0[--byte0] = (byte)((i3 >>>= 8) & 0xff);
+        abyte0[--byte0] = (byte)((i3 >>>= 8) & 0xff);
+        abyte0[--byte0] = (byte)(i3 >>> 8 & 0xff);
+        if(j3 == 0)
+            return;
+        if(true) goto _L8; else goto _L7
+_L7:
+        if(true) goto _L6; else goto _L9
+_L9:
+    }
+
+    void a(byte abyte0[], int ai[][])
+    {
+        int i1;
+        int j1;
+        short word0;
+        int l1;
+        l1 = a.c;
+        if(a == 0)
+        {
+            a();
+            a = 1;
+        }
+        j1 = i1 = 0;
+        word0 = 0;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        (abyte0[word0] & 0xff) >>> 1;
+_L5:
+        int k1;
+        k1;
+        j1 |= g[word0][k1 >>> 3 & 0xf] | h[word0][k1 & 7];
+        i1 |= i[word0][k1 >>> 3 & 0xf] | j[word0][k1 & 7];
+        word0++;
+_L2:
+        if(word0 < 8) goto _L1; else goto _L3
+_L3:
+        false;
+        if(l1 != 0) goto _L5; else goto _L4
+_L4:
+        word0;
+        if(l1 == 0) goto _L7; else goto _L6
+_L6:
+        j1 <<= k[word0];
+        j1 = j1 >>> 28 & 3 | j1 & 0xfffffff;
+        ai[word0][0] = a(m, j1);
+        i1 <<= k[word0];
+        i1 = i1 >>> 28 & 3 | i1 & 0xfffffff;
+        ai[word0][1] = a(n, i1);
+        word0++;
+_L7:
+        if(word0 >= 16)
+            return;
+        if(true) goto _L6; else goto _L8
+_L8:
+    }
+
+    int a(int ai[][], int i1)
+    {
+        return ai[6][i1 & 0xf] | ai[5][i1 >>> 4 & 0xf] | ai[4][i1 >>> 8 & 0xf] | ai[3][i1 >> 12 & 0xf] | ai[2][i1 >>> 16 & 0xf] | ai[1][i1 >>> 20 & 0xf] | ai[0][i1 >>> 24 & 0xf];
+    }
+
+    void a(int ai[])
+    {
+        int i1 = 0;
+        if(a.c == 0) goto _L2; else goto _L1
+_L1:
+        ai[i1] = 0;
+        i1++;
+_L2:
+        if(i1 >= ai.length)
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    int a()
+    {
+        int ai[];
+        int ai1[];
+        int ai2[];
+        int ai3[];
+        int ai4[];
+        int ai5[];
+        int i1;
+        int j1;
+        int j2;
+        j2 = a.c;
+        ai = new int[64];
+        ai1 = new int[64];
+        ai2 = new int[28];
+        ai3 = new int[28];
+        ai4 = new int[64];
+        ai5 = new int[32];
+        a(ai);
+        a(ai1);
+        i1 = 1;
+        j1 = 28;
+        if(j2 == 0) goto _L2; else goto _L1
+_L1:
+        ai[e[j1] - 1] = ai1[f[j1] - 1] = i1;
+_L5:
+        i1 += i1;
+_L2:
+        if(--j1 >= 0) goto _L1; else goto _L3
+_L3:
+        j1 = 0;
+        if(j2 != 0 && j2 != 0) goto _L5; else goto _L4
+_L16:
+        8 >>> (j1 & 3);
+_L18:
+        int k1;
+        k1;
+        int l1 = 0;
+        if(j2 == 0) goto _L7; else goto _L6
+_L6:
+        l1;
+        k1;
+_L12:
+        JVM INSTR iand ;
+        JVM INSTR ifeq 231;
+           goto _L8 _L9
+_L8:
+        break MISSING_BLOCK_LABEL_144;
+_L9:
+        continue; /* Loop/switch isn't completed */
+        g[j1 >>> 3][l1] |= ai[j1];
+        i[j1 >>> 3][l1] |= ai1[j1];
+        if(l1 < 8)
+        {
+            h[j1 >>> 3][l1] |= ai[j1 + 3];
+            j[j1 >>> 3][l1] |= ai1[j1 + 3];
+        }
+        l1++;
+_L7:
+        if(l1 < 16) goto _L6; else goto _L10
+_L10:
+        k1;
+        1;
+        if(j2 != 0) goto _L12; else goto _L11
+_L11:
+        JVM INSTR icmpne 263;
+           goto _L13 _L14
+_L13:
+        break MISSING_BLOCK_LABEL_256;
+_L14:
+        continue; /* Loop/switch isn't completed */
+        j1 += 4;
+        j1++;
+_L4:
+        if(j1 < 64) goto _L16; else goto _L15
+_L15:
+        a(ai2);
+        a(ai3);
+        i1 = 1;
+        24;
+        if(j2 != 0) goto _L18; else goto _L17
+_L17:
+        j1;
+        if(j2 == 0) goto _L20; else goto _L19
+_L19:
+        (byte)(j1 + 5);
+_L27:
+        k1;
+_L22:
+        ai2[l[k1] - 1] = ai3[l[k1 + 24] - 28 - 1] = i1;
+        i1 += i1;
+        --k1;
+_L24:
+        j1;
+        JVM INSTR icmpge 312;
+           goto _L21 _L22
+_L21:
+        i1 << 2;
+        if(j2 != 0) goto _L24; else goto _L23
+_L23:
+        i1;
+_L20:
+        if((j1 -= 6) >= 0) goto _L19; else goto _L25
+_L25:
+        false;
+        if(j2 != 0) goto _L27; else goto _L26
+_L26:
+        j1;
+        if(j2 == 0) goto _L29; else goto _L28
+_L28:
+        i1 = 8 >>> (j1 & 3);
+_L39:
+        k1 = 0;
+        if(j2 == 0) goto _L31; else goto _L30
+_L30:
+        k1 & i1;
+_L36:
+        JVM INSTR ifeq 460;
+           goto _L32 _L33
+_L32:
+        break MISSING_BLOCK_LABEL_421;
+_L33:
+        continue; /* Loop/switch isn't completed */
+        m[j1 >>> 2][k1] |= ai2[j1];
+        n[j1 >>> 2][k1] |= ai3[j1];
+        k1++;
+_L31:
+        if(k1 < 16) goto _L30; else goto _L34
+_L34:
+        (byte)(j1 + 1);
+        if(j2 != 0) goto _L36; else goto _L35
+_L35:
+        j1;
+_L29:
+        if(j1 < 28) goto _L28; else goto _L37
+_L37:
+        j1 = 0;
+        if(j2 != 0) goto _L39; else goto _L38
+_L38:
+        if(j2 == 0) goto _L41; else goto _L40
+_L40:
+        i1 = 0;
+_L44:
+        if((j1 & 0x40) != 0)
+            i1 = 0x1000000;
+        if((j1 & 0x10) != 0)
+            i1 |= 0x10000;
+        if((j1 & 4) != 0)
+            i1 |= 0x100;
+        if((j1 & 1) != 0)
+            i1 |= 1;
+        o[j1] = i1;
+        j1++;
+_L41:
+        if(j1 <= 85) goto _L40; else goto _L42
+_L42:
+        j1 = 0;
+        if(j2 != 0 && j2 != 0) goto _L44; else goto _L43
+_L46:
+        i1 = 0;
+_L48:
+        if((j1 & 1) != 0)
+            i1 = 0x1000000;
+        if((j1 & 2) != 0)
+            i1 |= 0x10000;
+        if((j1 & 4) != 0)
+            i1 |= 0x100;
+        if((j1 & 8) != 0)
+            i1 |= 1;
+        p[j1] = i1;
+        j1++;
+_L43:
+        if(j1 < 16) goto _L46; else goto _L45
+_L45:
+        j1 = 0;
+        if(j2 != 0) goto _L48; else goto _L47
+_L47:
+        if(j2 == 0) goto _L50; else goto _L49
+_L49:
+        ai4[j1] = j1 & 0x20 | (j1 & 1) << 4 | (j1 & 0x1e) >>> 1;
+_L53:
+        j1++;
+_L50:
+        if(j1 < 64) goto _L49; else goto _L51
+_L51:
+        i1 = 1;
+        j1 = 32;
+        if(j2 != 0 && j2 != 0) goto _L53; else goto _L52
+_L55:
+        ai5[r[j1] - 1] = i1;
+_L57:
+        i1 += i1;
+_L52:
+        if(--j1 >= 0) goto _L55; else goto _L54
+_L54:
+        j1 = 0;
+        if(j2 != 0) goto _L57; else goto _L56
+_L56:
+        if(j2 == 0) goto _L59; else goto _L58
+_L58:
+        false;
+_L71:
+        k1;
+        if(j2 == 0) goto _L61; else goto _L60
+_L60:
+        s[j1][ai4[k1]];
+_L68:
+        l1;
+        int i2 = 0;
+_L63:
+        if((l1 & 8) != 0)
+            q[j1][k1] |= ai5[4 * j1 + i2];
+        l1 += l1;
+        ++i2;
+_L65:
+        4;
+        JVM INSTR icmplt 826;
+           goto _L62 _L63
+_L62:
+        (byte)(k1 + 1);
+        if(j2 != 0) goto _L65; else goto _L64
+_L64:
+        k1;
+_L61:
+        if(k1 < 64) goto _L60; else goto _L66
+_L66:
+        (byte)(j1 + 1);
+        if(j2 != 0) goto _L68; else goto _L67
+_L67:
+        j1;
+_L59:
+        if(j1 < 8) goto _L58; else goto _L69
+_L69:
+        0;
+        if(j2 != 0) goto _L71; else goto _L70
+_L70:
+        return;
+    }
+
+    void a(byte abyte0[])
+    {
+        a(abyte0, 0);
+    }
+
+    public void b(byte abyte0[])
+    {
+        a(abyte0, d);
+    }
+
+    int a(int i1, int j1, int k1)
+    {
+        return p[j1 >>> i1 & 0xf] << 1 | p[k1 >>> i1 & 0xf];
+    }
+
+    void c(byte abyte0[])
+    {
+        a(abyte0, 1);
+    }
+
+    int a;
+    final int b = 0;
+    final int c = 1;
+    int d[][];
+    final byte e[] = {
+        57, 49, 41, 33, 25, 17, 9, 1, 58, 50, 
+        42, 34, 26, 18, 10, 2, 59, 51, 43, 35, 
+        27, 19, 11, 3, 60, 52, 44, 36
+    };
+    final byte f[] = {
+        63, 55, 47, 39, 31, 23, 15, 7, 62, 54, 
+        46, 38, 30, 22, 14, 6, 61, 53, 45, 37, 
+        29, 21, 13, 5, 28, 20, 12, 4
+    };
+    int g[][];
+    int h[][];
+    int i[][];
+    int j[][];
+    final byte k[] = {
+        1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 
+        2, 2, 2, 2, 2, 1
+    };
+    final byte l[] = {
+        14, 17, 11, 24, 1, 5, 3, 28, 15, 6, 
+        21, 10, 23, 19, 12, 4, 26, 8, 16, 7, 
+        27, 20, 13, 2, 41, 52, 31, 37, 47, 55, 
+        30, 40, 51, 45, 33, 48, 44, 49, 39, 56, 
+        34, 53, 46, 42, 50, 36, 29, 32
+    };
+    int m[][];
+    int n[][];
+    int o[];
+    int p[];
+    int q[][];
+    final byte r[] = {
+        16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 
+        23, 26, 5, 18, 31, 10, 2, 8, 24, 14, 
+        32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 
+        4, 25
+    };
+    final byte s[][] = {
+        {
+            14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 
+            6, 12, 5, 9, 0, 7, 0, 15, 7, 4, 
+            14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 
+            3, 8, 4, 1, 14, 8, 13, 6, 2, 11, 
+            15, 12, 9, 7, 3, 10, 5, 0, 15, 12, 
+            8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 
+            10, 0, 6, 13
+        }, {
+            15, 1, 8, 14, 6, 11, 3, 4, 9, 7, 
+            2, 13, 12, 0, 5, 10, 3, 13, 4, 7, 
+            15, 2, 8, 14, 12, 0, 1, 10, 6, 9, 
+            11, 5, 0, 14, 7, 11, 10, 4, 13, 1, 
+            5, 8, 12, 6, 9, 3, 2, 15, 13, 8, 
+            10, 1, 3, 15, 4, 2, 11, 6, 7, 12, 
+            0, 5, 14, 9
+        }, {
+            10, 0, 9, 14, 6, 3, 15, 5, 1, 13, 
+            12, 7, 11, 4, 2, 8, 13, 7, 0, 9, 
+            3, 4, 6, 10, 2, 8, 5, 14, 12, 11, 
+            15, 1, 13, 6, 4, 9, 8, 15, 3, 0, 
+            11, 1, 2, 12, 5, 10, 14, 7, 1, 10, 
+            13, 0, 6, 9, 8, 7, 4, 15, 14, 3, 
+            11, 5, 2, 12
+        }, {
+            7, 13, 14, 3, 0, 6, 9, 10, 1, 2, 
+            8, 5, 11, 12, 4, 15, 13, 8, 11, 5, 
+            6, 15, 0, 3, 4, 7, 2, 12, 1, 10, 
+            14, 9, 10, 6, 9, 0, 12, 11, 7, 13, 
+            15, 1, 3, 14, 5, 2, 8, 4, 3, 15, 
+            0, 6, 10, 1, 13, 8, 9, 4, 5, 11, 
+            12, 7, 2, 14
+        }, {
+            2, 12, 4, 1, 7, 10, 11, 6, 8, 5, 
+            3, 15, 13, 0, 14, 9, 14, 11, 2, 12, 
+            4, 7, 13, 1, 5, 0, 15, 10, 3, 9, 
+            8, 6, 4, 2, 1, 11, 10, 13, 7, 8, 
+            15, 9, 12, 5, 6, 3, 0, 14, 11, 8, 
+            12, 7, 1, 14, 2, 13, 6, 15, 0, 9, 
+            10, 4, 5, 3
+        }, {
+            12, 1, 10, 15, 9, 2, 6, 8, 0, 13, 
+            3, 4, 14, 7, 5, 11, 10, 15, 4, 2, 
+            7, 12, 9, 5, 6, 1, 13, 14, 0, 11, 
+            3, 8, 9, 14, 15, 5, 2, 8, 12, 3, 
+            7, 0, 4, 10, 1, 13, 11, 6, 4, 3, 
+            2, 12, 9, 5, 15, 10, 11, 14, 1, 7, 
+            6, 0, 8, 13
+        }, {
+            4, 11, 2, 14, 15, 0, 8, 13, 3, 12, 
+            9, 7, 5, 10, 6, 1, 13, 0, 11, 7, 
+            4, 9, 1, 10, 14, 3, 5, 12, 2, 15, 
+            8, 6, 1, 4, 11, 13, 12, 3, 7, 14, 
+            10, 15, 6, 8, 0, 5, 9, 2, 6, 11, 
+            13, 8, 1, 4, 10, 7, 9, 5, 0, 15, 
+            14, 2, 3, 12
+        }, {
+            13, 2, 8, 4, 6, 15, 11, 1, 10, 9, 
+            3, 14, 5, 0, 12, 7, 1, 15, 13, 8, 
+            10, 3, 7, 4, 12, 5, 6, 11, 0, 14, 
+            9, 2, 7, 11, 4, 1, 9, 12, 14, 2, 
+            0, 6, 10, 13, 15, 3, 5, 8, 2, 1, 
+            14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 
+            3, 5, 6, 11
+        }
+    };
+}

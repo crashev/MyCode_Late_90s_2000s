@@ -1,0 +1,33 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   JSProxy.java
+
+package netscape.javascript;
+
+import java.applet.Applet;
+
+// Referenced classes of package netscape.javascript:
+//            JSObject
+
+public interface JSProxy
+{
+
+    public abstract Object getMember(JSObject jsobject, String s);
+
+    public abstract Object getSlot(JSObject jsobject, int i);
+
+    public abstract void setMember(JSObject jsobject, String s, Object obj);
+
+    public abstract void setSlot(JSObject jsobject, int i, Object obj);
+
+    public abstract void removeMember(JSObject jsobject, String s);
+
+    public abstract Object call(JSObject jsobject, String s, Object aobj[]);
+
+    public abstract Object eval(JSObject jsobject, String s);
+
+    public abstract String toString(JSObject jsobject);
+
+    public abstract JSObject getWindow(Applet applet);
+}

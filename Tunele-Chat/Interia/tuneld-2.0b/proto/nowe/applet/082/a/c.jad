@@ -1,0 +1,116 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   c.java
+
+package a;
+
+import java.awt.*;
+
+// Referenced classes of package a:
+//            b, a
+
+public class c extends b
+{
+
+    public c()
+    {
+        super.p = 2;
+    }
+
+    public c(String s)
+    {
+        this();
+        a(s);
+    }
+
+    public void paint(Graphics g)
+    {
+label0:
+        {
+            int i = a.q;
+            if(!super.c && w != null)
+            {
+                a(g, w);
+                if(i == 0)
+                    break label0;
+            }
+            if(super.d == 0 && v != null)
+            {
+                a(g, v);
+                if(i == 0)
+                    break label0;
+            }
+            if(super.d == 1 && w != null)
+            {
+                a(g, w);
+                if(i == 0)
+                    break label0;
+            }
+            if(super.d == 2 && x != null)
+            {
+                a(g, x);
+                if(i == 0)
+                    break label0;
+            }
+            if(super.l != null)
+            {
+                g.setColor(super.l);
+                g.fillRect(0, 0, super.a, super.b);
+                g.setColor(Color.white);
+                g.drawLine(super.a / 2, 5, super.a / 2, super.b - 5);
+            }
+        }
+    }
+
+    final void a(Graphics g, Image aimage[])
+    {
+        int i;
+        int j;
+        j = a.q;
+        g.drawImage(aimage[0], 0, 0, null);
+        i = 9;
+        if(j == 0) goto _L2; else goto _L1
+_L1:
+        g.drawImage(aimage[1], i, 0, null);
+_L5:
+        JVM INSTR pop ;
+        i += 9;
+_L2:
+        if(i <= super.a - 18) goto _L1; else goto _L3
+_L3:
+        super.a;
+        if(j != 0) goto _L5; else goto _L4
+_L4:
+        27;
+        JVM INSTR icmple 85;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_63;
+_L7:
+        break MISSING_BLOCK_LABEL_85;
+        g.drawImage(aimage[1], super.a - 18, 0, null);
+        if(j == 0)
+            break MISSING_BLOCK_LABEL_97;
+        g.drawImage(aimage[1], 9, 0, null);
+        g.drawImage(aimage[2], super.a - 9, 0, null);
+        a(g, 0, 0);
+        return;
+    }
+
+    public void a(Image aimage[][])
+    {
+        a(aimage[0], aimage[1], aimage[2]);
+    }
+
+    public void a(Image aimage[], Image aimage1[], Image aimage2[])
+    {
+        v = aimage;
+        w = aimage1;
+        x = aimage2;
+    }
+
+    private Image v[];
+    private Image w[];
+    private Image x[];
+}

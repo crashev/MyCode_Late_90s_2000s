@@ -1,0 +1,69 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   g.java
+
+package a;
+
+import java.awt.*;
+
+// Referenced classes of package a:
+//            a, r
+
+public class g extends a
+{
+
+    public g(String s, int i)
+    {
+        super(false);
+        r = false;
+        a(s);
+        super.p = (short)i;
+        super.m = a.r.a(0, 0, 0);
+    }
+
+    public g(int i)
+    {
+        this(null, i);
+    }
+
+    public g(String s)
+    {
+        this(s, 0);
+    }
+
+    public void a(boolean flag)
+    {
+        r = flag;
+        repaint();
+    }
+
+    public void paint(Graphics g1)
+    {
+        if(super.l != null)
+        {
+            g1.setColor(super.l);
+            g1.fillRect(0, 0, super.a, super.b);
+        }
+        a(g1, 0, 0);
+        FontMetrics fontmetrics = g1.getFontMetrics();
+        if(r && super.n != null)
+            g1.drawLine(3, (super.b + fontmetrics.getHeight()) / 2 + 2, 3 + fontmetrics.stringWidth(super.n), (super.b + fontmetrics.getHeight()) / 2 + 2);
+    }
+
+    public void a(Color color, boolean flag)
+    {
+        super.b(color);
+        if(flag)
+            repaint();
+    }
+
+    public void a(String s, boolean flag)
+    {
+        super.a(s);
+        if(flag)
+            repaint();
+    }
+
+    boolean r;
+}

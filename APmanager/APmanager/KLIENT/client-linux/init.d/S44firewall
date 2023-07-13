@@ -1,0 +1,68 @@
+#!/bin/sh
+# Zadania skryptu - ustawienie dostepu do internetu po IP(maskowanie),
+# ustawienie dostepu do AP radiowo po MAC i ustawienie dostepu do sieci po
+# MAC
+#
+. /etc/functions.sh
+
+WAN=$(nvram get wan_ifname)
+
+IPT=/usr/sbin/iptables
+INM=/sbin/insmod
+WL=/sbin/wl
+ethers="/etc/ethers";
+
+iptables -F FORWARD
+iptables -t nat -F POSTROUTING
+iptables -F in_counter
+iptables -F out_counter
+
+if [ ! $WAN ]; then
+         WAN="vlan1";
+fi
+# ladujemy moduly, ktorych bedziemy uzywac
+$INM sch_htb
+$INM sch_sfq
+$INM cls_fw
+$INM ipt_length
+$INM ipt_ipp2p
+$INM ipt_conntrack
+$INM ipt_mac
+
+# Podstawowe ustawienia firewalla
+$IPT -P FORWARD DROP
+
+# Tworzymy Lancuchy dla Liczenia Ruchu Per IP
+$IPT -X in_counter
+$IPT -X out_counter
+$IPT -N in_counter
+$IPT -N out_counter
+$IPT -A FORWARD -i $WAN -j in_counter
+$IPT -A FORWARD -o $WAN -j out_counter
+# To poprawia prace routera z nitkroymi ISP, zmienne MTU
+$IPT -A FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+# Przepuszczamy ruch z WANu do LANu
+$IPT -A FORWARD -i $WAN -o br0 -j ACCEPT
+# Ustawiamy hosty z dostepem do internetu/maskowane
+# Czyscimy liste MACow jesli jakas jest
+$WL mac none
+if [ -r $ethers ]; then
+    for i in `cat $ethers|awk '{print $1"-"$2}'`; do
+	mac=`echo $i|awk -F'-' '{print $1}'`;
+	mac=`echo $mac|awk -F',' '{print $1}'`;
+        ip=`echo $i|awk -F'-' '{print $2}'`;
+
+        $IPT -t nat -A POSTROUTING -s $ip -o $WAN -j MASQUERADE
+	$IPT -t filter -A FORWARD -m mac --mac-source $mac -s $ip -j ACCEPT
+	
+	# Dodajemy odpowiednie MACi z ethers do access_list AP
+	$WL mac $mac
+	
+	# Dodajemy IP do ip accountingu
+	$IPT -A in_counter -d $ip
+	$IPT -A out_counter -s $ip
+done
+fi
+
+## USER RULES
+[ -f /AP/firewall.user ] && . /AP/firewall.user

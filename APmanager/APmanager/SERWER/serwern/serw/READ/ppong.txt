@@ -1,0 +1,9 @@
+PING/PONG mechanizm
+---------------------
+
+Pomysl wziety z serwerow IRC, timeout badany na podstawie wyslania komendy
+PING, jesli klient zyje odpowiada PONG. Jesli przez ustalony czas nie
+odpowiada PONG, jego polaczenie zostaje zamkniete i wyczyszczone.
+Kazde zdarzenie/komenda wywoloana przez klienta jest takze rownoznaczna
+z PONG, gdyz wskazuje nam,ze klient zyje i ma sie dobrze.
+ 

@@ -1,0 +1,501 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   r.java
+
+package d;
+
+import INTChat;
+import a.ba;
+import a.c;
+import a.i;
+import a.j;
+import b.a;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Window;
+
+// Referenced classes of package d:
+//            n, x, d, g, 
+//            i, p, b, f, 
+//            h, t, q
+
+class r extends i
+{
+
+    public r(n n1)
+    {
+        y = 1;
+        j = n1;
+        A = new String[8];
+        d();
+    }
+
+    public void paint(Graphics g1)
+    {
+        FontMetrics fontmetrics;
+        int i1;
+        int j1;
+label0:
+        {
+            j1 = x.bd;
+            if(!j.W)
+            {
+                g1.setColor(INTChat.L[1]);
+                if(j1 == 0)
+                    break label0;
+            }
+            g1.setColor(x.bb[16]);
+        }
+label1:
+        {
+            g1.fillRect(2, 2, super.a - 4, super.b - 25);
+            a.r.a(g1, 0, 0, super.a, super.b, true);
+            if(!j.W)
+            {
+                g1.setColor(INTChat.L[2]);
+                if(j1 == 0)
+                    break label1;
+            }
+            g1.setColor(x.bb[17]);
+        }
+label2:
+        {
+            g1.drawRect(5, 5, super.a - 10, super.b - 18);
+            if(!j.W)
+            {
+                g1.setColor(INTChat.L[4]);
+                if(j1 == 0)
+                    break label2;
+            }
+            g1.setColor(x.bb[19]);
+        }
+        g1.setFont(x.bc[2]);
+        fontmetrics = g1.getFontMetrics();
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        g1.drawString(A[i1], (super.a - fontmetrics.stringWidth(A[i1++])) / 2, 10 + 18 * i1);
+_L2:
+        if(A[i1] == null)
+        {
+            super.paint(g1);
+            return;
+        }
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public void setVisible(boolean flag)
+    {
+        if(flag)
+            repaint();
+        if(flag || A == null) goto _L2; else goto _L1
+_L1:
+        int i1 = 0;
+        if(x.bd == 0) goto _L4; else goto _L3
+_L3:
+        A[i1] = null;
+        i1++;
+_L4:
+        if(i1 < A.length) goto _L3; else goto _L2
+_L2:
+        super.setVisible(flag);
+        return;
+    }
+
+    void a(String s1, String s2, String s3)
+    {
+        A[0] = s2;
+        A[1] = s3;
+        A[2] = z[12][0];
+        a(12, s1);
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+            int i1;
+label1:
+            {
+label2:
+                {
+label3:
+                    {
+label4:
+                        {
+                            i1 = x.bd;
+                            if(y == 5)
+                                j.w.M = 0;
+                            if(component != C)
+                                break label1;
+                            setVisible(false);
+                            if(y == 1)
+                            {
+                                j.k.exitChat();
+                                if(i1 == 0)
+                                    break label2;
+                            }
+                            if(y == 0)
+                            {
+                                j.h();
+                                if(i1 == 0)
+                                    break label2;
+                            }
+                            if(y == 2)
+                            {
+                                j.i();
+                                if(i1 == 0)
+                                    break label2;
+                            }
+                            if(y != 3)
+                                break label3;
+                            if(j.c(-1) > 0)
+                            {
+                                j.i();
+                                if(i1 == 0)
+                                    break label4;
+                            }
+                            if(!j.l.c())
+                                j.h();
+                        }
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 5)
+                    {
+                        j.w.b(true);
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 4)
+                    {
+                        j.w.h();
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 6)
+                    {
+                        j.v.b(true);
+                        j.v.a(4);
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 8)
+                    {
+                        j.z.u.i();
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 11)
+                    {
+                        if(j.p.x == 155 || j.p.x == 155)
+                        {
+                            j.p.u.f();
+                            j.p.u.d().toFront();
+                        }
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 7)
+                    {
+                        t t1 = j.y.c(155);
+                        if(t1 != null)
+                            j.a(((ba) (t1)).a, t1.m, t1.o, false);
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 10)
+                    {
+                        b b1 = j.a(B, -1, -1);
+                        if(b1 != null)
+                        {
+                            b1.i();
+                            b1.setVisible(true);
+                            b1.requestFocus();
+                        }
+                        if(i1 == 0)
+                            break label2;
+                    }
+                    if(y == 12)
+                        j.k.openHTMLWindow(B);
+                }
+                if(i1 == 0)
+                    break label0;
+            }
+label5:
+            {
+label6:
+                {
+                    if(component != D)
+                        break label5;
+                    setVisible(false);
+                    if(y == 9)
+                    {
+                        D.a(c("\005K\031"));
+                        D.setBounds(140, 54, 50, 24);
+                        C.setVisible(true);
+                    }
+                    if(y == 3 && !j.l.c())
+                        j.k.exitChat();
+                    if(y == 11)
+                    {
+                        if(j.p.x == 155)
+                            j.p.u.d().toFront();
+                        if(i1 == 0)
+                            break label6;
+                    }
+                    if(j.l.c() && j.bk.length() == 0)
+                    {
+                        j.s.setVisible(true);
+                        if(i1 == 0)
+                            break label6;
+                    }
+                    if(!j.l.c() && y != 2)
+                    {
+                        a(2);
+                        if(i1 == 0)
+                            break label6;
+                    }
+                    if(y == 2)
+                    {
+                        j.a(c("\tP\035\016\b;M\u013E\u0160K1G\022\fIkX\\\026M9U\031\027M&\016\\\016D\"I\022\fBk\000+<d\004e)/\nkC\036\034\b;M\022\n_%K\031E[\"\u013B\\\037I'M\033\n_*\u0125"), false);
+                        if(i1 == 0)
+                            break label6;
+                    }
+                    if(y == 12)
+                        B = "";
+                }
+                if(i1 == 0)
+                    break label0;
+            }
+            if(component == E)
+                j.k.openHelp(c("(M\022\013M(V\025\nF"));
+        }
+    }
+
+    void c()
+    {
+        setBackground(x.bb[16]);
+        C.a(x.Y);
+        C.b(x.bb[27]);
+        D.a(x.Y);
+        D.b(x.bb[27]);
+        E.a(x.Y);
+        E.b(x.bb[27]);
+        repaint();
+    }
+
+    void a(String s1, String s2)
+    {
+        A[0] = s1;
+        A[1] = s2;
+        A[2] = null;
+        a(9);
+        C.setVisible(false);
+        D.a(c("\000M\022\021Q%W\026"));
+        D.setBounds(90, 15, 100, 24);
+    }
+
+    void a(int i1, String s1)
+    {
+        B = s1;
+        a(i1);
+    }
+
+    void a(int i1)
+    {
+        int k1 = x.bd;
+        if(A == null || i1 == 7 || i1 == 12) goto _L2; else goto _L1
+_L1:
+        int j1 = 0;
+        if(k1 == 0) goto _L4; else goto _L3
+_L3:
+        A[j1] = null;
+        j1++;
+_L4:
+        if(j1 < A.length) goto _L3; else goto _L2
+_L2:
+        if(i1 == 9 || i1 == 7 || i1 == 12) goto _L6; else goto _L5
+_L5:
+        j1 = 0;
+        if(k1 == 0) goto _L8; else goto _L7
+_L7:
+        A;
+        j1;
+_L11:
+        z[i1][j1];
+        JVM INSTR aastore ;
+        j1++;
+_L8:
+        if(j1 < z[i1].length) goto _L7; else goto _L9
+_L9:
+        A;
+        j1;
+        if(k1 != 0) goto _L11; else goto _L10
+_L10:
+        null;
+        JVM INSTR aastore ;
+_L6:
+label0:
+        {
+            if(i1 == 5)
+            {
+                A[0] += j.w.M;
+                if(k1 == 0)
+                    break label0;
+            }
+            if(y == 9 && i1 != 9)
+                a(((Component) (D)));
+        }
+        E.setVisible(i1 == 3);
+        y = i1;
+        setSize(310, 52 + z[i1].length * 18);
+        setVisible(true);
+        if(i1 != 4 && i1 != 5 && i1 != 7 && i1 != 13)
+            requestFocus();
+        repaint();
+        return;
+    }
+
+    public void setSize(int i1, int j1)
+    {
+label0:
+        {
+            if(j.W)
+            {
+                setLocation((((i) (j)).a - i1 - 200) / 2, (((i) (j)).b - j1) / 2);
+                if(x.bd == 0)
+                    break label0;
+            }
+            setLocation((((i) (j)).a - i1) / 2, (((i) (j)).b - j1) / 2);
+        }
+        C.setBounds(95, j1 - 26, 50, 24);
+        D.setBounds(145, j1 - 26, 50, 24);
+        E.setBounds(195, j1 - 26, 24, 24);
+        super.setSize(i1, j1);
+    }
+
+    void d()
+    {
+        add(C = new c(c("\037C\027")));
+        add(D = new c(c("\005K\031")));
+        add(E = new c("?"));
+        C.a(x.Z);
+        D.a(x.Z);
+        E.a(x.Z);
+        setBackground(INTChat.L[1]);
+    }
+
+    void a(String s1)
+    {
+        if(j.a(null, 155, 0) == null && (!isVisible() || y > 3))
+        {
+            A[0] = s1 + z[7][0];
+            A[1] = z[7][1];
+            A[2] = null;
+            a(7);
+        }
+    }
+
+    void b(String s1)
+    {
+        if(j.a(null, 155, 0) == null && (!isVisible() || y > 3))
+        {
+            A[0] = z[13][0] + s1 + "\"";
+            A[1] = z[13][1];
+            A[2] = null;
+            a(7);
+        }
+    }
+
+    private static String c(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x4b;
+                break;
+
+            case 1: // '\001'
+                k1 = 34;
+                break;
+
+            case 2: // '\002'
+                k1 = 124;
+                break;
+
+            case 3: // '\003'
+                k1 = 101;
+                break;
+
+            default:
+                k1 = 40;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    n j;
+    static final int k = 0;
+    static final int l = 1;
+    static final int m = 2;
+    static final int n = 3;
+    static final int o = 4;
+    static final int p = 5;
+    static final int q = 6;
+    static final int r = 7;
+    static final int s = 8;
+    static final int t = 9;
+    static final int u = 10;
+    static final int v = 11;
+    static final int w = 12;
+    static final int x = 13;
+    int y;
+    static final String z[][] = {
+        {
+            c("\bX\005EF*\002\f\000_%M\\\006@(G\017\037\b8K\u0165E_2N\023\002G<C\u017BE\027")
+        }, {
+            c("\bX\005EF*\002\f\000_%M\\\006@(G\017\037\b<[\026\u013E\u012FkX\\\006R*V\035E\027")
+        }, {
+            c("\021G\016\022I%G\\\025G\u0109\u0127\037\037M%K\031ERkQ\031\027_.P\031\b"), c("\bX\005EX$\u0160\u0179\006R2\u0125\\\025G%M\013\013A.\002C")
+        }, {
+            c("\005K\031EE$\u015E\022\004\b%C\013\f\u012D1C\u017BEX$\u0160\u0179\006R.L\025\004\b1\002\017\000Z<G\016\000E"), c("\bX\005EX9\321\036\n_*\u0125\\\025G%M\013\013A.\002C")
+        }, {
+            c("\017M\017\021I\u0109G\u0127EF$U\u0179E_\"C\030\nE$\u0179\u017B"), c("\bX\005EK#A\031\026RkH\u0179E\\.P\035\037\b;P\006\000K1[\b\004\u012Fk\035")
+        }, {
+            c("\034K\035\001G&M\u0127\006AkL\025\000X9X\031\006R2V\035\013Mq\002"), c("\bX\005EK#A\031\026RkH\031E\\.P\035\037\b;P\006\000K1[\b\004\u012Fk\035")
+        }, {
+            c("\004R\037\017IkV\005\tC$\002\030\tIkW\u0100\034\\$U\022\fC\270U\\\037I9G\026\000[?P\023\022I%[\037\r"), c("\bX\005EK#A\031\026RkQ\025\u017C\b1C\016\000B.Q\b\027G<C\u017BZ")
+        }, {
+            c("kH\031\026\\kE\023\u013EK\"G\021Ek\021c(\000Z\"K"), c("\bX\005EK#A\031\026RkF\023\u0127\u012D(X\005\u0162\b/M\\\027G1O\023\022Qt")
+        }, {
+            c("\036u=\"ij\003]"), c("\002l( z\002cR5dkL\025\000\b;M\022\n[\"\002\023\001X$U\025\000L1K\035\tF$\u0179\037\f"), c("1C\\\nJ9C\006E]&K\031\026R(X\023\013QkU\\\016I&G\016\037Me"), c("\006M\u0100\000\b$L\\\037I<K\031\027I\u014C\002\b\027M\u0110A\025EF\"G\f\027R2X\013\nA?GR"), c("\021C\020\000K*\002\017\f\u0131g\002\036\034\b C\021\000Z2\002\023\021_\"G\016\004\u016A2"), c("?[\020\016GkM\017\nJ$O\\\025M\u0109L\023\tM?L\025\000\006"), c("\bX\005EK#A\031\026RkM\b\022G9X\005\u0162\b C\021\000Z\u0152\002C")
+        }, new String[2], {
+            c("\bX\005EF*\002\f\000_%M\\\022Q(X\005\u013EK\"\u0125\\\nC%M\\\027G1O\023\022Qk\035")
+        }, {
+            c("\036u=\"ij\003]"), c("\034[\u013E\u0160K1C\017\037\b&M\030\000Z*A\026\000\b;M\027\nB>\002\006Eo$\u0179\037\fM&\f"), c("\bX\005EC$L\b\034F>M\013\004\u012Fk\035")
+        }, {
+            c("\bX\005EK#A\031\026RkU\031\017\u0173\u014C\002\022\004\b?\u0127\\\026\\9M\022\u017C\bt"), 0, 0
+        }, {
+            c("\034\u0160\035\u013EF\"G\\\021Z<C\\\016G%I\t\027[kS\t\fR$U\005E\n"), c("\bX\005EK#A\031\026RkF\023\u0127\u012D(X\005\u0162\b/M\\\037I)C\013\034\bt")
+        }
+    };
+    String A[];
+    String B;
+    c C;
+    c D;
+    c E;
+
+}

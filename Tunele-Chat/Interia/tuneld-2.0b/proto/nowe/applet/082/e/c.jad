@@ -1,0 +1,230 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   c.java
+
+package e;
+
+import a.a;
+import a.g;
+import a.i;
+import a.j;
+import a.k;
+import d.u;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.TextArea;
+import java.awt.TextComponent;
+import java.util.Vector;
+
+// Referenced classes of package e:
+//            b, f
+
+public class c extends j
+{
+
+    public c(b b1)
+    {
+        super(d("qj'\031qJe>\025\"\004+\000\023xR\1776\036kN+'\tvJ\u014Fw\001wBq\""), true);
+        n = b1;
+        f();
+        a(50, 100, 480, 380);
+        e();
+    }
+
+    public void paint(Graphics g1)
+    {
+        u.a(g1, u.B, 0, 0, super.a, super.b);
+        super.paint(g1);
+    }
+
+    String a(String s1, String s2, int l, int i1)
+    {
+        int j1 = s1.indexOf(s2, l);
+        int k1 = s1.indexOf("\n", j1 + s2.length());
+        if(k1 < 0)
+            k1 = s1.length();
+        if(j1 > i1 || j1 < 0)
+            return "";
+        else
+            return s1.substring(j1 + s2.length(), k1).trim();
+    }
+
+    void c(String s1)
+    {
+        int l;
+        int k1;
+        k1 = b.Z;
+        if(n.I.k() == 0)
+            n.T = 0;
+        l = s1.indexOf(d("p[\016$CeB\022-"));
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        int i1;
+        i1 = s1.indexOf(d("p[\016$CeB\022-"), l + 30);
+        if(i1 < 0)
+            i1 = s1.length();
+        f f1;
+        String as[];
+        int j1;
+        f1 = new f();
+        as = new String[4];
+        j1 = 0;
+_L4:
+        as[j1] = a(s1, d("pD\023 ]") + j1 + "]", l + 9, i1);
+        ++j1;
+        4;
+_L6:
+        JVM INSTR icmplt 82;
+           goto _L3 _L4
+_L3:
+        f1.i = Integer.parseInt(a(s1, d("pE\005-"), l + 9, i1));
+        f1.i;
+        n.T;
+        if(k1 != 0) goto _L6; else goto _L5
+_L5:
+        JVM INSTR icmpgt 196;
+           goto _L7 _L8
+_L7:
+        break MISSING_BLOCK_LABEL_177;
+_L8:
+        break MISSING_BLOCK_LABEL_196;
+        f1.i = ++n.T;
+        if(n.T < f1.i)
+            n.T = f1.i + 1;
+        f1.a(a(s1, d("p_\0055QhV"), l + 9, i1), as, Integer.parseInt(a(s1, d("pD\023 ]{Y\026'_"), l + 9, i1)), a(s1, d("pD\025\"CqN\034-"), l + 9, i1), false, f1.i);
+        n.I.c(f1);
+        break MISSING_BLOCK_LABEL_308;
+        Exception exception;
+        exception;
+        exception.printStackTrace();
+        if(i1 == s1.length())
+        {
+            l = -1;
+            if(k1 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        l = i1;
+_L2:
+        if(l >= 0) goto _L1; else goto _L9
+_L9:
+    }
+
+    public void a(Component component)
+    {
+        int i1 = b.Z;
+        if(component != q) goto _L2; else goto _L1
+_L1:
+        p.setText("");
+        if(i1 == 0) goto _L3; else goto _L2
+_L2:
+        if(component != r) goto _L5; else goto _L4
+_L4:
+        p.selectAll();
+        if(i1 == 0) goto _L3; else goto _L5
+_L5:
+        if(component != s) goto _L7; else goto _L6
+_L6:
+        c(p.getText());
+        if(i1 == 0) goto _L3; else goto _L7
+_L7:
+        if(component != t) goto _L3; else goto _L8
+_L8:
+        Vector vector;
+        int l;
+        p.setText("");
+        vector = n.I.d();
+        l = 0;
+        if(i1 == 0) goto _L10; else goto _L9
+_L9:
+        f f1;
+        try
+        {
+            f1 = (f)vector.elementAt(l);
+        }
+        catch(Exception _ex)
+        {
+            continue;
+        }
+        p.append(f1.d());
+        l++;
+_L10:
+        if(l < vector.size()) goto _L9; else goto _L3
+_L3:
+    }
+
+    void e()
+    {
+        setBackground(u.Y[1]);
+        o.b(u.Y[24]);
+        q.a(u.U);
+        r.a(u.U);
+        s.a(u.T);
+        t.a(u.T);
+    }
+
+    public void setBounds(int l, int i1, int j1, int k1)
+    {
+        p.setBounds(10, 30, j1 - 20, k1 - 70);
+        q.setBounds(10, k1 - 35, 70, 24);
+        r.setBounds(80, k1 - 35, 70, 24);
+        s.setBounds(j1 - 250, k1 - 35, 120, 24);
+        t.setBounds(j1 - 130, k1 - 35, 120, 24);
+        super.setBounds(l, i1, j1, k1);
+    }
+
+    void f()
+    {
+        add(o = new g(d("{r#\021lBjw\001wBq\"Pu\013m8\002oJh>\025\"Odw\nc[b$\005")));
+        o.setBounds(10, 7, 300, 20);
+        add(q = new a.c(d("hq.\u012B\u0105")));
+        add(r = new a.c(d("qj-\036cHq")));
+        add(t = new a.c(d("{d5\031gYqw\000{_j9\031c")));
+        add(s = new a.c(d("od3\021h\013{.\004cEb6")));
+        add(p = new TextArea());
+    }
+
+    private static String d(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int l = ac.length;
+        int j1;
+        for(int i1 = 0; i1 < l; i1++)
+        {
+            switch(i1 % 5)
+            {
+            case 0: // '\0'
+                j1 = 0x2b;
+                break;
+
+            case 1: // '\001'
+                j1 = 11;
+                break;
+
+            case 2: // '\002'
+                j1 = 87;
+                break;
+
+            case 3: // '\003'
+                j1 = 112;
+                break;
+
+            default:
+                j1 = 2;
+                break;
+            }
+            ac[i1] ^= j1;
+        }
+
+        return new String(ac);
+    }
+
+    b n;
+    g o;
+    TextArea p;
+    a.c q;
+    a.c r;
+    a.c s;
+    a.c t;
+}

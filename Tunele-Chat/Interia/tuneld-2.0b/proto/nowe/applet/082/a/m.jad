@@ -1,0 +1,680 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   m.java
+
+package a;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Vector;
+
+// Referenced classes of package a:
+//            i, ba, a, r
+
+public class m extends i
+    implements AdjustmentListener, KeyListener, MouseListener
+{
+
+    public void c()
+    {
+        o.setMaximum((d() - super.b) + f());
+    }
+
+    public void a(Graphics g1, ba ba1, boolean flag, int i1, int j1)
+    {
+        g1.setColor(Color.black);
+        if(ba1.a != null)
+            g1.drawString(ba1.a, i1, j1);
+        if(flag)
+            g1.drawRoundRect(i1 - 4, (j1 + 6) - 18, 147 - i1, 16, 5, 5);
+    }
+
+    public void a(ba ba1)
+    {
+    }
+
+    public ba a(String s, boolean flag)
+    {
+        return a(s.toLowerCase(), m.b, flag);
+    }
+
+    public ba a(String s, ba ba1, boolean flag)
+    {
+        if(!flag)
+            s = s.toLowerCase();
+        return a(s, ba1.b, flag);
+    }
+
+    ba a(String s, Vector vector, boolean flag)
+    {
+        int i1;
+        int j1;
+        j1 = a.q;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        ba ba1 = (ba)vector.elementAt(i1);
+        if(ba1.g)
+        {
+            if(flag && ba1.a.equals(s))
+                return ba1;
+            ba1 = a(s, ba1.b, flag);
+            if(ba1 != null)
+                return ba1;
+            if(j1 == 0)
+                continue;
+        }
+        if(!flag && ba1.a.toLowerCase().equals(s))
+            return ba1;
+        i1++;
+_L2:
+        if(i1 >= vector.size())
+            return null;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    int a(ba ba1, Graphics g1, int i1, int j1, boolean flag)
+    {
+        boolean flag1;
+        int k1;
+        int l1;
+        int i2;
+label0:
+        {
+label1:
+            {
+                i2 = a.q;
+                flag1 = j1 > -18 && j1 < super.b;
+                ba1.i = j1;
+                if(ba1.g)
+                    break label0;
+                if(!flag1)
+                    return 18;
+                g1.setColor(Color.lightGray);
+                if(!flag)
+                {
+                    g1.drawLine(i1, (j1 - 9) + 6, i1, j1 + 9 + 6);
+                    if(i2 == 0)
+                        break label1;
+                }
+                g1.drawLine(i1, (j1 - 9) + 6, i1, j1 + 9);
+            }
+            g1.drawLine(i1, j1 + 9, i1 + 7, j1 + 9);
+            a(g1, ba1, n != null && n.equals(ba1), i1 + 10, (j1 + 18) - 5);
+            return 18;
+        }
+label2:
+        {
+label3:
+            {
+                if(flag1)
+                {
+                    g1.setColor(Color.lightGray);
+                    g1.drawLine(i1, (j1 - 9) + 6, i1, (j1 + 9) - 5);
+                    g1.drawLine(i1, j1 + 9, i1 + 9, j1 + 9);
+                }
+                k1 = 18;
+                if(ba1.b.size() != 0)
+                    break label2;
+                g1.setColor(Color.lightGray);
+                if(!flag)
+                {
+                    g1.drawLine(i1, j1 + 5, i1, j1 + 15);
+                    if(i2 == 0)
+                        break label3;
+                }
+                g1.drawLine(i1, j1 + 5, i1, j1 + 9);
+            }
+            if(i2 == 0)
+                break MISSING_BLOCK_LABEL_467;
+        }
+        if(!ba1.d)
+            break MISSING_BLOCK_LABEL_436;
+        l1 = 0;
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        k1;
+_L5:
+        a((ba)ba1.b.elementAt(l1), g1, i1 + 12, j1 + k1, l1 == ba1.b.size() - 1);
+        JVM INSTR iadd ;
+        k1;
+        l1++;
+_L2:
+        if(l1 < ba1.b.size()) goto _L1; else goto _L3
+_L3:
+        g1.setColor(Color.lightGray);
+        flag;
+        if(i2 != 0) goto _L5; else goto _L4
+_L4:
+        if(!flag)
+            g1.drawLine(i1, j1 + 9 + 5, i1, j1 + 9 + k1);
+        if(p != null)
+            g1.drawImage(p[1], i1 - 5, j1 + 5, null);
+        if(i2 == 0)
+            break MISSING_BLOCK_LABEL_467;
+        if(flag1 && p != null)
+            g1.drawImage(p[0], i1 - 5, j1 + 5, null);
+        if(flag1)
+            a(g1, ba1, n != null && n.equals(ba1), i1 + 11, (j1 + 18) - 5);
+        return k1;
+    }
+
+    public void keyPressed(KeyEvent keyevent)
+    {
+        int i1;
+        int j1;
+        int k1;
+        k1 = a.q;
+        if(m.b.size() == 0)
+            return;
+        i1 = 0x7fffffff;
+        j1 = keyevent.getKeyCode();
+        if(n == null)
+            break MISSING_BLOCK_LABEL_257;
+        j1;
+        JVM INSTR lookupswitch 7: default 256
+    //                   10: 100
+    //                   33: 172
+    //                   34: 198
+    //                   35: 160
+    //                   36: 150
+    //                   38: 224
+    //                   40: 240;
+           goto _L1 _L2 _L3 _L4 _L5 _L6 _L7 _L8
+_L2:
+        if(!n.g) goto _L10; else goto _L9
+_L9:
+        n.d = !n.d;
+        if(k1 == 0) goto _L11; else goto _L10
+_L10:
+        a(n);
+_L11:
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L6:
+        n = null;
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L5:
+        i1 = r - 5;
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L3:
+        i1 = (n.i - 9 - super.b) + f();
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L4:
+        i1 = (n.i + super.b) - f() - 10;
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L7:
+        i1 = n.i - 9;
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L8:
+        i1 = n.i + 27;
+        if(k1 == 0)
+            break MISSING_BLOCK_LABEL_257;
+_L1:
+        return;
+        if(i1 != 0x7fffffff)
+        {
+            if(i1 < -o.getValue())
+                i1 = -o.getValue() + 5;
+            if(i1 > r + 18)
+                i1 = (r + 18) - 10;
+            c(100, i1);
+        }
+        if(n == null)
+            n = (ba)m.b.elementAt(0);
+        c();
+        repaint();
+        return;
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+    }
+
+    public int d()
+    {
+        int i1 = b(m) + 7;
+        return i1;
+    }
+
+    int b(ba ba1)
+    {
+        int i1;
+        int j1;
+        i1 = 0;
+        if(!ba1.h)
+            return 18 * ba1.b.size();
+        j1 = 0;
+        if(a.q == 0) goto _L2; else goto _L1
+_L1:
+        i1 += 18;
+        ba ba2 = (ba)ba1.b.elementAt(j1);
+        if(ba2.d)
+            i1 += b(ba2);
+        j1++;
+_L2:
+        if(j1 >= ba1.b.size())
+            return i1;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public ba b(String s, boolean flag)
+    {
+        return new ba(s, flag);
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+    }
+
+    public ba a(ba ba1, ba ba2)
+    {
+        int i1;
+        int j1;
+label0:
+        {
+            j1 = a.q;
+            if(ba2 == null)
+            {
+                ba2 = m;
+                if(j1 == 0)
+                    break label0;
+            }
+            ba1.c = ba2;
+        }
+        if(ba1.g)
+            ba2.h = true;
+        if(!ba2.f)
+            break MISSING_BLOCK_LABEL_148;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        (ba)ba2.b.elementAt(i1);
+_L5:
+        ba ba3;
+        ba3;
+        if((ba1.g && !ba3.g || ba3.g == ba1.g && a.r.c(ba3.a, ba1.a) < 0) && j1 == 0)
+            break; /* Loop/switch isn't completed */
+        i1++;
+_L2:
+        if(i1 < ba2.b.size()) goto _L1; else goto _L3
+_L3:
+        ba2.b.insertElementAt(ba1, i1);
+        ba1;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        true;
+        f;
+        if(j1 == 0)
+            break MISSING_BLOCK_LABEL_156;
+        ba2.b.addElement(ba1);
+        return ba1;
+    }
+
+    public ba e()
+    {
+        n.c.b.removeElement(n);
+        return n;
+    }
+
+    public int a(Vector vector, boolean flag)
+    {
+        int i1;
+        int j1;
+        i1 = 0;
+        j1 = 0;
+        if(a.q == 0) goto _L2; else goto _L1
+_L1:
+        ba ba1 = (ba)vector.elementAt(j1);
+        if(ba1.g == flag)
+            i1++;
+        if(ba1.g)
+            i1 += a(ba1.b, flag);
+        j1++;
+_L2:
+        if(j1 >= vector.size())
+            return i1;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public int a(Graphics g1, int i1, int j1)
+    {
+        int k1;
+        int l1;
+        l1 = a.q;
+        j1 += 3;
+        k1 = 0;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        j1;
+_L5:
+        a((ba)m.b.elementAt(k1), g1, i1, j1, k1 == m.b.size() - 1);
+        JVM INSTR iadd ;
+        j1;
+        k1++;
+_L2:
+        if(k1 < m.b.size()) goto _L1; else goto _L3
+_L3:
+        r = j1 - 18;
+        j1 + 2;
+        if(l1 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public int f()
+    {
+        return 0;
+    }
+
+    public void g()
+    {
+        o.setBounds(super.a - 17, 2 + f(), 16, super.b - 3 - f());
+        o.setMaximum((d() - super.b) + f());
+    }
+
+    public void b(int i1, int j1)
+    {
+    }
+
+    public void a(String s, ba ba1)
+    {
+        k = s;
+        if(ba1 == null)
+            ba1 = m;
+        l = 0;
+        if(k != null)
+            g(ba1);
+        k = null;
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        super.a = k1;
+        super.b = l1;
+        o.setBlockIncrement(l1 - 18);
+        o.setUnitIncrement(18);
+        o.setMaximum(-10);
+        o.setMaximum((d() - l1) + f());
+        o.setBounds(k1 - 17, 2 + f(), 16, l1 - 3 - f());
+        super.setBounds(i1, j1, k1, l1);
+    }
+
+    private int a(ba ba1, int i1, int j1, int k1, int l1)
+    {
+        int i2;
+        int l2;
+label0:
+        {
+label1:
+            {
+                l2 = a.q;
+                i2 = 18;
+                if(i1 <= k1 + 12 || j1 >= (l1 + 18) - 10 || j1 <= (l1 + 18) - 25)
+                    break label0;
+                n = ba1;
+                if(n.i < f())
+                {
+                    o.setValue((o.getValue() - 18) + n.i);
+                    if(l2 == 0)
+                        break label1;
+                }
+                if(n.i + 18 + 5 > super.b)
+                    o.setValue((o.getValue() + n.i + 18 + 5) - super.b);
+            }
+            return -1;
+        }
+        if(!ba1.g) goto _L2; else goto _L1
+_L1:
+        if(i1 >= k1 - 5 && i1 <= k1 + 5 && j1 >= l1 - 5 && j1 <= l1 + 5)
+        {
+            ba1.d = !ba1.d;
+            c();
+            if(ba1.d && b(ba1) + l1 + 18 > super.b)
+                o.setValue((l1 + o.getValue()) - 18);
+            n = null;
+            return -1;
+        }
+        if(!ba1.d) goto _L2; else goto _L3
+_L3:
+        int k2 = 0;
+        if(l2 == 0) goto _L5; else goto _L4
+_L4:
+        int j2 = a((ba)ba1.b.elementAt(k2), i1, j1, k1 + 11, l1 + i2);
+        if(j2 < 0)
+            return -1;
+        i2 += j2;
+        k2++;
+_L5:
+        if(k2 < ba1.b.size()) goto _L4; else goto _L2
+_L2:
+        return i2;
+    }
+
+    public void adjustmentValueChanged(AdjustmentEvent adjustmentevent)
+    {
+        repaint();
+    }
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+label0:
+        {
+label1:
+            {
+                if(mouseevent.getClickCount() <= 1 || n == null)
+                    break label0;
+                if(n.g)
+                {
+                    n.d = !n.d;
+                    if(a.q == 0)
+                        break label1;
+                }
+                a(n);
+            }
+            c();
+            repaint();
+        }
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+        c(mouseevent.getX(), mouseevent.getY() - f() - 2);
+        if(n != null && (mouseevent.getModifiers() == 4 || r.s))
+            b(mouseevent.getX(), mouseevent.getY());
+        repaint();
+    }
+
+    void c(int i1, int j1)
+    {
+        int k1;
+        int i2;
+        int j2;
+        j2 = a.q;
+        requestFocus();
+        k1 = -o.getValue() + 10;
+        i2 = 0;
+        if(j2 == 0) goto _L2; else goto _L1
+_L1:
+        a((ba)m.b.elementAt(i2), i1, j1, 10, k1);
+_L5:
+        int l1;
+        l1;
+        if(l1 < 0)
+            break; /* Loop/switch isn't completed */
+        k1 += l1;
+        i2++;
+_L2:
+        if(i2 < m.b.size()) goto _L1; else goto _L3
+_L3:
+        i2;
+        if(j2 != 0) goto _L5; else goto _L4
+_L4:
+        m.b.size();
+        JVM INSTR icmpne 111;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_106;
+_L7:
+        break MISSING_BLOCK_LABEL_111;
+        n = null;
+    }
+
+    public m()
+    {
+        q = new Point(0, 0);
+        r = 0;
+        m = new ba(null, true);
+        o = new Scrollbar(1);
+        add(o);
+        o.addAdjustmentListener(this);
+        o.setMinimum(0);
+        addKeyListener(this);
+        addMouseListener(this);
+    }
+
+    public void keyTyped(KeyEvent keyevent)
+    {
+    }
+
+    private void c(ba ba1)
+    {
+        int i1 = k.indexOf(']', l);
+        ba ba2 = b(k.substring(l + 1, i1), true);
+        l = i1 + 1;
+        if(ba2 != null)
+        {
+            ba2.c = ba1;
+            ba1.b.addElement(ba2);
+            ba1.h = true;
+            if(k.charAt(l) == '{')
+                g(ba2);
+        }
+    }
+
+    public boolean d(ba ba1)
+    {
+        if(ba1 != null && ba1.c != null)
+            return ba1.c.b.removeElement(ba1);
+        else
+            return false;
+    }
+
+    public void paint(Graphics g1)
+    {
+        g1.setColor(Color.white);
+        g1.fillRect(0, 0, super.a, super.b);
+        a(g1, 2, 2);
+        a.r.a(g1, 0, 0, super.a, super.b, false);
+    }
+
+    public void h()
+    {
+        e(m);
+    }
+
+    public void e(ba ba1)
+    {
+        int i1;
+        if(ba1 == null || ba1.b == null)
+            break MISSING_BLOCK_LABEL_57;
+        i1 = 0;
+        if(a.q == 0) goto _L2; else goto _L1
+_L1:
+        e((ba)ba1.b.elementAt(i1));
+        ba1.b.removeAllElements();
+        i1++;
+_L2:
+        if(i1 < ba1.b.size()) goto _L1; else goto _L3
+_L3:
+        ba1 = null;
+    }
+
+    public void keyReleased(KeyEvent keyevent)
+    {
+    }
+
+    private void f(ba ba1)
+    {
+        ba ba2;
+        int j1;
+        j1 = a.q;
+        int i1 = k.indexOf('#', l);
+        if(i1 < 0)
+        {
+            l = k.length();
+            return;
+        }
+        ba2 = b(k.substring(l, i1), false);
+        l = i1 + 1;
+        if(ba2 == null) goto _L2; else goto _L1
+_L1:
+        ba2.c = ba1;
+        ba1.b.addElement(ba2);
+        if(!ba2.e || n != null) goto _L2; else goto _L3
+_L3:
+        n = ba2;
+        if(j1 == 0) goto _L5; else goto _L4
+_L4:
+        ba1.d = true;
+_L6:
+        ba1 = ba1.c;
+_L5:
+        if(ba1 != null) goto _L4; else goto _L2
+_L2:
+        if(j1 == 0)
+            return;
+          goto _L6
+    }
+
+    private void g(ba ba1)
+    {
+        int i1 = a.q;
+        while(l < k.length()) 
+            switch(k.charAt(l))
+            {
+            case 91: // '['
+                c(ba1);
+                if(i1 == 0)
+                    break;
+                // fall through
+
+            case 123: // '{'
+                l++;
+                if(i1 == 0)
+                    break;
+                // fall through
+
+            case 125: // '}'
+                l++;
+                return;
+
+            default:
+                f(ba1);
+                break;
+            }
+    }
+
+    public static final int j = 18;
+    String k;
+    int l;
+    public ba m;
+    public ba n;
+    public Scrollbar o;
+    public Image p[];
+    Point q;
+    int r;
+}

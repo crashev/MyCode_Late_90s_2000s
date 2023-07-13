@@ -1,0 +1,116 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   i.java
+
+package a;
+
+import java.awt.*;
+
+// Referenced classes of package a:
+//            r, a
+
+public class i extends Panel
+{
+
+    public void a(i j)
+    {
+        h = j;
+    }
+
+    public i()
+    {
+        super(null);
+        g = 0;
+        h = null;
+    }
+
+    public void paint(Graphics g1)
+    {
+        if(g != 0)
+            r.a(g1, 0, 0, a, b, g == 1);
+        super.paint(g1);
+    }
+
+    public void a()
+    {
+        removeAll();
+        h = null;
+        if(d != null)
+        {
+            d.dispose();
+            d = null;
+            c = null;
+        }
+    }
+
+    public void a(Component component)
+    {
+        if(h != null)
+            h.a(component);
+    }
+
+    public final void update(Graphics g1)
+    {
+        if(g1 != null)
+            paint(g1);
+    }
+
+    public Graphics a(int j, int k)
+    {
+        return a(j, k, false);
+    }
+
+    public Graphics a(int j, int k, boolean flag)
+    {
+        if(flag && j < e && k < f)
+        {
+            j = e;
+            k = f;
+        }
+        if(c == null || d == null || j != e || k != f)
+        {
+            c = createImage(j, k);
+            d = c.getGraphics();
+            e = j;
+            f = k;
+        }
+        return d;
+    }
+
+    public Image b()
+    {
+        return c;
+    }
+
+    public void setBounds(int j, int k, int l, int i1)
+    {
+        a = l;
+        b = i1;
+        super.setBounds(j, k, a, b);
+    }
+
+    public void a(boolean flag)
+    {
+label0:
+        {
+            if(flag)
+            {
+                g = 1;
+                if(a.q == 0)
+                    break label0;
+            }
+            g = 2;
+        }
+    }
+
+    public int a;
+    public int b;
+    Image c;
+    Graphics d;
+    int e;
+    int f;
+    short g;
+    i h;
+    public static int i;
+}

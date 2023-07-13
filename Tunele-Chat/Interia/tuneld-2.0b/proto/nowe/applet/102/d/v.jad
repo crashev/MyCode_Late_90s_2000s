@@ -1,0 +1,72 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   v.java
+
+package d;
+
+import java.util.Vector;
+
+class v
+{
+
+    public v(String s, int i, int j)
+    {
+        c = false;
+        a = s;
+        b = i;
+        e = j;
+        d = new Vector();
+    }
+
+    void a(String s)
+    {
+        d.addElement(s);
+    }
+
+    private static String b(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i = ac.length;
+        int k;
+        for(int j = 0; j < i; j++)
+        {
+            switch(j % 5)
+            {
+            case 0: // '\0'
+                k = 0x77;
+                break;
+
+            case 1: // '\001'
+                k = 21;
+                break;
+
+            case 2: // '\002'
+                k = 79;
+                break;
+
+            case 3: // '\003'
+                k = 123;
+                break;
+
+            default:
+                k = 85;
+                break;
+            }
+            ac[j] ^= k;
+        }
+
+        return new String(ac);
+    }
+
+    String a;
+    int b;
+    boolean c;
+    Vector d;
+    int e;
+    public static final String f[] = {
+        b("\rt?\t4\004o.[\026\036\u010Co\0254W~.\0254\u0135"), b("\rt?\t4\004o.[\026\036\u010Co\0254We=\022#\026;"), b("\rt?\t4\004o.[\026\036\u010Co\037:Wx&\025<\024o.\0174Y")
+    };
+    public static final String g = "Czy si\u0119 zgadzasz?";
+
+}

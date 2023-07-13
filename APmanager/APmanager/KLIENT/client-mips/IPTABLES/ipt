@@ -1,0 +1,40 @@
+    Porty, ktore obserwujemy i markujemy to
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 20 -j MARK --set-mark 0x60
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 21 -j MARK --set-mark 0x61
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 22 -j MARK --set-mark 0x62
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 25 -j MARK --set-mark 0x63
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 80 -j MARK --set-mark 0x64
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 110 -j MARK --set-mark 0x65
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 143 -j MARK --set-mark 0x66
+#ntp
+    iptables -t mangle -A INPUT/OUTPUT -p tcp --sport 119 -j MARK --set-mark 0x67
+
+
+# pp2p (0x80-...)
+example three:
+
+
+01# iptables -t mangle -A PREROUTING -j CONNMARK --restore-mark
+02# iptables -t mangle -A PREROUTING -m mark ! --mark 0 -j ACCEPT
+03# iptables -t mangle -A PREROUTING -m ipp2p --edk -j MARK --set-mark 0x80
+04# iptables -t mangle -A PREROUTING -m ipp2p --dc -j MARK --set-mark 0x81
+05# iptables -t mangle -A PREROUTING -m ipp2p --gnu -j MARK --set-mark 0x82
+06# iptables -t mangle -A PREROUTING -m ipp2p --kazaa -j MARK --set-mark 0x83
+07# iptables -t mangle -A PREROUTING -m ipp2p --bit -j MARK --set-mark 0x84
+08# iptables -t mangle -A PREROUTING -j CONNMARK --save-mark
+
+09# iptables -t mangle -A POSTROUTING -m mark --mark 0x80 -j ACCEPT
+10# iptables -t mangle -A POSTROUTING -m mark --mark 0x81 -j ACCEPT
+11# iptables -t mangle -A POSTROUTING -m mark --mark 0x82 -j ACCEPT
+12# iptables -t mangle -A POSTROUTING -m mark --mark 0x83 -j ACCEPT
+13# iptables -t mangle -A POSTROUTING -m mark --mark 0x84 -j ACCEPT
+
+Finally an example where IPP2P is used for statistical purposes. Packets of 
+different P2P networks get different marks (03-07). Like in example two 
+CONNMARK is used to save (08) and restore (01&02) marks but then we add 
+rules to the POSTROUTING chain (09-13) and use the iptables byte and packet 
+counters to sum up P2P usage. 
+Use "iptables -t mangle -L -n -v -x" then to print out the counters for all 
+rules and get an overview of P2P traffic at your link. You could add other 
+supported P2P networks as well - I think through this example you understand 
+how! ;-)

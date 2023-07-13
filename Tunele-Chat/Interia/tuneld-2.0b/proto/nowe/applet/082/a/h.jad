@@ -1,0 +1,29 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   h.java
+
+package a;
+
+import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+// Referenced classes of package a:
+//            bb
+
+public class h extends WindowAdapter
+{
+
+    public h(bb bb1)
+    {
+        a = bb1;
+    }
+
+    public void windowClosing(WindowEvent windowevent)
+    {
+        a.a(windowevent.getWindow().getName());
+    }
+
+    bb a;
+}

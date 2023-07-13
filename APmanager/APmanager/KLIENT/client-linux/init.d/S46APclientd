@@ -1,0 +1,12 @@
+#!/bin/sh
+cd /AP
+APcenterd=`nvram get pawq_APcenterd`
+if [ ! $APcenterd ]; then
+         APcenterd="192.168.1.197:5000";
+fi
+if [ ! "`pidof APclientd`" ]; then
+    ./APclientd -a `cat /proc/sys/kernel/hostname` -m $APcenterd
+else
+    killall -9 APclientd
+    ./APclientd -a `cat /proc/sys/kernel/hostname` -m $APcenterd
+fi

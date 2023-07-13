@@ -1,0 +1,74 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   w.java
+
+package d;
+
+
+class w
+{
+
+    public w()
+    {
+        d = false;
+        e = false;
+        f = 0;
+        g = '\0';
+    }
+
+    public w(String s, String s1, String s2)
+    {
+        d = false;
+        e = false;
+        f = 0;
+        g = '\0';
+        a = s;
+        c = s2;
+        b = s1;
+    }
+
+    void a()
+    {
+        g = 'S';
+    }
+
+    boolean b()
+    {
+        return g == '1' || g == '5';
+    }
+
+    boolean c()
+    {
+        return g != 'N';
+    }
+
+    String a(int i)
+    {
+        switch(i)
+        {
+        case 0: // '\0'
+            return a;
+
+        case 1: // '\001'
+            return c;
+
+        case 2: // '\002'
+            return b;
+        }
+        return "";
+    }
+
+    boolean a(String s)
+    {
+        return c.indexOf(s) >= 0 || a.indexOf(s) >= 0 || b.indexOf(s) >= 0;
+    }
+
+    String a;
+    String b;
+    String c;
+    boolean d;
+    boolean e;
+    int f;
+    char g;
+}

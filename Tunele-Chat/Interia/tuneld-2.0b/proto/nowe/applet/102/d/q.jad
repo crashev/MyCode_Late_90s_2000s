@@ -1,0 +1,298 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   q.java
+
+package d;
+
+import INTChat;
+import a.*;
+import java.awt.*;
+
+// Referenced classes of package d:
+//            n, x
+
+class q extends i
+{
+
+    public q(d.n n1)
+    {
+        r = 0;
+        s = true;
+        j = n1;
+        d();
+    }
+
+    public void paint(Graphics g)
+    {
+        boolean flag;
+label0:
+        {
+            flag = x.bd;
+            a.r.a(g, 0, 0, super.a, super.b, true);
+            if(!j.W)
+            {
+                g.setColor(INTChat.H[1]);
+                if(!flag)
+                    break label0;
+            }
+            g.setColor(x.bb[16]);
+        }
+label1:
+        {
+            g.fillRect(2, 2, super.a - 4, 70);
+            if(!j.W)
+            {
+                g.setColor(INTChat.H[2]);
+                if(!flag)
+                    break label1;
+            }
+            g.setColor(x.bb[17]);
+        }
+        FontMetrics fontmetrics;
+label2:
+        {
+            g.drawRect(5, 5, super.a - 10, super.b - 18);
+            g.drawRect(5, 45, super.a - 10, 25);
+            g.setFont(x.bc[2]);
+            fontmetrics = g.getFontMetrics();
+            if(!j.W)
+            {
+                g.setColor(INTChat.H[4]);
+                if(!flag)
+                    break label2;
+            }
+            g.setColor(x.bb[19]);
+        }
+        g.drawString(q[r][0], (super.a - fontmetrics.stringWidth(q[r][0])) / 2, 21);
+        g.drawString(q[r][1], (super.a - fontmetrics.stringWidth(q[r][1])) / 2, 38);
+        g.drawString(a("V\001U5o\""), 100 - fontmetrics.stringWidth(a("V\001U5o\"")), 98);
+        g.drawString(a("P\tE\u011C 8R"), 100 - fontmetrics.stringWidth(a("P\tE\u011C 8R")), 126);
+        g.drawString(a("H\007]\255%\"H") + n + a("8H\026\021<\353\n\f~o") + o, 15, 62);
+        super.paint(g);
+    }
+
+    public void setVisible(boolean flag)
+    {
+        super.setVisible(flag);
+        k.setText("");
+        if(flag)
+            l.requestFocus();
+    }
+
+    public void a(Component component)
+    {
+        if(l.getText().length() > 0 && m.isEnabled())
+        {
+            m.setEnabled(false);
+            r = 1;
+            repaint();
+            s = true;
+            String s1 = l.getText().replace(' ', '_');
+            j.a(n, p, s1, k.getText());
+        }
+    }
+
+    void c()
+    {
+        setBackground(x.bb[16]);
+        m.a(x.Y);
+        m.b(x.bb[27]);
+        repaint();
+    }
+
+    private void d()
+    {
+        setFont(x.bc[3]);
+        setBackground(INTChat.H[1]);
+        l = new n(false);
+        l.setBounds(135, 82, 170, 25);
+        l.requestFocus();
+        k = new n(true);
+        k.setBounds(135, 110, 170, 23);
+        add(k);
+        add(l);
+        add(m = new c(a("O\r\\:\u0135")));
+        m.setBounds(130, 144, 70, 24);
+        m.a(x.Z);
+    }
+
+    void a(String s1, int i1, int j1)
+    {
+        n = s1;
+        p = i1;
+        o = j1;
+        r = 0;
+        m.setEnabled(true);
+    }
+
+    void b(String s1, int i1, int j1)
+    {
+        a(s1, i1, j1);
+        setVisible(true);
+        repaint();
+    }
+
+    void a(char c1)
+    {
+        boolean flag = x.bd;
+        c1;
+        JVM INSTR lookupswitch 12: default 308
+    //                   0: 112
+    //                   1: 163
+    //                   2: 172
+    //                   3: 181
+    //                   4: 191
+    //                   8: 221
+    //                   9: 269
+    //                   10: 288
+    //                   11: 278
+    //                   32: 211
+    //                   33: 201
+    //                   36: 298;
+           goto _L1 _L2 _L3 _L4 _L5 _L6 _L7 _L8 _L9 _L10 _L11 _L12 _L13
+_L1:
+        break; /* Loop/switch isn't completed */
+_L2:
+        if(s)
+        {
+            s = false;
+            j.a(n, p, j.bm, k.getText());
+            return;
+        }
+        r = 2;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L3:
+        r = 3;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L4:
+        r = 3;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L5:
+        r = 6;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L6:
+        r = 9;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L12:
+        r = 7;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L11:
+        r = 8;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L7:
+        if(k.getText().length() != 0) goto _L15; else goto _L14
+_L14:
+        r = 5;
+        if(!flag) goto _L16; else goto _L15
+_L15:
+        r = 4;
+        k.setText("");
+_L16:
+        j.X = false;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L8:
+        r = 3;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L10:
+        r = 9;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L9:
+        r = 10;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L13:
+        r = 11;
+        if(!flag);
+        m.setEnabled(true);
+        setVisible(true);
+        repaint();
+        return;
+    }
+
+    private static String a(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x18;
+                break;
+
+            case 1: // '\001'
+                k1 = 104;
+                break;
+
+            case 2: // '\002'
+                k1 = 54;
+                break;
+
+            case 3: // '\003'
+                k1 = 94;
+                break;
+
+            default:
+                k1 = 79;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    d.n j;
+    n k;
+    n l;
+    c m;
+    String n;
+    int o;
+    int p;
+    static final String q[][] = {
+        {
+            a("Y\nO~8}\002\u016D\u0159o|\007\026)6z\032W0*\177\007\026. s\007\\+c8\037F7<bHA~?w\006_\u0122<b\r"), a("h\007Z?ok\037\3054ov\001U5oqH^?<\u015A\007\026v+t\t\026$.k\034D$*\u0164\007X;(wHX7,s\t\037p")
+        }, {
+            a("L\032A?ot\007Q18y\006_;o|\007\026. s\007\\+a"), a("b\tU$*s\t\\~,p\037_2$\u0101H\030pa")
+        }, {
+            a("M\u0114O*$w\037X7$8\007\026*.s\001[~!q\013]+or\035\u014A~%}\033B~5y\004Y9 o\tX'"), a("oHB'\"8\030Y5 r\035\030~\030a\n_;=bH_0!aHX7,sF")
+        }, {
+            a("V\001S.=y\037_:\u010Dw\037O~#w\017_0"), a("O\021T7*j\022\0267!v\021\0260&{\003\030")
+        }, {
+            a("V\001S.=y\037_:\u010Dw\037S~'y\033\u01741"), a("O\030_-58\030Y0 o\006_;op\tE\u011C 6")
+        }, {
+            a("L\rX~!q\013]~%}\033B~5y\033B,5}\u0114Y066"), a("O\021T7*j\022\0267!v\021\0260&{\003\030")
+        }, {
+            a("V\001S~\"w\u0114X?ob\tZ1(w\037W\u0159ok\001\u012F~+wHB;(wHF1$w\002Cp"), a("K\rD)*jHQ1ov\001S~ z\033\u0174+(m\002SpoO\021T7*j\022\0267!v\021\026. s\233\\p")
+        }, {
+            a("B\rD).v\r\026. \u015A\u016DU$*v\001S~58\033S,8}\032S3a"), a("O\021Z1(m\002\026-&\u0101H_~?w\u012A\u0133=58\030Y0 o\006_;a")
+        }, {
+            a("V\001S~\"w\u0114X?ov\tA7\u014Ab\t\u0131~?w\u012A\u0133=5}\006_?obHE;=o\rD;\"6"), a("K\030D\255-m\002\026.\274\u0162\006_;%6")
+        }, {
+            a("L\rX~!q\013]~%}\033B~!q\rL?=}\002S-;j\007A?!a"), a("O\021T7*j\022\0267!v\021\0260&{\003\026?#z\007\026)*r\f\u014C~-}\022\0266.k\u012AWp")
+        }, {
+            a("U\tE$oz\tX?ov\t\026**vHF1$\353\002\030"), a("O\021T7*j\022\0267!v\021\026. s\233\\p")
+        }, {
+            a("L\rX~!q\013]~5y\037_;=yHA'=y\022O~!q\rR15o\007Z1!}F"), a("O\021T7*j\022\0267!v\021\0260&{\003\030")
+        }
+    };
+    int r;
+    boolean s;
+    static final Color t[] = {
+        new Color(97, 199, 239), new Color(0, 130, 194), new Color(97, 196, 244), new Color(243, 174, 32)
+    };
+
+}

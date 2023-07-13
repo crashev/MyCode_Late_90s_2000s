@@ -1,0 +1,1771 @@
+HOWTO Install OURMON - A Network Monitoring and Anomaly Detection System
+------------------------------------------------------------------------
+
+					Jim Binkley
+					jrb@cs.pdx.edu
+
+Version 2.4 Fall 2004
+
+This is an installation guide and a tutorial for the ourmon network
+analysis system.  Please read the entire file before installing
+ourmon.  There are two major sources for ourmon info, this file,
+and info.html in src/web.html which has information about the various
+filters.
+
+If you are a first time ourmon user, read this file first.
+Make 100% sure that pre-config dependencies are installed. 
+then run configure.pl.
+
+Outline:
+
+0. unpacking information
+1. ourmon network setup overview
+	a word of advice. 
+2. ourmon files, layout, and parts
+3. pre-configure dependencies
+4. running configure.pl
+5. post-install debugging/testing ourmon plus tricks
+6. creating a new user/bpf graph/filter
+7. optimizing ourmon.
+	parallelism and minimization of packet loss.
+	9. Linux front-end probe note.   
+8. runtime params for ourmon front-end and omupdate.pl back-end
+9. bugs, and debugging
+
+--------------------------------------------------
+0.  unpacking ourmon tar blob
+--------------------------------------------------
+
+Take the ourmon24.tar.gz tar blob, and place it in somewhere.
+We prefer to make ourmon a user with no login permissions and place
+it in /home/mrourmon, but you may choose to place it in
+/usr/local/mrourmon or anywhere for that matter.  (All the internal
+work directories are relative to the path BARRING the external
+web directory).
+
+For the sake of discussion will assume it is placed in 
+/home/mrourmon.
+
+# tar xzvf ourmon24.tar.gz 
+
+gives you:
+
+drwxr-xr-x root/wheel        0 Apr 15 12:40 2004 mrourmon/
+-rw-r--r-- root/wheel      131 Apr 15 12:24 2004 mrourmon/makeclean.sh
+-rw-r--r-- root/1003     49117 Apr 15 10:48 2004 mrourmon/INSTALL
+-rw-r--r-- root/1003      1009 Feb 17 14:28 2004 mrourmon/README
+-rw-r--r-- root/1003      3735 Feb 21 19:50 2004 mrourmon/CHANGES
+... etc.
+
+You should unpack the tar blob so that it goes in the directory of choice.
+
+The ourmon system is self-contained in the mrourmon directory
+and does not install/configure parts of itself elsewhere (barring
+crontab and rc.local entries/and creation of a web directory).  
+
+It will create various directories INSIDE the mrourmon home directory
+during the configuration process including a bin directory for
+executables and for logging files.   It does not make files at
+runtime outside that directory or the web directory.  Config files, log files, rrddata
+files, and executables all live in this directory.  (Linux could
+be /home/mrourmon, however on FreeBSD, this is actually
+/usr/home/mrourmon).  There is more information on the mrourmon home
+directory layout below.
+
+You may as a matter of administrative convenience create a mrourmon
+user so that cd ~mrourmon will work.  As a first cut, such a user
+should have a disabled password, and a shell entry in the password
+file of something like /nonexistent or /sbin/nologin, or /dev/null.
+
+E.g, (from /etc/passwd on FreeBSD)
+mrourmon:*:1002:1002:mrourmon:/home/mrourmon:/nothing
+
+If you are optimizing ourmon to install the front-end and back-end
+on separate hosts, still follow this procedure.  It is very convenient
+to keep ourmon in the same directory on any box you set it up on.
+
+--------------------------------------------------
+1.  ourmon network setup/overview
+--------------------------------------------------
+
+Our original setup looked something like this in terms of hardware:
+
+		|  DS3
+	----------------
+	| Border Router|
+	----------------
+	        | 100BASE Ethernet
+	---------------------
+	| Ethernet Switch    |
+	--------------------- 
+	| | | ...           | promiscuous mode port
+	  |		---------------------------------	
+	  |		| P3 Intel/FreeBSD 4.2 Ourmon box|
+	  |		---------------------------------	
+	  |		
+      ------------- non-DMZ-subnet
+		|
+		|
+		|
+	---------------------------
+        | ourmon graphics back-end | 
+	---------------------------
+ 
+We assume that the front-end ourmon probe runs in promiscuous mode
+(which ourmon turns on, users don't do that) sucking down packets
+coming from an Ethernet switch configured to do port mirroring.
+You may of course run ourmon on an end system without port mirroring,
+but in a modern switched network it will only see packets headed
+for the host itself.  Ourmon has two parts, a front-end probe, and
+a back-end graphics part.  The front-end program is called "ourmon",
+written in C.  The main back end program is written in perl, and
+called "omupdate.pl", and uses the RRDTOOL perl library.  It is
+possible to run the front-end and back-end on the same box.  We
+split up the work, because we desire to minimize dropped packets
+on the front-end, and centralize network graph producing software
+on the back-end.  Our front-end runs in our DMZ, and we have a
+non-DMZ graphics engine host all running FreeBSD (currently 4.9).
+We also have an additional front-end running ourmon on BSD 5.2.1.
+Both front-end boxes are currently 3 ghz Intel P4 systems with
+gigabit Ethernet cards.
+
+The Ethernet switch must be capable of having a port configured to
+do "port mirroring", or what Cisco sometimes calls SPAN; i.e., you
+tell it to take packets coming in (or going out) some other ports
+and mirror them on the promiscuous mode host port.  Thus your PC
+can see all the network packets headed through the switch or at
+least the packets you want it to see.  This PC is a typical "snooper"
+device as a consequence.  Ourmon's front-end is thus setup in the
+same way snort or ntop might be setup.  You may want it to have two
+Ethernet cards, so that one card is dedicated to sniffing, and one
+is used for access to the PC itself.  We are going to leave this
+sort of setup consideration to your own judgement, however.  At
+PSU, we are currently running ourmon with two-front end probes,
+glued together with one backend non-DMZ graphics box.  Ourmon is
+thus distributed over three hosts.  All three systems have gigabit
+Ethernet interfaces.  The back-end host is a PIII, and in general,
+the back-end perl scripts and jobs do not take long to run.
+
+A word of advice:
+
+We recommend the fastest computer you can lay your hands on for the
+front-end box.  Ideally the front-end ourmon probe runs on a computer
+by itself.  Said box should not be a router.  It should not run snort
+(great zot ... snort needs its own box, as you cannot afford to miss
+a single packet with snort, as it may be the packet with the new worm
+in it).
+
+The ourmon front-end is CPU intensive.  It is a good idea to
+dedicate a box to it.   The back-end may live with it.  The back-end always
+needs to run completion in 30 seconds.  DNS reverse resolution is
+an open-ended problem in that regards.  It may be useful to make
+sure your back-end is actually running to completion.
+
+The challenge here is to have enough CPU power that
+you don't start dropping packets.  Of course how fast, the computer
+should be depends on the speed of the interface you are trying to
+measure.  If you have a T1 or DSL/cable modem connection, you may
+not need such a fast CPU.  The supplied and default "pkts" filter
+shows BPF packet counts and drops in packets per second.  It is the
+most important filter.  Although ourmon is NOT snort and is not
+looking for attacks (i.e., where one missed attack packet can kill
+you because the new virus/worm in the packet is not known anywhere),
+it is still important that you minimize packet loss.  Some may occur, and
+just how much packet loss you can tolerate is up to you in the final
+analysis.  Less is better.  See the optimizing section below for 
+more information on avoiding dropped packets.
+
+ourmon philosophy:
+
+If you are dropping packets, you may be trying to do too much.  If
+you are NOT dropping packets, you could stand to be doing more :->.
+
+
+We do not intend to tell you how to configure a FreeBSD kernel.  
+However the probe-box/kernel MUST HAVE the bpf pseudo-device enabled.  
+If tcpdump works, you can install ourmon.
+
+-------------------------------------------------------------------
+2. ourmon files, layout, and parts
+-------------------------------------------------------------------
+Ourmon as unpacked will have most of the following directories and files 
+(Files marked with * are created by the configure.pl configuration utility):
+
+INSTALL - this file
+README - well, README ... acknowledgements.
+CHANGES - new features, and changes over time according to version.
+VERSION - version number
+bin* - all runtime executables live here, ourmon, omupdate.pl, etc.
+	scripts for running executables are built and installed here by configure.pl. 
+	Executables are compiled and installed here as well by configure.pl
+
+configure.pl - configure script for compiling, installing ourmon front-end
+	and graphics-producing back-end.  Can install front-end, back-end separately.
+
+etc - the ourmon config file ./etc/ourmon.conf lives here.  
+	The front-end system will use this at runtime.  Read it and understand it.
+	You may add your own new BPF set filters as well.
+
+logs* - ourmon log data is stored here.  Configure.pl creates it if "logging" is enabled.
+	mon.lite and optional tcpworm.txt files are stored here in their own directory.
+	all topn filters have one week's worth of logging stored here.  
+	See below for more information.  
+
+rrddata* - directory for storage of rrd database files (.rrd files).
+	Filename is based on ourmon.conf filter label/tag. The rrdtool runtime
+	error log called "ourmon.log" (back-end error log) is stored
+	here.  If your .png pics don't appear, look here first.
+
+rrddata*/ourmon.log - runtime back-end error log for rrd internal errors.
+
+tmp* - runtime files produced by the front-end including mon.lite and
+	the optional tcpworm.txt are stored here.  
+
+scripts - misc. sample scripts that may be of use.  Nothing in here that
+	is part of runtime system.
+
+src - src code for frontend and backend
+
+src/ourmon - C src code for the front-end ourmon sniffer.
+src/web.code - C and perl code for the back-end picture making, report generating, 
+		and analysis programs.
+src/web.html - starter html files for the back-end web display system.
+
+web.pages* - usually you tell the ourmon configure.pl script where
+	to store the back-end graphic output and reports in a web directory.
+	E.g., perhaps you are running apache and you have htdocs
+	set to /usr/local/apache2/htdocs.  ourmon files could be
+	configured to be stored in /usr/local/apache2/htdocs/ourmon.
+	web.pages is simply a symbolic link set to whereever you
+	store your web pages, and exists for administrative
+	convenience.  It is not used by the system.
+
+During configuration, certain programs are created and installed
+in the bin directory. Also certain directories are created in /home/mrourmon.
+The directories created include bin, logs, rrddata, tmp as outlined above.
+
+Certain files will be produced as the ourmon system runs.  We will give a brief overview here.
+There are more details in other sections below.
+
+Let's look at ourmon from this point-of-view:  
+
+1. front-end sniffer, 2. back-end grapher/reporter, 3. back-end top of top reports and analysis tools
+
+The front-end has just a few files associated with it.  The back-end
+has MANY files, especially if logging is enabled, but many files
+are also placed in the back-end web directory for web viewing.
+Logging currently is done by the back-end into /home/mrourmon/logs
+and does not use syslog.
+
+1. front-end sniffer
+
+~mrourmon/bin/ourmon - front-end C program called "ourmon".  ourmon will
+	be built by the config script and is a compiled C executable.
+
+~mrourmon/etc/ourmon.conf - input configuration file to ourmon.  This
+	file specifies the filters ourmon uses.  You may modify this file with the 
+	programmable BPF mechanism to create your own filter sets
+	(a set of BPF expressions that produce one set of RRDTOOL graphs
+	and one rrd) looking at local ports/hosts/networks
+	and combinations of the same.  See ourmon.conf for examples.
+
+~mrourmon/tmp/mon.lite - output file created every 30 seconds by ourmon.
+	As ourmon sniffs, every 30 seconds it creates this file,
+	which store byte or packets for the set of named filters 
+	found in ourmon.conf.  This file in turn is fed 
+	to the back-end for the creation of web output, and logs.
+	Thus this file is the output for the front-end and the input
+	for the back-end. 
+
+~mrourmon/tmp/tcpworm.txt - This is an optional feature of the topn syn list mechanism
+	which gives the topn syn scanners according to the most SYNS seen during
+	the sample period.  topn_syn in ourmon.conf enables the topn syn list.
+	In addition you can ask the front-end to generate a "wormfile" called
+	tcpworm.txt in a supplied directory, which by default is /home/mrourmon/tmp. 
+	E.g., in ourmon.conf, you find:
+
+	topn_syn 20
+	topn_syn_wormfile /home/mrourmon/tmp
+	topn_syn_homeip  10.1.0.0   255.255.0.0
+
+	topn_syn_wormfile only works if topn_syn is specified, and tells the front-end
+	where to put the tcpworm.txt file, which captures and stores individual IP syn
+	scanners and related TCP control counts as a front-end report.
+	topn_syn_homeip should be set to your internal network with its netmask,
+	and this is used to distinquish attacks from outside versus attacks from
+	the inside in the web tworm.html page.
+
+~mrourmon/bin/ourmon.sh - this is a shellscript "driver" used to
+	package parameters and simplify the boot of the front-end ourmon executable when
+	a system reboots or when you change ourmon.conf.  It should
+	be called from /usr/local/etc/rc.d/ourmon.sh or the Linux equivalent
+	(e.g., /etc/rc.d/rc.local) to make sure that the ourmon front-end always runs at boot.  
+	This file is created at configuration time depending upon input
+	parameters.  It may be used to start stop or restart ourmon.
+	E.g.,
+
+		./ourmon.sh start
+		./ourmon.sh stop
+		./ourmon.sh restart
+
+	of course, kill -9 can be used in a pinch.
+
+It should also be pointed out that ourmon post boot makes syslog
+entries.  Look in /var/log/messages to see if it booted ok.  BSD users
+should also note the BPF sizes message.  See the optimization hints
+section below for more information on that subject.
+
+2. back-end grapher/logger
+
+The back-end consists of a set of web pages, several perl scripts 
+including "omupdate.pl", and another C program used by the topN filter, called
+"drawtopn", which makes the histogram graphs used with the top N
+filters.  drawtopn and omupdate.pl (using RRDTOOL) both produce
+graphics.  There are files that are generated and used by these
+programs and it is important to understand their functions in order
+to install the overall ourmon system and get it working.  
+
+From the back-end point-of-view, there are several kinds of graphs and
+outputs: 
+
+1. RRDTOOL based graphs (from bpf, and *other*, where other are either
+hardwired filters in the front-end not using the bpf OR second-order side
+effects of some of the top N graphs executed by the perl code in
+omupdate.pl), 
+
+2. histograms graphs produced by drawtopn.  There is an
+important distinction in terms of baselined data.  RRDTOOL graphs
+of course consist of the traditional, day, week, month, year graphs and
+are based on the MRTG tradition.  In order words, one year of data
+is baselined in the rrds, and shown graphically in the web directory.  
+The histogram mechanism is totally different.  All of the topn filters
+in the front-end produce: 1. a histogram of the top N sources (this
+may be 1 to N pictures depending on the filter configuration, with
+typically 10 or so bars per graph), and 2. "syslog" style logging
+info (if logging is enabled) in various files in the /home/mrourmon/logs
+directory.  So one can see RRDTOOL has a year of baselining (in rrds
+and in pictures), and top N filters have one week of baselining in
+syslog-style text data.  
+
+3. There are also additional report generator 
+programs for some of the syslog-style top N filters that analyze the
+log info for some of the filters (like the top N ip flow filter) and produce
+top of the top perl reports (which flow or ip src, etc. is doing the most work
+over the day, or week).   Some reports are based on information from
+the current sample period of 30 seconds (like portreport.txt) and
+some reports are based on hourly information like top flows, or top
+UDP flows, etc.
+
+4. There is also additional logging information which is stored
+in the logs directory.  Topn logs have their own files.  mon.lite
+and tcpworm.txt front-end files are also stored in their own directories.
+Also the portreport.txt output file is stored in its own directory.
+portreport.txt is one view of the tcpworm.txt file.  Of these 4 kinds
+of logging info, portreport.txt is the only one meant in some sense
+for human analysis, but the others are logged just in case.
+Logging is in general driven by the back-end.
+
+back-end drivers and programs include:
+
+~mrourmon/bin/omupdate.sh - this file is created by configure.pl.
+	It packages parameters to omupdate.pl.  It may optionally
+	copy the front-end files mon.lite and tcpworm.txt from a front-end
+	system to a back-end system.  It should always backup the mon.lite
+	and optional tcpworm.txt files into the logs directory.
+	Note that we assume this file to be called from crontab.
+	Since ourmon runs at a 30 second interval, and this file
+	should be called from crontab once per minute, work in this
+	file has the following structure:
+
+		loop thru twice
+		do task A
+		do task B, etc.
+		sleep 30
+
+	thus omupdate.sh runs once a minute, and makes omupdate.pl
+	(which is the big chunk of the back-end) run twice per minute.
+
+	If you need to test omupdate.sh, make a copy of this by hand,
+	throw out the loop part ... and simply run it once by hand to
+	see if omupdate.pl is complaining about something. 
+	(omupdate.pl also has a debug switch which must be set in the perl code).  
+	ourmon will not suffer any long lasting corruption problems if
+	you run omupdate.sh by hand.
+	
+~mrourmon/bin/omupdate.pl - perl script run via bin/omupdate.sh, 
+	This is the main-back end driver.
+	It either or updates the graphics via RRDTOOL and/or calls drawtopn to create
+	topn pictures.  omupdate.pl uses mon.lite as input and
+	creates rrd databases, and updates rrd databases,
+	and makes .png files placed in the web directory.
+	It creates new rrds on demand, but never deletes them.
+	It also does top N logging in the logs directory.
+	It does NOT back up mon.lite or tcpworm.txt, which must be 
+	done elsewhere.
+
+~mrourmon/bin/drawtopn - topN filters do not use RRDTOOL.  They simply
+	draw histograms as .png files.  drawtopn is called by 
+	omupdate.pl to draw various histograms.  drawtopn is a C program.  
+	drawtopn is used by the topn, topn_port filters, and other topn filters.
+
+~mrourmon/bin/tcpworm.pl - this program is a separate program for
+	processing the tcpworm.txt front-end report.  It processes tcpworm.txt,
+	producing portreport.txt and tcpworm.txt as outputs.  tcpworm.txt
+	as an input is basically a report version of the input file with all
+	details.  portreport.txt is a view of tcpworm.txt that is sorted
+	fundamentally by IP address by increasing value.  tcpworm.txt also
+	updates the event log stored in the web pages, and the database
+	used to capture new port signatures which is stored in the logs/tworm
+	directory.
+
+~mrourmon/bin/wormtolog.pl - this is a small perl program that takes the input
+	tcpworm.txt file and converts it to a "log-like" file in the top n logs
+	directories.  Thus the tcpworm.txt list of IP addresses is converted to
+	a topn like log, and the ombatchsyn.pl report generator works on both
+	the topn_syn log and the worm log as their internal tuple format is the same.
+	This is used to produce the allworm_today.txt file, which gives an average
+	of the portreport.txt data sorted by average work weight over the day.
+
+~mrourmon/rrddata/*.rrd - hardwired and BPF filters RRDTOOL rrds are
+	stored here.  omupdate.pl both creates the rrd databases
+	and then updates them.  An error file called ourmon.log is
+	put here, in case the RRDTOOL perl library is not happy
+	about information passed to it by omupdate.pl.
+
+~mrourmon/tmp - the backend finds the front-end output files here:
+	mon.lite and the optional tcpworm.txt file.
+
+~mrourmon/logs - omupdate.pl and omupdate.sh log various files in this directory.  
+
+	After the configure.pl run, the logs directory has the following
+	sub-directories:
+
+	bash-2.05b# ls
+
+	Fri Mon Sat Sun Thu Tue Wed mon.lite portreport topn_today
+	tworm web.pages
+
+	topn filter files are stored in the day directories thus giving a week
+	of logging.  The current day is zeroed out at midnight (by daily.pl).  topn_today
+	is a symlink that must exist, and is always relinked at midnight to the current day.
+
+	504(graphics-box)(/home/mrourmon/logs/topn_today)  ls
+
+	alert.log  ip_scan.log tcp_portscan.log  topn_tcp.log  udp_portscan.log
+	icmperror_list.log  syn_list.log  topn_icmp.log  topn_udp.log  udperror_list.log
+	ip_portscan.log  tcp_ports.log  topn_ip.log  udp_ports.log  db.db syn_worm.log
+
+	The above listing shows per topn log files for the various topn filters as well as the alert.log,
+	which exists to show flows of size N where N is considered "big" (ourmon.pl configuration parameter).
+	These files are created by omupdate.pl if logging is enabled.  The daily event database
+	is also stored in here (db.db).  It is used by tcpworm.pl to tell if a port signature
+	is "new" or old (seen previous) on a daily basis.  syn_worm.log is a log like file
+	produced by wormtolog.pl and used for a top of the top report that essentially is a statically
+	averaged portreport.txt report.
+
+	In addition, back end code logs mon.lite files, tcpworm.txt and portreport.txt files in 
+	logs/mon.lite, logs/tworm, logs/portreport.txt respectively according to the day of the week.  
+	The mon.lite, tworm, and portreport directories also have days of the week, so that those
+	files have one week's worth of logging.  Each day is also linked to a "today"
+	file so that one can easily find today's log.
+	
+	Each file is stored with the date prepended in order to make both makes its time
+	obvious and to make each file unique in terms of its name. 
+
+	Note: there is a trick here that can be of use in dealing with
+	these files.  E.g., say you want to easily find the biggest
+	worm count for a day...
+
+	cd tworm/Fri
+
+	# find . | xargs wc -l | sort
+
+	Logs for the topn filters are simply stored by omupdate.pl per day just
+	inside the ~mrourmon/logs directory itself.
+
+	Note that the above trick also works in the portreport directory.  One can
+	thus use this trick to correlate large spikes in the tworm.html graph with
+	the actual attack that cause the spike.
+
+~mrourmon/bin/daily.pl - this script is part of the logging system,
+	and is run out of crontab.  It runs at midnight and initializes
+	the next day directories for new logging output in the logs directory.
+
+~mrourmon/bin/monbackup.pl - this program is used to back up various entire log files
+	into the logging system.
+
+And somewhere else on your back-end system, you have a web browser,
+likely apache.
+
+/usr/local/apache/htdocs/ourmon/*.html - 
+	Various starting html files are placed in this directory
+	by configure.pl.  Also dynamically created .png files 
+	are stored here by omupdate.pl/drawtopn every thirty seconds.
+	Logging top of top reports are also stored here as .txt files.
+
+	index.html is the top-level "glue" html file that gives a
+	daily view on back-end MRTG-like html files.  Various html
+	files for grouping hardwired and BPF filters exist.  You
+	may have to modify these or add to them as you add filters
+	(or simply choose to not use filters and remove features
+	you are not using). Post-installation, you should change
+	and debug the .html files as needed.  Your job is to install
+	a web server, and configure.pl will install files in a web
+	directory.  NOTE: configure.pl will create the web directory,
+	as it needs to know where it is.
+
+3. back-end top of top reports and analysis tools
+
+Given that we have topn logging in the logs directory, a number
+of tools exist both at runtime and "any time" for two functions:
+
+1. Creation of runtime top of top reports that are made hourly for the current day,
+and then rotated at midnight for a week's worth of top of top reports on the web page.
+
+2. There are a few analysis tools that are not runtime tools, but may
+be used by an administrator for analysis of existing log files.
+
+3.1 top of top reports
+
+Top of top reports refers to reports made by perl and shell code automatically run
+out of crontab placed in the web.pages directory for ourmon.  
+Here is how this sub-system works:
+
+	batchip.sh uses 3 perl scripts (ombatchip.pl, ombatchipsrc.pl,
+	and ombatchsyn.pl) to analyze 4 sets of topn logs: 
+
+	topn_ip: top N ip flows (all flows)
+	topn_udp: top N udp flows
+	topn_icmp: top N icmp flows
+	topn_syn: top N syns in terms of IP source addresses. 
+
+	This is done per hour on the current day.  The perl script in 
+	question, in general works like this:
+
+	ombatchip.pl - sort the flows according to which flow generated
+	the most bytes so far on that day.  Note the # of instances the flow
+	was seen, and record its starting and stopping time (first time seen
+	and last time seen).
+
+	ombatchipsrc.pl - similar to above, but sort according to ip source
+	and ip dst, thus it attempts to tell us who the top ip src and ip dst
+	addresses were in terms of flows.
+
+	Important note:  topn_icmp is often very good at showing persistant
+	TCP and UDP scanning, as scanners often generate a long term trace
+	of ICMP errors, which may not show up "now" (e.g., in the topn icmp
+	histogram graph) but very well may show up in the daily log.  Thus
+	this is an important tool for watching for scanning attacks.
+
+	ombatchsyn.pl - analyzes the topn_syn log and produces a daily summary
+	of that log in a fashion analogous to that produces by ombatchip.pl.
+	It sorts on syn counts, but the weight algorithm result is also shown
+	(the same sort of weight calculation as used in the topn_syn histogram
+	graph is also shown).  This program also takes the tcpworm.txt file
+	(via a sneaky trick performed at 30 second sample time by wormtolog.pl),
+	and produces a weighted average of the portreport.txt file.  The default
+	weight is 80%.  Thus anomalous syn sources (IP sources) who have average
+	work weights greater than or equal to 80% will appear in the allworm_today.txt
+	report page on the web.
+
+	batchipall.sh is run near midnight and simply takes the previous day's
+		batch output in the web directory, and rolls it back one day.
+		8 days worth of reports are kept in the log directory. 
+	E.g.,
+		topn_today.txt is the report for today for topn_ip.
+		topn.0.txt is for the previous day.
+		topn.1.txt is for the day before that ... etc.
+		...
+		topn.7.txt is the last day, roughly one week old.
+
+	All the reports in the web directory end in .txt.
+
+~mrourmon/bin/batchip.sh  - driver for hourly log report based on topn_ip.log
+	information.  It produces a sorted list of the top IP flows,
+	as well as IP src, IP dst, ICMP, UDP flow, and syn reports.  The reports
+	are stored in the web directory.    For example, the top
+	of the top hourly report is named: topn_today.txt.
+
+~mrourmon/bin/batchipall.sh - run once a day, it takes files like topn_today.txt in
+	the web directory and rotates them back one day according to the scheme
+	outlined above.
+
+~mrourmon/bin/ombatchip.pl - perl script called by above shellscript to generate 
+	top of top sorts.  This works on topn IP flows (all flows
+	tcp/icmp/udp, etc).  We currently are not doing top TCP though.
+
+~mrourmon/bin/ombatchipsrc.pl - perl script called by above shellscript to generate 
+	top of top sorts based on ip src and ip destination.
+
+~mrourmon/bin/ombatchsyn.pl - perl script called by above shellscript to generate top of top sort
+	on tcp syn logging information.
+
+-------------------------------------------------------------------
+3. pre-configure dependencies:
+-------------------------------------------------------------------
+
+Ourmon has dependencies that must be installed before configuration time else the config process 
+and/or its produced executables will fail.
+
+1. Front-end sniffer dependencies:
+
+1.1. libpcap must be available.  It is installed by default
+on FreeBSD.  Nevertheless, it is findable at:  
+
+http://www.tcpdump.org.
+
+If you have tcpdump, you could be in business, as tcpdump uses
+libpcap.  On both FreeBSD and Linux it is good idea to download a
+new version of libpcap and install it in /usr/local/lib/libpcap.a
+and then build the front-end ourmon probe.   There are 2 reasons
+for this:
+
+1. on FreeBSD (only) there seems to be a very useful libpcap feature in recent versions
+of pcap that automatically sizes the kernel BPF buffering system used by the libpcap
+client (ourmon).  See optimization hints below for more information.
+
+2. On both BSD and Linux, it may also be a very good idea to download and install libpcap 
+as well.  If you find that ourmon will not load the supplied ./etc/ourmon.conf,
+then you need a newer version of libpcap.  please install libpcap (and it will work).  
+
+You may test the ourmon front-end by hand by trying to build
+ourmon as follows (although the configure.pl script will do this for you).
+
+If FreeBSD:
+
+(cd src/ourmon; make -f Makefile.bsd)
+
+If Linux:
+
+(cd src/ourmon; make -f Makefile.linux)
+
+2. Back-end dependencies:
+ 
+2.1. omupdate.pl needs RRDTool
+
+findable at: http://ee-staff.ethz.ch/~oetiker/webtools/rrdtool
+
+RRDTool is used for graph creation and storage of data.  It must
+be fetched and installed before ourmon is configured.
+It is strongly recommended to build rrdtool as follows: 
+#########################################################
+
+	# make site-perl-install
+
+as this means the rrd perl libraries will be installed in system
+places, and you will not have to change /home/mrourmon/bin/omupdate.pl
+in terms of its "use lib" statement.  (not a big deal).
+E.g., ompdate.pl has
+
+:use lib qw( /usr/local/rrdtool-1.0.13/lib/perl ../lib/perl );
+
+Note: it may also be useful to test out the rrd tool install.
+E.g cd to ./examples in the rrdtool distribution directory,
+and make sure that you can run "bigtops.pl" or other example
+scripts and get png pictures.
+
+On FreeBSD, RRDTool is available as a port.  See
+/usr/ports/net/rrdtool and do "make install".
+
+With Debian linux,
+
+# apt-get install librrds-perl
+
+seems to do the trick.
+
+2.2. drawtopn needs the public-domain GD library libgd.a to make pictures.
+The GD lib can be found at: http://www.boutell.com/gd.   
+Version 2 is needed if there is any doubt.
+
+gd can be found in FreeBSD ports as well, /usr/ports/graphics/gd.
+cd to /usr/ports/graphics/gd and do "make install".
+Note that configure.pl looks for it in /usr/local/lib/ and in
+/usr/lib both.   On Linux, this is probably not a problem,
+and it may be found in /usr/lib/libgd.a.
+
+Debian note:  
+
+# apt-get install libgd-dev 
+
+2.3. drawtopn also uses libpng.a and libz.a. 
+
+On the web the png library can be found at http://www.libpng.org.  
+On FreeBSD, it is installed in /usr/local/lib. 
+libpng can be found as a FreeBSD port in /usr/ports/png.  
+cd /usr/ports/png and do "make install".
+
+On linux both of these libs (png and zlib) are likely in /usr/lib, so nothing
+needs to be done.
+
+If that is not true, libz.a (zlib) can be found on the web at: http://www.gzip.org/zlib/ 
+It is assumed that zlib is available either in /usr/lib or /usr/local/lib/libz.a
+
+These must be installed before configuration.  
+
+You may test the src/web.code/Makefile by hand to see if you can
+build drawtopn.  It is setup for FreeBSD, and not for Linux.
+This can easily be fixed by commented in the LIBS statement in the Makefile
+intended for Linux, and commenting out the other LIBS statement.
+
+In any case, configure.pl figures this out on its own, so you need not
+mod the Makefile unless you want to do standalone testing.
+
+4. It is assumed that you have a web server; e.g., apache.
+Use of a web server is simple, we provide .html, and .png pictures.  
+There is no CGI functionality in ourmon at this time.  You should know where you want the 
+web pages and top of top reports to go; e.g., in a directory such as 
+/usr/local/apache2/htdocs/ourmon or /usr/local/www/data/ourmon.
+
+A prototype index.html file is supplied, but it should be modified
+based on the front-end ourmon.conf filters you actually use.  The
+configuration process installs a prototype index.html.  It will
+serve to get started.  Edit as needed.  You may also need to modify
+or create per-filter html pages if you use the user-bpf functionality.
+See "bpf-subnets1.ntml" and clone and edit that as needed for new
+filters.  Any of the bpf*html files may be used as a template.
+There is a section below on how to create a new BPF filter set of
+your own.
+
+5. optional dependencies if front-end and back-end are on separate
+computers.  You will need a mechanism to copy the mon.lite and
+tcpworm.txt files from the front-end to the back-end.  On FreeBSD,
+we use wget, ipfw ACLS to narrow who can access the front-end, and
+micro_http on the probe.  wget can be found in /usr/ports/ftp/wget.
+This is fairly easy to setup.  See optimizations below for more
+information.  Of course, you can setup your own system here using
+who knows what, rsync, ftp, ssh, etc.
+
+------------------------------------------------------
+4. running configure.pl
+------------------------------------------------------
+
+Configure.pl installs the ourmon system.  Actually it installs the
+front-end first, and the back-end second.  Either front-end or
+back-end can be installed separately or together.  A beginner should
+probably install all of it on one machine.
+
+In addition to installing ourmon, drawtopn, and omupdate.pl, etc.,
+a number of shellscripts are generated directly by configure.pl:
+
+	1. ourmon.sh - shellscript for starting ourmon (front-end).
+		halt_ourmon.sh is also created for stopping ourmon.
+
+	2. omupdate.sh - shellscript for running omupdate.pl. (back-end)
+	This may optionally include a call to wget to fetch front-end files,
+	and should in all cases include a call to monbackup.pl to backup
+	mon.lite and/or tcpworm.txt.
+
+	3. batchip.sh - driver for hourly log of log report run (top of top reports).
+
+	4. batchipall.sh - driver for daily log of log report run (top of top reports).
+
+These scripts may be examined and tweaked as desired.  ourmon.sh and omupdate.sh
+serve as parameter packaging scripts for the front-end ourmon program, and the back-end
+omupdate.pl program.  This makes invoking those programs much easier.
+
+ourmon (front-end), and drawtopn are compiled and installed in the ourmon
+bin directory.  omupdate.pl, and logging, and reporting scripts are put 
+in bin as well.  
+
+Install notes:
+
+4.1 front-end
+
+configure.pl first tries to locate libpcap, in either /usr/local/lib/libpcap.a
+or /usr/lib/libpcap.a in that order.  A new install from www.tcpdump.org will
+place libpcap in /usr/local/lib, which is preferred.
+
+configure.pl needs an input interface for the front-end.  Of course,
+this is the Ethernet or wireless interface on which you wish to run ourmon.
+E.g., on FreeBSD it might be em0, sk0, or fxp0, or lo0 for testing.
+On Linux it might be eth0.  Use netstat -a to find your interface name before
+you run configure.pl. 
+
+configure.pl asks if you want to install the ourmon.sh script
+in /usr/local/etc/rc.d on BSD  or /etc/rc.d/rc.local (on Linux) 
+(so that ourmon will always be run when the system is rebooted).  
+
+At the conclusion of the front-end install, you should have
+bin/ourmon, and bin/ourmon.sh.
+
+4.2 back-end
+
+Daily logs are placed in the ~mrourmon/logs directory.
+Sorts of those logs are done on an hourly basis to produce top of top
+reports to show who is doing the most of 1 of 4 topn categories
+(topn_ip flows, topn_udp flows, topn_icmp flows, and topn_syns individual ip src)
+Logging is self-contained within the ourmon back-end and has
+nothing to do with the UNIX syslog system at this point.
+Note that configure.pl will create the logs directory and its lower-level
+directories.
+
+configure.pl next attempts to compile the drawtopn C program.  If
+this fails, cd src/web.code and edit/run the Makefile by hand, until
+drawtopn compiles.  For example, parts of lib gd may be missing.
+See the previous dependency section for more details here.
+
+configure.pl asks for a pathname for the web output directory.  The
+default assumption is ourmon as a directory in which both dynamically
+created output and canned .html files will be placed.  Dynamic
+output comes from programs like omupdate.pl and drawtopn.  Top of
+top reports are also put here. Canned html files come from the
+src/web.html directory.  configure.pl *creates* the base directory
+(ourmon).  You must make sure that the path leading up to the base
+directory exists (e.g., /usr/local/apache/htdocs).
+
+configure.pl asks if you want to copy the base files (from src/web.html)
+to the web directory.  This should be done on an initial back-end
+install.  Post install, you want to edit index.html and possibly other supplied
+files (or use them as templates) for putting your base index.html
+file together.  You want index.html to match the filters in
+~mrourmon/etc/ourmon.conf.  For example, if you have a new BPF filter set
+expression graph, then you must create a .html file to go with it.
+See adding a BPF graph below in the optimizing section for more
+information.
+
+configure.pl will create a local directory for RRDs to be stored
+in.  By default, this is rrddata.
+
+If logging is enabled, and if a certain topn flow size in the sample
+period is exceeded, it is possible to store this flow in a special
+"alerts.log" file.  configure.pl asks for a size in megabits to for
+"flows of interest" -- the default here is 10 megabits, which
+may be wrong for your network. These "alerts" are
+stored in /var/log/topnalert.log.
+
+Finally configure.pl generates 1-4 crontab entries as follows:
+
+############## ourmon crontab entries ###############
+# run ourmon back-end omupdate.pl etc. per minute
+*/1	*	*	*	*	root	/usr/home/mrourmon/bin/omupdate.sh
+# batchip.sh - hourly log summary
+0	*	*	*	*	root	/usr/home/mrourmon/bin/batchip.sh
+# batchipall.sh - roll over logs at almost midnight
+59	23	*	*	*	root	/usr/home/mrourmon/bin/batchipall.sh
+# daily.pl - re init logs at midnight
+0	0	*	*	*	root	/usr/home/mrourmon/bin/daily.pl /usr/home/mrourmon/logs
+
+If you want the crontab entries are placed in a file in /tmp, and you
+can manually arrange for cron to be called.  Or you can have configure.pl
+simply append them to /etc/crontab.  Note, that this means omupdate.sh will
+start being called immediately.  This may generate some root/cron mail,
+but you can simply delete the mail later.  Or comment out the call
+to omupdate.sh, etc for awhile until you do some unit testing, and get
+the front-end running.
+
+omupdate.sh is created by configure.pl, and written to the bin
+directory.  omupdate.sh is a shellscript driver for packaging
+parameters for omupdate.pl.  If logging is on, it will backup
+mon.lite and the optional tcpworm.txt front-end files.  It may also
+use wget to fetch those files.  It will run omupdate.pl.  It tells
+omupdate.pl where to find the mon.lite file, where drawtopn lives,
+and where to put dynamically generated files (usually .png files),
+as well as where the RRD databases go.  omupdate.sh is called once
+a minute from /etc/crontab, and actually calls omupdate.pl twice
+as the fundamental ourmon sample time is thirty seconds.  Thus
+omupdate.pl is cron driven.
+
+configure.pl also installs various perl scripts for analysis and
+sorting of the topn log files.  Thus batchip.sh is called on an
+hourly basis during the current day to generate top of top reports
+where the log files in ~mrourmon/logs/topn_today are the inputs,
+and the outputs are placed in the web directory (*daily.txt files).
+batchipall.sh simply rotates the outputs in the web directory.
+daily.pl runs at midnight and prepares the logging directories in
+~mrourmon/logs for the next day.
+
+Now we turn to testing the various parts of ourmon.
+
+-----------------------------------------------------
+5. debugging/testing ourmon plus tricks
+-----------------------------------------------------
+
+At this point we assume you have run configure.pl, and have
+a front-end and/or back-end installed.
+
+It is best if we go thru and sanity check various parts of ourmon
+in order, from front-end to back-end.  
+
+RRDTOOL databases live in:
+	/home/mrourmon/rrddata
+
+The mon.lite and tcpworm.txt files are found at:
+	/home/mrourmon/tmp/mon.lite 
+	/home/mrourmon/tmp/tcpworm.txt
+
+We assume for the sake of argument that your web pages are living at:
+	/usr/local/apache/htdocs/ourmon
+
+5.1 front-end testing
+
+The front-end has ourmon.conf as input, and mon.lite as output.
+Edit ourmon.conf with the ASCII editor of your choice.  For information
+on filters (not given here) look at ~mrourmon/etc/ourmon.conf (after
+installation) which has filters in it, or src/web.html/info.html
+(with a web browser) for information about filters.  
+
+Note that you may design new filters using the BPF filter language (as used with
+tcpdump), and create new filters with say 1..6 filters per BPF/RRDTOOL
+graph.  There are a number of examples of BPF filter sets supplied
+in the ourmon.conf file including the bpf/ports or "ports of interest" filter. 
+Some examples in the supplied ourmon.conf file are commented out, at least one is commented in.
+
+Comment filters as desired in/out using a hashmark in the 1st column of 
+ourmon.conf as follows:
+
+# commented out
+# topn_ip 20
+
+# commented in
+topn_ip 20
+
+In the sample ourmon.conf there are a number of BPF-based "graphs" with
+multiple BPF expressions.  What you do here is up to you, and must make sense 
+in the context of your network.  It is easy to set up filters for local nets or hosts
+of interest.  Let's assume you have subnets 10.1/16, 10.2/16,
+and 10.3/16.  You could write a very simple BPF graph as follows
+that will show you per-subnet traffic for several class B-sized subnets.
+
+# example 1: bpf neighbors (chart some neighbor subnets both in/out)
+bpf "neighbor-traffic" "neighbor1" "net 10.1.0.0/16"
+bpf-next "neighbor2" "net 10.2.0.0/16"
+# leave off extra, else remainder bytes put in
+bpf-next "neighbor3" "net 10.3.0.0/16"
+# leave off extra, else remainder bytes put in
+bpf-noxtra
+
+This gives you a graph called "neighbor-traffic" with 3 lines in it, one
+for each subnet.  Since ourmon defaults to doing BPF graphs in bytes,
+this will show byte count (packet count is also possible, see ourmon.conf
+for more information).
+
+ourmon.sh looks something like this: 
+
+/usr/home/mrourmon/bin/ourmon -a 30 -f /etc/ourmon.conf -i fxp0 -m /tmp/mon.lite &
+
+Invoke it by hand for testing.  If there are errors in /ourmon.conf,
+ourmon will bail and tell you there is an error.  If it boots, look
+with ps -ax to see it, or look in /var/log/messages for a signon message.
+Fix any config errors, and try again.  In 30 seconds (-a 30), you should have
+some output in /tmp/mon.lite.  If so, you can go on to testing
+the backend.
+
+5.2 debugging the front-end
+
+So, what can wrong?  Probably more than I comment on here. 
+
+5.2.1 debugging bpf graphs and making the RRDTOOL lib happy
+
+Expressions should be tried on tcpdump first.  If they work there,
+then they should work in ourmon.conf.   Remember that the shell
+is picky about tcpdump expressions.  For example, you may need to
+put "( something ) or (something)" in quotes.  
+
+If you get really bizarre errors ... try your expressions on tcpdump
+to see if they work.  It is always possible that you may need to visit
+http://www.tcpdump.org and get a new pcap lib and install it.
+
+There is a tricky front-end back-end problem with the BPF filter-set
+graph label (1st label in bpf and bpf-next lines) which is that
+RRDTOOL is picky about the syntax of the graph label.  In general
+it should be simple, with no blanks (hyphens work ok), and should
+begin with an alpha, not a numeric.  In general if RRDTOOL is
+unhappy, about your graph, and is failing to create pictures in the
+web directory, examine the omupdate.pl/RRDTOOL logfile:
+~mrourmon/rrddata/ourmon.log.  If you have cranky messages there,
+and they are updated every 30 seconds, odds are you are not getting
+a graph.  You will have to fix the ourmon.conf and reboot ourmon
+until RRDTOOL is happy.
+
+The RRDTOOL log file is found at /home/mrourmon/rrddata/ourmon.log.  
+omupdate.pl puts RRD error messages in this file.
+
+Another possible source of errors messages occur when you change
+the number of lines in a BPF graph.  For example if you go from
+three expressions to four, you won't get the new graph to work UNTIL
+you delete the previous rrd.  So say, you have a graph label called
+"subnets", and you add a new subnet to the graph.  You should go
+to the RRDTOOL libs directory, and delete the subnets rrd, which
+would most likely have the name bpf-subnets.rrd.
+
+5.2.2 ourmon (front-end) dies.  
+
+If your ourmon front-end dies, the most likely reason is that the
+topn lists, which malloc space for flow structures, have run out
+of space.  The ourmon front-end logs messages in /var/log/messages.
+If malloc blows up, there should be a message.  If this is the case,
+your computer ran out of memory for ourmon for some reason (not
+enough memory, too many flows).  Of course, you could turn topn
+facilities off, but that isn't very interesting.  Note: that in
+theory, our code is robust ... but running out of memory is a problem
+if you have 100000's of flows.  (Yes, ourmon might have a bug.  Tell
+us if that is the case).
+
+A workaround is to make sure that ourmon is rebooted out of
+/etc/crontab, if it goes away, once a minute or once every five
+minutes.  A non-installed perl hack called scripts/runourmon.pl
+exists.  You can put it somewhere executable, and then have crontab
+run it periodically to make sure that ourmon doesn't go away.
+E.g.,
+
+*/5    *       *       *       *       root    /etc/runourmon.pl
+
+This would make sure ourmon is running every 5 minutes, and restart it if
+it is not.  The ourmon probe goes background, and so /etc/runourmon.pl should
+exit if it has to start ourmon.  Be sure and read runourmon.pl, and make
+sure the pathnames are correct, and that the path to perl is correct too.
+
+5.3 testing the backend (sans logging)
+
+Given that we have a mon.lite file, we can now start to test the omupdate
+facility.  
+
+5.3.1. test omupdate.pl as a perl script
+
+This is just a static test to make sure the omupdate.pl can find its rrd library.
+
+	# cd bin
+	# perl -d omupdate.pl
+
+chdir to the bin directory and simply invoke omupdate.pl as a perl script.
+If you have problems, the most likely problem is that the perl path
+for finding the perl RRDTOOL library code is wrong.  
+
+You may have to have fix this statement in omupdate.pl.
+
+use lib qw( /usr/local/rrdtool-1.0.13/lib/perl ../lib/perl );
+
+5.3.2 test drawtopn by itself.
+
+It may be useful to make sure that drawtopn actually compiled and will
+make .png files for topn filters.  The back-end graphics in ourmon consists
+of two kinds of pictures, RRDTOOL strip charts (hardwired and bpf graphs), and
+topn histograms.  The latter are all drawn by the drawtopn program.
+
+# cd src/web.code
+# Make
+# ./testdraw.sh
+
+testdraw.sh makes some simple tests on drawtopn.  
+
+The following files should be created ...  the last 3 tests produce 
+error messages.
+
+foo0.png
+foo1.png
+foo2.png
+foo6.png
+
+You may examine these files with a web browser or a program like xv.
+
+5.4 running omupdate.sh and omupdate.pl/drawtopn
+
+At this point you should be ready, to run the system.  You should
+have a mon.lite file in tmp for omupdate.pl to use.  You may want
+to first make sure that the /etc/crontab entry for running
+bin/omupdate.sh is off, and test running omupdate.sh by hand in
+order to test the back-end standalone.  In general, there should
+be no output from omupdate.pl (unless debugging is turned on).  You
+can always sanity check omupdate.sh, and make sure the parameters in
+it are correct (mon.lite is found in the proper place, etc.).  Of
+course, omupdate.sh should be run once per minute, but for
+debugging purposes running it by hand to see if anything explodes
+is fine.
+
+Let's assume that the crontab entry for ./bin/omupdate.sh is installed.
+That means omupdate.pl will run every 30 seconds, twice per minute.
+Possible sources of output are:
+
+1. your web directory (/usr/local/apache/htdocs/ourmon), which
+will have canned .html files in it installed by the configure.pl
+utility and dynamically created png files in it, created by RRDTOOL
+and drawtopn.  (Logging will produce some report files that have a
+.txt suffix).  
+
+2. the RRDTOOL libs directory (rrddata/) will have .rrd files in
+it, and the ourmon.log file that contains rrdtool lib errors if
+any.   Note that omupdate.pl dynamically creates rrds if they have
+not been referenced before.  Users do not need (or want) to create
+rrds.  The rrd databases are updated here by omupdate.pl as well.
+
+3. if logging is enabled, log files in ~mrourmon/logs will be updated
+every thirty seconds.  
+
+mon.lite files are placed in logs/mon.lite:
+
+~mrourmon/logs/mon.lite/Mon ... etc/date timestamp.mon.lite
+
+tcpworm.txt files are placed in a similar way in:
+
+~mrourmon/logs/tworm/Mon ... etc/date timestamp.tcpworm.txt
+
+Various topn log files are placed in logs/topn_daily, with one or more
+files per front-end topn filter.  Note that the daily.pl script
+rotates these files in such a way, that for example if today is Tuesday
+Tue and topn_daily are linked, and yesterday's files are in the Mon directory.
+We show the log files below as they are associated with their front-end
+topn filter name in ourmon.conf.  Note that one front-end filter may create
+more than one back-end logfile.
+
+~mrourmon/logs/topn_today may include:
+
+logfile		   ourmon.conf name if any	explanation
+------------------------------------------------------------------------------------------
+topn_ip.log        topn_ip			top IP flows
+topn_tcp.log       topn_ip			top TCP flows 
+topn_udp.log       topn_ip			top UDP flows
+topn_icmp.log      topn_ip			top ICMP flows
+alert.log:         topn_ip			flows > N bits
+
+syn_list.log       topn_syn			top TCP syn sending IP srcs
+
+icmperror_list.log topn_icmperror		top ICMP error causing IP srcs
+udperror_list.log  topn_icmperror		top weighted UDP error IP srcs
+
+ip_scan.log        topn_scans			top IP srcs sending N IP dst pkts
+
+ip_portscan.log    topn_port_scans		top IP srcs sending N L4 dst port pkts
+topn_portscan.log  topn_port_scans		top IP srcs sending N TCP dst port pkts
+topn_portscan.log  topn_port_scans		top IP srcs sending N UDP dst port pkts
+
+tcp_ports.log      topn_port 			top TCP ports in use
+udp_ports.log      topn_port			top UDP ports in use
+
+info.html should be seen for the internal details of log entries.
+Essentially mon.lite output as produced by ourmon is put straight into
+the log files.
+
+5.5 files found in the web directory
+
+The following (incomplete) list of files shows files that are either installed
+in the web directory, or dynamically created.  We try to show here what
+kinds of files one can expect.  If they are installed,
+you probably want to modify them (generally .html files).  If they
+are dynamically created, it is important to check that indeed
+they are created, when you add or modify new filters, especially BPF
+filters.  Of course, you can make editing mistakes with these files,
+or have parts of the system that you do not need.
+
+Created files may have either .png or .txt suffixes.  (.txt
+are perl reports derived from the topn logging mechanism).  
+
+index.html - the basic index.html file.  You must edit it.  It will
+	contain pictures (current pictures) for RRDTOOL and topn output.
+	It will also cite sub-web-pages for RRDTOOL at least, to give one
+	year's worth of data.  It also contains links for the top of top
+	reports.  INSTALLED.  If you add a new bpf graph, change this file
+	so that it can find the new .png pictures you are making.
+
+indexstatic.html - any time you change index.html, copy it to this file,
+	and remove the http cache update timings, so that this page is 
+	NOT updated every thirty seconds.  (you don't have to do this of 
+	course).  INSTALLED.
+
+secview.html - this is a cut down version of index.html that does not
+	update every thirty seconds AND also confines itself to
+	a few BPF mechanisms, and topn filters deemed useful in
+	terms of security/anomaly detection.  In general, graphs
+	focused on network monitoring in a general sense should
+	not go here.  It is basically a view of security-oriented
+	information.  INSTALLED.
+	
+info.html - documentation on how ourmon and its filters works, 
+	with filter explanations.  INSTALLED.
+
+time.log - created dynamically by omupdate.pl.  This is the last time
+	omupdate.pl ran.  CREATED.
+		
+mon.lite - copied into the web directory by omupdate.pl.  This is your
+	"current" mon.lite file. CREATED.
+
+pkts.html - this is the RRDTOOL sub-html file, referenced from index.html.
+	It displays the following 4 graphs of daily/monthly/weekly/yearly
+	information derived from the pkts filter rrdtool database.
+	INSTALLED.
+
+	As an example of pictures created by omupdate.pl with RRDTOOL
+	for pkts.html, we should have the following 4 pics made
+	at runtime every thirty seconds:
+
+	pkts.daily-png - dynamically created by omupdate.pl/rrd code.
+	pkts.monthly-png - dynamically created by omupdate.pl/rrd code.
+	pkts.weekly-png - dynamically created by omupdate.pl/rrd code.
+	pkts.yearly-png - dynamically created by omupdate.pl/rrd code.
+
+cast.html - this is the sub-html file, referenced from index.html
+	for the L2 "packet type" filter, multicast, unicast, broadcast.
+	It also displays the following 4 graphs, etc as with the pkts
+	filter.
+
+	cast.daily-png
+	cast.monthly-png
+	cast.weekly-png
+	cast.yearly-png
+
+(The other hardwired filters are not mentioned here).
+
+bpf-ports.html - This is a sub-page, referenced by index.html that
+	shows the supplied example filter using BPF graphs, for
+	watching ssh, etc. traffic.   Since the user bpf filters
+	use RRDTOOL, we have daily/monthly/weekly/yearly graphs.
+	If you create a new bpf filter, you should create a file
+	like this, and reference the 4 png filters that will be
+	created by omupdate.pl based on the supplied bpf graph label.
+	Put some sort of link to the new bpf file in index.html.
+
+	bpf.ports.daily-png
+	bpf.ports.monthly-png
+	bpf.ports.weekly-png
+	bpf.ports.yearly-png
+
+	Other bpf-based graphs will have a similar setup.
+
+The topn filter produces ip/tcp/udp/icmp histograms drawn by
+	drawtopn.  These file names are currently directly
+	referenced from index.html and have no history, other
+	than the logging history associated with only the topn_ip
+	sub-filter.
+
+	topn_ip.png - dynamically created.
+	topn_tcp.png - dynamically created.
+	topn_udp.png - dynamically created.
+	topn_icmp.png - dynamically created.
+
+The topn/ports filter graphs the top udp and tcp ports in use.
+	It can create multiple graphs with the first 10, second 10,
+	ports, from 10 to 100 ports total by 10s.  index.html cites
+	tcpports.html and udpports.html.  These files should be
+	modified to show the number of pictures you are interested
+	in (e.g., if you want the top 30, show the first 3 .png
+	pictures.   For example, the first 10 tcp ports are put in
+	topn_tcp_port1.png.  The second 10 are put in topn_tcp_port2,
+	png, etc.  The first 10 are also displayed in index.html,
+	as index.html should display the current or top .png pictures.
+
+tcpports.html - the sub-page cited by index.html with all tcp port graphs.  
+	INSTALLED.
+udpports.html - udp port graphs. INSTALLED.
+
+The topn/ports filter creates the following files, depending on how many
+	you asked for.
+
+	topn_tcp_port1.png - dynamically created.
+	topn_tcp_port2.png - dynamically created.
+	topn_udp_port1.png - dynamically created.
+	topn_udp_port2.png - dynamically created.
+
+Other topn filters have similar setups.  The topn_scans and
+topn_port_scans filters are currently like the topn_ip filter
+and do not have sub-pages at this time.  (This is a bug ...).
+
+Logging if enabled will create the following top of top
+perl text reports, which are created either on the hour
+or daily, by scripts run from /etc/crontab, stored in the ourmon/bin
+directory.  These scripts are bin/batchip.sh and bin/batchipall.sh
+Logging produces an hourly file for topn_ip, topn_udp, topn_icmp,
+and topn_syn.  
+
+topn_today.txt - report for today based on topn_ip, updated hourly
+topicmp_today.txt - report for ICMP topn, updated hourly
+topudp_today.txt - report for ICMP topn, updated hourly
+topsyn_today.txt - report for topn_syn, updated hourly
+
+In addition, the topn_ip (IP, UDP, and ICMP) flows are also
+analyzed for the top instances of IP src and IP dst addresses mentioned
+in the flows. These hourly reports are generated:
+
+topn_ipdst_today.txt
+topn_ipsrc_today.txt
+topicmp_ipsrc_today.txt 
+topicmp_ipdst_today.txt 
+topudp_ipsrc_today.txt 
+topudp_ipdst_today.txt 
+
+Near midnight, the daily reports are pushed back one day in the following
+manner:
+
+topn_today.txt -> topn.0.txt
+topn.0.txt -> topn.1.txt
+
+topn.6.txt -> topn.7.txt
+
+At the end of the day, the daily script, run at roughly midnight,
+pushes the summary for the current day back one day.  So for example,
+topn_today.txt is for *today*, topn.0.txt is for yesterday, topn.1.txt
+for the previous day, etc.  The same is done for the other top of top
+reports.
+
+------------------------------------------------------------
+6. creating a new user/bpf graph/filter
+------------------------------------------------------------
+
+One of the more important ourmon facilities, is the ability to
+create a new BPF filter set, made up of BPF expressions, with one BPF
+expression graphed per-line in the RRDTOOL strip chart graphs.  So
+let's walk through the steps needed to create such a filter.
+
+1. design the ourmon.conf configuration.  
+
+Assume we want to graph VPN or IP tunnel traffic, consisting of
+IPSEC ESP (encrypted), or IPSEC AH (authenticated, but not encrypted),
+and various kinds of tunnels.  This means we need four BPF expressions,
+and we will not turn on the xtra flag, since we assume that in our
+case, there is too much traffic not using VPNs (or tunnels), which
+would flatten the lines in the graph and make our case study here less
+interesting.
+
+Because we are intelligent and well-informed network engineers, we
+know that ip protocols 50 and 51 are used for ESP and AH respectively.
+Just to make life interesting let us also throw in the graph lines
+for IPIP encapsulation and Cisco GRE encapsulation.  The former
+might be ip protocol 4 or 94, and the latter should be ip protocol
+47, as this may well show us Microsoft VPN tunnels.  This gives us
+4 possible BPF expressions.  This leads to the interesting problem,
+which is how do we construct a BPF expression, to capture that
+traffic?  In general, one should read the tcpdump man page, and try
+to construct an expression with tcpdump that works, and that you
+can test ...  Once you have the expression, you can put it in the
+/etc/ourmon.conf filter config you are creating.
+
+In this case,
+
+# tcpdump -n -i em0 ip proto 50
+
+will work for ESP, and ip proto 51, will work for AH.  
+
+(See /etc/protocols or IANA pages or google for that matter).
+
+Armed with the correct syntax for our BPF expressions, 
+we can now create a graph configuration.
+
+# vpn/tunnel graphs
+bpf "vpntuns" "esp" "ip proto 50"
+bpf-next "ah" "ip proto 51"
+bpf-next "ipip" "ip proto 4 or ip proto 94"
+bpf-next "CiscoGRE" "ip proto 47"
+bpf-noxtra
+
+The graph label (which will be used for various filenames at the
+back-end, including the rrd database, and the png files in the web
+directory) is vpntuns.  Line labels are esp, ah, ipip, and CiscoGRE.
+The BPF expressions for the 4 lines are put in quotes so that ourmon
+knows where the begin and end.  Note the "or" for the two kinds of IPIP.
+
+2. test the new filter with ourmon (front-end)
+
+Now we restart ourmon, and see if it either complains because the
+syntax was wrong and if we can actually get output in our /tmp/mon.lite
+file.
+
+cd to the ourmon/bin directory, and kill (-9) ourmon, and then restart it:
+
+# ./halt_ourmon.sh
+# ./ourmon.sh
+
+If there is no whining about the config, we are hopefully in business.
+
+30 seconds later ... in our mon.lite file we find something like this:
+
+bpf:vpntuns:4:esp:43422:ah:0:ipip:0:CiscoGRE:771100:xtra:0
+
+In mon.lite lingo, this means we have a graph named "vpntuns", and
+that we actually seem to have ESP and GRE traffic, but none of the
+other two species at this point.
+
+3. sanity check back-end omupdate.pl
+
+Now the next question is whether or not we are getting .png files.
+If we are getting .png files, our filter works (you can always
+look at them with a web browser, or a X tool like xv).
+
+So we cd to our web directory, and do 
+
+# ls *png 
+
+to look for png files.  (Probably at least 30 seconds have to pass
+... a one minute break here might be a good idea!).
+
+Low and behold we have:
+
+561(mrserver)(/home/mrourmon/web.pages)  ls *vpntuns*
+bpf.vpntuns.daily-png   bpf.vpntuns.monthly-png bpf.vpntuns.weekly-png  
+bpf.vpntuns.yearly-png
+
+Note how the bpf graph label "vpntuns" has become part of the filename.   
+omupdate.pl appends the string "bpf" to the RRDTOOL png graph names to
+let us know that these are bpf-based filter outputs.
+
+This means we have a working filter (in the sense that omupdate/pl
+RRDTOOL liked your config, of course, you might not actually have
+any network data!, not our fault ...).
+
+You can now cobble together a .html file to show all 4 graphs,
+daily, weekly, etc, and hook it up to your index.html file.  You
+can use the supplied bpf-ports.html file as a template and reference
+bpf-ports.html in index.html.  
+
+Finally whenever you change index.html copy it to indexstatic.html
+and get rid of the cache entries so that indexstatic.html when referenced
+by a web browser will not longer automatically update itself every 30 seconds.
+
+In other words, get rid of these three lines:
+
+<META HTTP-EQUIV="Refresh" CONTENT="30" >
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache" >
+<META HTTP-EQUIV="Expires" CONTENT="Fri, 19 May 1999 23:37:00 GMT">
+
+4. no bpf.vpuntuns.daily-png file, now what?
+
+Change directory to the rrdtool library file, say ~mrourmon/rrddata,
+and look at the end of the ourmon.log file in there.  There are two
+common sources of problems here, one is that RRDTOOL may not like
+your label, so make it simpler.  Also if you change the number of
+lines (number of BPF expressions), you should first wipe out the
+existing rrd database file, and then start over.  In that case, I
+would cd to the rrd directory, and simply do:
+
+# rm vuntuns.rrd
+
+You should have a rrd file of course.  omupdate.pl dynamically creates it
+the first time it sees a BPF filter it has not seen before based
+on whether or not the rrd exists in the rrddata directory.
+
+Running
+
+# tail -f ourmon.log
+
+here can be of use.  No errors means RRDTOOL is happy.
+
+There are two important hints here:
+
+1. sanity check your BPF expression with tcpdump.
+
+2. if you don't get pictures, check the RRDTOOL log file, or possibly
+remove the particular rrd database, and try again.  
+
+-----------------------------------------------------------e
+7. optimizing ourmon
+------------------------------------------------------------
+
+In this section, we will briefly talk about how one can optimize
+the ourmon front-end to get more work done.   
+
+7.1. distributing the load, separate front-end and back-end.
+
+Possible approaches to distributing the load might include:
+
+1. separate the front-end, and back-end; that is, put them on two separate
+machines.  (this section)
+
+2. separate the work amongst a number of front-ends. (next section)
+
+3. multiple front-ends on different hosts and multiple back-end web 
+directories on the same host. (next section)
+
+First one can use two computers, one for the front-end, and one for the back-end.
+
+Our back-end is a heavily used web server that does more work than
+just creating ourmon graphs,  and consequently it would not
+be a good idea to run the front-end and the back-end on the same box.
+configure.pl is designed to install the front-end and the back-end
+separately.  Thus installing only the front-end on some other box
+is easy.  It also may be a good idea to simply dedicate the front-end
+to the ourmon probe, as any other CPU load during network attacks,
+may cause ourmon to lose packets.  TCP syn scans/attacks (and any minimal
+sized packet attack including the UDP blaster attack) are difficult
+to deal with for modern hosts.  They simply cannot keep up with small packet
+streams under the current monolithic processing model.
+
+The only remaining question becomes how to get the mon.lite file
+from the front-end box to the back-end graphics box.  Exactly how
+to do that is left up to you, but some possible avenues of attack
+include:
+
+1. use a lightweight web server like the freebsd ports/net/micro-httpd,
+and then use wget on the back-end box to fetch mon.lite every thirty
+seconds driven by  a crontab job.  
+
+E.g., 
+
+Setup crontab like so to call webget.sh every minute:
+
+*/1     *       *       *       *       root    /home/mrourmon/bin/webget.sh
+
+and webget.sh is setup as follows:
+
+/usr/local/bin/wget -q --output-document=/usr/home/mrourmon/mon.lite http://SOMESYSTEMIP/mon.lite
+sleep 30
+/usr/local/bin/wget -q --output-document=/usr/home/mrourmon/mon.lite http://SOMESYSTEMIP/mon.lite
+
+This can be put in the back-end monupdate.sh script for that matter.
+If you are generating tcpworm.txt, don't forget to fetch it too.
+
+If your probe box is in a DMZ and you want to nail down access to
+it to just the back-end server, use ipfw (or iptables on linux),
+and make a firewall rule that only allows the back-end box to fetch
+files from the probe.  In general, from the security point-of-view,
+it is a good idea to consider the probe a bastion host.
+
+2. use ssh with no passphrase.
+
+3. use anon ftp, wget can also get ftp files.
+
+4. use samba/nfs,rsync, etc.  But some kind of ACL mechanism
+here would be a really really good idea.
+
+5. your idea here ...  
+
+For security reasons, you can always improve your setup with ipfw 
+or iptables on linux.
+
+mon.lite files are typically small.  Using tcp to copy them is a most
+excellent idea (ahem: contrast this with netflow using udp ...).
+
+7.2. distributing the load, multiple front-ends, same back-end.
+
+It is also possible to have multiple front-ends that work with the
+same back-end server.  One goal might be to have separate probes,
+where each probe does different filter work (different filter labels)
+with all the work unified at one back-end web directory and one rrd
+database directory.
+
+Again use configure.pl to install front-ends.  For the sake of
+argument, assume you have two front-end probes, called alice and
+bob.  Simply give them different filter rules.  E.g., alice might
+do topn work, and bob might do bpf work.  In each /etc/ourmon.conf
+make sure that the first config line is the special config tag,
+"sysname".
+
+E.g., on alice:
+
+#
+sysname alice
+
+
+on bob:
+
+sysname bob
+
+The problem with trying to separate the filters between two boxes,
+is that both probes will still produce a pkts drop/counts filter,
+since you cannot configure it out.  In fact, you want this information,
+because you want to know if any probe is dropping packets.  Use of
+the sysname config tag, causes omupdate.pl to name the pkts graphs
+and rrd database with the sysname as a file prefix.  In the web
+directory, pkts.daily-png becomes alice.pkts.daily-png and
+bob.pkts-daily-png.  RRD files become alice.pkts.rrd and bob.pkts.rrd.
+
+As a result, one can have two pkts outputs on the same index.html,
+and simply divide up the remaining filter work on two different probe machines.
+Note: it is not currently possible to have the same filter on two
+probes, somehow appearing on the same back-end web page.  
+
+7.3. distributing the load, multiple front-ends, multiple back-end
+web directories.
+
+Of course it is always possible to setup say two different front-ends
+that go to two different ourmon directories on the same or different
+web host.  We have not done this.  In theory, fiddling with the parameters
+in omupdate.sh to omupdate.pl (and also the logging inputs to monbackup.pl)
+should help make this possible.
+
+7.4. minimizing lost packets
+
+On FreeBSD, when ourmon boots, a message like the following is placed
+in /var/log/messages by ourmon:
+
+ourmon: bpf_bufsize 32768: snaplen 68, timeout 1000
+
+ourmon is kindly informing you about the size of the kernel
+bpf buffer.  We find that we can do a fairly good job of
+capturing max-sized Ethernet packets on a P4 gigabit Ethernet system
+if the BPF buffer size is actually about 8 megabytes. 
+The kernel default size is much smaller.   Given different
+versions of FreeBSD, It is important to install the latest version of the pcap lib 
+from www.tcpdump.org.  It is possible that the installed
+pcap lib is old, and for the following to work, you need a recent
+version of that library.
+
+ourmon.sh as installed looks something like this:
+
+#!/bin/sh
+BSIZE=8388608
+sysctl -w debug.bpf_bufsize=$BSIZE
+sysctl -w debug.bpf_maxbufsize=$BSIZE
+/usr/home/mrourmon/bin/ourmon -a 30 -i em0 -f /etc/ourmon.conf -m /home/mrourmon/web.pages/mon.lite &
+
+Something like the following message should appear in /var/log/messages:
+
+system ourmon[45692]: bpf_bufsize 8388608: snaplen 68, timeout 1000 
+
+bpf_bufsize here should match the sysctl -w BSIZE value (8 megabytes).
+It should NOT appear as follows:
+
+system ourmon[111]: bpf_bufsize 32768: snaplen 68, timeout 1000
+
+which means you have an old libpcap installed on your system.
+
+Before ourmon is booted, it sets two kernel sysctl variables that
+control the size of the default kernel BPF buffer.  As above, we
+set it too 8 megabytes.  With an AMD 2000, on a motherboard that
+has 64 bit PCI, and a syskonnect gigabit Ethernet card, we found
+that we would not drop max MTU-sized packets with a reasonable
+workload, if the BPF buffer was set to 8 megabytes.  Any smaller,
+and packets were dropped.
+
+One then needs to compare the /var/log/message produced by ourmon
+with the sysctl variables.  If they match, good.  If they do NOT match,
+you need a new pcap library.  Get it, and recompile ourmon using it.
+
+A big kernel buffer is a good thing for *snort* too.  
+
+On the other hand, handling min-sized packets is an open security research problem 
+and while a bigger kernel buffer than the default is better, there is no perfect
+solution.
+
+7.5. Linux front-end probe note
+
+We don't have a lot of experience with Linux as a front-end probe BUT
+that said, we do have a little experience.  Recent mods have been
+made that hopefully make the count/drop filter actually work.  Also
+we know how in theory to minimize dropped packets.
+
+In order to minimize dropped packets, you need to set big socket
+buffers (ironically just as with the FreeBSD BPF ... go figure).
+To do this, before ourmon is started, the ourmon.sh script
+should be as follows:
+
+# sysctl -w net.core.rmem_default = 8388608
+# sysctl -w net.core.rmem_max = 8388608
+
+This is done currently by configure.pl.
+
+We thus set the socket buffers to be 8 megabytes.  Otherwise
+ourmon will drop packets very easily.
+
+This is also true for *snort*.
+
+----------------------------------------------------------
+8. ourmon front-end parameters
+
+If for some reason, you are testing the front-end,
+note the following parameters:
+
+# ourmon -a 30 -i de0 -f /etc/ourmon.conf -m /tmp/mon.lite &       
+
+-a 30, means run with 30 second snapshots.  This is REQUIRED.
+
+-i de0, specifies the Ethernet interface to use for promiscous mode.
+	de0 is an SMC 100BASE interface.  change it as appropriate.
+	Use ifconfig -a to learn your Ethernet interfaces.
+
+-f /etc/ourmon.conf - tells ourmon where to find its configuration file.
+
+-m /tmp/mon.lite - tells ourmon where to put its 30 second snapshot
+	file, called "mon.lite".  This output file must be findable
+	somehow by the back-end web scripts and html files.
+
+The above are the most basic parameters to ourmon. 
+
+ourmon acts as a daemon unless it is invoked with the -d flag
+for debugging.  Use -d if you have some very peculiar problem,
+and if you get lucky, perhaps it will give you a clue as to what
+the problem might be.
+
+ourmon can also read tcpdump output files using the -r flag.  This
+can be useful for development and testing.  If -r is used, do not
+use -i.
+
+Use of two interfaces with ourmon should be regarded as experimental.
+We do not recommend it.
+
+----------------------------------------------------------
+8.1 omupdate.pl runtime parameters
+
+bash-2.05# ./omupdate.pl -h
+-m mon.lite_file (default: /usr/home/mrourmon/monfiles/mon.lite)
+-l logging_dir (default: /usr/home/mrourmon/logs)
+-r rrdtool_database_dir (default: /usr/home/mrourmon/rrdbase)
+-t drawtopn_path (default: /usr/home/mrourmon/bin/drawtopn)
+-w web_dir_path  (default: /usr/local/apache/htdocs/ourmon)
+-L [on | off]    (default: on)
+-a megabits      (default: 10000000)
+-h :help message
+
+In general one does NOT invoke ompudate.pl by hand.  Use omupdate.sh
+instead.
+
+----------------------------------------------------------
+8.2 drawtopn information.
+
+In general, one should only invoke drawtopn for testing its
+basic ability to make .png pictures.  drawtopn has a now
+unused ability to do DNS lookups for IP addresses in topn flows.
+It is best to NOT use this.  If it works for you, fine.
+You can enable it, by modifying the following variable to 2 in omupdate.pl
+
+my $dns_lookup = 0;    # 2 is dns on in legends, 0 is off, 1 is not a good idea.
+
+In the future, we will try and restore some topn DNS lookup
+capability in omupdate.pl by doing it in perl, not in C.
+
+drawtopn will be confined from now on to only producing histograms
+with IP addresses in the labels.
+
+One can also turn on topndebug in omupdate.pl, to see what in the heck
+it is trying to pass drawtopn as parameters.  
+
+bash-2.05# ./drawtopn -h
+argcount 2: args: ./drawtopn -h 
+-f and -n must be set
+-d should have an equal number of args
+-d should be the last arg
+Usage: drawtopn [-t string -v string -s string -l number -f string -n number] 
+		-d ip1 number1 ip2 number2 ... 
+
+                        -t string       "horizontal Title"
+                        -v string       "Vertical title"
+                        -s string       "time Stamp"
+                        -l number       0       NO dns name lookup, default
+                                        1       dns name lookup on everywhere
+                                        2       dns name lookup only shown as legend
+                        -n number       top N IPs
+                        -f string       png File output name, full path
+                        -d ip number    Data set : ipaddr and packets pair
+                        -h this Help
+bash-2.05# 
+
+----------------------------------------------------------
+9. bugs, debugging and other tips for running ourmon
+
+1. the monitoring interface does not have to have an IP address anymore.
+
+2. if you have problems compiling the supplied ourmon.conf
+
+GET A NEW LIBPCAP from www.tcpdump.org !!!!
+
+It works ok with libpcap 0.8.3 on both Linux and FreeBSD.
+
+3. if you are dropping packets, see the optimization section.  Try
+a bigger kernel buffer.  (Or a faster computer).  See section 7.4,
+minimizing lost packets.
+
+4. in general the ourmon front-end should not run on the same box running snort or anything
+else for that matter (that might be sucking down packets or heck a router ...
+or a news server ... or a database server or a busy web server.)
+Use common sense here.  If you are getting 20000 packets per second, a P1
+might not make a good choice for a front-end computer.
+
+5. if the src/ourmon/ourmon front-end build failed, this is probably
+due to some problem with libpcap.a.  Get a new one, and run configure.pl
+again and/or change the LIBS path explicitly in the makefile appropriate
+for your system.
+
+6. if bin/omupdate.pl fails and complains about RRDTOOL libs, it probably
+can't find them.  See Section 2.1. omupdate.pl needs RRDTool.
+
+	# make site-perl-install
+	# make install
+
+make site-perl-install is your friend.
+#########################################

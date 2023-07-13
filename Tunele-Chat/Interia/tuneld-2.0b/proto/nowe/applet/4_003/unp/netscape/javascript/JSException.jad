@@ -1,0 +1,42 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   JSException.java
+
+package netscape.javascript;
+
+
+public class JSException extends Exception
+{
+
+    public JSException()
+    {
+        filename = "unknown";
+        lineno = 0;
+        source = "";
+        tokenIndex = 0;
+    }
+
+    public JSException(String s)
+    {
+        super(s);
+        filename = "unknown";
+        lineno = 0;
+        source = "";
+        tokenIndex = 0;
+    }
+
+    public JSException(String s, String filename, int lineno, String source, int tokenIndex)
+    {
+        super(s);
+        this.filename = filename;
+        this.lineno = lineno;
+        this.source = source;
+        this.tokenIndex = tokenIndex;
+    }
+
+    String filename;
+    int lineno;
+    String source;
+    int tokenIndex;
+}

@@ -1,0 +1,8 @@
+possible useful scripts
+
+checkmon.sh - shell loop to watch mon.lite file
+
+monupdate.sh - script for using scp to cp mon.lite from host A to B
+
+runourmon.pl - script for making sure that ourmon is running on front-end and doesn't go away.
+	run from cron every 5 minutes or so.

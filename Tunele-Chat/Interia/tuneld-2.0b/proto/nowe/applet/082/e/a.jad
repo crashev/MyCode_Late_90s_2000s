@@ -1,0 +1,328 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   a.java
+
+package e;
+
+import INTChat;
+import a.c;
+import a.d;
+import a.e;
+import a.f;
+import a.g;
+import a.i;
+import a.j;
+import a.k;
+import a.n;
+import a.o;
+import d.u;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.TextArea;
+import java.awt.TextComponent;
+import java.awt.TextField;
+
+// Referenced classes of package e:
+//            b, f
+
+class a extends j
+{
+
+    public a(b b1)
+    {
+        super(C[0], false);
+        z = null;
+        B = null;
+        n = b1;
+        a(50, 100, 380, 300);
+        f();
+        e();
+    }
+
+    public void paint(Graphics g1)
+    {
+        d.u.a(g1, u.B, 0, 0, super.a, super.b);
+        super.paint(g1);
+    }
+
+    public void a()
+    {
+        B = null;
+        super.a();
+    }
+
+    public void a(Component component)
+    {
+        String as[];
+        int l;
+        int i1;
+        int j1;
+        j1 = b.Z;
+        if(component != o)
+            break MISSING_BLOCK_LABEL_252;
+        as = new String[4];
+        l = 0;
+        i1 = 0;
+_L4:
+        as[i1] = s[i1].getText();
+        if(u[i1].c())
+            l = i1;
+        i1++;
+_L2:
+        if(i1 < 4)
+            continue; /* Loop/switch isn't completed */
+        i1 = 0;
+        i1 = Integer.parseInt(t.getText());
+        if(j1 == 0)
+            break MISSING_BLOCK_LABEL_86;
+        if(true) goto _L2; else goto _L1
+_L1:
+        if(true) goto _L4; else goto _L3
+_L3:
+        JVM INSTR pop ;
+label0:
+        {
+            if(i1 == 0)
+                i1 = ++n.T;
+            if(n.T <= i1)
+                n.T = i1 + 1;
+            if(B == null)
+            {
+                B = new e.f();
+                B.a(r.getText(), as, (short)l, z, v.c(), i1);
+                n.I.c(B);
+                if(j1 == 0)
+                    break label0;
+            }
+            B.a(r.getText(), as, (short)l, z, v.c(), i1);
+        }
+        n.I.repaint();
+        B = null;
+        b(false);
+        if(j1 == 0)
+            break MISSING_BLOCK_LABEL_320;
+        if(component == p)
+        {
+            b(false);
+            B = null;
+            if(j1 == 0)
+                break MISSING_BLOCK_LABEL_320;
+        }
+        if(component != q)
+            break MISSING_BLOCK_LABEL_320;
+        if(A.c() == null)
+        {
+            n.o.jsFunction(c("\007T\033b\021\020X%`9\016u\031r"), null);
+            if(j1 == 0)
+                break MISSING_BLOCK_LABEL_320;
+        }
+        a(null, null);
+    }
+
+    void e()
+    {
+        setBackground(u.Y[1]);
+        o.a(u.T);
+        p.a(u.T);
+        q.a(u.U);
+        w.b(u.Y[24]);
+        x.b(u.Y[24]);
+        y.b(u.Y[24]);
+        v.b(u.Y[24]);
+        v.a(u.H);
+        int l = 0;
+        do
+            u[l].a(u.U[0], u.U[1]);
+        while(++l < 4);
+    }
+
+    void a(e.f f1)
+    {
+        int i1;
+        i1 = b.Z;
+        B = f1;
+        if(B == null) goto _L2; else goto _L1
+_L1:
+        int l;
+        b(C[1]);
+        r.setText(B.j);
+        if(B.l < u.length)
+            u[B.l].a(true);
+        l = 0;
+_L4:
+        s[l].setText(B.k[l]);
+        l++;
+_L6:
+        if(l < 4) goto _L4; else goto _L3
+_L3:
+        v.a(B.m);
+        t.setText(String.valueOf(B.i));
+        if(i1 != 0) goto _L6; else goto _L5
+_L5:
+label0:
+        {
+            if(f1.n != null)
+            {
+                a(n.a(f1.n, true), f1.n);
+                if(i1 == 0)
+                    break label0;
+            }
+            a(null, null);
+        }
+        if(i1 == 0) goto _L7; else goto _L2
+_L2:
+        if(n.I.k() == 0)
+            n.T = 0;
+        b(C[0]);
+        r.setText("");
+        l = 0;
+_L9:
+        this;
+_L11:
+        s;
+        l;
+        JVM INSTR aaload ;
+        "";
+        setText();
+        if(++l < 4) goto _L9; else goto _L8
+_L8:
+        u[0].a(true);
+        v.a(false);
+        t.setText(String.valueOf(n.T + 1));
+        this;
+        if(i1 != 0) goto _L11; else goto _L10
+_L10:
+        null;
+        null;
+        a();
+_L7:
+        b(true);
+        return;
+    }
+
+    void a(Image image, String s1)
+    {
+        z = image != null ? s1 : null;
+        A.a(image);
+        q.a(D[image != null ? 1 : 0]);
+    }
+
+    public void setBounds(int l, int i1, int j1, int k1)
+    {
+        super.setBounds(l, i1, j1, k1);
+        o.setBounds(95, k1 - 33, 100, 24);
+        p.setBounds(200, k1 - 33, 100, 24);
+    }
+
+    void f()
+    {
+        int i1 = b.Z;
+        add(r = new TextArea("", 1, 1, 1));
+        r.setBounds(60, 12, 300, 55);
+        add(v = new d(null, false));
+        v.a(c("\003E\007\u01571\032Y"));
+        v.setBounds(90, 73, 100, 20);
+        v.a(5, 5);
+        add(w = new g(c("$E\000t>\035YN")));
+        w.setBounds(10, 10, 70, 20);
+        add(y = new g(c(":NN")));
+        y.setBounds(10, 27, 70, 20);
+        add(x = new g(c(";X\004b9\021X\016|j")));
+        x.setBounds(10, 73, 70, 20);
+        add(t = new n(false));
+        t.b = true;
+        t.setBounds(10, 45, 40, 22);
+        s = new TextField[4];
+        u = new e[4];
+        o o1 = new o();
+        int l = 0;
+label0:
+        do
+        {
+            add(s[l] = new TextField());
+            s[l].setBounds(60, 100 + 28 * l, 170, 22);
+            add(u[l] = new e(o1, false));
+            u[l].a("" + (char)(l + 65));
+            u[l].setBounds(20, 100 + 28 * l, 30, 22);
+            l++;
+            do
+            {
+                if(l < 4)
+                    continue label0;
+                add(A = new f());
+                A.setBounds(250, 100, 80, 100);
+                A.a(Color.lightGray);
+                A.a(c("L\f\f$`D\034\004|(Z"));
+                add(q = new c(c(".]\u0136\u01103\016\034\016q:\021_\035p")));
+                q.setBounds(240, 70, 120, 24);
+                add(o = new c(c("5W\027p \000I\036")));
+                add(p = new c(c("5R\001y%\036")));
+            } while(i1 != 0);
+            break;
+        } while(true);
+        if(i.i != 0)
+            b.Z = ++i1;
+    }
+
+    private static String c(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int l = ac.length;
+        int j1;
+        for(int i1 = 0; i1 < l; i1++)
+        {
+            switch(i1 % 5)
+            {
+            case 0: // '\0'
+                j1 = 0x74;
+                break;
+
+            case 1: // '\001'
+                j1 = 60;
+                break;
+
+            case 2: // '\002'
+                j1 = 116;
+                break;
+
+            case 3: // '\003'
+                j1 = 21;
+                break;
+
+            default:
+                j1 = 80;
+                break;
+            }
+            ac[i1] ^= j1;
+        }
+
+        return new String(ac);
+    }
+
+    b n;
+    c o;
+    c p;
+    c q;
+    TextArea r;
+    TextField s[];
+    n t;
+    e u[];
+    d v;
+    g w;
+    g x;
+    g y;
+    String z;
+    f A;
+    e.f B;
+    static String C[] = {
+        c(":S\003pp\004E\000t>\035Y"), c("1X\rv:\025\034\004l$\025R\035t")
+    };
+    static String D[] = {
+        c(".]\030t3\016\034\016q:\021_\035p"), c("!O\001{p\016X\036p3\035Y")
+    };
+
+}

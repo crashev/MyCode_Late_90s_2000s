@@ -1,0 +1,9 @@
+- ustaw parametry w wpg.conf
+- dopisz do wpg.allow IP z ktorego bedziesz sie laczyc
+- lacz sie uzywajac normalnego klienta IRC, np.: epic nick localhost
+- serwer automatycznie dodaje do nickow rozne literki i cyferki (w applecie
+  sa one usuwane przed wyswietleniem)
+- kanaly, podobnie jak nicki, sa indeksowane tez w dosc zabawny sposob, np.
+  na kanal Elbl±g dostepny ze strony WWW wchodzi sie przez /j elblag000
+- jezeli chcesz jakis konkretny kanal, to sam sobie wysnifuj czy cos jego
+  nazwe =)

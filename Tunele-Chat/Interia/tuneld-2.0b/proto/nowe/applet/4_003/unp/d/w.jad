@@ -1,0 +1,856 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   w.java
+
+package d;
+
+import INTChat;
+import a.m;
+import a.r;
+import b.c;
+import java.applet.Applet;
+import java.awt.Component;
+import java.awt.Image;
+import java.util.Hashtable;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            i, y, u, x, 
+//            n, b, p, o
+
+class w
+    implements Runnable
+{
+
+    public void a()
+    {
+        if(s >= 0)
+            s--;
+    }
+
+    int b()
+    {
+        if(c != null)
+            return c.H;
+        else
+            return 0;
+    }
+
+    synchronized void c()
+    {
+        g = d = e = null;
+        n = null;
+        q = null;
+        u = 0;
+        h.removeAllElements();
+        f.clear();
+        f();
+    }
+
+    void a(String s1, boolean flag)
+    {
+        y y1 = (y)f.get(s1);
+        if(y1 != null && y1.j != flag)
+        {
+            y1.j = flag;
+            e();
+        }
+    }
+
+    boolean a(String s1)
+    {
+        if(c == null)
+            return false;
+        a.ba ba = c.a(s1, false);
+        if(ba != null && ((u)ba).p)
+            return true;
+        y y1 = c(s1);
+        if(y1 != null)
+            return y1.i;
+        else
+            return false;
+    }
+
+    void b(String s1)
+    {
+        w = s1;
+    }
+
+    int a(y y1, boolean flag)
+    {
+        int i1;
+        y y2;
+        int j1;
+        j1 = x.bd;
+        i1 = 0;
+        y2 = b(flag);
+        if(!flag) goto _L2; else goto _L1
+_L7:
+        y2 = y2.c(true);
+        i1++;
+_L1:
+        if(y2 == null) goto _L4; else goto _L3
+_L3:
+        y1.g;
+        if(j1 != 0) goto _L6; else goto _L5
+_L5:
+        y2.g;
+        JVM INSTR icmpne 21;
+           goto _L4 _L7
+_L4:
+        if(j1 == 0) goto _L8; else goto _L2
+_L2:
+        if(j1 == 0) goto _L10; else goto _L9
+_L9:
+        i1++;
+        y2 = y2.K;
+_L10:
+        if(y2 == null) goto _L8; else goto _L11
+_L11:
+        y2.g;
+        if(j1 != 0) goto _L6; else goto _L12
+_L12:
+        y1.g;
+        JVM INSTR icmpne 64;
+           goto _L8 _L9
+_L8:
+        if(y2 != null)
+            return i1;
+        false;
+_L6:
+        return;
+    }
+
+    y c(String s1)
+    {
+        return (y)f.get(s1);
+    }
+
+    y a(boolean flag)
+    {
+        y y1;
+        y y2;
+        int i1;
+        i1 = x.bd;
+        y1 = d;
+        y2 = null;
+        if(!flag) goto _L2; else goto _L1
+_L6:
+        y1;
+_L8:
+        o;
+        JVM INSTR ifeq 28;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_26;
+_L4:
+        continue; /* Loop/switch isn't completed */
+        y2 = y1;
+        y1 = y1.K;
+_L1:
+        if(y1 != null) goto _L6; else goto _L5
+_L5:
+        y2;
+        if(i1 != 0) goto _L8; else goto _L7
+_L7:
+        return;
+_L2:
+        if(i1 == 0) goto _L10; else goto _L9
+_L9:
+        y1.K;
+_L13:
+        y1;
+_L10:
+        if(y1.K != null) goto _L9; else goto _L11
+_L11:
+        y1;
+        if(i1 != 0) goto _L13; else goto _L12
+_L12:
+        return;
+    }
+
+    void d()
+    {
+        s = 1800;
+    }
+
+    void a(String s1, int i1)
+    {
+        y y1 = (y)f.get(s1);
+        if(y1 != null && y1.d != i1 && (y1.k && i1 == 0 || !y1.k && i1 < x.I.length))
+        {
+            y1.d = i1;
+            e();
+        }
+    }
+
+    void b(String s1, int i1)
+    {
+        y y1 = (y)f.get(s1);
+        if(y1 != null)
+        {
+            y1.e = i1;
+            e();
+        }
+        if(s1.equals(a.bk))
+            b.a(i1);
+    }
+
+    int d(String s1)
+    {
+        y y1 = (y)f.get(s1);
+        if(y1 != null)
+            return y1.e;
+        else
+            return -1;
+    }
+
+    synchronized y b(String s1, boolean flag)
+    {
+        y y1;
+label0:
+        {
+            int i1;
+label1:
+            {
+                i1 = x.bd;
+                if(s1 == null || s1.length() == 0)
+                    return null;
+                y1 = c(s1);
+                if(y1 == null)
+                    break label0;
+                if(y1 == e)
+                    e = y1.J;
+                if(y1.J == null)
+                {
+                    d = y1.K;
+                    if(d != null)
+                        d.J = null;
+                    if(i1 == 0)
+                        break label1;
+                }
+                y1.J.K = y1.K;
+                if(y1.K != null)
+                    y1.K.J = y1.J;
+            }
+label2:
+            {
+                y1.J = y1.K = null;
+                f.remove(s1);
+                if(!flag || f.size() >= 300 && b.bq < 3 || b.br != -1)
+                    break label2;
+                if(b.bq >= 3 && y1.c != 0 && y1.b != 0)
+                {
+                    b.a(-1, null, j + s1 + h("\037\031e5gZ\007{\u010CiM\n{p'\037") + '\t' + '\001' + " " + a.r.b(y1.c) + " " + '\t' + '\002' + h("\037\031e5jZ\007{\u010CiM\n{p'\037") + '\t' + '\001' + " " + a.r.b(y1.b) + " " + '\t' + '\002');
+                    if(i1 == 0)
+                        break label2;
+                }
+                b.a(-1, null, j + s1);
+            }
+            if(y1.equals(g))
+                g = null;
+            if(y1.o)
+                u--;
+            y1.a();
+        }
+        return y1;
+    }
+
+    void e(String s1)
+    {
+label0:
+        {
+            int i1 = s1.length() - 1;
+            if(i1 < 13)
+                return;
+            int j1 = a.r.a(s1, 0, 4);
+            int k1 = a.r.a(s1, 4, 4);
+            int l1 = a.r.a(s1, 8, 4);
+            String s2 = a.r.f(s1.substring(12, i1));
+            y y1 = (y)f.get(s2);
+            if(h.contains(s2))
+            {
+                h.removeElement(s2);
+                if(y1 != null && y1.b == 0 && y1.c == 0)
+                {
+                    y1.b = k1;
+                    y1.c = j1;
+                    b.a(-1, null, i + s2 + h("\037\031e5gZ\007{\u010CiM\n{p'\037") + '\t' + '\001' + " " + a.r.b(y1.c) + " " + '\t' + '\002' + h("\037\031e5jZ\007{\u010CiM\n{p'\037") + '\t' + '\001' + " " + a.r.b(y1.b) + " " + '\t' + '\002');
+                }
+                if(x.bd == 0)
+                    break label0;
+            }
+            y1.c = j1;
+            y1.b = k1;
+            String s3 = a.r.b(y1.c);
+            String s4 = s2 + h("\005PotqP\027zb|Q\t5o=V\0005oxH\036\u010CaoE\036prr\037J5") + '\t' + '\001' + " " + s3 + " " + '\t' + '\002' + h("\037X5") + a.k.getHTMLPage(h("H\030z|n\021\030axq\000\021qqo\002") + s3, 0) + h("\037Y5zo^\n5bxH\036\u010CaoE\036prr\037J5") + '\t' + '\001' + " " + a.r.b(k1) + " " + '\t' + '\002' + h("\037\023otn\037\000zwdK\005/5") + l1 / 3600 + h("\037\030;5") + (l1 % 3600) / 60 + h("\037\035|{3\037") + l1 % 60 + h("\037\003pv3");
+            if(s2.equals(a.bk) && b.bq >= 3)
+                s4 += h("\037\022t{iV\035p(") + a.bq + h("R\031{;");
+            if(y1 != null)
+                s4 += h("\037\003atiJ\003/5") + y.F[y1.e];
+            a.a(s4, false);
+        }
+    }
+
+    y b(boolean flag)
+    {
+        y y1;
+        int i1;
+        i1 = x.bd;
+        if(!flag)
+            return d;
+        y1 = d;
+        if(i1 == 0) goto _L2; else goto _L1
+_L1:
+        y1 = y1.K;
+_L2:
+        if(y1 == null) goto _L4; else goto _L3
+_L3:
+        y1;
+        if(i1 != 0) goto _L6; else goto _L5
+_L5:
+        o;
+        JVM INSTR ifeq 22;
+           goto _L4 _L1
+_L4:
+        y1;
+_L6:
+        return;
+    }
+
+    public void f(String s1)
+    {
+        if(g == null)
+        {
+            return;
+        } else
+        {
+            b.P = g.a;
+            b.e(s1);
+            return;
+        }
+    }
+
+    y a(int i1, boolean flag)
+    {
+        int j1;
+        y y1;
+        int k1;
+        k1 = x.bd;
+        j1 = 0;
+        y1 = b(flag);
+        if(!flag) goto _L2; else goto _L1
+_L6:
+        y1 = y1.c(true);
+_L1:
+        if(j1++ >= i1)
+            break; /* Loop/switch isn't completed */
+        y1;
+        if(k1 != 0) goto _L4; else goto _L3
+_L3:
+        if(y1 != null) goto _L6; else goto _L5
+_L5:
+        if(k1 == 0) goto _L7; else goto _L2
+_L2:
+        if(k1 == 0) goto _L9; else goto _L8
+_L8:
+        y1 = y1.K;
+_L9:
+        if(j1++ >= i1)
+            break; /* Loop/switch isn't completed */
+        y1;
+        if(k1 != 0) goto _L4; else goto _L10
+_L10:
+        if(y1 != null) goto _L8; else goto _L7
+_L7:
+        y1;
+_L4:
+        return;
+    }
+
+    public w(n n1, b b1)
+    {
+        m = 0;
+        o = 30000;
+        r = false;
+        s = -1;
+        u = 0;
+        v = 0;
+        f = new Hashtable();
+        b = b1;
+        a = n1;
+        h = new Vector();
+    }
+
+    void e()
+    {
+        if(c != null)
+            c.repaint();
+    }
+
+    void g(String s1)
+    {
+        int i1 = a.r.n(s1);
+        if(i1 > -1 && i1 < 10000)
+        {
+            if(b.br != -1)
+                i1++;
+            v = i1;
+        }
+        a(0);
+    }
+
+    synchronized void a(String s1, boolean flag, boolean flag1)
+    {
+label0:
+        {
+label1:
+            {
+                y y1 = c(s1);
+                if(y1 == null)
+                    break label0;
+                if(y1.o != flag)
+                {
+                    y1.o = flag;
+                    u += flag ? 1 : -1;
+                }
+                if(y1.p == flag1)
+                    break label1;
+                y1.p = flag1;
+                b b1 = a.a(s1, -1, 1);
+                if(b1 != null)
+                {
+                    b1.g();
+                    if(x.bd == 0)
+                        break label1;
+                }
+                if(flag1)
+                    a.z.u.b(s1);
+            }
+            if(c != null && g != null && g.a.equals(s1))
+                a.A.b(flag && !flag1);
+            e();
+        }
+    }
+
+    void c(String s1, boolean flag)
+    {
+        int i1;
+        int k1;
+        int l1;
+        int i2;
+        i2 = x.bd;
+        i1 = 0;
+        k1 = 0;
+        l1 = b();
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        int j1;
+        y y1;
+label0:
+        {
+            j1 = s1.indexOf('\0', i1);
+            if(s1.charAt(i1) == '\001')
+            {
+                y1 = b(s1.substring(i1 + 1, j1), flag);
+                if(i2 == 0)
+                    break label0;
+            }
+            y1 = b(s1.substring(i1, j1), flag);
+        }
+        if(y1 != null && y1.g < l1)
+            k1--;
+        i1 = j1 + 1;
+_L2:
+        if(i1 >= s1.length())
+        {
+            a(k1);
+            return;
+        }
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    y a(String s1, int i1, int j1)
+    {
+        return a(s1, i1, j1, false, false, false, false, true);
+    }
+
+    synchronized y a(String s1, int i1, int j1, boolean flag, boolean flag1, boolean flag2, boolean flag3, 
+            boolean flag4)
+    {
+        y y2;
+label0:
+        {
+            y y1;
+            int k1;
+label1:
+            {
+                k1 = x.bd;
+                if((y1 = c(s1)) != null)
+                {
+                    if(s1.equals(a.bk))
+                        b.a(j1);
+                    return y1;
+                }
+                y2 = new y(s1, i1, j1, flag, flag1, flag2, flag3, flag4);
+                if(flag3)
+                    u++;
+                if(s1.equals(a.bk))
+                {
+                    b.a(j1);
+                    y2.n = true;
+                }
+                if(d == null)
+                {
+                    d = e = y2;
+                    if(k1 == 0)
+                        break label0;
+                }
+                if(f.size() < 3000 || y2.e >= 3)
+                {
+                    y1 = d;
+                    if(k1 == 0)
+                        break label1;
+                }
+                y1 = e;
+            }
+label2:
+            {
+                do
+                {
+                    if(y2.g < y1.g || y2.g == y1.g && a.r.c(y1.a, s1) <= 0)
+                        break;
+                    if(y1.K == null)
+                    {
+                        y1.K = y2;
+                        y2.J = y1;
+                        f.put(s1, y2);
+                        e = y2;
+                        return y2;
+                    }
+                    y1 = y1.K;
+                } while(k1 == 0);
+                y2.K = y1;
+                y2.J = y1.J;
+                if(y1.J != null)
+                {
+                    y1.J.K = y2;
+                    if(k1 == 0)
+                        break label2;
+                }
+                d = y2;
+            }
+            y1.J = y2;
+        }
+        f.put(s1, y2);
+        return y2;
+    }
+
+    void f()
+    {
+        if(c != null)
+            c.r();
+    }
+
+    void a(int i1)
+    {
+        if(c != null)
+            c.a(i1);
+    }
+
+    public void run()
+    {
+        boolean flag;
+        int i1;
+        i1 = x.bd;
+        flag = q == null;
+        if(i1 == 0) goto _L2; else goto _L1
+_L1:
+label0:
+        {
+            if(a.k.S > 0L)
+            {
+                q = a.k.downloadImage(p + "?" + a.k.S, true, true);
+                if(i1 == 0)
+                    break label0;
+            }
+            q = a.k.downloadImage(p + "?" + System.currentTimeMillis() + a.bk, true, true);
+        }
+        if(flag)
+            a.f();
+        e();
+        try
+        {
+            Thread.sleep(o);
+        }
+        catch(Exception _ex) { }
+_L2:
+        if(b.br == -1)
+            break; /* Loop/switch isn't completed */
+        this;
+        if(i1 != 0 || i1 != 0) goto _L4; else goto _L3
+_L3:
+        b;
+        br;
+        2;
+        JVM INSTR icmpeq 211;
+           goto _L5 _L6
+_L5:
+        continue; /* Loop/switch isn't completed */
+_L6:
+        break; /* Loop/switch isn't completed */
+        if(n != null) goto _L1; else goto _L7
+_L7:
+        n = null;
+        this;
+_L4:
+        null;
+        q;
+    }
+
+    int a(boolean flag, boolean flag1)
+    {
+        if(b.x == 155 && flag1)
+            if(flag)
+                return u;
+            else
+                return v;
+        if(flag)
+            return u;
+        else
+            return f.size();
+    }
+
+    int g()
+    {
+        if(b.x == 155)
+            return v;
+        else
+            return f.size();
+    }
+
+    void b(String s1, boolean flag, boolean flag1)
+    {
+        int i1;
+        int j1;
+        int k1;
+        int i2;
+        int j2;
+        int k2;
+        boolean flag2;
+        int i4;
+        i4 = x.bd;
+        System.currentTimeMillis();
+        i1 = 0;
+        j1 = b();
+        k1 = 0;
+        i2 = 0;
+        j2 = 0;
+        k2 = 0;
+        flag2 = true;
+        if(s1.length() > 30)
+            r = true;
+        e();
+        if(i4 == 0) goto _L2; else goto _L1
+_L1:
+        if(w == null) goto _L4; else goto _L3
+_L3:
+label0:
+        {
+label1:
+            {
+label2:
+                {
+                    if(k2 + 4 >= w.length())
+                        break label1;
+                    j2 = a.r.a(w, k2, 4);
+                    k2 += 4;
+                    if(a.r.a(w, k2, 1) == 255)
+                    {
+                        i2 = a.r.a(w, k2 + 1, 4);
+                        k2 += 5;
+                        if(i4 == 0)
+                            break label2;
+                    }
+                    i2 = j2;
+                }
+                if(i4 == 0)
+                    break label0;
+            }
+            flag2 = false;
+        }
+        if(i4 == 0) goto _L5; else goto _L4
+_L4:
+        i2 = 0;
+        false;
+_L8:
+        j2;
+_L5:
+        int l1;
+        String s2;
+label3:
+        {
+            l1 = s1.indexOf('\0', k1 + 2);
+            if(l1 < 0)
+                break; /* Loop/switch isn't completed */
+            if(!flag1 && s1.charAt(k1 + 2) == '\001')
+            {
+                s2 = a.r.f(s1.substring(k1 + 3, l1));
+                flag1 = true;
+                if(i4 == 0)
+                    break label3;
+            }
+            s2 = a.r.f(s1.substring(k1 + 2, l1));
+        }
+label4:
+        {
+label5:
+            {
+                y y1;
+label6:
+                {
+                    if(l1 <= k1 + 2 || l1 >= k1 + 20)
+                        break label5;
+                    int l2 = s1.charAt(k1) & 0xff;
+                    int i3 = l2 & 0x3f;
+                    int j3 = l2 & 0x80;
+                    int k3 = l2 & 0x40;
+                    int l3 = s1.charAt(k1 + 1);
+                    boolean flag4 = (l3 & 0x20) != 0;
+                    boolean flag3 = !flag4 && (l3 & 0x10) != 0;
+                    l3 &= 0xf;
+                    y1 = a(s2, i3, l3, j3 != 0, flag1, k3 == 64, flag3, flag4);
+                    y1.b = i2;
+                    y1.c = j2;
+                    if(!flag || f.size() >= 300 && b.bq < 3 || s >= 0 && j2 != 0 && i2 != 0 || b.br != -1)
+                        break label6;
+                    if(b.bq >= 3 && b.bq < 5)
+                    {
+                        h.addElement(s2);
+                        b.t.a('\006', a.r.c(s2) + '\0');
+                        if(i4 == 0)
+                            break label6;
+                    }
+                    b.a(-1, null, i + s2);
+                }
+                if(y1.g < j1)
+                    i1++;
+                if(i4 == 0)
+                    break label4;
+            }
+            if(l1 > 0)
+                k1 = l1;
+            continue; /* Loop/switch isn't completed */
+        }
+        k1 = l1 + 1;
+_L2:
+        if(k1 < s1.length() - 3) goto _L1; else goto _L6
+_L6:
+        w = null;
+        flag2;
+        if(i4 != 0 || i4 != 0) goto _L8; else goto _L7
+_L7:
+        if(flag2) goto _L10; else goto _L9
+_L9:
+        y y2 = e;
+        if(i4 == 0) goto _L12; else goto _L11
+_L11:
+        y2.c = 0;
+        y2.b = 0;
+        y2 = y2.K;
+_L12:
+        if(y2 != null) goto _L11; else goto _L10
+_L10:
+        r = false;
+        a(i1);
+        return;
+    }
+
+    void h()
+    {
+        if(n != null)
+            return;
+        q = null;
+        p = a.k.getParameter(h("\\\021xpo^/|xz"));
+        if(p != null && p.length() > 0)
+        {
+            n = new Thread(this, h("\\\021xpo^$}gx^\024"));
+            n.start();
+        }
+    }
+
+    void i()
+    {
+        if(n != null)
+            try
+            {
+                n.interrupt();
+            }
+            catch(Exception _ex) { }
+        n = null;
+        q = null;
+        a.f();
+    }
+
+    private static String h(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x3f;
+                break;
+
+            case 1: // '\001'
+                k1 = 112;
+                break;
+
+            case 2: // '\002'
+                k1 = 21;
+                break;
+
+            case 3: // '\003'
+                k1 = 21;
+                break;
+
+            default:
+                k1 = 29;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    n a;
+    b b;
+    i c;
+    y d;
+    y e;
+    Hashtable f;
+    y g;
+    Vector h;
+    static final String i = "" + '\001' + '\t' + h("A\000god\\\030zqgVJ5");
+    static final String j = "" + '\001' + '\t' + h("A\037qvuP\024o|'\037");
+    static final String k = "" + '\001' + '\n' + h("e\u0132l5{P\002xti\037\021qgxL\0055\\M\037Q44=\022P=5B\021/;J3`P<");
+    static final String l = "" + '\001' + '\n' + h("e\u0132l5{P\002xti\037\021qgxL\203b5ToP44<\037]5==`^J;B\021/5J3`^J;B\026");
+    int m;
+    Thread n;
+    int o;
+    String p;
+    Image q;
+    boolean r;
+    int s;
+    static final int t = 300;
+    int u;
+    int v;
+    String w;
+
+}

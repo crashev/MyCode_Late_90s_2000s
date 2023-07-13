@@ -1,0 +1,234 @@
+diff -Nru pure-ftpd-1.0.20-old/src/altlog.c pure-ftpd-1.0.20/src/altlog.c
+--- pure-ftpd-1.0.20-old/src/altlog.c	2004-02-29 22:49:27.000000000 +0100
++++ pure-ftpd-1.0.20/src/altlog.c	2005-12-11 20:58:05.000000000 +0100
+@@ -11,11 +11,12 @@
+ # include "ftpwho-update.h"
+ # include "globals.h"
+ # include "altlog.h"
+-
++# include <mysql/mysql.h>
+ # ifdef WITH_DMALLOC
+ #  include <dmalloc.h>
+ # endif
+ 
++
+ static int altlog_write(const char *str)
+ {
+     struct flock lock;
+@@ -82,6 +83,170 @@
+     return 0;
+ }
+ 
++
++
++static int reads(int *sock,char *buf) 
++{
++ int c,count=0;
++ do c=read(*sock,&buf[count],1); while ((c>0)&&(buf[count++]!='\n'));
++ buf[count]='\0';
++ return (c<=0)?c:count;
++}
++
++static
++void eat_spaces(char *str)
++{
++    int iX=0;
++    int iY=0;
++
++    for (iX=0; iX<strlen(str); iX++)
++        if (str[iX]==' ')
++            {
++                // przesuwamy
++                for (iY=0; iY<strlen(str)-iX; iY++)
++                    str[iX+iY]=str[iX+iY+1];
++            }
++}
++
++static void chop(char *pcPtr)
++{
++    int iX;
++    for (iX=0; iX< strlen(pcPtr); iX++)
++        if ( (pcPtr[iX]=='\n')||(pcPtr[iX]=='\r') )
++            pcPtr[iX]=0x0;
++}
++
++
++
++/* Verbose but compact log format for ftpStatst to MYSQL Database */
++
++static int altlog_writexfer_mysql(const int upload,
++                                  const char * const filename,
++                                  const off_t size,
++                                  const double duration)
++{
++    /*
++     * <date> <start.pid> <user> <ip> <u/d> <size> <duration> <file>
++     */
++
++    const char *host_ = *host != 0 ? host : "-";
++    const char *account_ = *account != 0 ? account : "-";
++    char *alloca_line;
++    size_t line_size;
++    /* Mysql Config Stuff */
++    char user[50];
++    char password[50];
++    char dbname[50];
++    char sock[255];
++    char table[50];
++    int iConf=0;
++    int iX,iY;
++    char buf[1024];    
++    int iRet;
++    MYSQL mysql;
++//    line_size = 16U /* now */ + 1U + 16U /* start */ + 1U /* . */ +
++//        16U /* pid */ + 1U + strlen(account_) + 1U + strlen(host_) + 1U +
++//        1U /* U/D */ + 1U + 16U /* size */ + 16U /* duration */ +
++//        strlen(filename) + 1U /* \n */ + 1U;
++//    if ((alloca_line = ALLOCA(line_size)) == NULL) {
++//        return -1;
++//    }
++
++    // 1 CZAS    	- time(NULL)
++    // 2 USER   	 - account_
++    // 3 HOST	 	- host_
++    // 4 UP/DOWN 	- upload != 0 ? 'U' : 'D',
++    // 5 SIZE    	- size
++    // 6 FILENAME	- filename
++                          
++//    ALLOCA_FREE(alloca_line);
++
++    /* Checking if there is avaible opened descriptor to conf file */
++    if (altlog_fd == -1) {
++        return -1;
++    }
++    
++    /* Back to begining */
++    lseek(altlog_fd, (off_t) 0, SEEK_SET);
++    bzero(buf		, sizeof(buf));
++    bzero(user		, sizeof(user));
++    bzero(password	, sizeof(password));
++    bzero(dbname	, sizeof(dbname));
++    bzero(sock		, sizeof(sock));
++    bzero(table		, sizeof(table));
++
++    /* Read config file */
++    while (reads(&altlog_fd, buf))
++    {
++        // eat spaces
++        eat_spaces(buf);
++        chop(buf);
++        if (!strncasecmp(buf,"USER:",5)) {
++            strncpy(user, buf+5, sizeof(user) - 1);
++            iConf++;
++        }
++
++        if (!strncasecmp(buf,"PASSWORD:",9)) {
++            strncpy(password, buf+9, sizeof(password) - 1);
++            iConf++;
++        }
++
++        if (!strncasecmp(buf,"DBNAME:",7)) {
++            strncpy(dbname, buf+7, sizeof(dbname) - 1);
++            iConf++;
++        }
++
++        if (!strncasecmp(buf,"SOCK:",5)) {
++            strncpy(sock, buf+5, sizeof(sock) - 1);
++            iConf++;
++        }
++    
++        if (!strncasecmp(buf,"TABLE:",6)) {
++            strncpy(table, buf+6, sizeof(table) - 1);
++            iConf++;
++        }
++    
++        bzero(buf, sizeof(buf));
++
++    }
++ 
++    /* Read all needed data */	
++
++    if (iConf == 5)
++    {
++	mysql_init(&mysql);
++	mysql_options(&mysql, MYSQL_READ_DEFAULT_GROUP, "pure-ftpd");
++	
++	if (!mysql_real_connect(&mysql, sock, user, password, dbname, 0, NULL, 0))
++	{
++	    return -1;
++	}
++	
++	// INSERT
++		
++	bzero(buf, sizeof(buf));
++	snprintf(buf, sizeof(buf) - 1, "INSERT DELAYED INTO %s (DATA, TIME, USER, HOST, UPLOAD, SIZE, FILE) VALUES(NOW(), '%llu', '%s', '%s', '%c', '%llu', '%s');", 
++							table,
++							(unsigned long long)time(NULL), 
++							account_, 
++							host_, 
++							upload != 0 ? 'U' : 'D',
++							(unsigned long long)size,
++    							filename);
++
++	
++    	iX = mysql_real_query(&mysql, buf, strlen(buf));
++	mysql_close(&mysql);
++	
++    }
++
++    
++    return 0;
++}
++
++
++
++
+ # define NO_URLENCODE(c) ( \
+                                ((c) >= 'a' && (c) <= 'z') || \
+                                ((c) >= 'A' && (c) <= 'Z') || \
+@@ -415,6 +580,8 @@
+         return altlog_writexfer_w3c(upload, filename, size, duration);
+     case ALTLOG_XFERLOG:
+         return altlog_writexfer_xferlog(upload, filename, size, duration);
++    case ALTLOG_MYSQL:
++        return altlog_writexfer_mysql(upload, filename, size, duration);
+     }    
+     return -1;
+ }
+diff -Nru pure-ftpd-1.0.20-old/src/ftpd.c pure-ftpd-1.0.20/src/ftpd.c
+--- pure-ftpd-1.0.20-old/src/ftpd.c	2004-07-17 15:28:22.000000000 +0200
++++ pure-ftpd-1.0.20/src/ftpd.c	2005-12-11 18:41:48.000000000 +0100
+@@ -4397,7 +4397,9 @@
+             } else if (errno == EEXIST) {
+                 altlog_fd = open(altlog_filename, O_WRONLY | O_NOFOLLOW);
+             } 
+-        } else {
++        } else if (altlog_format == ALTLOG_MYSQL) {
++            altlog_fd = open(altlog_filename,O_RDONLY);
++	} else {
+             altlog_fd = open(altlog_filename,
+                              O_CREAT | O_WRONLY | O_NOFOLLOW, (mode_t) 0600);
+         }
+diff -Nru pure-ftpd-1.0.20-old/src/ftpd.h pure-ftpd-1.0.20/src/ftpd.h
+--- pure-ftpd-1.0.20-old/src/ftpd.h	2004-03-02 20:08:59.000000000 +0100
++++ pure-ftpd-1.0.20/src/ftpd.h	2005-12-11 17:39:14.000000000 +0100
+@@ -302,7 +302,7 @@
+ #define FI_NAME(X) (*((X)->names_pnt) + (X)->name_offset)
+ 
+ typedef enum {
+-    ALTLOG_NONE, ALTLOG_CLF, ALTLOG_STATS, ALTLOG_W3C, ALTLOG_XFERLOG
++    ALTLOG_NONE, ALTLOG_CLF, ALTLOG_STATS, ALTLOG_W3C, ALTLOG_XFERLOG, ALTLOG_MYSQL
+ } AltLogFormat;
+ 
+ typedef struct AltLogPrefixes_ {
+diff -Nru pure-ftpd-1.0.20-old/src/ftpd_p.h pure-ftpd-1.0.20/src/ftpd_p.h
+--- pure-ftpd-1.0.20-old/src/ftpd_p.h	2004-02-29 22:49:28.000000000 +0100
++++ pure-ftpd-1.0.20/src/ftpd_p.h	2005-12-11 17:38:44.000000000 +0100
+@@ -194,6 +194,7 @@
+     { "stats", ALTLOG_STATS },
+     { "w3c", ALTLOG_W3C },
+     { "xferlog", ALTLOG_XFERLOG },
++    { "mysql", ALTLOG_MYSQL },
+     { NULL, ALTLOG_NONE }
+ };
+ 

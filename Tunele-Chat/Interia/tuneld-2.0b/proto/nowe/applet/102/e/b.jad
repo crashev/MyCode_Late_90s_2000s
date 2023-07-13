@@ -1,0 +1,704 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   b.java
+
+package e;
+
+import INTChat;
+import a.a;
+import a.d;
+import a.e;
+import a.g;
+import a.i;
+import a.j;
+import a.k;
+import a.o;
+import a.r;
+import a.s;
+import b.c;
+import d.x;
+import java.awt.Choice;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.util.Vector;
+
+// Referenced classes of package e:
+//            a, c, f, e, 
+//            g
+
+public class b extends j
+    implements s, Runnable
+{
+
+    public void c(String s1)
+    {
+    }
+
+    public b(String s1, INTChat intchat, e.e e1, c c1)
+    {
+        super(h("utZ\007\037YxT\003MInW\030\030\030") + s1, true);
+        P = 0;
+        V = 1;
+        W = 1;
+        X = 0;
+        Y = h("InW\030");
+        Y = s1;
+        o = intchat;
+        p = e1;
+        n = c1;
+        Z = new Vector();
+        ba = new Vector();
+        h();
+        a(70, 80, 600, 460);
+        T = new e.a(this);
+        U = new e.c(this);
+        f();
+        String as[] = {
+            h("\t*\017"), h("\n)\f"), h("\013(\r"), h("\f/\n")
+        };
+        int l = e.f.b(h("\\tS\033\036Tu_"));
+        L.c(new f(h("HbJ\003\003Q~\036S"), as, 0, null, false, 1, l));
+        L.c(new f(h("HbJ\003\003Q~\036P"), as, 3, null, false, 2, l));
+        f f1;
+        L.c(f1 = new f(h("HbJ\003\003Q~\036Q"), as, 2, null, false, 3, l));
+        f1.n = h("Mh[\020C_rX");
+        f1.c();
+        a(A);
+    }
+
+    public void paint(Graphics g1)
+    {
+        g1.setColor(x.bb[21]);
+        g1.fillRect(0, 0, super.a, 29);
+        g1.setColor(x.bb[24]);
+        g1.drawString(h("Vi\036\022\024L5"), super.a - 65, 45);
+        g1.drawString(h("HbJ\003\003Q~\036\006\002\002"), super.a - 180, 45);
+        g1.drawLine(super.a - 180, 90, super.a - 15, 90);
+        g1.drawString(h("QwQ\u0139\u016A\030tZ\022\002Or[\006\027Q"), super.a - 180, 105);
+        g1.drawString(h("HnP\t\031Wl_\f\024[s\036X"), super.a - 180, 120);
+        g1.drawString(h("hnP\t\031YxT\003M\002"), super.a - 180, 140);
+        g1.drawString(h("woL\030\024UzR\013MHbJ\003\003Q~\036X"), super.a - 180, 235);
+        g1.drawString(h("qwQ\u0139\u016A\030tZ\022\002Or[\006\027Q;\004"), super.a - 180, 255);
+        g1.drawString(h("w\177NLMHtN\020\fOu[BW"), super.a - 180, 275);
+        d.x.a(g1, x.F, 0, 24, super.a, super.b - 24);
+        super.paint(g1);
+    }
+
+    public void a()
+    {
+        b(false);
+        L.a();
+        T.a();
+        T = null;
+        U.a();
+        U = null;
+        super.a();
+    }
+
+    public void d(String s1)
+    {
+label0:
+        {
+            int l = a.r.a(s1, 0, 4);
+            char c1 = s1.charAt(4);
+            String s2 = null;
+            if(l > 0)
+                s2 = p.a(l);
+            if(s2 == null)
+                s2 = s1.substring(5, s1.length() - 1);
+            if(c1 == '\001')
+            {
+                M.add(s2 + h("\030nM\007\037q_\004B") + l);
+                Z.addElement(new e.g(l, s2));
+                H.a(String.valueOf(Z.size()), true);
+                if(!bd)
+                    break label0;
+            }
+            if(c1 != '\377')
+                ba.addElement(new e.g(l, s2));
+        }
+        I.a(String.valueOf(++J), true);
+    }
+
+    public void e(String s1)
+    {
+        Image image = a(s1, true);
+        if(image != null)
+            T.a(image, s1);
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+            boolean flag1 = bd;
+            if(component == s)
+            {
+                T.a(null);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == t)
+            {
+                try
+                {
+                    f f1 = i();
+                    if(f1 != null)
+                        T.a(f1);
+                }
+                catch(Exception exception)
+                {
+                    exception.printStackTrace();
+                }
+                if(!flag1)
+                    break label0;
+            }
+            if(component == u)
+            {
+                L.l();
+                if(!flag1)
+                    break label0;
+            }
+            if(component == v)
+            {
+                U.b(true);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == C)
+            {
+                boolean flag = C.d();
+                w.setEnabled(flag);
+                r.setEnabled(flag);
+                A.setEnabled(flag);
+                B.setEnabled(flag);
+                y.setEnabled(flag);
+                if(!flag1)
+                    break label0;
+            }
+            if(!C.d())
+                return;
+            if(component == r)
+            {
+                n.a('I', h("9\033?") + a.r.a(Y.length() + 2) + bb + a.r.c(Y) + '\0');
+                if(!flag1)
+                    break label0;
+            }
+            if(component == A)
+            {
+                N.select(2);
+                P = 2;
+                O.select(4);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == B)
+            {
+                N.select(1);
+                P = 1;
+                O.select(1);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == x)
+            {
+                f f2 = i();
+                if(f2 != null && f2.n != null && f2.n.length() > 0)
+                    n.a('\\', "" + '\002' + f2.n);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == w)
+            {
+                if(i() != null)
+                {
+                    w.setEnabled(false);
+                    (new Thread(this, h("In[\021\031QtP"))).start();
+                }
+                if(!flag1)
+                    break label0;
+            }
+            if(component == y)
+            {
+                n.a('Z');
+                if(!flag1)
+                    break label0;
+            }
+            if(component == E[0])
+            {
+                F[0].a(Integer.toString(--V), true);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == E[1])
+            {
+                F[0].a(Integer.toString(++V), true);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == E[2])
+            {
+                F[1].a(Integer.toString(--W), true);
+                if(!flag1)
+                    break label0;
+            }
+            if(component == E[3])
+                F[1].a(Integer.toString(++W), true);
+        }
+    }
+
+    public void f()
+    {
+        setBackground(x.bb[1]);
+        a(x.J[0]);
+        r.a(x.Y);
+        D.a(x.G, x.H);
+        C.a(x.L);
+        s.a(x.X);
+        t.a(x.X);
+        u.a(x.X);
+        v.a(x.X);
+        A.a(x.L);
+        A.b(x.bb[24]);
+        A.a(0, 5);
+        A.a(a.r.a(0, 0, 0));
+        B.a(x.L);
+        B.b(x.bb[24]);
+        B.a(0, 5);
+        B.a(a.r.a(0, 0, 0));
+        w.a(x.W);
+        y.a(x.W);
+        x.a(x.W);
+        int l = 0;
+label0:
+        do
+        {
+            F[l].a(a.r.a(0, 0, 0));
+            F[l].b(x.bb[24]);
+            F[l].a(x.bb[1]);
+            E[2 * l].a(x.K[1], x.K[1], x.K[1]);
+            E[2 * l + 1].a(x.K[0], x.K[0], x.K[0]);
+            l++;
+            do
+            {
+                if(l < 2)
+                    continue label0;
+                T.f();
+                U.f();
+                H.a(x.bb[1]);
+                I.a(x.bb[1]);
+                G.a(x.bb[1]);
+            } while(bd);
+            break;
+        } while(true);
+    }
+
+    public void f(String s1)
+    {
+        if(s1.charAt(0) == '\001')
+            G.a(String.valueOf(++K), true);
+    }
+
+    public void a(boolean flag, boolean flag1, boolean flag2, int l, int i1)
+    {
+    }
+
+    public void b(boolean flag)
+    {
+        super.b(flag);
+        T.b(false);
+        U.b(false);
+        if(!flag)
+            C.a(false);
+    }
+
+    String g()
+    {
+        String s1 = "" + (A.d() ? '\001' : '\0');
+        s1 += (char)(A.d() ? V : W);
+        s1 += (char)Integer.parseInt(O.getSelectedItem());
+        s1 += (char)N.getSelectedIndex();
+        return s1;
+    }
+
+    public Image a(String s1, boolean flag)
+    {
+        return d.x.a(s1, true);
+    }
+
+    public void g(String s1)
+    {
+        Y = s1;
+        b(h("utZ\007\037YxT\003MInW\030\030\030") + s1);
+    }
+
+    public void a(int l)
+    {
+        String s1;
+        boolean flag;
+label0:
+        {
+            flag = bd;
+            A.setEnabled(true);
+            B.setEnabled(true);
+            y.setEnabled(false);
+            if(!C.d())
+            {
+                Z.removeAllElements();
+                ba.removeAllElements();
+                M.removeAll();
+                return;
+            }
+            s1 = g() + (char)(l + 65);
+            if(A.d())
+            {
+                F[0].a(Integer.toString(++V), true);
+                if(!flag)
+                    break label0;
+            }
+            F[1].a(Integer.toString(++W), true);
+        }
+        s1 += (char)Z.size();
+        s1 += (char)ba.size();
+        if((Z.size() != 0 || ba.size() != 0) && N.getSelectedIndex() != 0) goto _L2; else goto _L1
+_L2:
+        if(!B.d()) goto _L4; else goto _L3
+_L3:
+        int i1 = 0;
+        if(!flag) goto _L6; else goto _L5
+_L5:
+        e.g g1 = (e.g)Z.elementAt(i1);
+        String s2 = a.r.c(g1.c);
+        s1 += s2;
+        if(i1 < Z.size() - 1)
+            s1 += "\0";
+        n.a('\003', s2 + '\0' + a.r.a(bc, s2.charAt(0)));
+        i1++;
+_L6:
+        if(i1 < Z.size()) goto _L5; else goto _L1
+_L4:
+        int j1;
+        j1 = N.getSelectedIndex();
+        i1 = 0;
+        if(!flag) goto _L8; else goto _L7
+_L7:
+        e.g g2 = (e.g)Z.elementAt(i1);
+        s1 += a.r.a(g2.a, 4);
+        n.a('[', '\001' + r.c + a.r.a(g2.a, 4) + r.c + a.r.a(S[j1][0], 4));
+        i1++;
+_L8:
+        if(i1 < Z.size()) goto _L7; else goto _L9
+_L9:
+        i1 = 0;
+        if(!flag) goto _L11; else goto _L10
+_L10:
+        e.g g3 = (e.g)ba.elementAt(i1);
+        s1 += a.r.a(g3.a, 4);
+        n.a('[', '\001' + r.c + a.r.a(g3.a, 4) + r.c + a.r.a(S[j1][1], 4));
+        i1++;
+_L11:
+        if(i1 < ba.size()) goto _L10; else goto _L1
+_L1:
+        n.a('\\', "" + '\004' + s1);
+        Z.removeAllElements();
+        ba.removeAllElements();
+        M.removeAll();
+        return;
+    }
+
+    public void setBounds(int l, int i1, int j1, int k1)
+    {
+        r.setBounds(j1 - 130, 2, 128, 24);
+        L.setBounds(10, 33, j1 - 200, k1 - 65);
+        M.setBounds(j1 - 180, 280, 170, k1 - 315);
+        s.setBounds(10, k1 - 30, 100, 24);
+        t.setBounds(110, k1 - 30, 60, 24);
+        u.setBounds(170, k1 - 30, 60, 24);
+        v.setBounds(j1 - 300, k1 - 30, 110, 24);
+        A.setBounds(j1 - 180, 45, 70, 22);
+        B.setBounds(j1 - 180, 65, 70, 22);
+        G.setBounds(j1 - 83, 220, 70, 24);
+        I.setBounds(j1 - 83, 240, 70, 24);
+        H.setBounds(j1 - 83, 260, 70, 24);
+        O.setBounds(j1 - 65, 100, 55, 24);
+        x.setBounds(j1 - 180, 170, 170, 24);
+        w.setBounds(j1 - 180, 195, 170, 24);
+        N.setBounds(j1 - 180, 145, 170, 24);
+        y.setBounds(j1 - 180, k1 - 30, 170, 24);
+        E[0].setBounds(j1 - 80, 50, 10, 10);
+        E[1].setBounds(j1 - 30, 50, 10, 10);
+        E[2].setBounds(j1 - 80, 70, 10, 10);
+        E[3].setBounds(j1 - 30, 70, 10, 10);
+        F[0].setBounds(j1 - 70, 48, 40, 17);
+        F[1].setBounds(j1 - 70, 68, 40, 17);
+        super.setBounds(l, i1, j1, k1);
+    }
+
+    public void a(Component component, int l, String s1, int i1, int j1)
+    {
+label0:
+        {
+            f f1 = i();
+            if(f1 != null)
+            {
+                N.select(f1.o != R.length - 1 ? f1.o : P);
+                x.setEnabled(f1.n != null && f1.n.length() > 0);
+                if(!bd)
+                    break label0;
+            }
+            N.select(P);
+            x.setEnabled(false);
+        }
+    }
+
+    public void run()
+    {
+        f f1 = i();
+        y.setEnabled(true);
+        f1.a(true);
+        L.repaint();
+        M.removeAll();
+        Z.removeAllElements();
+        ba.removeAllElements();
+        H.a("0", true);
+        G.a("0", true);
+        I.a("0", true);
+        J = K = 0;
+        if(f1.n != null && f1.n.length() > 0)
+        {
+            n.a('\\', "" + '\002' + f1.n);
+            try
+            {
+                Thread.sleep(4000L);
+            }
+            catch(Exception _ex) { }
+        }
+        n.a('\\', "" + '\003' + g());
+        try
+        {
+            Thread.sleep(6000L);
+        }
+        catch(Exception _ex) { }
+        String s1 = r.c + a.r.a(A.d() ? 1 : 0, 4);
+        s1 += a.r.a(2) + a.r.a(Integer.parseInt(O.getSelectedItem()));
+        s1 += a.r.a(1) + (char)f1.l;
+        String s2 = "" + 'Y' + g() + f1.e();
+        s1 += a.r.a(s2.length()) + s2;
+        n.a('Y', s1);
+        w.setEnabled(true);
+    }
+
+    public void a(e.e e1)
+    {
+        p = e1;
+    }
+
+    void h()
+    {
+        int l;
+        boolean flag;
+        flag = bd;
+        add(r = new a.c(h("JtD\022\002[aP\013\007\030jK\013\027")));
+        o o1 = new o();
+        add(D = new e(o1, true));
+        D.setBounds(10, 5, 100, 24);
+        D.a(h("hbJ\003\003Qz"));
+        add(C = new d(h("R~M\026\bU;S\r\t]i_\026\002J~SB\034MrD\027"), null, false));
+        C.setBounds(120, 5, 250, 20);
+        C.a(0, 5);
+        add(L = new k(this));
+        add(M = new java.awt.List());
+        L.u = L.r = true;
+        L.a(false, true, true);
+        add(s = new a.c(h("vtI\007MHbJ\003\003Q~")));
+        add(t = new a.c(h("}\177G\026\030R")));
+        add(u = new a.c(h("mhK\u0126")));
+        add(v = new a.c(h("bzN\013\036B4i\001\027Ao_\b")));
+        add(w = new a.c(h("ob\u0165\016\004R;N\033\031YuW\007")));
+        add(x = new a.c(h("ob\u0165\016\004R;Q\000\037Ya[\t")));
+        x.setEnabled(false);
+        add(y = new a.c(h("bzJ\025\004]iZ\u0118MObP\013\006Q")));
+        add(z = new d(null, false));
+        o o2 = new o();
+        add(A = new d(o2, true));
+        add(B = new d(o2, false));
+        A.a(h("_i_\001\027A"));
+        A.a(10, 5);
+        B.a(h("OrZ\030\236O"));
+        B.a(10, 5);
+        F = new g[2];
+        add(F[0] = new g("1", 2));
+        add(F[1] = new g("1", 2));
+        add(H = new g("0", 1));
+        add(I = new g("0", 1));
+        add(G = new g("0", 1));
+        add(O = new Choice());
+        l = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        int j1 = i.i;
+        i.i = ++j1;
+_L4:
+        O.add(String.valueOf(Q[l]));
+_L6:
+        l++;
+_L2:
+        if(l < Q.length) goto _L4; else goto _L3
+_L3:
+        String s1 = String.valueOf(62);
+        O.add(s1);
+        O.select(s1);
+        add(N = new Choice());
+        l = 0;
+        if(flag) goto _L6; else goto _L5
+_L5:
+        if(!flag) goto _L8; else goto _L7
+_L7:
+        N.add(R[l]);
+_L10:
+        l++;
+_L8:
+        if(l < R.length - 1)
+            continue; /* Loop/switch isn't completed */
+        N.select(2);
+        P = 2;
+        E = new a.b[4];
+        if(!flag)
+        {
+            int i1 = 0;
+label0:
+            do
+            {
+                add(E[i1] = new a.b());
+                i1++;
+                do
+                {
+                    if(i1 < 4)
+                        continue label0;
+                    a(C);
+                } while(flag);
+                break;
+            } while(true);
+            return;
+        }
+        if(true) goto _L10; else goto _L9
+_L9:
+        if(true) goto _L7; else goto _L11
+_L11:
+    }
+
+    f i()
+    {
+        try
+        {
+            return (f)L.f();
+        }
+        catch(Exception _ex)
+        {
+            return null;
+        }
+    }
+
+    private static String h(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int l = ac.length;
+        int j1;
+        for(int i1 = 0; i1 < l; i1++)
+        {
+            switch(i1 % 5)
+            {
+            case 0: // '\0'
+                j1 = 0x38;
+                break;
+
+            case 1: // '\001'
+                j1 = 27;
+                break;
+
+            case 2: // '\002'
+                j1 = 62;
+                break;
+
+            case 3: // '\003'
+                j1 = 98;
+                break;
+
+            default:
+                j1 = 109;
+                break;
+            }
+            ac[i1] ^= j1;
+        }
+
+        return new String(ac);
+    }
+
+    c n;
+    INTChat o;
+    e.e p;
+    Thread q;
+    a.c r;
+    a.c s;
+    a.c t;
+    a.c u;
+    a.c v;
+    a.c w;
+    a.c x;
+    a.c y;
+    d z;
+    d A;
+    d B;
+    d C;
+    e D;
+    a.b E[];
+    g F[];
+    g G;
+    g H;
+    g I;
+    int J;
+    int K;
+    k L;
+    java.awt.List M;
+    Choice N;
+    Choice O;
+    int P;
+    short Q[] = {
+        1, 3, 5, 10
+    };
+    static String R[] = {
+        h("Z~DB\035MuU\026\236O;\026\026\bKoQ\025\b\021"), h("\t;\026O]\021kU\026C"), h("\r;\026O_\021kU\026C"), h("\016;\026O^\021kU\026C"), h("\017;\026O^\021kU\026C"), h("\000;\026OY\021kU\026C"), h("\001;\026OY\021kU\026C"), h("\t+\036J@\r2N\t\031\026"), h("\\tS\033\036Tu_")
+    };
+    static int S[][] = {
+        new int[2], {
+            1, 0
+        }, {
+            5, -2
+        }, {
+            6, -3
+        }, {
+            7, -3
+        }, {
+            8, -4
+        }, {
+            9, -4
+        }, {
+            10, -5
+        }
+    };
+    e.a T;
+    e.c U;
+    int V;
+    int W;
+    int X;
+    String Y;
+    Vector Z;
+    Vector ba;
+    public static char bb = '\007';
+    public static char bc = '\024';
+    public static boolean bd;
+
+}

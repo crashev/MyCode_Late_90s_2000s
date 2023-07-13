@@ -1,0 +1,49 @@
+PawelJakistam
+iXN\UsXRPJMXT iXN\UsX
+
+k  u  l  u  m  b u   s 
+51,45,52,45,53,58,55,52
+
+abcdefghjklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+1 2 3 4 5 6 7 8
+R L U L T [ V U     R L
+RLULT[VU RLULT[VU RLUL
+
+1 2 3 4 5 6 7 8
+Q O V O W X U V   QOVOWXUVQOVO
+
+
+0 - a(97) = R(82) -> 15
+1 - a(97) = L(76) -> 21
+2 - a(97) = U(85) -> 12
+3 - a(97) = L(76) -> 21
+4 - a(97) = T(84) -> 13
+5 - a(97) = [(91) -> 6
+6 - a(97) = V(86) -> 11
+7 - a(97) = U(85) -> 12
+
+
+0 - b(98) = Q(81) -> 17
+1 - b(98) = O(79) -> 19
+2 - b(98) = V(86) -> 12
+3 - b(98) = O(79) -> 19
+4 - b(98) = W(87) -> 11
+5 - b(98) = X(88) -> 10
+6 - b(98) = U(85) -> 13
+7 - b(98) = V(86) -> 12
+
+1 2 3 4 5 6 7 8
+P N W N V Y T W   PNWNVYTWPNWN
+
+0 - c(99) = P(80) -> 19
+1 - c(99) = N(78) -> 21
+2 - c(99) = W(87) -> 12
+3 - c(99) = N(78) -> 21
+4 - c(99) = V(86) -> 13
+5 - c(99) = Y(89) -> 10
+6 - c(99) = T(84) -> 15
+7 - c(99) = W(87) -> 12
+
+
+

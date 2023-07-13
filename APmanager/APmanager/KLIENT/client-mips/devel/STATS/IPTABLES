@@ -1,0 +1,6 @@
+Opcja -m dla ipchains nadaje wszystkim pakietom spe³niaj±cym t± regu³kê
+odpowiedni numer identyfikacyjny (w naszym przyk³adzie liczby 1 i 2) 
+Dla iptables te regu³ki wygl±da³yby nastêpuj±co: 
+
+iptables -t mangle -A PREROUTING -p tcp --dport 80 -j MARK --set-mark 1
+iptables -t mangle -A OUTPUT -p tcp --sport 80 -j MARK --set-mark 2

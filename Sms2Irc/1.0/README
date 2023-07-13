@@ -1,0 +1,34 @@
+SmS2Irc by crashev <crashev@ebox.pl>
+                   <crashev@crashev.net>
+ + sms2irc gate
+ + irc2sms notifications		   
+-------------------------------------------------
+
+
+INSTALLation:
+
+First edit config.h and set parametrs LOGS_PATH and SOCK_PATH and ircserver.
+Also you can set address book.
+Then compile
+bash$ make
+
+Next step is to set incoming mail to our client.I prefer procmail to do
+such things:
+cat ~/.procmailrc
+
+# Settings
+COMSAT=no
+LOCKFILE=$HOME/.procmail.lock
+KTO=`formail -xFrom:`
+TEMAT=`formail -xSubject`
+:0:
+* ^From.*
+* < 2000
+| $HOME/sms2irc/client "$TEMAT" "$KTO"
+
+
+Then fire up sms2irc server and all should works fine.
+bash$ ./sms2irc sms2irc "Pawel Jakistam" ircchannel
+
+ * Autoresponses are generated to PlusGSM-Cell-Network and EraGSM Network(v4.0)
+ 

@@ -1,0 +1,311 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   n.java
+
+package d;
+
+import INTChat;
+import a.a;
+import a.c;
+import a.i;
+import a.r;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.TextComponent;
+
+// Referenced classes of package d:
+//            m, u
+
+class n extends i
+{
+
+    public n(m m1)
+    {
+        r = 0;
+        s = true;
+        j = m1;
+        d();
+    }
+
+    public void paint(Graphics g)
+    {
+        boolean flag;
+label0:
+        {
+            flag = u.ba;
+            a.r.a(g, 0, 0, super.a, super.b, true);
+            if(!j.T)
+            {
+                g.setColor(INTChat.F[1]);
+                if(!flag)
+                    break label0;
+            }
+            g.setColor(u.Y[16]);
+        }
+label1:
+        {
+            g.fillRect(2, 2, super.a - 4, 70);
+            if(!j.T)
+            {
+                g.setColor(INTChat.F[2]);
+                if(!flag)
+                    break label1;
+            }
+            g.setColor(u.Y[17]);
+        }
+        FontMetrics fontmetrics;
+label2:
+        {
+            g.drawRect(5, 5, super.a - 10, super.b - 18);
+            g.drawRect(5, 45, super.a - 10, 25);
+            g.setFont(u.Z[2]);
+            fontmetrics = g.getFontMetrics();
+            if(!j.T)
+            {
+                g.setColor(INTChat.F[4]);
+                if(!flag)
+                    break label2;
+            }
+            g.setColor(u.Y[19]);
+        }
+        g.drawString(q[r][0], (super.a - fontmetrics.stringWidth(q[r][0])) / 2, 21);
+        g.drawString(q[r][1], (super.a - fontmetrics.stringWidth(q[r][1])) / 2, 38);
+        g.drawString(a("45#\033<@"), 100 - fontmetrics.stringWidth(a("45#\033<@")), 98);
+        g.drawString(a("2=3\u0132sZf"), 100 - fontmetrics.stringWidth(a("2=3\u0132sZf")), 126);
+        g.drawString(a("*3+\203v@|") + n + a("Z|`?o\211>zP<") + o, 15, 62);
+        super.paint(g);
+    }
+
+    public void setVisible(boolean flag)
+    {
+        super.setVisible(flag);
+        k.setText("");
+        if(flag)
+            l.requestFocus();
+    }
+
+    public void a(Component component)
+    {
+        if(l.getText().length() > 0 && m.isEnabled())
+        {
+            if(d.m.a(l.getText(), p))
+            {
+                a('$');
+                return;
+            }
+            m.setEnabled(false);
+            r = 1;
+            repaint();
+            s = true;
+            String s1 = l.getText().replace(' ', '_');
+            j.a(n, p, s1, k.getText());
+        }
+    }
+
+    void c()
+    {
+        setBackground(u.Y[16]);
+        m.a(u.V);
+        m.b(u.Y[27]);
+        repaint();
+    }
+
+    private void d()
+    {
+        setFont(u.Z[3]);
+        setBackground(INTChat.F[1]);
+        l = new a.n(false);
+        l.setBounds(135, 82, 170, 25);
+        l.requestFocus();
+        k = new a.n(true);
+        k.setBounds(135, 110, 170, 23);
+        add(k);
+        add(l);
+        add(m = new c(a("-9*\024\u0166")));
+        m.setBounds(130, 144, 70, 24);
+        m.a(u.W);
+    }
+
+    void a(String s1, int i1, int j1)
+    {
+        n = s1;
+        p = i1;
+        o = j1;
+        r = 0;
+        m.setEnabled(true);
+    }
+
+    void b(String s1, int i1, int j1)
+    {
+        a(s1, i1, j1);
+        setVisible(true);
+        repaint();
+    }
+
+    void a(char c1)
+    {
+        boolean flag = u.ba;
+        c1;
+        JVM INSTR lookupswitch 12: default 308
+    //                   0: 112
+    //                   1: 163
+    //                   2: 172
+    //                   3: 181
+    //                   4: 191
+    //                   8: 221
+    //                   9: 269
+    //                   10: 288
+    //                   11: 278
+    //                   32: 211
+    //                   33: 201
+    //                   36: 298;
+           goto _L1 _L2 _L3 _L4 _L5 _L6 _L7 _L8 _L9 _L10 _L11 _L12 _L13
+_L1:
+        break; /* Loop/switch isn't completed */
+_L2:
+        if(s)
+        {
+            s = false;
+            j.a(n, p, j.bi, k.getText());
+            return;
+        }
+        r = 2;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L3:
+        r = 3;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L4:
+        r = 3;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L5:
+        r = 6;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L6:
+        r = 9;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L12:
+        r = 7;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L11:
+        r = 8;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L7:
+        j.U = false;
+        if(k.getText().length() != 0) goto _L15; else goto _L14
+_L14:
+        r = 5;
+        if(!flag) goto _L16; else goto _L15
+_L15:
+        r = 4;
+        k.setText("");
+_L16:
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L8:
+        r = 3;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L10:
+        r = 9;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L9:
+        r = 10;
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L13:
+        r = 11;
+        if(!flag);
+        m.setEnabled(true);
+        setVisible(true);
+        repaint();
+        return;
+    }
+
+    private static String a(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x7a;
+                break;
+
+            case 1: // '\001'
+                k1 = 92;
+                break;
+
+            case 2: // '\002'
+                k1 = 64;
+                break;
+
+            case 3: // '\003'
+                k1 = 112;
+                break;
+
+            default:
+                k1 = 28;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    m j;
+    a.n k;
+    a.n l;
+    c m;
+    String n;
+    int o;
+    int p;
+    static final String q[][] = {
+        {
+            a(";>9Pk\0376\u011B\u0177<\0363`\007e\030.!\036y\0353`\000s\0213*\0050Z+0\031o\000|7Pl\0252)\u010Co\0009"), a("\n3,\021<\t+\263\032<\0245#\033<\023|(\021o\u01383`Xx\026=`\n}\t(2\ny\u01063.\025{\025|.\031\177\021=i^")
+        }, {
+            a("..7\021<\0263'\037k\0332)\025<\0363`\000s\0213*\0052"), a("\000=#\ny\021=*P\177\022+)\034w\u0163|n^2")
+        }, {
+            a("/\u01209\004w\025+.\031wZ3`\004}\0215-Pr\023?+\005<\020)\u013CPv\037/4Pf\0330/\027s\r=.\t"), a("\r|4\tqZ,/\033s\020)nPK\003>)\025n\000|)\036r\003|.\031\177\021r")
+        }, {
+            a("45%\000n\033+)\024\u015E\025+9Pp\025;)\036"), a("-%\"\031y\b&`\031r\024%`\036u\0317n")
+        }, {
+            a("45%\000n\033+)\024\u015E\025+%Pt\033/\u0102\037"), a("-,)\003fZ,/\036s\r2)\025<\022=3\u0132sT")
+        }, {
+            a(".9.Pr\023?+Pv\037/4Pf\033/4\002f\037\u0120/\036eT"), a("-%\"\031y\b&`\031r\024%`\036u\0317n")
+        }, {
+            a("45%Pq\025\u0120.\021<\000=,\037{\025+!\u0177<\t5\u0159Px\025|4\025{\025|0\037w\02565^"), a(")92\007y\b|'\037<\0245%Ps\030/\u0102\005{\0176%^<-%\"\031y\b&`\031r\024%`\000s\021\257*^")
+        }, {
+            a(" 92\007}\0249`\000s\u0138\u0159#\ny\0245%PfZ/%\002k\037.%\0352"), a("-%,\037{\0176`\003u\u0163|)Pl\025\u011E\u0145\023fZ,/\036s\r2)\0252")
+        }, {
+            a("45%Pq\025\u0120.\021<\024=7\031\u0119\000=\u0147Pl\025\u011E\u0145\023f\0372)\021<\000|3\025n\r92\025qT"), a("),2\203~\0176`\000\357\u01002)\025vT")
+        }, {
+            a(".9.Pr\023?+Pv\037/4Pr\0239:\021n\0376%\003h\b37\021r\003"), a("-%\"\031y\b&`\031r\024%`\036u\0317`\021p\0303`\007y\0208\u013AP~\037&`\030}\t\u011E!^")
+        }, {
+            a("7=3\n<\030=.\021<\024=`\004y\024|0\037w\2116n"), a("-%\"\031y\b&`\031r\024%`\000s\021\257*^")
+        }, {
+            a(".9.Pr\023?+Pf\033+)\025n\033|7\tn\033&9Pr\0239$\037f\r3,\037r\037r"), a("-%\"\031y\b&`\031r\024%`\036u\0317n")
+        }
+    };
+    int r;
+    boolean s;
+    static final Color t[] = {
+        new Color(97, 199, 239), new Color(0, 130, 194), new Color(97, 196, 244), new Color(243, 174, 32)
+    };
+
+}

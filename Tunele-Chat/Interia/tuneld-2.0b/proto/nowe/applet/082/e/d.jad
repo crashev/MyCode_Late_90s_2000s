@@ -1,0 +1,213 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   d.java
+
+package e;
+
+import a.*;
+import b.b;
+import d.u;
+import java.awt.*;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
+
+// Referenced classes of package e:
+//            b
+
+public class d extends i
+    implements TextListener
+{
+
+    public d(b b1, String s)
+    {
+        j = b1;
+        d();
+        m[0].setText(s);
+        c();
+    }
+
+    public void paint(Graphics g)
+    {
+        FontMetrics fontmetrics;
+        int i1;
+        int j1;
+        j1 = b.Z;
+        g.setColor(u.Y[17]);
+        g.drawRect(5, 5, super.a - 10, super.b - 18);
+        g.fillRect(7, 7, super.a - 13, 38);
+        g.setFont(u.Z[2]);
+        fontmetrics = g.getFontMetrics();
+        g.setColor(u.Y[24]);
+        g.drawString(k[0], 20, 20);
+        g.drawString(k[1], 20, 37);
+        g.setColor(u.Y[19]);
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        g.drawString(l[i1], 110 - fontmetrics.stringWidth(l[i1]), 65 + i1 * 22);
+_L4:
+        i1++;
+_L2:
+        if(i1 < l.length)
+            continue; /* Loop/switch isn't completed */
+        super.paint(g);
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void a(Component component)
+    {
+        int j1 = b.Z;
+        if(component != n) goto _L2; else goto _L1
+_L1:
+        String s;
+        int i1;
+        s = b("Ca*<\037^g!Y\0327`<&h");
+        i1 = 0;
+        if(j1 == 0) goto _L4; else goto _L3
+_L3:
+        s += l[i1] + "=" + m[i1].getText() + b(";\t");
+        this;
+_L7:
+        m;
+        i1;
+        JVM INSTR aaload ;
+        0;
+        setCaretPosition();
+        i1++;
+_L4:
+        if(i1 < l.length) goto _L3; else goto _L5
+_L5:
+        s = r.e(s);
+        j.a('\001', s);
+        j.a(']', s);
+        this;
+        if(j1 != 0) goto _L7; else goto _L6
+_L6:
+        false;
+        setVisible();
+_L2:
+    }
+
+    void c()
+    {
+        setBackground(u.Y[16]);
+        n.a(u.V);
+        n.b(u.Y[27]);
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        n.setBounds((k1 - 130) / 2, l1 - 25, 130, 22);
+        super.setBounds(i1, j1, k1, l1);
+    }
+
+    void d()
+    {
+        int i1;
+        int j1;
+        j1 = b.Z;
+        m = new TextField[l.length];
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        add(m[i1] = new TextField());
+        m[i1].setBounds(120, 50 + i1 * 22, 150, 20);
+        m[i1].addTextListener(this);
+        m[i1].setBackground(Color.white);
+_L4:
+        i1++;
+_L2:
+        if(i1 < l.length)
+            continue; /* Loop/switch isn't completed */
+        add(n = new c(b("`P\u0134p!}\t\013}&r")));
+        n.setEnabled(false);
+        a(true);
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void textValueChanged(TextEvent textevent)
+    {
+        int i1;
+        int j1;
+        j1 = b.Z;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        if(m[i1].getText().length() == 0)
+            return;
+_L4:
+        i1++;
+_L2:
+        if(i1 < m.length - 1)
+            continue; /* Loop/switch isn't completed */
+        n.setEnabled(true);
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void a(String s)
+    {
+        m[0].setText(s);
+        setVisible(true);
+    }
+
+    private static String b(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x17;
+                break;
+
+            case 1: // '\001'
+                k1 = 41;
+                break;
+
+            case 2: // '\002'
+                k1 = 111;
+                break;
+
+            case 3: // '\003'
+                k1 = 28;
+                break;
+
+            default:
+                k1 = 72;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    b j;
+    String k[] = {
+        b("P[\016h={H\fv-6\bN<\037nN\035}\u010Ar\u0172Or)p[\000x\u01517\023F"), b("@P\u0134p!}\t\034k'}LOx)yLOs;xK\000k-9")
+    };
+    String l[] = {
+        b("y@\fw"), b("~D\006y"), b("yH\025k!dB\0"), b("cL\003y.xG"), b("r\004\002}!{"), b("z@\016o<x"), b("|F\013<8xJ\025h'`P"), b("bE\006\177)"), b("y[Ox'z\\"), b("y[Oq!rZ\025w)y@\016")
+    };
+    TextField m[];
+    c n;
+}

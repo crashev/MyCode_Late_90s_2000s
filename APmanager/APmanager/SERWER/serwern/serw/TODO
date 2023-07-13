@@ -1,0 +1,4 @@
+-- SSL_pending
+-- ip_access function
+-- Session Resumption
+-- WRITE/READ blocking - dla rehandshaking,moze sie nie przyda

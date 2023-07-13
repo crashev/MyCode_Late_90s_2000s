@@ -1,0 +1,48 @@
+1. work out a way that the front-end probe
+can auto capture N packets based on various
+"alert" sizes coupled with known filters of
+interest (like topn flow counts, or topn syns).
+This should help us capture the pkts in "interesting"
+attacks.  
+
+2. rework omupdate.pl to generate DNS info
+for topn reports.  This can be combined
+with "extra" information that need not be shown
+with drawtopn explicitly in a picture.
+Each topn should have a report that goes with it,
+that simply summarizes the info in ASCII.
+tcpworm.txt should be available too.
+
+3. teach syn filter to capture N dst ports
+to give the user some idea of what the heck
+was going on in terms of the scanning.  Need not
+be a lot.  This should be trivial to start with
+in terms of compute time needed, not general.
+Say 1-4 ports.  4 ports will hints at a mult-vector
+worm like agobot.   
+
+4. topn scan and topn itself both need fixing
+in terms of allowing multiple pictures to
+be generated as does the current topn port.
+
+5. play/think/dream on subject of weights and
+tcp syn scanning.  
+
+6. REPORTS!  reports that look across different
+kinds of log entries would be useful.  E.g.,
+given IP address X, what can we learn.  
+
+7. make an rrdtool set of images for post-analysis
+based on given IP address.  E.g., you could look
+at syn scanning data and generate a log for a given IP.
+
+8. would it be possible to take an rrdtool graph
+and show only single lines or 1-N of the total N lines
+in it, thus letting you see what is going on with lines
+that have been squashed by bigger lines in terms of data?
+
+9. it would make for an interesting project to have
+the front-end have the ability to generate a histogram
+of ip src and/or dst addresses used but this would need
+to be limited in its size.  E.g, one might somehow
+map a /16 to 256 different bins.  

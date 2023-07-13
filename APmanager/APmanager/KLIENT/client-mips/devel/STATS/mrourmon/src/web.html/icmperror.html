@@ -1,0 +1,45 @@
+<html>
+<head>
+<title> TOP 20 ICMP error generating IP addresses (2 graphs)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html"; charset=iso-8859-1>
+<META HTTP-EQUIV="Refresh" CONTENT="30" >
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache" >
+<META HTTP-EQUIV="Expires" CONTENT="Fri, 19 May 1999 23:37:00 GMT">
+
+<hr>
+<H3>  TOP 20 ICMP error generating IP addresses
+</H3> 
+<p>
+We sort on the total number of ICMP errors received back by an IP source.
+<br>
+Note: we are showing the errors per sample period (30 seconds).
+<br>
+There are six counters.  If a counter == 0, we do not display it.
+<br>
+<br>
+The counter tags are T:U:P:Un:R:X and they mean:
+<br>
+<br>
+T: TCP packets sent by an IP source.
+<br>
+U: UDP packets sent by an IP source.
+<br>
+P: ICMP echo request packets sent by an IP source.
+<br>
+Un: ICMP unreachable packets sent back to that IP source.
+<br>
+R: ICMP redirect packets sent back to that IP source.
+<br>
+X: ICMP ttl eXceeded packets sent back to that IP source.
+<p>
+</p>
+<hr>
+<p><img src="topn_icmperror1.png"> </p>
+<hr>
+<p><img src="topn_icmperror2.png"> </p>
+</body>
+</html>

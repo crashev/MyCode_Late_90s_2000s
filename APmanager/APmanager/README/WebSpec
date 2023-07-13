@@ -1,0 +1,72 @@
+Specyfikacja jak powinien wygladac portal WWW
+----------------------------------------------
+
+Autor: pawelf@bioinfo.pl
+
+
+Pomijam tu uzywanie polskich znaczkow,bo bez nich 2 razy szybciej sie pisze.
+
+
+1. Co portal powinien potrafic?
+
+Sekcja ACCESS POINTS:
+
+    - Dodawanie/Edycja ACCESS POINTOW
+    - Dodawanie/Edycja KLIENTOW
+    - Dodawanie/Edycja MAC ACCESS LISTY
+    - skrypty powinny sprawdzac poprawnosc kazdego kroku czyli jak dodajemy
+      jakiegos MACa do ACCESS LISTY to klient z nim zwiazany powinien juz
+      istniec i APek do ktorego bedzie nalezec dany MAC ADDR tez powinien
+      juz istniec....
+    - Po kliknieciu na dany ACCESS POINT powinnismy miec osobne menu dla
+      AP ktore powinno zawierac takie rzeczy jak - statystyki(generowane
+      z baz RoundRoubin - rrdtool lub rrdlib uzycie), i cala reszte opisana
+      w Protokol, tu powinnismy miec mozliwosc wydania polecenia na APeku
+      co za tym idzie powinny byc opcje w stylu FORCECONFIGCLIENTS....
+      
+Druga funkcja portalu
+    - Czesc konfiguracji generuje bezposrednio baza glowna APcenterd,ale
+      spora czesc powinna byc generowana skryptami portalowymi recznie
+      przykladowo w bazie powinnismy miec tabele zawierajaca 
+      takie elementy jak: DNSy, GATEWAY, itd. i na podstawie tego powinien
+      zostac wygenerowany plik dnsmasq, ktory powinien zostac umieszczony
+      w katalogu $BAZAGLOWNA/configs/IP_APEKA/baseaddons/
+      a jego postac powinna byc nastepujaca:
+
+cat > /etc/dnsmasq.conf << EOF
+# filter what we send upstream
+domain-needed
+bogus-priv
+filterwin2k
+
+# allow /etc/hosts and dhcp lookups via *.lan
+local=/lan/
+domain=lan
+user=root
+# no dhcp / dns queries from the wan
+except-interface=vlan1
+
+# enable dhcp (start,end,netmask,leasetime)
+dhcp-authoritative
+dhcp-range=192.168.1.100,192.168.1.250,255.255.255.0,12h
+dhcp-leasefile=/tmp/dhcp.leases
+dhcp-option=3,GATEWAY
+dhcp-option=6,DNS1,DNS2
+
+read-ethers
+EOF
+
+    To oczywiscie przyklad generowania pliku konfiguracyjnego, chce by za
+pomoca portalu w PHP generowana byla pelna konfiguracja z szablonow,ktore
+zalczam do tego - katalog szablony. W powyzszym szablonie warto by bylo takze
+manipulowac pozostalymi polami jak dhcp-range.
+
+    Wiekszosc funkcji Portalu po kliknieciu na APEKa jest opisana w pliku
+Protokol.
+
+Zdaje sobie sprawe,ze oba opisy sa strasznie chaotyczne, dlatego w razie
+jakichkolwiek watpliwosci prosze zadac setke pytan, albo jedno konkretne,
+ktore ja rozszerze do maksimum tak by byla jasnosc co i jak.
+
+      
+      

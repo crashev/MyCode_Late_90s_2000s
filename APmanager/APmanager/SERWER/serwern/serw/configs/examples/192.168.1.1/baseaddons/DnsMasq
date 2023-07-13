@@ -1,0 +1,22 @@
+cat >/etc/dnsmasq.conf << EOF
+# filter what we send upstream
+domain-needed
+bogus-priv
+filterwin2k
+
+# allow /etc/hosts and dhcp lookups via *.lan
+local=/lan/
+domain=lan
+user=root
+# no dhcp / dns queries from the wan
+except-interface=vlan1
+
+# enable dhcp (start,end,netmask,leasetime)
+dhcp-authoritative
+dhcp-range=192.168.100.100,192.168.100.250,255.255.255.0,12h
+dhcp-leasefile=/tmp/dhcp.leases
+dhcp-option=3,192.168.100.1
+dhcp-option=6,192.168.100.1,192.168.100.2
+
+read-ethers
+EOF

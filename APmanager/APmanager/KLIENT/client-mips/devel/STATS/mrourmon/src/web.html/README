@@ -1,0 +1,62 @@
+README - guide to supplied .html files
+
+overview web pages: (glue the other web pages together)
+index.html - basic index.html page, contains drivers, etc.
+	EDIT this to suit yourself.
+indexstatic.html - same as index, but does not update every 30 seconds
+	the only difference between this file and index.html is
+	the lack of the following three http/push commands:
+
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html"; charset=iso-8859-1>
+********** get rid of Refresh/Pragma/Expires *************************************
+	<META HTTP-EQUIV="Refresh" CONTENT="30" >
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache" >
+	<META HTTP-EQUIV="Expires" CONTENT="Fri, 19 May 1999 23:37:00 GMT">
+
+info.html - documentation on filters
+secview.html - security view, does not update every 30 seconds
+
+rest are per filter pages that are sub-pages of index.html
+Each of these provides the traditional 4 daily/weekly/monthly/year
+pictures produced by rrdtool.
+
+web page    config filter name		description
+pkts.html    				hardwired capture/drops filter (you can't get rid of it)
+tcp3.html    fixed_tcp3			2 tcp ports filter
+cast.html    fixed_cast			unicast/multicast/broadcast L2 filter
+ipproto.html fixed_ipproto 		basic ip protocols, tcp/udp/icmp
+size.html -  fixed_size 		packet size filter
+
+# topn html files
+# note: topn_ip doesn't have a separate file at this time
+# neither do the topn_scanners
+tcpports.html topn_port			top tcp ports  
+udpports.html topn_port			top udp ports
+tcpsyn.html   topn_syn			top TCP scanners
+tworm.html    topn_syn and topn_syn_homeip   TCP scanner IP src count (rrdtool graph)
+topn_ip.html  topn_ip			top IP flows (all)
+topn_tcp.html topn_ip			top TCP flows
+topn_udp.html topn_ip			top UDP flows
+topn_icmp.html topn_ip 			top ICMP flows
+topnstat.html topn_ip 			top n count of inserts (indirect count of random ip dst/L4 dst ports)
+flow.html     topn_ip			RRDTOOL graph, count of tcp/udp/icmp/ip flows, good meta 
+						indicator of serious scanning	
+udperror.html topn_icmp_error		top n count of weighted UDP error producers (UDP scanners)
+icmperror.html topn_icmp_error		top n count of total ICMP error producers
+ipscan.html   topn_scan			top n IP src address scanners
+ipportscan.html	 topn_portscan		top n IP src combined (TCP+UDP) port scanners
+tcpscan.html  topn_portscan		top n IP src TCP port scanners
+udpscan.html  topn_portscan             top n IP src UDP port scanners
+
+# bpf html files
+bpf-ports.html	ports			bpf filter for showing use of various L4 ports, ssh, web, etc.
+bpf-vpns.html   vpntuns			bpf filter for showing use of IPSEC, PP2P (GRE), etc.
+bpf-errors.html errors			bpf filter for watching general network errors (good for watching scanning)
+bpf-unreach.html icmpunreach		bpf filter for breaking out different kinds of ICMP unreachables (scanning)
+bpf-tcpcontrol.html tcpcontrol		bpf filter for breaking out counts of TCP control packets (tcp scanning)
+bpf-p2p.html   p2pvsworld		bpf filter for watching different well known p2p apps at default ports
+bpf-subnets1.html subnets1		bpf sample filter, clone this for new bpf filters and mention 
+						it in index.html and indexstatic.html.  This is 
+						a template for watching local subnets of interest.  
+						It is not on by default.
+bpf-protopkts.html bpfprotos		bpf filter for watching basic ip protocols by pkt count, not bits

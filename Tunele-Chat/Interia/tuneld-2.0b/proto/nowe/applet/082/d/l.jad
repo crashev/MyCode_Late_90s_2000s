@@ -1,0 +1,146 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   l.java
+
+package d;
+
+import a.c;
+import a.g;
+import a.i;
+import a.n;
+import a.r;
+import b.a;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.TextComponent;
+
+// Referenced classes of package d:
+//            m, f, h, u
+
+class l extends i
+{
+
+    public l(m m1)
+    {
+        r = 0;
+        j = m1;
+        d();
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+label1:
+            {
+                boolean flag = u.ba;
+                if(component == l)
+                {
+                    setVisible(false);
+                    if(!flag)
+                        break label0;
+                }
+                String s = m.getText();
+                if(s.length() <= 0)
+                    break label0;
+                if(j.v.bS == 0)
+                {
+                    j.d();
+                    if(!flag)
+                        break label1;
+                }
+                if(r == 0)
+                {
+                    j.l.a('V', a.r.a(s.length() + 1) + a.r.e(s) + '\0', -2);
+                    if(!flag)
+                        break label1;
+                }
+                j.z.d(s);
+            }
+            setVisible(false);
+        }
+    }
+
+    void c()
+    {
+        setBackground(u.Y[16]);
+        k.a(u.V);
+        k.b(u.Y[27]);
+        l.a(u.V);
+        l.b(u.Y[27]);
+        n.b(u.Y[19]);
+        o.b(u.Y[19]);
+    }
+
+    void d()
+    {
+        a(true);
+        add(k = new c());
+        k.setBounds(25, 57, 75, 24);
+        add(l = new c(a("\027}\002T`<")));
+        l.setBounds(100, 57, 75, 24);
+        add(m = new n(false));
+        m.setBounds(55, 29, 135, 22);
+        add(n = new g(a("\032|\020Q{l")));
+        n.setBounds(10, 30, 60, 22);
+        n.a(u.Z[2]);
+        add(o = new g(2));
+        o.setBounds(10, 3, 180, 22);
+        o.a(u.Z[2]);
+    }
+
+    void a(int i1)
+    {
+        r = i1;
+        o.a(r != 0 ? a("\030|\000A5\f}\026Rz;j") : a("\f}\026Rq\u012C3\030Kz4\u010A"));
+        k.a(r != 0 ? a("\022|\023Y\177") : a("\005i\002St<"));
+        setVisible(true);
+        m.requestFocus();
+    }
+
+    private static String a(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x56;
+                break;
+
+            case 1: // '\001'
+                k1 = 19;
+                break;
+
+            case 2: // '\002'
+                k1 = 119;
+                break;
+
+            case 3: // '\003'
+                k1 = 56;
+                break;
+
+            default:
+                k1 = 21;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    m j;
+    c k;
+    c l;
+    n m;
+    g n;
+    g o;
+    static final int p = 0;
+    static final int q = 1;
+    int r;
+}

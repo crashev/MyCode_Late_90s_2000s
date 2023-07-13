@@ -1,0 +1,78 @@
+Kody b³edów:
+				
+00|0ffffff96|01|                  - Ksywka nieodpowiedniej dlugosci
+00|0ffffff96|03|                  - Nie ma takiego kanalu
+00|0ffffff96|08|                  - Ksywka conajmniej niedostepna/zastrzezona
+00|0ffffff96|00|                  - Ban za flood na connect?
+	     5 - ostrzezenie flood
+	     6 - zmkniecie
+	     a                     - ban
+Wysy³±nie wiadomo¶ci:
+   KOD FUNKCJI	        NICKNAME                   BAJERY      TEKST
+1.normal
+2.bold
+3.italic
+4.underline
+5.bold+italic
+6.bold+underline
+7.underline+italic
+8. all+czarny
+1] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|02| 074|065|073|074|
+2] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|01| 074|065|073|074|
+3] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|04| 074|065|073|074|
+4] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|0e| 074|065|073|074|
+5] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|01|02|04| 074|065|073|074|
+6] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|01|02|0e| 074|065|073|074|
+7] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|02|04|02|0e| 074|065|073|074|
+8] 00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|01|00|02|01|02|04|02|0e| 074|065|073|074|
+
+Kolor:
+czerowny:
+   00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|01|08| 074|065|073|074|
+niebieski:
+   00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|01|01| 074|065|073|074|
+czarny:
+   00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|01|00| 074|065|073|074|
+niebieski 2:
+   00|0ffffff81|01| 070|061|077|071|070|061|077|071| 00|01|02| 074|065|073|074|
+
+Join/Part:
+00|0ffffff80|00| 00|070|061|077|071|070|061|077|071|00|          - JOIN
+00|0ffffff82|    070|061|077|071|070|061|077|071|00|		 - PART
+
+Zmiany stanow:
+00|0ffffff86|070|061|077|071|070|061|077|071|00|0d|           - Jestem smutny
+...
+
+
+ON JOIN:
+00|0ffffff83|02|01|01|                    - Aktualny topic na kanale
+01|0ffffff84|00|00|69|                    - Lista osob na kanale
+
+PRIVMSG:
+(przychodzacy- oznacza ,ze ksywka istnieje i wiadomosc do niej
+poleciala):
+00|0ffffff89|01|06b|06c|065|06a|06e|06f|074|031|031|030|00|00|
+[0] : 0
+[1] : 89 -> Nieznany
+
+(ktos do nas cos pisuje...)
+00|0ffffff85|01|067|072|075|062|061|073|031|038|030|00|046|045|054|055|040|044|00|
+[0] : 0
+[1] : 85 -> Nieznany
+
+(zamknal okno z naszym priv czatem)
+00|0ffffff85|01|067|072|075|062|061|073|031|038|030|00|031|00|
+
+
+Wysylanie PRIVOow:
+    LEN1|LEN2|01|MSG - Na kanal
+    LEN1|LEN2|03|MSG - Priv MSG, tu MSG jest zakodowany prostym xorem,klucz
+    (ksywka^88)^wiadomosc[i];
+
+
+ 
+Kalkulacja rozmiaru wysylki:
+            q[0] = (byte)(i1 & 0xff);
+            q[1] = (byte)(i1 >> 8 & 0xff);
+

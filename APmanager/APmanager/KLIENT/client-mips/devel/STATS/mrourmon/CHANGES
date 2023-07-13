@@ -1,0 +1,198 @@
+ourmon 2.4
+
+1. bug fix in omupdate.pl.  count display in rrdtool graphs
+for bpf expressions counted as packets was WRONG!.  inflated
+by 8.  Using same rrdtool expression for bits/sec, and pkts/sec.  
+
+2. new topn syn list mechanism.  portreport.txt in particular which
+is a view of all worms and other top SYN generators
+attacking from the ourmon agent network vantage point.
+portreport.txt is a very nice feature.  See info.html for details.
+
+3. topn syn in front end may optionally be somewhat sorted by
+WORK metric.  sorted by syn count by default.
+
+4. omupdate.pl code rewritten so that topn_ip flow monitor can show 10..100
+(10 per graph) top flows.  No longer fixed to around 10.  Same for
+the topn port scanner code as well.  
+
+5. icmp/udp error code in front-end rewritten to include sampled
+ports for udp (now in mon.lite).  There is now a udpreport.txt file
+similar in some sense to portreport.txt for udp transgressions.
+
+6. secview.html no longer exists as it is too much trouble.  Make your own.
+
+7. info.html rewrite - now has TOC.  
+
+8. configure.pl rewrite to make it relative to pwd. 
+
+9. portreport.txt stored away in logs.
+
+10. logging is NOT optional any more.
+
+11. event log mechanism exists to allow front-end to pass "event" messages
+(like reboot) to back-end.
+
+12. nasty boot bug on FreeBSD fixed.  SIGHUP out of nowhere causes ourmon
+front-end to exit.  We now ignore SIGHUP.  SIGKILL ourmon to make it go away.
+
+ourmon 2.3
+
+New features:
+
+ourmon has many new IDS/anomaly detection features.  See the info.html
+file for full information.  This includes a set of top N mechanisms
+that look for scanning in various ways including: 
+
+	1. ip address, and L4 port
+	scanning 1 to many destination,  
+	2. TCP syn scanning, 
+	3. UDP/ICMP errors,
+	4. and various supplied BPF and/or RRDtool-based graphs that look for network-wide
+	signs of scanning impact including TCP errors, ICMP unreachable errors,
+	and flow counts to name a few.  
+
+The tcpsyn hash mechanism also has a very interesting meta counter that counts the number of 
+tcp syn scanners (worms?!) showing up at a sight, and can clearly detect distributed zombie attacks.   
+
+The topn flow mechanism in ourmon has been heavily optimized.  Thanks
+to Bart Massey for able assistance.
+
+The ourmon front-end is probably now for the 1st time safe to run
+on linux.  See INSTALL for details on that notion.  We are still
+using FreeBSD as we suspect that BSD is more efficient with the BPF
+buffer system in the kernel, compared to Linux and its packet socket
+implementation (BSD can trim packets in the kernel.  Linux apparently
+does not do that.  We would be happy to be told we were wrong about that
+with a measurement experiment to back it up).
+
+1. topn basic mechanism now includes RRDTOOL strip chart graph
+to graph the # of flows (ip, tcp, udp, icmp) seen per sample period; i.e.,
+flows per second.  This is useful in terms of DOS attacks especially
+if there are a large # of them, e.g., say w32/welchia/nachia worms
+doing ICMP flows or mass TCP syn scanning.  A baseline here for normal behavior is important.
+The graph is flows/sec.
+
+2. The front-end bpf graph configuration has a new feature: 
+One can specify the bpf-set of graphs to be either packets or bytes in
+terms of counts for the entire graph. Thus you can toggle
+the bpf graph as a whole (a set of lines) between 
+counting packet size as bits/sec or just simply counting the packets
+as packets/second.
+
+3. ourmon topn hash mechanism has been made more efficient.  stats are produced
+in the front end to give some idea of how well the hash is doing.  The insert
+count is graphed (each insert represents a malloc), as this is useful for detection
+of large scale DOS or TCP syn attacks.
+
+4. new topn_syn mechanism for tracking tcp scanners.  It seems to be doing
+a rather good job at PSU.  However we are seeing worms, not "trinity".
+Note that as a side effect it produces an RRDTOOL graph called the "tworm" graph,
+and a report produced by the front-end called "tcpworm.txt".  The graph
+counts suspected worms in terms of external and internal IP src addresses.
+The IP source addresses of boxes deemed suspicious in terms of tcp syn scanning
+acc. to a very rude metric (sins sent - fins received > 40) are stored along
+with counts in the front-end tcpworm.txt file.
+
+5. experimental udp and icmp top n lists have been added.  These are triggered
+by the icmp error config filter name.  The icmp graphs in the back-end show
+the top ICMP error producer and give some information about the ip src associated
+with those errors.  The UDP error graphs show the IP source for a udp generating
+host and are ranked as follows according to weighted metric suggested by 
+Dave Burns at PSU:  udp packets sent - udp packets received * (icmp errors).
+ICMP errors include ICMP unreachables of various types, ICMP ttl exceeded, and
+ICMP redirects returned to the IP source in question.
+
+6. top of top sorting code much improved, sorts available for ip/udp/icmp/and topsyn.
+dns caching code put in perl scripts as well to improve performance.  However
+running a dns cache-only server on the ourmon back-end is not the worst idea.
+The icmp report and the top syn report are both excellent sources of worm/virus
+activity.  
+
+6. totally new logging sub-system.  All topn graphs are now logged.  Logging
+should be turned on in the configuration.  mon.lite and new tcpworm.txt front-end
+reports should be logged as well.  One week of logging is provided.
+The log files are saved in the mrourmon directory under logs.
+
+7. various bpf-set graphs have been added that show useful network baseline information
+aimed at detection intrusions.  These include the total number of  TCP syns, fins, resets.
+Various general errors, and specific ICMP unreachable errors.  
+
+8. Brunson Moody (PSU student) has given us a new capability for detection of IP destination
+and IP L4 TCP/UDP destination port scans.  We have 4 graphs that show:
+	1. 1 ip src to many ip dst top scans.
+	2. 1 ip src to many L4 ports (combined tcp/udp)
+	3. 1 ip src to many TCP dst ports.
+	4. 1 ip src to many UDP dst ports.
+
+ourmon 2.2
+
+0. INSTALL document much improved.
+
+1. drawtopn and omupdate.pl debugging framework added and a number of
+bugs due to zero counts fixed.
+
+2. topn_port filter added. allows topn_ports 10 ... 100 with multiple
+histographs, 10 per graph.  graphs topn ports in use.  No syslog logging
+with this facility at present.
+
+3. topn flows now includes topn_icmp.  
+
+4. 6 bpf lines per bpf graph instead of 4.
+Note:
+The real problem here is not bpf lines in the front-end.
+It's discernable colors in the pictures in the back-end.
+
+5. nasty bpf xtra bug fixed.
+
+6. ourmon now works with syslog ... hopefully if malloc
+runs out of space with topn-style filters, that will be logged (as opposed to lost).
+
+7. ourmon runs in background (calls daemon(3)).  Thus script that
+checks to see if ourmon has gone away, can get it going without itself
+being stuck as the parent.
+
+8. the ourmon front-end has a optional switch called sysname, that
+essentially allows ourmon front-end work to be split up with different
+boxes doing different work and all shown on the same back-end web page.
+The switch itself simply is used for labeling the pkts count/drops filter,
+so that one can see if different probes are losing packets.
+See INSTALL for more information on how to set up two different probes
+with one backend graphs engine.
+
+9. instance handles off by default in configure script.
+
+10. a number of generally useful bpf graphs have been added
+to the base supplied config file.
+
+ourmon 2.0
+
+1. configure script for installation of front-end and back-end.
+
+2. bpf graph mechanism created ... multiple bpfs possible.
+
+ourmon 1.6
+
+changes from previous versions
+
+1. drawtopn debugging and reformatting done.  It won't hang
+	on dns gethostbyname (at least as much).  It is still buggy
+	though.  Needs to be rewritten or at least have malloc
+	eliminated.
+
+2. ipbatch scripts added which will nicely sort topn logs to
+	produce top of top output for daily/weekly.   
+
+3. general bpf filter capability added.  ourmon.conf etc.
+	can have a fair number of bpf based counters. 
+
+----------------------------------------------------------
+ourmon 1.4
+
+changes from 1.3
+
+1. logging support for putting all topn info into syslog.
+	This may be turned on/off in omupdate.pl script.
+2. added fixed size measurement that uses rrdtool
+3. added DNS support for topn pictures.
+

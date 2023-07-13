@@ -1,0 +1,633 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   p.java
+
+package d;
+
+import INTChat;
+import a.a;
+import a.b;
+import a.g;
+import a.i;
+import a.j;
+import a.r;
+import b.c;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+import java.io.PrintStream;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            n, r, c, b, 
+//            w, x
+
+class p extends i
+    implements Runnable, b.b
+{
+
+    void a(String s1)
+    {
+label0:
+        {
+            boolean flag;
+label1:
+            {
+                flag = x.bd;
+                if(k.e() && z != null)
+                    k.a('\001', a.r.c(z) + "\0");
+                if(s1 == null)
+                {
+                    k.i();
+                    y = null;
+                    C = null;
+                    bb.a(c("\022(Pi|8"), true);
+                    if(V)
+                    {
+                        V = false;
+                        j.f();
+                    }
+                    h();
+                    a(0);
+                    return;
+                }
+                z = s1;
+                T = true;
+                if(!U)
+                {
+                    j.t.a(8);
+                    if(!flag)
+                        break label0;
+                }
+                y = null;
+                C = null;
+                W = false;
+                F = super.a;
+                bb.a(s1, true);
+                if(k != null && k.e())
+                {
+                    a(3);
+                    k.a('\0', a.r.c(z) + "\0");
+                    if(!flag)
+                        break label1;
+                }
+                a(2);
+                m = new Thread(this);
+                m.start();
+            }
+            if(l.e())
+            {
+                a(((Component) (ba)));
+                if(!flag)
+                    break label0;
+            }
+            if(!V)
+            {
+                V = true;
+                ba.setEnabled(true);
+                j.f();
+            }
+        }
+    }
+
+    void c()
+    {
+label0:
+        {
+            if(!isVisible() || C == null)
+                break label0;
+            if(D > super.a)
+            {
+                F -= 0.5D;
+                if(F + (float)D > 0.0F)
+                    d();
+                if(F + (float)D < -200F)
+                    F = super.a;
+                if(!x.bd)
+                    break label0;
+            }
+            F = 0.0F;
+        }
+        if(l.isVisible())
+            l.f();
+    }
+
+    public p(n n1)
+    {
+        p = 0;
+        y = null;
+        z = null;
+        C = null;
+        D = 0;
+        E = 0;
+        H = a.r.a(0, 1, 1);
+        I = Color.black;
+        R = 1;
+        S = 0;
+        T = true;
+        U = false;
+        V = false;
+        W = false;
+        j = n1;
+        l = new d.c(this);
+        j();
+        k = new c(this, INTChat.getServerHost(), 14016, -10);
+        k.i = true;
+        K = new int[6];
+        A = new Date();
+        B = Calendar.getInstance();
+        J = (new String(c("iy\007<>cy\r,>id\r<#ky\r<"))).toCharArray();
+        H = a.r.a(0, 0, 0);
+        bc = new MediaTracker(this);
+    }
+
+    void d()
+    {
+        if(y == null && p == -1)
+            return;
+        if(isVisible())
+            repaint(0, 23, super.a, super.b - 25);
+        if(l.isVisible())
+            l.g();
+    }
+
+    void b(String s1)
+    {
+        if(z != null && z.equals(s1))
+        {
+            a(6);
+            h();
+        }
+    }
+
+    public synchronized void paint(Graphics g1)
+    {
+        a(a(super.a, super.b - 25, false), super.a, super.b - 25, (int)F);
+        g1.drawImage(b(), 0, 23, null);
+        super.paint(g1);
+    }
+
+    public void a()
+    {
+        B = null;
+        if(k != null)
+        {
+            k.g();
+            k = null;
+        }
+        if(l != null)
+        {
+            l.a();
+            l = null;
+        }
+        super.a();
+    }
+
+    public void a(char c1)
+    {
+        if(c1 == '!' || c1 == ' ')
+        {
+            h();
+            a(4);
+        }
+    }
+
+    public void a(int i1, String s1, c c1)
+    {
+    }
+
+    public void a(int i1, byte abyte0[], int j1, c c1)
+    {
+        boolean flag = x.bd;
+        i1;
+        JVM INSTR tableswitch 0 7: default 1127
+    //                   0 233
+    //                   1 238
+    //                   2 340
+    //                   3 238
+    //                   4 52
+    //                   5 160
+    //                   6 208
+    //                   7 218;
+           goto _L1 _L2 _L3 _L4 _L3 _L5 _L6 _L7 _L8
+_L1:
+        break MISSING_BLOCK_LABEL_1127;
+_L5:
+        String s1 = a.r.a(j.bm, (byte)(abyte0[6] & 0xff));
+        s1 = a.r.a(s1, (byte)(abyte0[1] & 0xff));
+        String s2 = a.r.a(j.bm.length() + 1);
+        c1.a('\003', s2 + j.bm + '\0' + s2 + s1 + "\0");
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1127;
+_L6:
+        if(z != null)
+        {
+            c1.a('\0', a.r.c(z) + "\0");
+            a(3);
+        }
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1127;
+_L7:
+        a(5);
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1127;
+_L8:
+        a(7);
+        h();
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1127;
+_L2:
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1127;
+_L3:
+        String s3 = a.r.f(a.r.b(abyte0, 0, j1 - 1));
+        if(a.r.c(s3, z) != 0) goto _L10; else goto _L9
+_L9:
+        int l1;
+        a(1);
+        h();
+        l1 = 0;
+        if(!flag) goto _L12; else goto _L11
+_L11:
+        d.b b1 = (d.b)j.o.elementAt(l1);
+        if(b1.y == 0)
+            b1.o.a(s3, false, false);
+        l1++;
+_L12:
+        if(l1 < j.o.size()) goto _L11; else goto _L10
+_L10:
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1127;
+_L4:
+        int k1;
+        int i2;
+        a(-1);
+        k1 = a.r.c(abyte0, 0, 2);
+        if(T)
+        {
+            if(!z.equalsIgnoreCase(a.r.f(a.r.b(abyte0, 2, k1 - 1))))
+            {
+                System.out.println(c("<;Oc|y") + z + " " + a.r.b(abyte0, 2, k1 - 1));
+                return;
+            }
+            T = false;
+        }
+        l1 = k1 + 2;
+        k1 = a.r.c(abyte0, l1, 2);
+        A.setTime(1000L * a.r.a(abyte0, l1 + 2, k1));
+        l1 += k1 + 2;
+        B.setTime(A);
+        a(B.get(11), 0, 2);
+        a(B.get(12), 3, 2);
+        a(B.get(13), 6, 2);
+        a(B.get(5), 9, 2);
+        a(B.get(2) + 1, 12, 2);
+        a(B.get(1) - 100 * (B.get(1) / 100), 17, 2);
+        k1 = a.r.c(abyte0, l1, 2);
+        i2 = 0;
+        if(!flag) goto _L14; else goto _L13
+_L13:
+        K[i2] = abyte0[i2 + l1 + 2];
+        i2++;
+_L14:
+        if(i2 >= 6) goto _L16; else goto _L15
+_L15:
+        i2;
+        k1;
+        if(flag) goto _L18; else goto _L17
+_L17:
+        JVM INSTR icmplt 619;
+           goto _L16 _L13
+_L16:
+        k1;
+        4;
+_L18:
+        JVM INSTR icmplt 682;
+           goto _L19 _L20
+_L19:
+        W = K[4] == 1;
+_L20:
+        if(W)
+        {
+            d.b b2 = j.a(z, -1, 1);
+            if(b2 == null || !b2.B)
+            {
+                b(z);
+                return;
+            }
+        }
+        if(k1 >= 5)
+        {
+            byte byte0 = ((byte)(K[5] <= 99 ? 10 : 100));
+            R = K[5] / byte0;
+            S = K[5] - byte0 * R;
+        }
+        l1 += k1 + 2;
+        if(K[0] >= 3)
+            K[0] = 2;
+        if(K[1] >= r.i.length)
+            K[1] = 0;
+        if(K[2] >= r.j.length)
+            K[2] = 0;
+        if(K[3] >= r.d.length)
+            K[3] = 0;
+        H = a.r.a(K[1], 1, K[2]);
+        I = r.e[K[3]];
+        k1 = a.r.c(abyte0, l1, 2);
+        C = a.r.f(a.r.b(abyte0, l1 + 2, k1));
+        l1 += k1 + 2;
+        k1 = a.r.c(abyte0, l1, 2);
+        if(k1 <= 1 || k1 + l1 + 2 != j1) goto _L22; else goto _L21
+_L21:
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        if(k1 <= 101) goto _L24; else goto _L23
+_L23:
+        int j2 = l1 + 2;
+        if(!flag) goto _L26; else goto _L25
+_L25:
+        abyte0[j2] = (byte)(abyte0[j2] ^ 0x58);
+        j2++;
+_L26:
+        if(j2 < l1 + 2 + 100) goto _L25; else goto _L24
+_L24:
+        Image image = toolkit.createImage(abyte0, l1 + 2, k1);
+        bc.addImage(image, 0);
+        try
+        {
+            bc.waitForID(0, 10000L);
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        if(!bc.isErrorID(0))
+        {
+            y = null;
+            System.gc();
+            y = image;
+        }
+        bc.removeImage(image, 0);
+        a(-1);
+_L22:
+        d();
+        try
+        {
+            Thread.sleep(20L);
+        }
+        catch(InterruptedException _ex) { }
+        c1.a('\002', null);
+    }
+
+    boolean e()
+    {
+        return V;
+    }
+
+    void f()
+    {
+        y = null;
+        a(((String) (null)));
+        U = false;
+        h();
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+            if(component == Z)
+            {
+                a(((String) (null)));
+                if(!x.bd)
+                    break label0;
+            }
+            if(component == ba)
+            {
+                V = false;
+                l.b(true);
+                l.requestFocus();
+                j.f();
+            }
+        }
+    }
+
+    void g()
+    {
+        setBackground(x.bb[1]);
+        Z.a(x.u);
+        ba.a(x.w);
+        bb.a(x.bb[1]);
+        l.h();
+        repaint();
+    }
+
+    void h()
+    {
+        k.i();
+        z = null;
+        C = null;
+        if(!V)
+            ba.setEnabled(false);
+        d();
+    }
+
+    void i()
+    {
+        U = true;
+        a(z);
+    }
+
+    public void run()
+    {
+        if(!k.e())
+            k.k();
+    }
+
+    void j()
+    {
+        add(Z = new b());
+        add(ba = new b());
+        ba.setEnabled(false);
+        add(bb = new g(c("\022(Pi|8")));
+        Z.setBounds(177, 0, 23, 23);
+        ba.setBounds(154, 0, 23, 23);
+        bb.setBounds(0, 0, 154, 23);
+    }
+
+    synchronized void a(Graphics g1, int i1, int j1, int k1)
+    {
+label0:
+        {
+label1:
+            {
+                boolean flag;
+label2:
+                {
+                    flag = x.bd;
+                    if(y == null)
+                        break label1;
+                    g1.drawImage(y, 1, 1, i1 - 2, j1 - 2, null);
+                    g1.setFont(a.r.a(0, 0, 0));
+                    if(E <= 0)
+                        E = g1.getFontMetrics().charsWidth(J, 0, J.length);
+                    g1.setColor(Color.black);
+                    g1.fillRect(i1 - E - 4, j1 - 11, E + 4, 11);
+                    g1.setColor(Color.white);
+                    g1.drawChars(J, 0, J.length, i1 - E - 2, j1 - 2);
+                    if(C == null)
+                        break label2;
+                    g1.setFont(H);
+                    G = g1.getFontMetrics();
+                    D = G.stringWidth(C);
+                    g1.setColor(I);
+                    if(D > i1)
+                    {
+                        g1.drawString(C, k1 - 1, (K[0] * (j1 - 40)) / 2 + 13);
+                        if(!flag)
+                            break label2;
+                    }
+                    g1.drawString(C, (i1 - D) / 2 + 1, (K[0] * (j1 - 40)) / 2 + 13);
+                }
+                if(!flag)
+                    break label0;
+            }
+            g1.setColor(x.bb[1]);
+            g1.fillRect(0, 0, i1, j1);
+        }
+        if(p >= 0)
+        {
+            g1.setColor(x.bb[1]);
+            g1.fillRect(3, (j1 - 50) / 2, i1 - 7, 50);
+            g1.setColor(Color.black);
+            g1.drawRect(3, (j1 - 50) / 2, i1 - 7, 50);
+            g1.setFont(a.r.a(0, 0, 0));
+            G = g1.getFontMetrics();
+            g1.drawString(o[p][0], (i1 - G.stringWidth(o[p][0])) / 2, (j1 - 50) / 2 + 20);
+            g1.drawString(o[p][1], (i1 - G.stringWidth(o[p][1])) / 2, (j1 - 50) / 2 + 40);
+        }
+        g1.setColor(Color.black);
+        g1.drawRect(0, 0, i1 - 1, j1 - 1);
+    }
+
+    private synchronized void a(int i1)
+    {
+        p = i1;
+        d();
+    }
+
+    void a(int i1, int j1, int k1)
+    {
+        J[j1] = (char)(48 + i1 / 10);
+        J[j1 + 1] = (char)((48 + i1) - 10 * (i1 / 10));
+    }
+
+    private static String c(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x59;
+                break;
+
+            case 1: // '\001'
+                k1 = 73;
+                break;
+
+            case 2: // '\002'
+                k1 = 61;
+                break;
+
+            case 3: // '\003'
+                k1 = 12;
+                break;
+
+            default:
+                k1 = 14;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    n j;
+    c k;
+    d.c l;
+    Thread m;
+    final int n = 14016;
+    static final String o[][] = {
+        {
+            c("\0160_ek+3\035go4,O\u0115"), c("#iQe}-0\035y\u0172 =Vcy7 V\377y")
+        }, {
+            c("\r,S,{\u01250Iga.'Tg"), c("7 X,`8-\\fky#H\u0170.6+Omt,iG,e8$X~w")
+        }, {
+            c("\r;Jm.7(Je\u010B#0Jm`0,"), c(")&\u017F\u0109m#,Seoy3\035\177k+>X~k4")
+        }, {
+            c("\026*Gie0>\\bg<iSm"), c("6+Omty3\035go4,Ou")
+        }, {
+            c("\027 X,c6\u0135Sm.,3D\177e8\u014E"), c(")&\u017F\u0109m#,Seoy3\035\177k+>X~k4")
+        }, {
+            c("\t;Rnb<$\035v.)&\u017F\u0109m#,Sek4"), c("\n9O\377l,#\035|a7&Jbg<")
+        }, {
+            c("\r(\035go4,Om.3,Nx.=&Nx\u0117)'\\"), c("-0Qgay'\\,~+ Kek")
+        }, {
+            c("\025 Pezy&Z`\u010B=(W\u0109m *U,d<:I,~+3Xg|6*Gc` h"), c("\t;R\177g40\035\177~+\272_cy8\u014E\035voy\"T`e8iPe`,=\023")
+        }
+    };
+    int p;
+    static final int q = 0;
+    static final int r = 1;
+    static final int s = 2;
+    static final int t = 3;
+    static final int u = 4;
+    static final int v = 5;
+    static final int w = 6;
+    static final int x = 7;
+    Image y;
+    String z;
+    Date A;
+    Calendar B;
+    String C;
+    int D;
+    int E;
+    float F;
+    FontMetrics G;
+    Font H;
+    Color I;
+    char J[];
+    int K[];
+    static final int L = 0;
+    static final int M = 1;
+    static final int N = 2;
+    static final int O = 3;
+    static final int P = 4;
+    static final int Q = 5;
+    int R;
+    int S;
+    boolean T;
+    boolean U;
+    boolean V;
+    boolean W;
+    static final int X = 175;
+    static final int Y = 200;
+    b Z;
+    b ba;
+    g bb;
+    MediaTracker bc;
+
+}

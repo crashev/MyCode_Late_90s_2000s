@@ -1,0 +1,9 @@
+#!/bin/sh
+rm arpwatch
+export PATH=$PATH:/mnt/filmy1/buildroot/staging_dir_mipsel/bin/
+mipsel-linux-uclibc-gcc -Ilibnet/ -I/usr/include/ -L/mnt/filmy1/buildroot/build_mipsel/libpcap-0.8.3/ -Wall -lpcap arpfuncs.c arpwatch.c -o arpwatch
+#strip APclientd
+ls -la arpwatch
+pub arpwatch
+mipsel-linux-uclibc-strip arpwatch
+

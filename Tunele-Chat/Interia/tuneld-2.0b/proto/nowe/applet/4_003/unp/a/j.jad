@@ -1,0 +1,140 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   j.java
+
+package a;
+
+import java.awt.*;
+
+// Referenced classes of package a:
+//            i, h, bb, a
+
+public abstract class j extends i
+    implements bb
+{
+
+    final void c()
+    {
+        if(j == null)
+            return;
+        if(k != null)
+        {
+            int i1 = j.getSize().width;
+            int j1 = j.getSize().height;
+            if(i1 < k.width || j1 < k.height)
+            {
+                if(i1 < k.width)
+                    i1 = k.width;
+                if(j1 < k.height)
+                    j1 = k.height;
+                j.setSize(i1, j1);
+            }
+        }
+        Insets insets = j.getInsets();
+        setBounds(insets.left, insets.top, j.getSize().width - insets.left - insets.right, j.getSize().height - insets.top - insets.bottom);
+    }
+
+    public void a(int i1, int j1, int k1, int l1)
+    {
+label0:
+        {
+            if(j != null)
+            {
+                j.setBounds(i1, j1, k1, l1);
+                if(!a.q)
+                    break label0;
+            }
+            l = new Rectangle(i1, j1, k1, l1);
+        }
+    }
+
+    public j(String s, boolean flag)
+    {
+        k = null;
+        m = flag;
+        setName(s);
+    }
+
+    public void a()
+    {
+        if(j != null)
+        {
+            if(j.isVisible())
+                b(false);
+            j = null;
+        }
+    }
+
+    public void a(Image image)
+    {
+        if(j != null)
+            j.setIconImage(image);
+    }
+
+    public void b(boolean flag)
+    {
+        if(j == null && flag)
+            d();
+        if(j != null)
+        {
+            j.setVisible(flag);
+            if(flag)
+            {
+                if(j.getComponentCount() == 0)
+                    j.add(this);
+                c();
+            }
+        }
+    }
+
+    public void a(String s)
+    {
+        b(false);
+    }
+
+    public void b(int i1, int j1)
+    {
+        k = new Dimension(i1, j1);
+    }
+
+    public Frame d()
+    {
+        if(j != null)
+            return j;
+        j = new Frame(getName());
+        j.setResizable(m);
+        j.addWindowListener(new h(this));
+        if(l != null)
+            j.setBounds(l);
+        j.add(this);
+        return j;
+    }
+
+    public void b(String s)
+    {
+label0:
+        {
+            if(j != null)
+            {
+                j.setTitle(s);
+                if(!a.q)
+                    break label0;
+            }
+            setName(s);
+        }
+    }
+
+    public boolean e()
+    {
+        if(j != null)
+            return j.isVisible();
+        else
+            return false;
+    }
+
+    Frame j;
+    Dimension k;
+    Rectangle l;
+    boolean m;
+}

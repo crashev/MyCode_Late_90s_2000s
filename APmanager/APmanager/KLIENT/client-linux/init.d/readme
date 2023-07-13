@@ -1,0 +1,17 @@
+Dodatkowo
+    podlinkowane aktualne iptables do /usr/sbin/iptables
+    podlinkowane aktualne tc 	   do /usr/sbin/tc
+
+    wifi/nvram
+    
+Zrobi emulacje nvram dla
+S44firewall:
+    nvram get wan_ifname
+S49Qos:
+    nvram get pawq_lacze_down
+    nvram get pawq_lacze_dev
+    (default false)
+
+S50upload:
+    pawq_qos_up
+    pawq_qos_if

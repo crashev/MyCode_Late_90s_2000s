@@ -1,0 +1,97 @@
+#
+# ourmon C frontend makefile
+#
+# dependencies:
+# ourmon uses libpcap, which on BSD is a wrapper around the Berkeley
+#	packet filter.
+#
+OBJS = ourmon.o ipanalyze.o machdep.o util.o interfaces.o filter.o \
+	monconfig.o hashsort.o hashport.o sig.o hashsyn.o hashicmp.o \
+	hashscan.o ircscan.o trigger.o 
+
+# profiling
+#CFLAGS=-pg 
+#LFLAGS=-pg
+
+# optimized
+#CFLAGS=-g
+CFLAGS=-O4 
+# not dynamically linked
+LFLAGS=-O4 -static
+#LFLAGS=-g -static 
+
+#LIBS=-lpcap
+#note: www.tcpdump.org libpcap installed in local/lib 
+#      by default.  change to support bigger
+#      pcap buffer size.
+LIBS=/usr/local/lib/libpcap.a
+INCLS=/usr/local/include
+
+ourmon: ${OBJS}
+	cc ${LFLAGS} -o ourmon ${OBJS} ${LIBS}
+
+ourmon.o: ourmon.c ourmon.h
+	cc ${CFLAGS} -DDAEMON -c ourmon.c
+
+ipanalyze.o: ipanalyze.c ourmon.h filter.h
+	cc -I${INCLS} ${CFLAGS} -c ipanalyze.c
+
+machdep.o: machdep.c
+	cc -I${INCLS} ${CFLAGS} -c machdep.c
+
+util.o: util.c ourmon.h
+	cc -I${INCLS} ${CFLAGS} -c util.c
+
+interfaces.o: interfaces.c ourmon.h trigger.h
+	cc -I${INCLS} ${CFLAGS} -c interfaces.c
+
+monconfig.o: monconfig.c hashsort.h hashport.h filter.h trigger.h
+	cc -I${INCLS} ${CFLAGS} -c monconfig.c
+
+filter.o: filter.c ourmon.h filter.h
+	cc -I${INCLS} ${CFLAGS} -c filter.c
+
+hashsort.o: hashsort.c hashsort.h trigger.h
+	cc -I${INCLS} ${CFLAGS} -c hashsort.c
+
+hashport.o: hashport.c hashport.h
+	cc -I${INCLS} ${CFLAGS} -c hashport.c
+
+# -DSYNDUMP to dump all syn info to /tmp/syndump.txt
+# cc -DSYNDUMP ${CFLAGS} -c hashsyn.c
+hashsyn.o: hashsyn.c hashsyn.h trigger.h
+	cc -I${INCLS} ${CFLAGS} -c hashsyn.c
+
+hashicmp.o: hashicmp.c hashicmp.h
+	cc -I${INCLS} ${CFLAGS} -c hashicmp.c
+
+hashscan.o: hashscan.c hashscan.h 
+	cc -I${INCLS} ${CFLAGS} -c hashscan.c
+
+ircscan.o: ircscan.c ircscan.h
+	cc -I${INCLS} ${CFLAGS} -c ircscan.c
+
+trigger.o: trigger.c trigger.h
+	cc -I${INCLS} ${CFLAGS} -c trigger.c
+
+sig.o: 
+	cc ${CFLAGS} -c sig.c
+
+# build standalone test modules, if any
+monconfig: monconfig.c hashsort.h hashport.h filter.h util.o
+	cc -I${INCLS} -DTESTMAIN ${CFLAGS} -o monconfig monconfig.c util.o hashsort.o hashport.o hashsyn.o \
+	hashicmp.o hashscan.o ircscan.o trigger.o ${LIBS}
+
+hs: hashsort.h hashsort.c
+	cc -g -DTESTMAIN -o hs hashsort.c
+
+hp: hashport.h hashport.c
+	cc -g -DTESTMAIN -o hp hashport.c
+
+# note: configure script puts this in local ourmon bin
+install: ourmon
+	cp ourmon /usr/local/bin
+	chmod +x /usr/local/bin/ourmon
+
+clean:
+	rm -f *.o ourmon

@@ -1,0 +1,19 @@
+- AKCJA Trafia nam sie MAC,istniejacy w bazie, ale z innym IP
+  Tutaj cos na styl source verify dhcp z CISCO sprobujemy zaimplementowac, czyli
+  w momencie gdy takie cos sie trafia, sprawdzamy dhcp leases, jesli istnieje tam IP i MAC
+  zadany to znaczy,ze koles dostal te dane od naszego serwera DHCP,w takim wypadku potwierdzamy
+  jeszcze sprawdzajac czy dany MAC ma dostep do netu, jesli ma to, kasujemy wszystkie stare
+  dane dla tego MACA i dodajemy nowe:
+  
+  if (arp_exist()-2) 
+    if (arp_dhcp_verify()) {
+	arp_del_fw()
+	arp_del_masq();
+	arp_add_fw(); // new data
+	arp_add_masquerade();
+    } else {
+	// Do nothing,user didnt get this from our DHCP server - used static IP?
+    }
+    
+Podobna akcja dla momentu kiedy trafi nam sie IP istniejacy w bazie, ale z innym MAC
+Opcje dhcp_verify - bedzie sprawdzala plik z leasami dhcp.

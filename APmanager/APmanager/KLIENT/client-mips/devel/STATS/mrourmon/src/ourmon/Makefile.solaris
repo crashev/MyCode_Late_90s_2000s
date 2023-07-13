@@ -1,0 +1,105 @@
+#
+# ourmon C frontend makefile
+#
+# dependencies:
+# ourmon uses libpcap, which on BSD is a wrapper around the Berkeley
+#	packet filter.
+#
+# solaris port done by Jose Marcos Lopez Caravaca (marcos@lsi.upc.es)
+# Laboratori de Calcul LSI
+# Universitat Politecnica de Catalunya (Campus Nord)
+#
+# Various software packages installed from www.sunfreeware: g${CC} 2.95, 
+# libpcap, and libsnprintf.
+
+OBJS = ourmon.o ipanalyze.o machdep.o util.o interfaces.o filter.o \
+	monconfig.o hashsort.o sig.o hashport.o hashscan.o hashsyn.o hashicmp.o trigger.o ircscan.o
+
+# profiling
+#CFLAGS=-pg 
+#LFLAGS=-pg
+
+CC=cc
+#CC=gcc
+
+# optimized
+CFLAGS=-O -DSOLARIS
+# not dynamically linked
+#LFLAGS=-O -static
+#with gcc use -O4
+#LFLAGS=-O4 
+LFLAGS=-O 
+
+# set to whereever the heck libpcap exists
+# however getting it anew from www.tcpdump.org
+# is a GOOD IDEA!
+LIBPCAP=/usr/local/lib/libpcap.a
+LIBS=${LIBPCAP} -lsocket -lnsl -lsnprintf
+# -lsnprintf not necessary with gcc
+#LIBS=${LIBPCAP} -lsocket -lnsl 
+
+ourmon: ${OBJS}
+	${CC} ${LFLAGS} -o ourmon ${OBJS} ${LIBS}
+
+ourmon.o: ourmon.c ourmon.h
+	${CC} ${CFLAGS} -c ourmon.c
+
+ipanalyze.o: ipanalyze.c ourmon.h filter.h
+	${CC} ${CFLAGS} -c ipanalyze.c
+
+machdep.o: machdep.c
+	${CC} ${CFLAGS} -c machdep.c
+
+util.o: util.c ourmon.h
+	${CC} ${CFLAGS} -c util.c
+
+interfaces.o: interfaces.c ourmon.h
+	${CC} ${CFLAGS} -c interfaces.c
+
+monconfig.o: monconfig.c hashsort.h hashport.h filter.h
+	${CC} ${CFLAGS} -c monconfig.c
+
+filter.o: filter.c ourmon.h filter.h
+	${CC} ${CFLAGS} -c filter.c
+
+hashsort.o: hashsort.c hashsort.h
+	${CC} ${CFLAGS} -c hashsort.c
+
+hashport.o: hashport.c hashport.h
+	${CC} ${CFLAGS} -c hashport.c
+
+hashscan.o: hashscan.c hashscan.h
+	${CC} ${CFLAGS} -c hashscan.c
+
+hashsyn.o: hashsyn.c hashsyn.h
+	${CC} ${CFLAGS} -c hashsyn.c
+
+hashicmp.o: hashicmp.c hashicmp.h
+	${CC} ${CFLAGS} -c hashicmp.c
+
+trigger.o: trigger.c trigger.h
+	${CC} ${CFLAGS} -c trigger.c
+
+ircscan.o: ircscan.c ircscan.h
+	${CC} ${CFLAGS} -c ircscan.c
+
+sig.o: 
+	${CC} ${CFLAGS} -c sig.c
+
+# build standalone test modules, if any
+monconfig: monconfig.c hashsort.h filter.h util.o hashport.h
+	${CC} -DTESTMAIN ${CFLAGS} -o monconfig monconfig.c util.o hashsort.o hashport.o ${LIBS}
+
+hs: hashsort.h hashsort.c
+	${CC} -g -DTESTMAIN -o hs hashsort.c
+
+hp: hashport.h hashport.c
+	${CC} -g -DTESTMAIN -o hp hashport.c
+
+# note: configure script puts this in local ourmon bin
+install: ourmon
+	cp ourmon /usr/local/bin
+	chmod +x /usr/local/bin/ourmon
+
+clean:
+	rm -f *.o ourmon

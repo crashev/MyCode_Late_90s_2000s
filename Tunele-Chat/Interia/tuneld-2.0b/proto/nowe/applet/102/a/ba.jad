@@ -1,0 +1,38 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   ba.java
+
+package a;
+
+import java.util.Vector;
+
+public class ba
+{
+
+    public ba(String s, boolean flag)
+    {
+        d = false;
+        e = false;
+        f = false;
+        g = false;
+        h = false;
+        i = 0;
+        a = s;
+        if(a == null)
+            a = "";
+        g = flag;
+        if(g)
+            b = new Vector();
+    }
+
+    public String a;
+    public Vector b;
+    public ba c;
+    public boolean d;
+    public boolean e;
+    public boolean f;
+    public boolean g;
+    public boolean h;
+    public int i;
+}

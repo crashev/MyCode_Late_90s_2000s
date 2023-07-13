@@ -1,0 +1,49 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   JSRunnable.java
+
+package netscape.javascript;
+
+import java.io.PrintStream;
+
+// Referenced classes of package netscape.javascript:
+//            JSObject
+
+public class JSRunnable
+    implements Runnable
+{
+
+    public JSRunnable(JSObject runnable)
+    {
+        this.runnable = runnable;
+        synchronized(this)
+        {
+            (new Thread(this)).start();
+            try
+            {
+                wait();
+            }
+            catch(InterruptedException interruptedexception) { }
+        }
+    }
+
+    public void run()
+    {
+        try
+        {
+            runnable.call("run", null);
+            synchronized(this)
+            {
+                notifyAll();
+            }
+        }
+        catch(Throwable t)
+        {
+            System.err.println(t);
+            t.printStackTrace(System.err);
+        }
+    }
+
+    private JSObject runnable;
+}

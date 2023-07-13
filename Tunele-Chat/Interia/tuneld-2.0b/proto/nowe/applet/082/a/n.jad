@@ -1,0 +1,123 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   n.java
+
+package a;
+
+import java.awt.*;
+import java.awt.event.*;
+
+// Referenced classes of package a:
+//            a, r, i
+
+public final class n extends TextField
+    implements TextListener, ActionListener, KeyListener
+{
+
+    public n(boolean flag)
+    {
+        a = 16;
+        b = false;
+        b = false;
+        if(flag)
+            setEchoChar('*');
+        setFont(r.a(0, 0, 1));
+        addTextListener(this);
+        addActionListener(this);
+        addKeyListener(this);
+        setBackground(Color.white);
+        setForeground(Color.black);
+    }
+
+    public void keyTyped(KeyEvent keyevent)
+    {
+    }
+
+    public void keyPressed(KeyEvent keyevent)
+    {
+        if(keyevent.getKeyCode() == 27)
+            setText(null);
+    }
+
+    void a()
+    {
+        if(getParent() != null)
+            try
+            {
+                ((i)getParent()).a(this);
+            }
+            catch(Exception _ex) { }
+    }
+
+    public void actionPerformed(ActionEvent actionevent)
+    {
+        a();
+    }
+
+    public void keyReleased(KeyEvent keyevent)
+    {
+    }
+
+    public void b()
+    {
+        String s;
+        int k;
+        k = a.q;
+        s = getText();
+        if(!b) goto _L2; else goto _L1
+_L1:
+        int j = 0;
+        if(k == 0) goto _L4; else goto _L3
+_L3:
+        if(s.charAt(j) < '0' || s.charAt(j) > '9')
+        {
+            s = s.substring(0, j) + s.substring(j + 1);
+            Toolkit.getDefaultToolkit().beep();
+            if(k == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        j++;
+_L4:
+        if(j < s.length()) goto _L3; else goto _L2
+_L2:
+label0:
+        {
+            if(s.length() > a)
+            {
+                setText(s.substring(0, a));
+                if(k == 0)
+                    break label0;
+            }
+            if(b)
+                setText(s);
+        }
+        return;
+    }
+
+    public void textValueChanged(TextEvent textevent)
+    {
+        int j = getCaretPosition();
+        b();
+        try
+        {
+            setCaretPosition(j);
+        }
+        catch(Exception _ex) { }
+    }
+
+    public void setText(String s)
+    {
+        if(s != null)
+        {
+            if(s.equals(getText()))
+                return;
+            if(a > 0 && s.length() > a)
+                s = s.substring(0, a);
+        }
+        super.setText(s);
+    }
+
+    public int a;
+    public boolean b;
+}

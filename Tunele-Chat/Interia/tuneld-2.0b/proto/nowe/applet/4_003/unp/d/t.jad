@@ -1,0 +1,55 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   t.java
+
+package d;
+
+import a.ba;
+
+class t extends ba
+{
+
+    public t(String s, boolean flag, int i, int i1, int j1)
+    {
+        this(s, flag, i);
+        m = i1;
+        o = j1;
+    }
+
+    public t(String s, boolean flag, int i)
+    {
+        super(s, flag);
+        n = 0;
+        o = 0;
+        p = 0L;
+        q = 1;
+        r = null;
+        q = i;
+    }
+
+    boolean a(int i, long l1)
+    {
+        if(l1 >= p)
+        {
+            n = i;
+            p = l1;
+            if(r != null)
+                r.n = i;
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    static final int j = 0;
+    static final int k = 1;
+    static final int l = 2;
+    int m;
+    int n;
+    int o;
+    long p;
+    int q;
+    t r;
+}

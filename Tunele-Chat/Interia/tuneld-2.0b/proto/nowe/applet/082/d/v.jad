@@ -1,0 +1,352 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   v.java
+
+package d;
+
+import a.r;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            r, u
+
+class v
+{
+
+    static void a(MenuItem amenuitem[], Vector vector)
+    {
+        d.r.a((Menu)amenuitem[5], vector);
+    }
+
+    public v(String s1, int i1, int j1, boolean flag, boolean flag1, boolean flag2)
+    {
+label0:
+        {
+            boolean flag3 = u.ba;
+            super();
+            b = " ";
+            c = 0;
+            d = 0;
+            e = 0;
+            f = 0;
+            g = 0;
+            h = false;
+            i = false;
+            j = false;
+            k = false;
+            l = false;
+            m = false;
+            a = s1;
+            j = flag1;
+            if(j)
+            {
+                c = 0;
+                if(!flag3)
+                    break label0;
+            }
+            if(!j && i1 < u.E.length)
+            {
+                c = i1;
+                if(!flag3)
+                    break label0;
+            }
+            c = 0;
+        }
+        d = j1;
+        i = flag;
+        k = j1 > 0 && flag2;
+        f = a(s1, d, k);
+    }
+
+    void a()
+    {
+        a = null;
+        b = null;
+        z = null;
+        A = null;
+    }
+
+    static MenuItem[] a(ActionListener actionlistener, ItemListener itemlistener)
+    {
+        MenuItem amenuitem[];
+        int i1;
+        boolean flag;
+        flag = u.ba;
+        amenuitem = new MenuItem[w.length];
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        if(i1 == 5)
+        {
+            amenuitem[i1] = new Menu(w[i1]);
+            if(!flag)
+                continue; /* Loop/switch isn't completed */
+        }
+        if(!r.q && (i1 == 3 || i1 == 6 || i1 == 10))
+        {
+            amenuitem[i1] = new CheckboxMenuItem(w[i1]);
+            ((CheckboxMenuItem)amenuitem[i1]).addItemListener(itemlistener);
+            if(!flag)
+                continue; /* Loop/switch isn't completed */
+        }
+        amenuitem;
+_L5:
+        i1;
+        new MenuItem(w[i1]);
+        JVM INSTR aastore ;
+        i1++;
+_L2:
+        if(i1 < amenuitem.length) goto _L1; else goto _L3
+_L3:
+        amenuitem[0].setFont(u.Z[2]);
+        amenuitem[5].addActionListener(actionlistener);
+        amenuitem[0].addActionListener(actionlistener);
+        amenuitem;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    int a(String s1, int i1, boolean flag)
+    {
+        int j1;
+        int k1;
+        boolean flag1;
+label0:
+        {
+            flag1 = u.ba;
+            j1 = 0;
+            if(i1 == 8)
+            {
+                j1 = 5;
+                if(!flag1)
+                    break label0;
+            }
+            if(i1 == 7)
+            {
+                j1 = 6;
+                if(!flag1)
+                    break label0;
+            }
+            if(i1 >= 3)
+            {
+                j1 = 7;
+                if(!flag1)
+                    break label0;
+            }
+            if(i1 > 0)
+            {
+                j1 = 8;
+                if(!flag1)
+                    break label0;
+            }
+            j1 = 10;
+        }
+        j1 <<= 24;
+        k1 = 0;
+        if(!flag1) goto _L2; else goto _L1
+_L1:
+        j1 |= ((byte)a.r.a(s1.charAt(k1)) & 0xff) << 8 * (2 - k1);
+        k1++;
+_L2:
+        if(k1 >= 3) goto _L4; else goto _L3
+_L3:
+        k1;
+        if(flag1) goto _L6; else goto _L5
+_L5:
+        s1.length();
+        JVM INSTR icmplt 83;
+           goto _L4 _L1
+_L4:
+        j1;
+_L6:
+        return;
+    }
+
+    static void a(PopupMenu popupmenu, MenuItem amenuitem[], int i1)
+    {
+        int j1;
+        boolean flag;
+        flag = u.ba;
+        popupmenu.removeAll();
+        j1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        popupmenu.remove(amenuitem[j1]);
+_L5:
+        j1++;
+_L2:
+        if(j1 < popupmenu.getItemCount()) goto _L1; else goto _L3
+_L3:
+        j1 = 6;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        int k1;
+label0:
+        {
+            if(i1 == 5)
+            {
+                j1 = 8;
+                if(!flag)
+                    break label0;
+            }
+            if(i1 >= 3)
+                j1 = amenuitem.length;
+        }
+        k1 = 0;
+        if(!flag) goto _L7; else goto _L6
+_L6:
+        if(k1 == 1 || k1 == 4 || k1 == 6 || k1 == 7)
+            popupmenu.addSeparator();
+        popupmenu.add(amenuitem[k1]);
+        k1++;
+_L7:
+        if(k1 >= j1)
+            return;
+        if(true) goto _L6; else goto _L8
+_L8:
+    }
+
+    static void a(MenuItem amenuitem[], String s1, boolean flag, boolean flag1, int i1, boolean flag2, boolean flag3)
+    {
+        int j1;
+        boolean flag4;
+        flag4 = u.ba;
+        amenuitem[0].setLabel(s1);
+        if(!flag)
+            break MISSING_BLOCK_LABEL_69;
+        j1 = 1;
+        if(!flag4) goto _L2; else goto _L1
+_L1:
+        amenuitem[j1].setEnabled(j1 < 3);
+_L5:
+        j1++;
+_L2:
+        if(j1 < amenuitem.length) goto _L1; else goto _L3
+_L3:
+        amenuitem[4].setEnabled(true);
+        if(flag4) goto _L5; else goto _L4
+_L4:
+        if(!flag4)
+            break MISSING_BLOCK_LABEL_236;
+        if(i1 >= 0)
+            break MISSING_BLOCK_LABEL_128;
+        j1 = 1;
+        if(!flag4) goto _L7; else goto _L6
+_L6:
+        amenuitem[j1].setEnabled(false);
+_L10:
+        j1++;
+_L7:
+        if(j1 < amenuitem.length) goto _L6; else goto _L8
+_L8:
+        amenuitem[4].setEnabled(true);
+        amenuitem[8].setEnabled(true);
+        if(flag4 && flag4) goto _L10; else goto _L9
+_L9:
+        break MISSING_BLOCK_LABEL_236;
+        j1 = 1;
+        if(!flag4) goto _L12; else goto _L11
+_L11:
+        amenuitem[j1].setEnabled(true);
+        j1++;
+_L12:
+        if(j1 < amenuitem.length) goto _L11; else goto _L13
+_L13:
+        if(!r.q)
+        {
+            ((CheckboxMenuItem)amenuitem[3]).setState(flag1);
+            ((CheckboxMenuItem)amenuitem[6]).setState(i1 == 2);
+            ((CheckboxMenuItem)amenuitem[10]).setState(flag3);
+        }
+        amenuitem[5].setEnabled(i1 > 0);
+        amenuitem[6].setEnabled(i1 > 0);
+        if(i1 < 7) goto _L15; else goto _L14
+_L14:
+        j1 = 1;
+        if(!flag4) goto _L17; else goto _L16
+_L16:
+        amenuitem[j1].setEnabled(false);
+_L18:
+        j1++;
+_L17:
+        if(j1 < amenuitem.length) goto _L16; else goto _L15
+_L15:
+        if(!flag4)
+            return;
+          goto _L18
+    }
+
+    private static String a(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x52;
+                break;
+
+            case 1: // '\001'
+                k1 = 13;
+                break;
+
+            case 2: // '\002'
+                k1 = 104;
+                break;
+
+            case 3: // '\003'
+                k1 = 115;
+                break;
+
+            default:
+                k1 = 100;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    String a;
+    String b;
+    int c;
+    int d;
+    int e;
+    int f;
+    int g;
+    boolean h;
+    boolean i;
+    boolean j;
+    boolean k;
+    boolean l;
+    boolean m;
+    static final int n = 0;
+    static final int o = 1;
+    static final int p = 2;
+    static final int q = 3;
+    static final int r = 4;
+    static final int s = 5;
+    static final int t = 7;
+    static final int u = 8;
+    static final String v[] = {
+        a("<d\r\t\005 h\002\026\027&\177\007\004\005<t"), a("(l\032\026\0167~\034\001\013%l\006\n"), a("0a\035\026"), a("=}"), a("3i\005\032\n"), a("3i\005\032\nre\007\035\013 b\037\n"), "", a("?b\f\026\0263y\007\001"), a("5b\033\020D1w\t\007\005")
+    };
+    static final String w[] = {
+        a(">b\017\032\n"), a("\"\177\001\005"), a(";c\016\034"), a(";j\006\034\026'g"), a("(c\t\031\000\u0128-\007\000\0130\u0114"), a("6bH\t\n3g\007\036\0351e"), a("0a\035\026"), a("%t\032\t\021\u0155"), a("0l\006"), a("0l\006\032\024"), 
+        a("(l\n\037\0139x\002")
+    };
+    static final int x = 5;
+    static final int y = 0;
+    v z;
+    v A;
+
+}

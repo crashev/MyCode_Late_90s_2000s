@@ -1,0 +1,130 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   c.java
+
+package d;
+
+import a.i;
+import a.j;
+import java.awt.*;
+
+// Referenced classes of package d:
+//            p, x, n
+
+class c extends j
+{
+
+    void f()
+    {
+label0:
+        {
+            if(n.C == null)
+                break label0;
+            if(n.D > super.a - 28)
+            {
+                o -= 0.5D;
+                if(o + (float)n.D > 0.0F)
+                    g();
+                if(o + (float)n.D < -200F)
+                    o = super.a;
+                if(x.bd == 0)
+                    break label0;
+            }
+            o = 0.0F;
+        }
+    }
+
+    public c(p p1)
+    {
+        super(c(",;aOW\006"), false);
+        o = 0.0F;
+        n = p1;
+        a(150, 100, 349, 350);
+    }
+
+    void g()
+    {
+        repaint((super.a - 322) / 2, 10, 322, 242);
+    }
+
+    public void paint(Graphics g1)
+    {
+        x.a(g1, x.F, 0, 0, super.a, super.b);
+        n.a(a(322, 242, false), 322, 242, (int)o);
+        g1.drawImage(b(), (super.a - 322) / 2, 10, null);
+        if(q[0] < 0)
+        {
+            q[0] = g1.getFontMetrics().stringWidth(p[0]);
+            q[1] = g1.getFontMetrics().stringWidth(p[1]);
+        }
+        g1.drawString(p[0], (super.a - q[0]) / 2, super.b - 35);
+        g1.drawString(p[1], (super.a - q[1]) / 2, super.b - 15);
+        String s = c("\021t") + n.R + "." + n.S;
+        g1.drawString(s, super.a - 40, super.b - 15);
+        super.paint(g1);
+    }
+
+    public void a(Component component)
+    {
+    }
+
+    void h()
+    {
+        setBackground(x.bb[1]);
+        a(x.J[0]);
+        repaint();
+    }
+
+    public void a(String s)
+    {
+        n.V = true;
+        b(false);
+        n.j.f();
+    }
+
+    private static String c(String s)
+    {
+        char ac[] = s.toCharArray();
+        int k = ac.length;
+        int i1;
+        for(int l = 0; l < k; l++)
+        {
+            switch(l % 5)
+            {
+            case 0: // '\0'
+                i1 = 0x67;
+                break;
+
+            case 1: // '\001'
+                i1 = 90;
+                break;
+
+            case 2: // '\002'
+                i1 = 12;
+                break;
+
+            case 3: // '\003'
+                i1 = 42;
+                break;
+
+            default:
+                i1 = 37;
+                break;
+            }
+            ac[l] ^= i1;
+        }
+
+        return new String(ac);
+    }
+
+    p n;
+    float o;
+    static final String p[] = {
+        c(".\024Xow.\033\"ziG4eO\005\0275bEV\016z\u0170KA\t?f\nJ\003*c]L\002>vCD\0134c\u0171F\016"), c("\035;,]\\\0006\u0109N\005\016zxX@\u013C9e\n_\t;fNP\r\u015FoO\005\0243\u0115\nRG.uG\005\b1bC@I")
+    };
+    int q[] = {
+        -1, -1
+    };
+
+}

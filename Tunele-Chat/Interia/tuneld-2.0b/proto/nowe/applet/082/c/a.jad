@@ -1,0 +1,268 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   a.java
+
+package c;
+
+import a.r;
+
+public class a
+{
+
+    private a()
+    {
+    }
+
+    public static String a(String s)
+    {
+        byte abyte0[] = r.d(s);
+        return a(abyte0);
+    }
+
+    static String a(byte abyte0[])
+    {
+        int i;
+        StringBuffer stringbuffer;
+        int k;
+        int i1;
+        int j1;
+        j1 = c;
+        i = 0;
+        stringbuffer = new StringBuffer();
+        int j = abyte0.length;
+        k = j % 3;
+        i1 = j / 3;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        abyte0[i++];
+_L5:
+        int l;
+        l;
+        byte byte2 = abyte0[i++];
+        byte byte4 = abyte0[i++];
+        stringbuffer.append(a[l >>> 2 & 0x3f]);
+        stringbuffer.append(a[(l << 4 & 0x30) + (byte2 >>> 4 & 0xf)]);
+        stringbuffer.append(a[(byte2 << 2 & 0x3c) + (byte4 >>> 6 & 3)]);
+        stringbuffer.append(a[byte4 & 0x3f]);
+        i1--;
+_L2:
+        if(i1 > 0) goto _L1; else goto _L3
+_L3:
+        k;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        1;
+        JVM INSTR icmpne 208;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_154;
+_L7:
+        break MISSING_BLOCK_LABEL_208;
+        byte byte0 = abyte0[i++];
+        stringbuffer.append(a[byte0 >>> 2 & 0x3f]);
+        stringbuffer.append(a[byte0 << 4 & 0x30]);
+        stringbuffer.append('=');
+        stringbuffer.append('=');
+        if(k == 2)
+        {
+            byte byte1 = abyte0[i++];
+            byte byte3 = abyte0[i++];
+            stringbuffer.append(a[byte1 >>> 2 & 0x3f]);
+            stringbuffer.append(a[(byte1 << 4 & 0x30) + (byte3 >>> 4 & 0xf)]);
+            stringbuffer.append(a[byte3 << 2 & 0x3c]);
+            stringbuffer.append('=');
+        }
+        return stringbuffer.toString();
+    }
+
+    public static String b(String s)
+    {
+        return r.a(b(r.d(s)));
+    }
+
+    static byte[] b(byte abyte0[])
+    {
+        int i;
+        int j;
+        int k;
+        int l1;
+        l1 = c;
+        j = abyte0.length;
+        k = 0;
+        i = j - 1;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        abyte0[i];
+_L7:
+        32;
+        JVM INSTR icmple 30;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_27;
+_L4:
+        continue; /* Loop/switch isn't completed */
+        k++;
+        i--;
+_L2:
+        if(i >= 0) goto _L1; else goto _L5
+_L5:
+        k % 4;
+        if(l1 != 0) goto _L7; else goto _L6
+_L6:
+        JVM INSTR ifeq 61;
+           goto _L8 _L9
+_L8:
+        break MISSING_BLOCK_LABEL_48;
+_L9:
+        break MISSING_BLOCK_LABEL_61;
+        throw new IllegalArgumentException(c("\f\177\030#6(:\030+6`{V)7,n\0374.%:\031\"bt"));
+        byte abyte1[];
+        byte abyte2[];
+        int i1;
+        int j1;
+        int l = (k / 4) * 3;
+        if(abyte0[k - 1] == 61)
+            l--;
+        if(abyte0[k - 2] == 61)
+            l--;
+        abyte1 = new byte[l];
+        i = 0;
+        abyte2 = new byte[4];
+        i1 = 0;
+        j1 = 0;
+        abyte2[0] = abyte2[1] = abyte2[2] = abyte2[3] = 61;
+        if(l1 == 0) goto _L11; else goto _L10
+_L10:
+        abyte0[i++];
+_L17:
+        int k1;
+        k1;
+        if(k1 <= 32) goto _L13; else goto _L12
+_L12:
+        abyte2;
+        j1++;
+        k1;
+_L15:
+        JVM INSTR bastore ;
+_L13:
+        if(j1 != 4)
+            continue; /* Loop/switch isn't completed */
+        i1 += a(abyte1, i1, abyte2[0], abyte2[1], abyte2[2], abyte2[3]);
+        j1 = 0;
+        abyte2;
+        0;
+        abyte2[1] = abyte2[2] = abyte2[3] = 61;
+        if(l1 != 0) goto _L15; else goto _L14
+_L14:
+        JVM INSTR bastore ;
+_L11:
+        if(i < j) goto _L10; else goto _L16
+_L16:
+        j1;
+        if(l1 == 0)
+        {
+            if(j1 > 0)
+                a(abyte1, i1, abyte2[0], abyte2[1], abyte2[2], abyte2[3]);
+            return abyte1;
+        }
+          goto _L17
+    }
+
+    static short a(byte abyte0[], int i, byte byte0, byte byte1, byte byte2, byte byte3)
+    {
+        byte byte4 = b[byte0];
+        byte byte5 = b[byte1];
+        byte byte6 = b[byte2];
+        byte byte7 = b[byte3];
+        if(byte4 == -1 || byte5 == -1 || byte6 == -1 && byte2 != 61 || byte7 == -1 && byte3 != 61)
+            throw new IllegalArgumentException(c("\tt\000%.)~V'*!h\027'6%hV\037") + byte0 + c("l:") + byte1 + c("l:") + byte2 + c("l:") + byte3 + "]");
+        abyte0[i++] = (byte)(byte4 << 2 | byte5 >>> 4);
+        if(byte2 == 61)
+            return 1;
+        abyte0[i++] = (byte)(byte5 << 4 | byte6 >>> 2);
+        if(byte3 == 61)
+        {
+            return 2;
+        } else
+        {
+            abyte0[i++] = (byte)(byte6 << 6 | byte7);
+            return 3;
+        }
+    }
+
+    private static String c(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i = ac.length;
+        int k;
+        for(int j = 0; j < i; j++)
+        {
+            switch(j % 5)
+            {
+            case 0: // '\0'
+                k = 0x40;
+                break;
+
+            case 1: // '\001'
+                k = 26;
+                break;
+
+            case 2: // '\002'
+                k = 118;
+                break;
+
+            case 3: // '\003'
+                k = 68;
+                break;
+
+            default:
+                k = 66;
+                break;
+            }
+            ac[j] ^= k;
+        }
+
+        return new String(ac);
+    }
+
+    protected static final char a[] = {
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+        'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
+        'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 
+        'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 
+        'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', 
+        '8', '9', '+', '/'
+    };
+    protected static final byte b[] = {
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 
+        54, 55, 56, 57, 58, 59, 60, 61, -1, -1, 
+        -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 
+        5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
+        15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 
+        25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 
+        29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 
+        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 
+        49, 50, 51, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1
+    };
+    public static int c;
+
+}

@@ -1,0 +1,64 @@
+ARP TABLE
+---------
+
+Ci±gle siê zastanawiam co z tymi arpami i rejestrowaniem userów, narazie mi
+wychodzi,¿e schemat w skrócie bêdzie wygl±da³ tak, ¿e:
+
+APc - APclient,aplikacja na ka¿dym routerze
+APd - g³owny serwer
+
+wiêc APc startuje, ¶ci±ga ostatni± konfiguracje,zapisuje j± w pliku lokalnym - 
+wstêpny projekt bazy danych, znajduje siê w za³±czonym pliku - i ³aduje j±, 
+konfiguracja to ARPy w³a¶nie które po za³adowaniu dodawane s± od razu do FIREWALL do maskarady,
+pro¶ciej mówi±c zaraz po za³adowaniu dostaj± dostêp do internetu. Je¿eli
+download konfiguracji z jakich¶ wzglêdów siê nie powiedzie, ludzie nie maja
+internetu - ale to 1 start. Drugi start takiego APclienta wczyta najpierw
+konfiguracjê zapisan± przy pierwszym downloadzie, po jej wczytaniu i
+ustawieniu spróbuje pobraæ najnowsz± konfiguracje.
+Konfiguracje jak± ma pobraæ z bazy danych nasz APc-  narazie za³o¿y³em,¿e ka¿dy AP ma
+jak±¶ unikatow± nazwê i ona jest dowi±zeniem do w³a¶ciwej konfiguracji i na
+tej podstawie pobiera odpowiednie rekordy.
+
+W APclient bêdzie chodzi³ osobny proces w tle zwany arpwatch, proces ten po
+1. buduje niezale¿nie od j±dra linuxa/freebsd swoj± tabele arpów,które ¶ledzi - kto,
+jaki IP, o której godzinie, je¶li zobaczy jakiego¶ nowego ARP to doda go do
+redirecta na strone z informacjami o sieci, taka strona bêdzie umieszczona
+lokalnie? ( chyba nie bêdzie go wpuszczaæ do internetu na ¿adnym szczeblu? -
+chyba,¿e bêd± p³atno¶ci internetowe... )
+Co do strony informacyjnej, to mo¿e ona sobie byæ czymkolwiek
+synchronizowana z g³ównego routera - wgetem/rsynciem, obojêtnie.
+2. arpwatch zajmowa³ siê bêdzie tak¿e dodawaniem regu³ek do firewalla do
+redirectowania/allow dla forward/maskarada.
+
+Przy dodaniu kogo¶ nowego - co odbywa siê na g³ównym serwerze - APc bêdzie
+dostawa³ informacje,¿e ma prze³adowaæ konfiguracje, ¶ci±gnie j± ,zapisze
+znowu do pliku lokalnego i prze³aduje, ogólne prze³adowanie czego¶ takiego
+to wys³anie sygna³u  HUP do procesu arpwatcha, który wczyta arpy z pliku do
+tablicy i doda odpowiednie regu³ki.
+
+Co z dynamicznymi userami?
+Wiêc narazie wygl±da to tak, ¿e je¶li pod³±czy siê kto¶ nowy, to pierwsze co
+arpwatch ustawi mu redirecta na strone i je¶li tam spe³ni odpowiednie
+warunki to APek prze³auje sobie nowy config z dodanym ju¿ userem, mo¿liwe,¿e
+jeszcze jakie¶ pojedyncze dodawanie bêdzie, albo jakie¶ mergowanie.
+
+Wiêcej dynamiczno¶ci....
+Wiêc mówili¶my jeszcze o opcji,¿e kto¶ ma GLOBALNY dostêp do sieci, w takim
+wypadku - no by³a by opcja,¿eby APek ³adowa³ wszystkich takich,ale my¶l±c o
+du¿ej ilo¶ci takich userów trzeba to zrobiæ raczej tak,¿e kto¶ przeniós³ siê
+w inne miejsce i ma specjalne uprawnienia - jako¶ oznaczony rekord w bazie -
+do globalnego dostêpu,albo nawet dla takich userow bedzie calkowicie osobna
+tabela -  to musi siê jako¶ zarejestrowaæ w nowym miejscu i
+dopiero wtedy APek doda jego MAC w tym miejscu.... to jeszcze w rozmy¶le...
+Pamietam,ze byla mowa o sprawdzaniu takiego MACa na serwerze glownym ale
+hmm, to moze byc wolne i moze byc czesto zlagowane... jest tez opcja zeby
+taka osobna tabela z globalnymi kazdy AP specjalny - czyli te APeki ktore
+daja mozliwosc globalnego podlaczenia - sciagal sobie do pliku i pozniej
+podczas pracy arpwatch przeszukiwal juz lokalnie taki plik...
+
+Zak³adam tak¿e,¿e nasze systemy pod AP bêd± mia³y ju¿ wstêpn± konkretn±
+konfiguracjê firewalla - jak DEFAULT POLICY DENY i przepuszczanie tylko
+zestawionych po³±czeñ i co¶ tam siê jeszcze znajdzie ,z czego 3ba by zrobiæ
+jaki¶ image i na nowych po prostu mergowaæ.
+
+Ok to wstêp który trzeba omówiæ je¶li macie jakie¶ uwagi.

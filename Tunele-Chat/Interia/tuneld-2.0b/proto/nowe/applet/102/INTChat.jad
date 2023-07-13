@@ -1,0 +1,887 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   INTChat.java
+
+import a.*;
+import b.c;
+import d.n;
+import d.x;
+import java.applet.Applet;
+import java.applet.AppletContext;
+import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.net.*;
+import netscape.javascript.JSObject;
+
+public class INTChat extends Applet
+    implements ComponentListener, Runnable
+{
+
+    public void stop()
+    {
+label0:
+        {
+            if(r.length() <= 1 || r.indexOf(b("\022*k]")) > -1)
+            {
+                G = true;
+                if(!P)
+                    break label0;
+            }
+            if(d == null && b != null)
+            {
+                d = new Thread(this, b("<1cLN\0240nT\n\021>/l\013\r<c\\"));
+                d.start();
+            }
+        }
+    }
+
+    public void componentShown(ComponentEvent componentevent)
+    {
+    }
+
+    public String getHTMLPage(String s1, int i1)
+    {
+        return getHTMLPage(getHTMLAddres(s1, i1), null, true, false);
+    }
+
+    public String getHTMLPage(String s1, int i1, boolean flag)
+    {
+        return getHTMLPage(getHTMLAddres(s1, i1), null, true, flag);
+    }
+
+    public String getHTMLPage(String s1, p p1, boolean flag)
+    {
+        return getHTMLPage(s1, p1, flag, false);
+    }
+
+    public String getHTMLPage(String s1, p p1, boolean flag, boolean flag1)
+    {
+        URL url;
+        boolean flag3;
+        flag3 = P;
+        try
+        {
+            url = new URL(s1);
+        }
+        catch(MalformedURLException _ex)
+        {
+            System.out.println(b("\0216v\030\005\020,l\\Y_") + s1);
+            return "";
+        }
+        InputStream inputstream;
+        int i1;
+        byte abyte0[];
+        int j1;
+        URLConnection urlconnection = url.openConnection();
+        urlconnection.setUseCaches(flag);
+        inputstream = urlconnection.getInputStream();
+        l = urlconnection.getDate();
+        m = System.currentTimeMillis();
+        i1 = urlconnection.getContentLength();
+        if(i1 < 0)
+            i1 = inputstream.available();
+        j1 = 0;
+        boolean flag2 = false;
+        if(i1 < 0)
+            break MISSING_BLOCK_LABEL_244;
+        abyte0 = new byte[i1];
+        if(!flag3) goto _L2; else goto _L1
+_L1:
+        3000;
+_L8:
+        i1 - j1;
+        JVM INSTR icmpge 144;
+           goto _L3 _L4
+_L3:
+        l1 = 3000;
+          goto _L5
+_L4:
+        int l1 = i1 - j1;
+_L5:
+        int k1 = inputstream.read(abyte0, j1, l1);
+        Thread.sleep(1L);
+        if(k1 == -1 || p1 != null && !p1.a)
+            return "";
+        j1 += k1;
+_L2:
+        if(j1 < i1) goto _L1; else goto _L6
+_L6:
+        inputstream.close();
+        flag1;
+        if(flag3) goto _L8; else goto _L7
+_L7:
+        String s2;
+        if(flag1)
+        {
+            s2 = b.c.a(abyte0, j1);
+            if(!flag3)
+                break MISSING_BLOCK_LABEL_241;
+        }
+        s2 = a.r.b(abyte0, 0, j1);
+        return s2;
+        System.out.println(b("\0216\"T\006\021c\"") + s1);
+        inputstream.close();
+        return "";
+        JVM INSTR pop ;
+        if(s1.indexOf(b("5\030Ty<+\034Ql")) < 0)
+            System.out.println(b("\032+pW\021_0l\030\004\032-8\030") + s1);
+        return "";
+    }
+
+    public void componentResized(ComponentEvent componentevent)
+    {
+label0:
+        {
+            if(b != null && !b.X)
+            {
+                b();
+                if(!P)
+                    break label0;
+            }
+            g = 0;
+        }
+        f = true;
+    }
+
+    public void componentHidden(ComponentEvent componentevent)
+    {
+    }
+
+    public void login(String s1, String s2)
+    {
+        b.a(s1, s2);
+    }
+
+    public long getServerTime()
+    {
+        if(m == 0L)
+            return 123L;
+        else
+            return (l + System.currentTimeMillis()) - m;
+    }
+
+    public void showInfoText(String s1)
+    {
+        b.a(s1, false);
+    }
+
+    public void openHTMLWindow(String s1)
+    {
+label0:
+        {
+            boolean flag = P;
+            int i1 = s1.indexOf(b("\027-vHYPv"));
+            int j1 = s1.indexOf(b("\031-r\002LP"));
+            int k1 = s1.indexOf("@");
+            try
+            {
+                URL url;
+label1:
+                {
+                    if(i1 == 0 || j1 == 0)
+                    {
+                        url = new URL(s1);
+                        if(!flag)
+                            break label1;
+                    }
+                    if(k1 > 0)
+                    {
+                        url = new URL(b("\0228kT\027\020c") + s1);
+                        if(!flag)
+                            break label1;
+                    }
+                    url = new URL(b("\027-vH"), s1, "");
+                }
+                ((Applet)this).getAppletContext().showDocument(url, "");
+                if(b.bc != null && getParameter(b("\0358l]\021 5kV\b :nQ\000\024")) != null && s1.equals(b.bc.d))
+                    getHTMLPage(getParameter(b("\0358l]\021 5kV\b :nQ\000\024")) + b("@5m_\n\021d") + b.bm + b("Y1?") + s1, ((p) (null)), false);
+                break label0;
+            }
+            catch(Exception _ex) { }
+        }
+    }
+
+    public void update(Graphics g1)
+    {
+        paint(g1);
+    }
+
+    public void exitChat()
+    {
+label0:
+        {
+            if(a)
+            {
+                ((j)this).a(null);
+                if(!P)
+                    break label0;
+            }
+            jsFunction(b("\0345mK\006/8e]"), null);
+        }
+    }
+
+    public void start()
+    {
+label0:
+        {
+            G = false;
+            if(d != null && b != null)
+            {
+                d = null;
+                if(!P)
+                    break label0;
+            }
+            if(c == null)
+            {
+                e = false;
+                c = new Thread(this, b("<1cLN8\fK\0257\027+gY\007"));
+                c.start();
+            }
+        }
+    }
+
+    void a()
+    {
+        G = true;
+        e = false;
+        if(b != null)
+            try
+            {
+                remove(b);
+                b.a();
+            }
+            catch(Exception exception)
+            {
+                exception.printStackTrace();
+            }
+        if(M != null)
+            try
+            {
+                d.x.a();
+            }
+            catch(Exception exception1)
+            {
+                exception1.printStackTrace();
+            }
+    }
+
+    public String getAppletInfo()
+    {
+        return b(">)n]\027_:xY\027\036ylY\023\026*cV\032_)pB\006\005yKV\027\032+kYM\0175\"kM>w\bP\027\013)8\027L\b.u\026\000\0058v]\021\0268,H\017_ScM\027\020+8s(_qfY\b\020-c\021i");
+    }
+
+    public static String getHTMLAddres(String s1, int i1)
+    {
+        if(i1 == 0)
+            return B + s1;
+        if(i1 == 1)
+            return C + s1;
+        else
+            return s1;
+    }
+
+    public void saveTalk(String s1, String s2)
+    {
+        String as[] = {
+            s1, s2
+        };
+        jsFunction(b("\f8t]7\0365i"), as);
+    }
+
+    public Image downloadImage(String s1)
+    {
+        return downloadImage(s1, false, false);
+    }
+
+    int a(String s1)
+    {
+        if(getParameter(s1) != null)
+            try
+            {
+                return Integer.parseInt(getParameter(s1));
+            }
+            catch(Exception _ex) { }
+        return 0;
+    }
+
+    public Image downloadImage(String s1, boolean flag)
+    {
+        return downloadImage(s1, flag, false);
+    }
+
+    public Image downloadImage(String s1, boolean flag, boolean flag1)
+    {
+        if(s1 == null)
+            return null;
+        s1 = a.r.k(s1);
+        if(s1.indexOf('\0') >= 0)
+            return null;
+        byte abyte0[] = a(getCodeBase() + s1, true, flag1);
+        if(abyte0 == null)
+        {
+            if(flag)
+                abyte0 = a(getCodeBase() + s1, false, flag1);
+            if(abyte0 == null)
+            {
+                System.out.println(b("\0336uV\017\0208fq\016\036>g\002C") + getCodeBase() + s1 + b("_d?\030\r\n5n"));
+                return null;
+            }
+        }
+        Image image = Toolkit.getDefaultToolkit().createImage(abyte0);
+        if(q > 1000)
+            q = 0;
+        if(image != null)
+        {
+            int i1 = q++;
+            p.addImage(image, i1);
+            try
+            {
+                p.waitForID(i1, 20000L);
+            }
+            catch(Exception _ex) { }
+            if(!p.isErrorID(i1));
+            p.removeImage(image, i1);
+            return image;
+        } else
+        {
+            System.out.println(s1 + b("_d\"V\026\0235"));
+            return null;
+        }
+    }
+
+    public void browser(String s1)
+    {
+        r = s1;
+    }
+
+    void b()
+    {
+        boolean flag = P;
+        u = getSize().width;
+        v = getSize().height;
+        u = u >= 343 ? u : 343;
+        v = v >= 129 ? v : 129;
+        if(b != null)
+            b.setBounds(0, 0, u, v);
+        f = false;
+        if(i.i != 0)
+            P = !flag;
+    }
+
+    public void openHelp(String s1)
+    {
+        String as[] = {
+            s1
+        };
+        jsFunction(b("\020)gV+\0325ro\n\021=mO"), as);
+    }
+
+    public void updateProgress(int i1)
+    {
+        E = i1;
+        repaint((u - 390) / 2, (v - 100) / 2 + 30, 390, 60);
+    }
+
+    void a(int i1, String s1)
+    {
+        o = s1;
+        updateProgress(i1);
+    }
+
+    public void setSizeXY(int i1, int j1)
+    {
+        if(i1 > s)
+            i1 = s;
+        if(j1 > t)
+            j1 = t;
+        g = 0;
+        f = true;
+    }
+
+    public void paint(Graphics g1)
+    {
+        u = getSize().width;
+        v = getSize().height;
+        if(b != null && b.X && n.Z && b.W)
+            return;
+        if(K == null || L == null)
+        {
+            K = createImage(410, 100);
+            L = K.getGraphics();
+        }
+        L.setColor(H[1]);
+        L.fill3DRect(0, 0, 410, 100, true);
+        L.setColor(H[2]);
+        L.drawRect(5, 5, 400, 90);
+        L.setColor(H[4]);
+        L.setFont(I);
+        J = L.getFontMetrics();
+        if(n != null)
+            L.drawString(n, (410 - J.stringWidth(n)) / 2, 22);
+        if(o != null)
+            L.drawString(o, (410 - J.stringWidth(o)) / 2, 50);
+        L.setColor(H[3]);
+        L.drawRect(10, 70, 390, 19);
+        L.fill3DRect(10, 70, (390 * E) / 100, 20, true);
+        g1.drawImage(K, (u - 410) / 2, (v - 100) / 2, null);
+    }
+
+    public INTChat()
+    {
+        boolean flag = P;
+        super();
+        b = null;
+        c = null;
+        d = null;
+        e = false;
+        f = false;
+        g = 0;
+        h = 0;
+        i = 50L;
+        k = 0;
+        l = 0L;
+        m = 0L;
+        n = b("++uYC\b:xA\027\006.cV\n\032ycH\017\032-w\030 %\030V}16\030\"\nM_\tpW\020\005\u0140\"[\031\0322c\u013FCQw,");
+        q = 0;
+        r = "";
+        E = 0;
+        F = false;
+        G = false;
+        O = -1L;
+        if(flag)
+        {
+            int i1 = i.i;
+            i.i = ++i1;
+        }
+    }
+
+    public void destroy()
+    {
+        if(K != null)
+            K.flush();
+        System.runFinalization();
+        System.gc();
+    }
+
+    byte[] a(String s1, boolean flag, boolean flag1)
+    {
+        URL url;
+        boolean flag2;
+        flag2 = P;
+        try
+        {
+            url = new URL(s1);
+        }
+        catch(MalformedURLException _ex)
+        {
+            return null;
+        }
+        InputStream inputstream;
+        int i1;
+        int j1;
+        byte abyte0[];
+        URLConnection urlconnection;
+label0:
+        {
+            urlconnection = url.openConnection();
+            urlconnection.setUseCaches(flag);
+            if(!flag1)
+                break label0;
+            String s2 = urlconnection.getHeaderField(b(";8v]"));
+            if(s2 != null)
+                O = a.r.b(s2);
+            if(O <= 0L)
+                break label0;
+            O /= 10000L;
+            long l1 = O % 10L;
+            O /= 10L;
+            O *= 10L;
+            if(l1 > 5L)
+            {
+                O += 2L;
+                if(!flag2)
+                    break label0;
+            }
+            if(l1 > 2L)
+                O++;
+        }
+        inputstream = urlconnection.getInputStream();
+        i1 = urlconnection.getContentLength();
+        if(i1 < 0)
+            i1 = inputstream.available();
+        j1 = 0;
+        if(i1 < 0)
+        {
+            inputstream.close();
+            return null;
+        }
+        abyte0 = new byte[i1];
+        if(!flag2) goto _L2; else goto _L1
+_L1:
+        j1 += inputstream.read(abyte0, j1, i1 - j1);
+_L4:
+        Thread.sleep(3L);
+_L2:
+        if(j1 < i1)
+            continue; /* Loop/switch isn't completed */
+        inputstream.close();
+        if(!flag2)
+            return abyte0;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+        Exception exception;
+        exception;
+        exception.printStackTrace();
+        return null;
+    }
+
+    public void insertImage(String s1)
+    {
+        b.b(s1);
+    }
+
+    public String getUserLogin()
+    {
+        return b.bm;
+    }
+
+    public void insertQuizImage(String s1)
+    {
+        b.c(s1);
+    }
+
+    public static String getServerHost()
+    {
+        return D;
+    }
+
+    public void jsFunction(String s1, Object aobj[])
+    {
+        if(!r.u)
+            try
+            {
+                Class class1 = Class.forName(b("\021<vK\000\036)g\026\t\036/cK\000\r0rLM5\nMZ\t\032:v"));
+                if(class1 != null && !a)
+                {
+                    JSObject jsobject = JSObject.getWindow((Applet)this);
+                    if(jsobject != null)
+                    {
+                        jsobject.call(s1, aobj);
+                        jsobject = null;
+                    }
+                }
+            }
+            catch(Exception _ex) { }
+    }
+
+    public void openInfoPhoneActivateWindow(String s1, String s2)
+    {
+        String as[] = {
+            s1, s2
+        };
+        jsFunction(b("\020)gV3\0276l]4\0267fW\024"), as);
+    }
+
+    public void run()
+    {
+        boolean flag;
+        flag = P;
+        if(e)
+            break MISSING_BLOCK_LABEL_1185;
+        e = true;
+        b();
+        String s1 = getDocumentBase().getHost();
+        if(s1.endsWith(b("Q.,Q\r\013<pQ\002Q)n")) || s1.endsWith(b("Q?o\026\n\021-gJ\n\036wrT")) || !s1.endsWith(b("\0267v]\021\0268,H\017")) && !s1.endsWith(b("\034#cL\006\r0c\026\023\023")) && !s1.equals(b("\f)k\\\006\rwkV\027\032+kY\r\026<")))
+        {
+            n = b(">;{\030\031\0365m_\f\b8\u0105\030\020\026\u0140\"\\\f_\032xY\027\032+kQO_7cT\006\u0103 \"K\b\020+xA\020\0138\u0105\030\031\032yqL\021\0207{\002");
+            a(100, b("\b.u\026\000\0058v]\021\0268,Q\r\013<pQ\002Q)n\030C\023,`\030C\b.u\026\000\0058v]\021\0268,H\017"));
+            repaint();
+            return;
+        }
+        a(2, b("+.mJ\031\0327k]C\020;k]\b\013\252u"));
+        p = new MediaTracker(this);
+        if(M == null)
+            M = new x(this);
+        updateProgress(4);
+        M.e();
+        updateProgress(10);
+        if(N == null)
+            N = new r();
+        updateProgress(12);
+        b = new n(this);
+        updateProgress(20);
+        b.c();
+        a(27, b("(:xA\027\006.cV\n\032yrY\021\0364gL\021\214."));
+        b.j();
+        updateProgress(30);
+        jsFunction(b("\035+mO\020\032+"), null);
+        if(getParameter(b("\0210aS")) != null && getParameter(b("\0178qK")) != null)
+            login(getParameter(b("\0210aS")), getParameter(b("\0178qK")));
+        Image image = downloadImage(b("\0341cL<\r<qW\026\r:gKL\027<c\\\020 k,_\n\031"), true);
+        updateProgress(33);
+        d.x.b(image);
+        updateProgress(36);
+        if(getParameter(b("\0358l]\021 0o_")) != null && getParameter(b("\0358l]\021 0o_")).length() > 0)
+        {
+            Image image1 = downloadImage(getParameter(b("\0358l]\021 0o_")), true);
+            if(image1 != null)
+            {
+                u u1 = new u();
+                u1.a = image1;
+                u1.d = getParameter(b("\0358l]\021 5kV\b"));
+                u1.b = a(b("\0358l]\021 8nQ\004\021"));
+                u1.c = a(b("\0358l]\021 4mN\006 8nQ\004\021"));
+                u1.e = (a(b("\0358l]\021 -kU\006 *g[")) * 1000) / (int)i;
+                if(getParameter(b("\0358l]\021 *vY\027\f\006nQ\r\024")) != null)
+                    getHTMLPage(getParameter(b("\0358l]\021 *vY\027\f\006nQ\r\024")) + b("@1?") + u1.d, ((p) (null)), false);
+                b.bc = u1;
+                updateProgress(42);
+            }
+        }
+        if(getParameter(b("\035>]Q\016\030")) != null && getParameter(b("\035>]Q\016\030")).length() > 0)
+        {
+            b.bd = downloadImage(getParameter(b("\035>]Q\016\030")), true);
+            b.be = a(b("\035>]Y\017\026>l"));
+        }
+        b();
+        updateProgress(45);
+        b.setVisible(false);
+        add(b);
+        updateProgress(46);
+        b.m();
+        a(47, b("\013+uYC\0218uQ\u0166\005 uY\r\026<\"H\f\u013D\u015CaB\006\0210c\030\031_*gJ\024\032+gUCQw,"));
+_L15:
+        if(b == null || b.X && b.W) goto _L2; else goto _L1
+_L1:
+        if(!flag) goto _L4; else goto _L3
+_L3:
+        try
+        {
+            Thread.sleep(200L);
+        }
+        catch(Exception _ex) { }
+_L4:
+        if(b == null)
+            break; /* Loop/switch isn't completed */
+        b.X;
+        if(flag || flag) goto _L6; else goto _L5
+_L5:
+        if(!b.X && !G) goto _L3; else goto _L7
+_L7:
+        if(b == null) goto _L9; else goto _L8
+_L8:
+        G;
+_L6:
+        JVM INSTR ifeq 755;
+           goto _L9 _L10
+_L9:
+        if(!flag)
+            break; /* Loop/switch isn't completed */
+_L10:
+        b.setVisible(false);
+        try
+        {
+            Thread.sleep(300L);
+        }
+        catch(Exception _ex) { }
+        repaint();
+        String s2 = getParameter(b("\017+g\\\006\0310l]\007 *iQ\r"));
+        if(s2 != null && s2.length() > 5)
+            b.U = d.x.d() - 1;
+        a(53, b("(:xA\027\006.cV\n\032ymZ\021\036#iMC\f2\361J\b\026"));
+        if(!n.Z || n.V != b.U)
+        {
+            Image image2 = d.x.b(b.U);
+            a(60, b("8<l]\021\020.cV\n\032yiW\016\0176l]\r\013\252u\030\020\024\252pS\n"));
+            if(image2 == null)
+            {
+                n = b("( qL\u0166\0170\u0140\030\023\r6`T\006\022yx\030\024\034#{L\032\b8lQ\006\022ylQ\006\005;\u011B\\\r\006:j\030\023\0230i\313\024_>pY\005\026:xV\032\0341,");
+                a(63, b("/+mK\031\u0166yuA\000\005 \u0159[\n\u0178yaY\000\027<\"H\021\005<eT\u0166\0338pS\n_0\"K\023\r\252`W\024\036\u015E\"H\f\0216uV\n\032"));
+                repaint();
+                return;
+            }
+            d.x.a(image2);
+            a(75, b("/+x]\021\006*mO\002\0210g\030\020\024\252pS\n"));
+            d.x.c();
+            a(85, b("**vY\024\0268lQ\006_2mT\f\r\252u"));
+            d.x.a(b.U);
+            a(90, b("/6fU\n\0367c\030\020\024\252pS\n"));
+            n.V = b.U;
+        }
+        b.l();
+        a(95, b("\n*vY\024\0268lQ\006_2mU\023\0207gV\027\214."));
+        b();
+        b.k();
+        a(100, null);
+        b.setVisible(true);
+_L2:
+        j = System.currentTimeMillis();
+_L17:
+        if(!f) goto _L12; else goto _L11
+_L11:
+        if(g >= 4)
+            b();
+        g++;
+        if(!flag) goto _L13; else goto _L12
+_L12:
+        if(d == null && b != null)
+            b.a(j);
+_L13:
+        j = (i - System.currentTimeMillis()) + j;
+        if(j <= 0L)
+            j = 1L;
+        if(k <= 0)
+        {
+            System.gc();
+            k = 800;
+        }
+        k--;
+        try
+        {
+            if(c != null)
+                Thread.sleep(j);
+        }
+        catch(Exception _ex) { }
+        if(c != null && !G) goto _L15; else goto _L14
+_L14:
+        if(flag) goto _L17; else goto _L16
+_L16:
+        break MISSING_BLOCK_LABEL_1176;
+        Exception exception;
+        exception;
+        exception.printStackTrace();
+        a();
+        if(!flag)
+            break MISSING_BLOCK_LABEL_1211;
+        try
+        {
+            Thread.sleep(1500L);
+        }
+        catch(Exception exception1)
+        {
+            exception1.printStackTrace();
+        }
+        if(d != null)
+            G = true;
+    }
+
+    public void componentMoved(ComponentEvent componentevent)
+    {
+    }
+
+    public void init()
+    {
+        if(d != null)
+            return;
+        C = getCodeBase().toString();
+        D = a ? b("\0168l\026\n\021-gJ\n\036wrT") : getCodeBase().getHost();
+        B = getParameter(b("\017+g^\n\007\006jL\016\023\006rY\004\032*"));
+        if(B == null || B.length() == 0)
+            B = C;
+        if(getParameter(b("\f0oH\017\032\024m\\\006")) != null)
+            n = b("++uYC\b:xA\027\006.cV\n\032ycH\017\032-w\026C/+mK\031\u0166yaB\006\0248\u0105\030MQw");
+        setLayout(null);
+        b();
+        s = u;
+        t = v;
+        try
+        {
+            H[0] = new Color(Integer.parseInt(getParameter(b("\0346nW\021 ;c[\b")), 16));
+            H[1] = new Color(Integer.parseInt(getParameter(b("\0346nW\021 )cV\006\023\006`Y\000\024")), 16));
+            H[2] = new Color(Integer.parseInt(getParameter(b("\0346nW\021 )cV\006\023\006nQ\r\032")), 16));
+            H[3] = new Color(Integer.parseInt(getParameter(b("\0346nW\021 )pW\004\r<qK")), 16));
+            H[4] = new Color(Integer.parseInt(getParameter(b("\0346nW\021 )cV\006\023\006v]\033\013")), 16));
+        }
+        catch(Exception _ex) { }
+        setBackground(H[0]);
+        addComponentListener(this);
+        System.out.println(b("\tw1gROk"));
+    }
+
+    private static String b(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x7f;
+                break;
+
+            case 1: // '\001'
+                k1 = 89;
+                break;
+
+            case 2: // '\002'
+                k1 = 2;
+                break;
+
+            case 3: // '\003'
+                k1 = 56;
+                break;
+
+            default:
+                k1 = 99;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    static boolean a = false;
+    n b;
+    Thread c;
+    Thread d;
+    boolean e;
+    boolean f;
+    int g;
+    int h;
+    long i;
+    long j;
+    int k;
+    public long l;
+    public long m;
+    String n;
+    String o;
+    MediaTracker p;
+    int q;
+    String r;
+    int s;
+    int t;
+    int u;
+    int v;
+    static final int w = 343;
+    static final int x = 129;
+    public static final int y = 0;
+    public static final int z = 1;
+    public static final int A = 2;
+    static String B;
+    static String C;
+    static String D;
+    int E;
+    boolean F;
+    boolean G;
+    public static Color H[] = {
+        new Color(97, 199, 239), new Color(0, 130, 194), new Color(97, 199, 233), new Color(243, 174, 32), new Color(255, 255, 255)
+    };
+    static final Font I = new Font(b(")<p\\\002\0218"), 1, 12);
+    FontMetrics J;
+    Image K;
+    Graphics L;
+    static x M = null;
+    static r N;
+    public long O;
+    public static boolean P;
+
+}

@@ -1,0 +1,938 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   r.java
+
+package a;
+
+import java.awt.*;
+import java.io.PrintStream;
+import java.util.Hashtable;
+
+// Referenced classes of package a:
+//            a, i
+
+public final class r
+{
+
+    public static boolean[] a(String s1)
+    {
+        int i1;
+        int j1;
+        boolean aflag[];
+        int k1;
+        int l1;
+        l1 = a.q;
+        i1 = 8 * s1.length();
+        j1 = g(s1);
+        aflag = new boolean[i1];
+        k1 = 0;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        aflag;
+_L5:
+        k1;
+        (j1 >> i1 - 1 - k1 & 1) == 1;
+        JVM INSTR bastore ;
+        k1++;
+_L2:
+        if(k1 < i1) goto _L1; else goto _L3
+_L3:
+        aflag;
+        if(l1 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public r()
+    {
+        int i1;
+        i1 = a.q;
+        super();
+        if(l == null)
+            l = new Font[i.length][k.length][j.length];
+        try
+        {
+            String s1 = System.getProperty(j("AA+R\r]E/@JDN"));
+            if(s1 != null)
+                q = s1.equals(j("\032\016l"));
+            s1 = System.getProperty(j("AA+R\r]E3WLY"));
+            if(s1 != null)
+                r = s1.startsWith(j("xU3"));
+            s1 = System.getProperty(j("DSs]BFE"));
+            if(s1 != null)
+                s = s1.startsWith(j("fA>")) || s1.startsWith(j("FA>"));
+        }
+        catch(Exception _ex) { }
+        if(n != null) goto _L2; else goto _L1
+_L1:
+        short word0;
+        n = new Hashtable();
+        word0 = 0;
+        if(i1 == 0) goto _L4; else goto _L3
+_L3:
+        n.put(new Character(m[word0][1]), new Character(m[word0][0]));
+        word0++;
+_L4:
+        if(word0 < m.length) goto _L3; else goto _L2
+_L2:
+        if(o != null) goto _L6; else goto _L5
+_L5:
+        o = new Hashtable();
+        word0 = 0;
+        if(i1 == 0) goto _L8; else goto _L7
+_L7:
+        short word1;
+        Character character;
+        character = new Character(m[word0][1]);
+        word1 = 2;
+        if(i1 == 0) goto _L10; else goto _L9
+_L9:
+        o.put(new Character(m[word0][word1]), character);
+        (short)(word1 + 1);
+_L13:
+        word1;
+_L10:
+        if(word1 < m[word0].length) goto _L9; else goto _L11
+_L11:
+        (short)(word0 + 1);
+        if(i1 != 0) goto _L13; else goto _L12
+_L12:
+        word0;
+_L8:
+        if(word0 < m.length) goto _L7; else goto _L6
+_L6:
+        if(p != null) goto _L15; else goto _L14
+_L14:
+        p = new Hashtable();
+        word0 = 0;
+        if(i1 == 0) goto _L17; else goto _L16
+_L16:
+        p.put(new Character(m[word0][1]), new Character(m[word0][2]));
+        word0++;
+_L17:
+        if(word0 < m.length) goto _L16; else goto _L15
+_L15:
+    }
+
+    public static String b(String s1)
+    {
+        int i1;
+        int j1;
+        j1 = a.q;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        s1;
+_L7:
+        i1;
+        charAt();
+        (byte);
+        -59;
+        JVM INSTR icmpne 180;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_21;
+_L4:
+        break MISSING_BLOCK_LABEL_180;
+label0:
+        {
+            if((byte)s1.charAt(i1 + 1) == -126)
+            {
+                s1 = s1.substring(0, i1) + '\u0142' + s1.substring(i1 + 2);
+                if(j1 == 0)
+                    break label0;
+            }
+            if((byte)s1.charAt(i1 + 1) == -101)
+            {
+                s1 = s1.substring(0, i1) + '\u015B' + s1.substring(i1 + 2);
+                if(j1 == 0)
+                    break label0;
+            }
+            if((byte)s1.charAt(i1 + 1) == -124)
+                s1 = s1.substring(0, i1) + '\u0144' + s1.substring(i1 + 2);
+        }
+        if(j1 == 0)
+            continue; /* Loop/switch isn't completed */
+        if((byte)s1.charAt(i1) == -60)
+        {
+            if((byte)s1.charAt(i1 + 1) == -121)
+                s1 = s1.substring(0, i1) + '\u0107' + s1.substring(i1 + 2);
+            if(j1 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        if((byte)s1.charAt(i1) == -61 && (byte)s1.charAt(i1 + 1) == -77)
+            s1 = s1.substring(0, i1) + '\363' + s1.substring(i1 + 2);
+        i1++;
+_L2:
+        if(i1 < s1.length() - 1) goto _L1; else goto _L5
+_L5:
+        s1;
+        if(j1 != 0) goto _L7; else goto _L6
+_L6:
+        return;
+    }
+
+    public static void a(String s1, String s2)
+    {
+        System.out.print(s1 + j("\013\000\037jwn\032}"));
+        if(s2 == null) goto _L2; else goto _L1
+_L1:
+        int i1 = 0;
+        if(a.q == 0) goto _L4; else goto _L3
+_L3:
+        System.out.print("" + (byte)s2.charAt(i1) + j("\007\0"));
+        i1++;
+_L4:
+        if(i1 < s2.length() && i1 < 30) goto _L3; else goto _L2
+_L2:
+        System.out.println("");
+        return;
+    }
+
+    public static String c(String s1)
+    {
+        StringBuffer stringbuffer;
+        int j1;
+        j1 = a.q;
+        stringbuffer = new StringBuffer(s1.length() / 2);
+        int i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        stringbuffer.append((char)(Integer.parseInt(s1.substring(i1, i1 + 2), 16) ^ 0xff));
+_L5:
+        i1 += 2;
+_L2:
+        if(i1 < s1.length()) goto _L1; else goto _L3
+_L3:
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        break MISSING_BLOCK_LABEL_66;
+        JVM INSTR pop ;
+        return stringbuffer.toString();
+    }
+
+    public static byte[] d(String s1)
+    {
+        byte abyte0[];
+        int i1;
+        int j1;
+        j1 = a.q;
+        abyte0 = new byte[s1.length()];
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        abyte0;
+_L5:
+        i1;
+        (byte)s1.charAt(i1);
+        JVM INSTR bastore ;
+        i1++;
+_L2:
+        if(i1 < abyte0.length) goto _L1; else goto _L3
+_L3:
+        abyte0;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public static void a(String s1, byte abyte0[], int i1)
+    {
+        int j1 = 0;
+        if(a.q == 0) goto _L2; else goto _L1
+_L1:
+        abyte0[j1 + i1] = (byte)s1.charAt(j1);
+        j1++;
+_L2:
+        if(j1 >= s1.length())
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public static String[] a(String s1, char c1)
+    {
+        int i1;
+        int j1;
+        int k1;
+        String as[];
+        int l1;
+        int i2;
+        i2 = a.q;
+        i1 = 0;
+        j1 = -1;
+        k1 = 1 + b(s1, c1);
+        as = new String[k1];
+        l1 = 0;
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        i1 = j1 + 1;
+        j1 = s1.indexOf(c1, i1);
+        if(j1 < 0)
+            j1 = s1.length();
+        as;
+_L5:
+        l1;
+        s1.substring(i1, j1);
+        JVM INSTR aastore ;
+        l1++;
+_L2:
+        if(l1 < k1) goto _L1; else goto _L3
+_L3:
+        as;
+        if(i2 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public static void a(Graphics g1, int i1, int j1, int k1, int l1, boolean flag)
+    {
+        int i2;
+label0:
+        {
+            i2 = a.q;
+            if(flag)
+            {
+                g1.setColor(Color.white);
+                if(i2 == 0)
+                    break label0;
+            }
+            g1.setColor(Color.black);
+        }
+label1:
+        {
+            g1.drawLine(i1 + 1, j1 + 1, (i1 + k1) - 2, j1 + 1);
+            g1.drawLine(i1 + 1, j1, i1 + 1, (j1 + l1) - 1);
+            if(flag)
+            {
+                g1.setColor(Color.gray);
+                if(i2 == 0)
+                    break label1;
+            }
+            g1.setColor(Color.lightGray);
+        }
+label2:
+        {
+            g1.drawLine(i1 + 1, (j1 + l1) - 2, (i1 + k1) - 1, (j1 + l1) - 2);
+            g1.drawLine((i1 + k1) - 2, j1, (i1 + k1) - 2, (j1 + l1) - 1);
+            if(flag)
+            {
+                g1.setColor(Color.black);
+                if(i2 == 0)
+                    break label2;
+            }
+            g1.setColor(Color.white);
+        }
+label3:
+        {
+            g1.drawLine(i1 + 1, (j1 + l1) - 1, (i1 + k1) - 1, (j1 + l1) - 1);
+            g1.drawLine((i1 + k1) - 1, j1, (i1 + k1) - 1, (j1 + l1) - 1);
+            if(flag)
+            {
+                g1.setColor(Color.lightGray);
+                if(i2 == 0)
+                    break label3;
+            }
+            g1.setColor(Color.gray);
+        }
+        g1.drawLine(i1, j1, i1, (j1 + l1) - 2);
+        g1.drawLine(i1, j1, (i1 + k1) - 2, j1);
+        if(i.i != 0)
+            a.q = ++i2;
+    }
+
+    public static int a(char ac[], char c1, int i1, int j1)
+    {
+_L5:
+        i1++;
+        if(i1 >= j1) goto _L2; else goto _L1
+_L1:
+        ac[i1];
+        c1;
+        if(a.q != 0) goto _L4; else goto _L3
+_L3:
+        JVM INSTR icmpne 3;
+           goto _L2 _L5
+_L2:
+        i1;
+        j1;
+_L4:
+        JVM INSTR icmplt 31;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_29;
+_L7:
+        break MISSING_BLOCK_LABEL_31;
+        return -1;
+        return i1;
+    }
+
+    public static Font a(int i1, int j1, int k1)
+    {
+        if(l[i1][j1][k1] == null)
+            l[i1][j1][k1] = new Font(i[i1], k[j1], j[k1]);
+        return l[i1][j1][k1];
+    }
+
+    public static int b(String s1, char c1)
+    {
+        int i1;
+        int j1;
+        int k1;
+        k1 = a.q;
+        i1 = 0;
+        j1 = 0;
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        s1.charAt(j1);
+_L7:
+        c1;
+        JVM INSTR icmpne 26;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_23;
+_L4:
+        continue; /* Loop/switch isn't completed */
+        i1++;
+        j1++;
+_L2:
+        if(j1 < s1.length()) goto _L1; else goto _L5
+_L5:
+        i1;
+        if(k1 != 0) goto _L7; else goto _L6
+_L6:
+        return;
+    }
+
+    public static String a(byte abyte0[])
+    {
+        return a(abyte0, 0, abyte0.length);
+    }
+
+    public static String a(byte abyte0[], int i1, int j1)
+    {
+        StringBuffer stringbuffer;
+        int k1;
+        int l1;
+        l1 = a.q;
+        stringbuffer = new StringBuffer(j1);
+        k1 = i1;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        if(abyte0[k1] < 0)
+        {
+            stringbuffer.append((char)(256 + abyte0[k1]));
+            if(l1 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        stringbuffer.append((char)abyte0[k1]);
+_L5:
+        JVM INSTR pop ;
+        k1++;
+_L2:
+        if(k1 < j1) goto _L1; else goto _L3
+_L3:
+        stringbuffer;
+        if(l1 != 0) goto _L5; else goto _L4
+_L4:
+        toString();
+        return;
+    }
+
+    public static char a(char c1)
+    {
+        if(c1 > '@' && c1 < '[')
+            return (char)(c1 + 32);
+        Character character = (Character)n.get(new Character(c1));
+        if(character != null)
+            c1 = character.charValue();
+        if(c1 > '@' && c1 < '[')
+            c1 += ' ';
+        return c1;
+    }
+
+    public static int a(FontMetrics fontmetrics, char ac[], int i1, int j1)
+    {
+        int k1;
+        int l1;
+        int i2;
+        i2 = a.q;
+        k1 = 0;
+        l1 = i1;
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        k1 + fontmetrics.charWidth(ac[l1]);
+_L5:
+        k1;
+        l1++;
+_L2:
+        if(l1 < j1) goto _L1; else goto _L3
+_L3:
+        k1;
+        if(i2 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    static char b(char c1)
+    {
+        if(c1 < '\u0104')
+            return c1;
+        Character character = (Character)p.get(new Character(c1));
+        if(character != null)
+            return character.charValue();
+        else
+            return c1;
+    }
+
+    public static String e(String s1)
+    {
+        StringBuffer stringbuffer;
+        int i1;
+        int j1;
+        j1 = a.q;
+        stringbuffer = new StringBuffer(s1);
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        s1;
+_L7:
+        i1;
+        charAt();
+        '\u0104';
+        JVM INSTR icmplt 43;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_30;
+_L4:
+        continue; /* Loop/switch isn't completed */
+        stringbuffer.setCharAt(i1, b(s1.charAt(i1)));
+        i1++;
+_L2:
+        if(i1 < s1.length()) goto _L1; else goto _L5
+_L5:
+        stringbuffer.toString();
+        if(j1 != 0) goto _L7; else goto _L6
+_L6:
+        return;
+    }
+
+    public static byte[] f(String s1)
+    {
+        int ai[];
+        byte abyte0[];
+        byte abyte1[];
+        byte byte0;
+        int i1;
+        ai = (new int[] {
+            2, 3, 4, 7, 10, 11, 13, 14
+        });
+        abyte0 = d(s1);
+        abyte1 = new byte[8];
+        if(abyte0.length != 16)
+            return abyte1;
+        byte0 = 68;
+        i1 = 0;
+_L2:
+        abyte1;
+_L4:
+        i1;
+        (byte)(abyte0[ai[i1]] ^ byte0);
+        JVM INSTR bastore ;
+        if(++i1 < 8) goto _L2; else goto _L1
+_L1:
+        abyte1;
+        if(a.q != 0) goto _L4; else goto _L3
+_L3:
+        return;
+    }
+
+    public static int a(char ac[], char c1, int i1)
+    {
+_L5:
+        i1--;
+        if(i1 < 0) goto _L2; else goto _L1
+_L1:
+        ac[i1];
+        if(a.q != 0) goto _L4; else goto _L3
+_L3:
+        c1;
+        JVM INSTR icmpne 3;
+           goto _L2 _L5
+_L2:
+        i1;
+_L4:
+        return;
+    }
+
+    public static String a(int i1)
+    {
+        return a(i1, 2);
+    }
+
+    public static String a(int i1, int j1)
+    {
+        StringBuffer stringbuffer;
+        int k1;
+        int l1;
+        l1 = a.q;
+        stringbuffer = new StringBuffer(j1);
+        k1 = 0;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        stringbuffer.append((char)(byte)(i1 >> 8 * k1 & 0xff));
+_L5:
+        JVM INSTR pop ;
+        k1++;
+_L2:
+        if(k1 < j1) goto _L1; else goto _L3
+_L3:
+        stringbuffer;
+        if(l1 != 0) goto _L5; else goto _L4
+_L4:
+        toString();
+        return;
+    }
+
+    public static int g(String s1)
+    {
+        return a(s1, 0, s1.length());
+    }
+
+    public static int a(String s1, int i1, int j1)
+    {
+        int k1;
+        int l1;
+        int i2;
+        i2 = a.q;
+        k1 = 0;
+        if(j1 > 4)
+            j1 = 4;
+        l1 = 0;
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        k1 | ((byte)s1.charAt(l1 + i1) & 0xff) << 8 * l1;
+_L5:
+        k1;
+        l1++;
+_L2:
+        if(l1 < j1) goto _L1; else goto _L3
+_L3:
+        k1;
+        if(i2 != 0) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    public static void h(String s1)
+    {
+        int i1;
+        int j1;
+        j1 = a.q;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        if(s1.charAt(i1) >= ' ' && s1.charAt(i1) <= '~')
+        {
+            System.out.print("" + s1.charAt(i1));
+            if(j1 == 0)
+                continue;
+        }
+_L4:
+        System.out.print("<" + (int)s1.charAt(i1) + ">");
+        i1++;
+_L2:
+        if(i1 < s1.length())
+            continue; /* Loop/switch isn't completed */
+        System.out.println("");
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    static int b(int i1)
+    {
+        if(i1 > 64 && i1 < 91)
+            return 2 * (i1 + 32);
+        if(i1 < 260)
+            return 2 * i1;
+        Character character = (Character)n.get(new Character((char)i1));
+        if(character != null)
+            return 2 * character.charValue() + 1;
+        else
+            return 2 * i1;
+    }
+
+    static char c(char c1)
+    {
+        if(c1 < '\214')
+            return c1;
+        Character character = (Character)o.get(new Character(c1));
+        if(character != null)
+            return character.charValue();
+        else
+            return c1;
+    }
+
+    public static String i(String s1)
+    {
+        StringBuffer stringbuffer;
+        int i1;
+        int j1;
+        j1 = a.q;
+        stringbuffer = new StringBuffer(s1);
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        s1;
+_L7:
+        i1;
+        charAt();
+        'a';
+        JVM INSTR icmplt 39;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_29;
+_L4:
+        break MISSING_BLOCK_LABEL_39;
+        if(s1.charAt(i1) <= 'z')
+            break MISSING_BLOCK_LABEL_59;
+        if(s1.charAt(i1) < 'A' || s1.charAt(i1) > 'Z')
+            break MISSING_BLOCK_LABEL_63;
+        if(j1 == 0)
+            continue; /* Loop/switch isn't completed */
+        stringbuffer.setCharAt(i1, c(s1.charAt(i1)));
+        i1++;
+_L2:
+        if(i1 < s1.length()) goto _L1; else goto _L5
+_L5:
+        stringbuffer.toString();
+        if(j1 != 0) goto _L7; else goto _L6
+_L6:
+        return;
+    }
+
+    public static char a(char c1, char c2)
+    {
+        byte byte0 = 88;
+        byte byte1 = (byte)((byte)c2 ^ byte0);
+        byte0 = (byte)((byte)c1 ^ byte1);
+        if(byte0 < 0)
+            return (char)(256 + byte0);
+        else
+            return (char)byte0;
+    }
+
+    public static String b(String s1, String s2)
+    {
+        int i1;
+        int j1;
+        byte byte0;
+        byte abyte0[];
+        byte abyte1[];
+        int k1;
+        k1 = a.q;
+        if(s2 == null || s2.length() == 0)
+            return s1;
+        j1 = 0;
+        byte0 = 88;
+        abyte0 = d(s2);
+        abyte1 = d(s1);
+        i1 = 0;
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        abyte0[i1] = (byte)(abyte0[i1] ^ byte0);
+_L5:
+        i1++;
+_L2:
+        if(i1 < abyte0.length) goto _L1; else goto _L3
+_L3:
+        i1 = 0;
+        if(k1 != 0) goto _L5; else goto _L4
+_L4:
+        if(k1 == 0) goto _L7; else goto _L6
+_L6:
+        abyte1;
+_L10:
+        i1;
+        (byte)(abyte1[i1] ^ abyte0[j1++]);
+        JVM INSTR bastore ;
+        if(j1 == abyte0.length)
+            j1 = 0;
+        i1++;
+_L7:
+        if(i1 < abyte1.length) goto _L6; else goto _L8
+_L8:
+        abyte1;
+        if(k1 != 0) goto _L10; else goto _L9
+_L9:
+        a();
+        return;
+    }
+
+    public static int c(String s1, String s2)
+    {
+        boolean flag;
+        int i1;
+        int l1;
+        int i2;
+        i2 = a.q;
+        flag = s1.length() <= s2.length();
+        i1 = flag ? s1.length() : s2.length();
+        l1 = 0;
+        if(i2 == 0) goto _L2; else goto _L1
+_L1:
+        b(s1.charAt(l1));
+_L5:
+        int j1;
+        j1;
+        int k1 = b(s2.charAt(l1));
+        if(j1 < k1)
+            return 1;
+        if(j1 > k1)
+            return -1;
+        l1++;
+_L2:
+        if(l1 < i1) goto _L1; else goto _L3
+_L3:
+        s1.length();
+        if(i2 != 0) goto _L5; else goto _L4
+_L4:
+        s2.length();
+        JVM INSTR icmpne 113;
+           goto _L6 _L7
+_L6:
+        break MISSING_BLOCK_LABEL_111;
+_L7:
+        break MISSING_BLOCK_LABEL_113;
+        return 0;
+        return !flag ? -1 : 1;
+    }
+
+    private static String j(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x2b;
+                break;
+
+            case 1: // '\001'
+                k1 = 32;
+                break;
+
+            case 2: // '\002'
+                k1 = 93;
+                break;
+
+            case 3: // '\003'
+                k1 = 51;
+                break;
+
+            default:
+                k1 = 35;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    public static boolean a = false;
+    public static boolean b = false;
+    public static String c = a(4);
+    public static final String d[] = {
+        j("HZ<AMR"), j("AA.]LEI8QJNS6Z"), j("LR<]B_O*J"), j("MI2_F_O*J"), j("XZ<AZ"), j("AA.]LQI8_LEY"), j("QI8_LEY"), j("AA.]L[O0RQJ\u0164>IL\\Y"), j("[O0RQJ\u0164>IL\\Y"), j("IR\u0158IL\\Y"), 
+        j("EI8QJNS6Z"), j("HZ8ATDN$")
+    };
+    public static final Color e[];
+    public static final String f[] = {
+        j("BC2]|II:TQBN"), j("BC2]|XM4_F\032"), j("BC2]|XM4_F"), j("BC2]|MR2DM"), j("BC2]|NE6"), j("BC2]|NE6\002"), j("BC2]|HO3UVXE9"), j("BC2]|HO2_"), j("BC2]|GO1"), j("BC2]|S"), 
+        j("BC2]|YA'I"), j("BC2]|HR$"), j("BC2]|NV4_"), j("BC2]|YO1_FRE."), j("BC2]|\\I3X"), j("BC2]|HM2X"), j("BC2]|JN:VO"), j("BC2]|OE+ZO"), j("BC2]|HU3]JEG")
+    };
+    public static final String g[] = {
+        j("\021}"), j("\021\r\0"), j("\021\t"), j("\021\rt"), j("\021\b"), j("\021\ru"), j("\021O"), j("\021\r2"), j("\021\rb"), j("\021\rr"), 
+        j("\023\t"), j("\023\rt"), j("\021\r\031"), j("\021d"), j("\021X"), j("\021\r%"), j("\021p"), j("\021\r\r"), j("\021\007p\033"), j("\021\007u"), 
+        j("\025\032ph"), j("\025\032\006"), j("\021R2_O\021"), j("\020\t"), j("\020\rt"), j("\021\rw"), j("\021\n"), j("D\032p\032"), j("v\033p\032"), j("\021\036")
+    };
+    public static final short h[] = {
+        0, 0, 1, 2, 3, 3, 4, 5, 6, 6, 
+        7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 
+        12, 12, 13, 14, 14, 15, 15, 16, 17, 18
+    };
+    public static final String i[] = {
+        j("jR4RO"), j("hO(AJNR"), j("\177I0VPyO0RM"), j("fO3\\P[A>VG"), j("oI<_LL"), j("xE/ZE"), j("xA3@pNR4U"), j("cE1EF_I>R")
+    };
+    public static final short j[] = {
+        11, 12, 14, 16
+    };
+    private static final short k[] = {
+        0, 1, 2, 3
+    };
+    public static Font l[][][] = new Font[i.length][k.length][j.length];
+    static final char m[][] = {
+        {
+            'Z', '\u017B', '\u01AF', '\257'
+        }, {
+            'N', '\u0143', '\u01D1', '\321'
+        }, {
+            'n', '\u0144', '\u01F1', '\361', '\u0144'
+        }, {
+            'a', '\u0105', '\u01B1', '\261', '\271'
+        }, {
+            'c', '\u0107', '\u01E6', '\346'
+        }, {
+            'e', '\u0119', '\u01EA', '\352'
+        }, {
+            'l', '\u0142', '\u01B3', '\263'
+        }, {
+            'o', '\363', '\363'
+        }, {
+            's', '\u015B', '\u01B6', '\234', '\266'
+        }, {
+            'z', '\u017A', '\u01BC', '\237', '\274'
+        }, {
+            'z', '\u017C', '\u01BF', '\277'
+        }, {
+            'A', '\u0104', '\u01A1', '\241', '\245'
+        }, {
+            'C', '\u0106', '\u01C6', '\306'
+        }, {
+            'E', '\u0118', '\u01CA', '\312'
+        }, {
+            'L', '\u0141', '\u01A3', '\243'
+        }, {
+            'O', '\323', '\323'
+        }, {
+            'S', '\u015A', '\u01A6', '\214', '\246'
+        }, {
+            'Z', '\u0179', '\u01AC', '\217', '\254'
+        }, {
+            'E', '\u20AC', '\221', '\u20AC'
+        }
+    };
+    static Hashtable n;
+    static Hashtable o;
+    static Hashtable p;
+    public static boolean q = false;
+    public static boolean r = false;
+    public static boolean s = false;
+
+    static 
+    {
+        e = (new Color[] {
+            Color.black, new Color(0, 153, 255), new Color(0, 0, 153), Color.magenta, new Color(102, 102, 102), new Color(0, 204, 51), new Color(0, 153, 51), new Color(255, 153, 0), new Color(255, 102, 0), new Color(153, 0, 0), 
+            Color.blue, Color.red
+        });
+    }
+}

@@ -1,0 +1,4 @@
+/alias s { /msg $0 Wejdz na http://www.wp.pl }
+/alias gosc { /join #CZAT_z_Goœciem }
+/eval xecho -r $chr(27)\(K
+echo "Loaded"

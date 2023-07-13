@@ -1,0 +1,3 @@
+#!/bin/sh
+rrdtool graph myrouter-day.png --start -86400 DEF:inoctets=myrouter.rrd:input:AVERAGE DEF:outoctets=myrouter.rrd:output:AVERAGE AREA:inoctets#00FF00:"In traffic" LINE1:outoctets#0000FF:"Out traffic"    
+rrdtool graph myrouter-day2.png -h 80 -w 600 DEF:in=myrouter.rrd:input:AVERAGE DEF:out=myrouter.rrd:output:AVERAGE "CDEF:out_neg=out,-1,*" "AREA:in#32CD32:Incoming" "LINE1:in#336600" "GPRINT:in:MAX:  Max\\: %5.1lf %s" "GPRINT:in:AVERAGE: Avg\\: %5.1lf %S" "GPRINT:in:LAST: Current\\: %5.1lf %Sbytes/sec\\n" "AREA:out_neg#4169E1:Outgoing" "LINE1:out_neg#0033CC" "GPRINT:out:MAX:  Max\\: %5.1lf %S" "GPRINT:out:AVERAGE: Avg\\: %5.1lf %S" "GPRINT:out:LAST: Current\\: %5.1lf %Sbytes/sec" "HRULE:0#000000"

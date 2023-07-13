@@ -1,0 +1,41 @@
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: C=PL, ST=Zachodniopomorskie, L=Koszalin, O=Internet Widgits Pty Ltd, CN=Pawel/emailAddress=crashev@ebox.pl
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:c7:d9:15:ca:a3:a9:a3:0d:c7:bf:28:2b:ba:1c:
+                    15:dc:e9:3b:a4:e4:7e:53:f0:f6:61:2d:b9:84:e1:
+                    9a:03:ce:b5:15:19:cd:13:ee:30:59:6c:99:0a:84:
+                    5b:95:31:27:9a:b7:38:20:6e:8c:55:3b:8a:7e:c6:
+                    dd:62:2b:8d:b3:e1:1e:d6:82:e0:0b:ff:e2:19:dc:
+                    a3:77:26:f0:68:be:a5:83:c3:99:1e:6c:d6:62:a3:
+                    6a:2d:4b:f7:ae:5c:38:41:0c:a8:7c:33:96:47:93:
+                    95:52:67:40:6d:bf:f2:01:69:ef:35:0b:4c:52:d8:
+                    21:f5:64:46:33:ef:fa:bc:ff
+                Exponent: 65537 (0x10001)
+        Attributes:
+            a0:00
+    Signature Algorithm: md5WithRSAEncryption
+        8e:f7:74:23:06:09:06:e6:9b:8f:43:e1:39:21:de:84:ec:52:
+        df:e9:ae:5f:59:b0:bc:4f:19:ed:2b:55:2c:b5:6e:bd:80:24:
+        0f:52:39:f8:ee:bd:56:8b:ba:6f:17:4a:ec:e0:3e:5d:a5:10:
+        65:a2:c0:90:01:b9:ac:e5:17:35:ac:4f:a4:ef:f9:b7:41:85:
+        29:5d:9c:85:de:7f:be:23:71:b1:6a:2b:5b:d5:49:d6:f0:8d:
+        10:1c:07:9b:08:9b:b7:95:03:00:6a:27:18:02:1f:a3:14:78:
+        76:3d:24:08:1d:da:c8:fd:c1:28:3c:da:97:30:47:b7:17:3d:
+        e9:14
+-----BEGIN CERTIFICATE REQUEST-----
+MIIB0TCCAToCAQAwgZAxCzAJBgNVBAYTAlBMMRswGQYDVQQIExJaYWNob2RuaW9w
+b21vcnNraWUxETAPBgNVBAcTCEtvc3phbGluMSEwHwYDVQQKExhJbnRlcm5ldCBX
+aWRnaXRzIFB0eSBMdGQxDjAMBgNVBAMTBVBhd2VsMR4wHAYJKoZIhvcNAQkBFg9j
+cmFzaGV2QGVib3gucGwwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMfZFcqj
+qaMNx78oK7ocFdzpO6TkflPw9mEtuYThmgPOtRUZzRPuMFlsmQqEW5UxJ5q3OCBu
+jFU7in7G3WIrjbPhHtaC4Av/4hnco3cm8Gi+pYPDmR5s1mKjai1L965cOEEMqHwz
+lkeTlVJnQG2/8gFp7zULTFLYIfVkRjPv+rz/AgMBAAGgADANBgkqhkiG9w0BAQQF
+AAOBgQCO93QjBgkG5puPQ+E5Id6E7FLf6a5fWbC8TxntK1UstW69gCQPUjn47r1W
+i7pvF0rs4D5dpRBlosCQAbms5Rc1rE+k7/m3QYUpXZyF3n++I3Gxaitb1UnW8I0Q
+HAebCJu3lQMAaicYAh+jFHh2PSQIHdrI/cEoPNqXMEe3Fz3pFA==
+-----END CERTIFICATE REQUEST-----

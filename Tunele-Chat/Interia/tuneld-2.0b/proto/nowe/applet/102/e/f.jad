@@ -1,0 +1,230 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   f.java
+
+package e;
+
+import a.*;
+
+// Referenced classes of package e:
+//            b
+
+class f extends x
+{
+
+    public f()
+    {
+        super(null, null, 0);
+        m = false;
+        o = -1;
+    }
+
+    public f(String s, String as[], int i1, String s1, boolean flag, int j1, int k1)
+    {
+        super(null, null, 0);
+        m = false;
+        o = -1;
+        a(s, as, i1, s1, flag, j1, k1);
+    }
+
+    void a(boolean flag)
+    {
+        m = flag;
+        a(f());
+    }
+
+    void c()
+    {
+        a(f());
+    }
+
+    void a(String s, String as[], int i1, String s1, boolean flag, int j1, int k1)
+    {
+        j = s;
+        k = as;
+        l = (short)i1;
+        n = s1 == null || s1.length() <= 0 ? null : s1;
+        m = flag;
+        i = j1;
+        o = k1;
+        a(f());
+    }
+
+    static int b(String s)
+    {
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        s.equalsIgnoreCase(b.R[i1]);
+_L7:
+        JVM INSTR ifeq 24;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_22;
+_L4:
+        continue; /* Loop/switch isn't completed */
+        return i1;
+_L2:
+        if(i1 < b.R.length) goto _L1; else goto _L5
+_L5:
+        b.R.length - 1;
+        if(flag) goto _L7; else goto _L6
+_L6:
+        return;
+    }
+
+    String d()
+    {
+        String s;
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        s = c("\027{0^g\002b,W,\027e;W/E") + i + c("Fp=Xc\037h4\003") + j.replace('\n', ' ') + "\n";
+        s += c("\027d+Xg\026n\"W/") + (n == null ? "" : n) + "\n";
+        s += c("\027d-Zy\034y(]{E") + l + "\n";
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        s;
+        new StringBuffer();
+        JVM INSTR swap ;
+        append();
+        c("\027d-Zy");
+        append();
+        i1;
+        append();
+        c("\021\"");
+        append();
+        k[i1];
+        append();
+        "\n";
+        append();
+        toString();
+_L5:
+        s;
+        i1++;
+_L2:
+        if(i1 < k.length) goto _L1; else goto _L3
+_L3:
+        s += c("\027{<Dm\030j*@g\021\"") + b.R[o] + "\n";
+        s += "\n";
+        s;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    String e()
+    {
+        String s;
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        s = r.a(j.length()) + r.c(j) + '\0';
+        s += n == null ? r.a(0) + '\0' : r.a(n.length()) + n + '\0';
+        s += r.a(k.length, 1);
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        s;
+        new StringBuffer();
+        JVM INSTR swap ;
+        append();
+        r.a(k[i1].length());
+        append();
+        r.c(k[i1]);
+        append();
+        '\0';
+        append();
+        toString();
+_L5:
+        s;
+        i1++;
+_L2:
+        if(i1 < k.length) goto _L1; else goto _L3
+_L3:
+        s;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    String f()
+    {
+        String s;
+        int i1;
+        boolean flag;
+        flag = b.bd;
+        s = z.s + '\001' + '\002' + c("\034R\035kH%NIDTv\013") + i;
+        s += c("`\013:~G8^\0320\006") + (m ? c("\033r:Fg\002n") : c("\bdI]\177\037g(Do\r")) + z.t + '\001' + '\0' + "\n";
+        s += c("\034^\007aR-H\003k\034l") + b.R[o] + "\n";
+        s += c("\030Y\f\u0151\u0121v\013") + j + "\n";
+        s += c("\003I\033k\\)@S*") + (n != null && n.length() != 0 ? n + " " + '\005' + n + '\005' : c(".Y\ba")) + "\n";
+        i1 = 0;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        if(i1 == l)
+            s += z.s + '\001' + '\006';
+        s + c("\003O\031$\006") + (char)(i1 + 65) + c("v\013") + k[i1];
+_L5:
+        s;
+        if(i1 == l)
+            s += z.t + '\001' + '\0';
+        s += "\n";
+        i1++;
+_L2:
+        if(i1 < k.length) goto _L1; else goto _L3
+_L3:
+        s;
+        if(flag) goto _L5; else goto _L4
+_L4:
+        return;
+    }
+
+    private static String c(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x4c;
+                break;
+
+            case 1: // '\001'
+                k1 = 43;
+                break;
+
+            case 2: // '\002'
+                k1 = 105;
+                break;
+
+            case 3: // '\003'
+                k1 = 10;
+                break;
+
+            default:
+                k1 = 38;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    int i;
+    String j;
+    String k[];
+    short l;
+    boolean m;
+    String n;
+    int o;
+}

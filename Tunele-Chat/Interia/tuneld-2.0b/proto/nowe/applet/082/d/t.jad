@@ -1,0 +1,550 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   t.java
+
+package d;
+
+import INTChat;
+import a.r;
+import b.b;
+import java.applet.Applet;
+import java.awt.Component;
+import java.awt.Image;
+import java.util.Hashtable;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            h, v, u, m, 
+//            b
+
+class t
+    implements Runnable
+{
+
+    public void a()
+    {
+        if(q >= 0)
+            q--;
+    }
+
+    int b()
+    {
+        if(c != null)
+            return c.G;
+        else
+            return 0;
+    }
+
+    synchronized void c()
+    {
+        g = d = e = null;
+        l = null;
+        h.removeAllElements();
+        f.clear();
+        f();
+    }
+
+    public t(m m1, d.b b1)
+    {
+        k = 0;
+        m = 30000;
+        p = false;
+        q = -1;
+        f = new Hashtable();
+        b = b1;
+        a = m1;
+        h = new Vector();
+    }
+
+    void d()
+    {
+        if(c != null)
+            c.repaint();
+    }
+
+    boolean a(String s)
+    {
+        v v1 = b(s);
+        if(v1 != null)
+            return v1.h;
+        else
+            return false;
+    }
+
+    void a(String s, boolean flag)
+    {
+        v v1 = (v)f.get(s);
+        if(v1 != null && v1.i != flag)
+        {
+            v1.i = flag;
+            d();
+        }
+    }
+
+    v b(String s)
+    {
+        return (v)f.get(s);
+    }
+
+    void e()
+    {
+        q = 1800;
+    }
+
+    void a(String s, int i1)
+    {
+        v v1 = (v)f.get(s);
+        if(v1 != null && v1.c != i1 && (v1.j && i1 == 0 || !v1.j && i1 < u.E.length))
+        {
+            v1.c = i1;
+            d();
+        }
+    }
+
+    void b(String s, int i1)
+    {
+        v v1 = (v)f.get(s);
+        if(v1 != null)
+        {
+            v1.d = i1;
+            d();
+        }
+        if(s.equals(a.bg))
+            b.a(i1);
+    }
+
+    int c(String s)
+    {
+        v v1 = (v)f.get(s);
+        if(v1 != null)
+            return v1.d;
+        else
+            return -1;
+    }
+
+    void b(String s, boolean flag)
+    {
+        int i1;
+        int k1;
+        int l1;
+        boolean flag1;
+        flag1 = u.ba;
+        i1 = 0;
+        k1 = 0;
+        l1 = b();
+        if(!flag1) goto _L2; else goto _L1
+_L1:
+        int j1;
+        v v1;
+label0:
+        {
+            j1 = s.indexOf('\0', i1);
+            if(s.charAt(i1) == '\001')
+            {
+                v1 = c(s.substring(i1 + 1, j1), flag);
+                if(!flag1)
+                    break label0;
+            }
+            v1 = c(s.substring(i1, j1), flag);
+        }
+        if(v1 != null && v1.f < l1)
+            k1--;
+        i1 = j1 + 1;
+_L2:
+        if(i1 >= s.length())
+        {
+            a(k1);
+            return;
+        }
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    synchronized v c(String s, boolean flag)
+    {
+        v v1;
+label0:
+        {
+            boolean flag1;
+label1:
+            {
+                flag1 = u.ba;
+                if(s == null || s.length() == 0)
+                    return null;
+                v1 = b(s);
+                if(v1 == null)
+                    break label0;
+                if(v1 == e)
+                    e = v1.z;
+                if(v1.z == null)
+                {
+                    d = v1.A;
+                    d.z = null;
+                    if(!flag1)
+                        break label1;
+                }
+                v1.z.A = v1.A;
+                if(v1.A != null)
+                    v1.A.z = v1.z;
+            }
+label2:
+            {
+                v1.z = v1.A = null;
+                f.remove(s);
+                if(!flag || f.size() >= 300 && b.bn < 3 || b.bo != -1)
+                    break label2;
+                if(b.bn >= 3 && v1.b != null && v1.b.length() > 0)
+                {
+                    b.a(null, j + s + f("\0243\032L\017") + v1.b);
+                    if(!flag1)
+                        break label2;
+                }
+                b.a(null, j + s);
+            }
+            if(v1.equals(g))
+                g = null;
+            v1.a();
+        }
+        return v1;
+    }
+
+    void d(String s)
+    {
+label0:
+        {
+            int i1 = s.indexOf('\0');
+            int j1 = s.indexOf('\0', i1 + 1);
+            if(j1 < 0 || i1 < 0)
+                return;
+            String s1 = a.r.i(s.substring(0, i1));
+            String s2 = s.substring(i1 + 1, j1);
+            v v1 = (v)f.get(s1);
+            if(h.contains(s1))
+            {
+                h.removeElement(s1);
+                if(v1 != null && (v1.b == null || v1.b.length() == 0))
+                {
+                    v1.b = s2;
+                    b.a(null, i + s1 + f("\0243\032L\017") + v1.b);
+                }
+                if(!u.ba)
+                    break label0;
+            }
+            int k1 = a.r.a(s, j1 + 1, 4);
+            String s3 = s1 + f("\016z\020\027C[=\005\001NZ#J\f\017]*PV") + s2 + f("\0249\020\027\\\024*\005\024V@/PV") + k1 / 3600 + f("\0242DV") + (k1 % 3600) / 60 + f("\0247\003\030\001\024") + k1 % 60 + f("\024)\017\025\001");
+            if(s1.equals(a.bg) && b.bn >= 3)
+                s3 += f("\0248\013\030[]7\017K") + a.bl + f("Y3\004X");
+            if(v1 != null)
+                s3 += f("\024)\036\027[A)PV") + v.v[v1.d];
+            a.a(s3, false);
+        }
+    }
+
+    synchronized v a(String s, int i1, int j1, boolean flag, boolean flag1, boolean flag2)
+    {
+        v v2;
+label0:
+        {
+            v v1;
+            boolean flag3;
+label1:
+            {
+                flag3 = u.ba;
+                if((v1 = b(s)) != null)
+                    return v1;
+                v2 = new v(s, i1, j1, flag, flag1, flag2);
+                if(s.equals(a.bg))
+                    b.a(j1);
+                if(d == null)
+                {
+                    d = e = v2;
+                    if(!flag3)
+                        break label0;
+                }
+                if(f.size() < 3000 || v2.d >= 3)
+                {
+                    v1 = d;
+                    if(!flag3)
+                        break label1;
+                }
+                v1 = e;
+            }
+label2:
+            {
+                do
+                {
+                    if(v2.f < v1.f || v2.f == v1.f && a.r.c(v1.a, s) <= 0)
+                        break;
+                    if(v1.A == null)
+                    {
+                        v1.A = v2;
+                        v2.z = v1;
+                        f.put(s, v2);
+                        e = v2;
+                        return v2;
+                    }
+                    v1 = v1.A;
+                } while(!flag3);
+                v2.A = v1;
+                v2.z = v1.z;
+                if(v1.z != null)
+                {
+                    v1.z.A = v2;
+                    if(!flag3)
+                        break label2;
+                }
+                d = v2;
+            }
+            v1.z = v2;
+        }
+        f.put(s, v2);
+        return v2;
+    }
+
+    void f()
+    {
+        if(c != null)
+            c.m();
+    }
+
+    void a(int i1)
+    {
+        if(c != null)
+            c.a(i1);
+    }
+
+    public void run()
+    {
+        boolean flag = u.ba;
+          goto _L1
+_L7:
+        o = a.k.downloadImage(n);
+        d();
+        try
+        {
+            Thread.sleep(m);
+        }
+        catch(Exception _ex) { }
+_L1:
+        if(b.bo == -1)
+            break; /* Loop/switch isn't completed */
+        this;
+        if(flag || flag) goto _L3; else goto _L2
+_L2:
+        b;
+        bo;
+        2;
+        JVM INSTR icmpeq 78;
+           goto _L4 _L5
+_L4:
+        continue; /* Loop/switch isn't completed */
+_L5:
+        break; /* Loop/switch isn't completed */
+        if(l != null) goto _L7; else goto _L6
+_L6:
+        l = null;
+        this;
+_L3:
+        null;
+        o;
+    }
+
+    int g()
+    {
+        return f.size();
+    }
+
+    void a(String s, boolean flag, boolean flag1)
+    {
+        int i1;
+        int j1;
+        int k1;
+        boolean flag2;
+        flag2 = u.ba;
+        System.currentTimeMillis();
+        i1 = 0;
+        j1 = b();
+        k1 = 0;
+        if(s.length() > 30)
+            p = true;
+        d();
+        if(!flag2) goto _L2; else goto _L1
+_L1:
+        int l1;
+        String s1;
+label0:
+        {
+            l1 = s.indexOf('\0', k1 + 2);
+            if(l1 < 0)
+                break; /* Loop/switch isn't completed */
+            if(!flag1 && s.charAt(k1 + 2) == '\001')
+            {
+                s1 = a.r.i(s.substring(k1 + 3, l1));
+                flag1 = true;
+                if(!flag2)
+                    break label0;
+            }
+            s1 = a.r.i(s.substring(k1 + 2, l1));
+        }
+        if(l1 <= k1 + 2 || l1 >= k1 + 20) goto _L4; else goto _L3
+_L3:
+        v v1;
+label1:
+        {
+            int i2 = s.charAt(k1) & 0xff;
+            int j2 = i2 & 0x3f;
+            int k2 = i2 & 0x80;
+            int l2 = i2 & 0x40;
+            v1 = a(s1, j2, s.charAt(k1 + 1), k2 != 0, flag1, l2 == 64);
+            if(!flag || f.size() >= 300 && b.bn < 3 || q >= 0 || b.bo != -1)
+                break label1;
+            if(b.bn >= 3 && b.bn < 5)
+            {
+                h.addElement(s1);
+                v1.b = null;
+                b.p.a('\006', a.r.e(s1) + '\0');
+                if(!flag2)
+                    break label1;
+            }
+            b.a(null, i + s1);
+        }
+        if(v1.f < j1)
+            i1++;
+        if(!flag2) goto _L5; else goto _L4
+_L4:
+        if(l1 > 0)
+            k1 = l1;
+          goto _L2
+_L5:
+        k1 = l1 + 1;
+_L2:
+        if(k1 < s.length() - 3) goto _L1; else goto _L6
+_L6:
+        p = false;
+        a(i1);
+        if(!flag2 && !flag2)
+            return;
+          goto _L2
+        if(true) goto _L1; else goto _L7
+_L7:
+    }
+
+    v b(int i1)
+    {
+        int j1;
+        v v1;
+        boolean flag;
+        flag = u.ba;
+        j1 = 0;
+        v1 = d;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        v1 = v1.A;
+        j1++;
+_L2:
+        if(j1 >= i1)
+            break; /* Loop/switch isn't completed */
+        v1;
+        if(flag) goto _L4; else goto _L3
+_L3:
+        if(v1 != null) goto _L1; else goto _L5
+_L5:
+        v1;
+_L4:
+        return;
+    }
+
+    public void e(String s)
+    {
+        if(g == null)
+        {
+            return;
+        } else
+        {
+            b.N = g.a;
+            b.e(s);
+            return;
+        }
+    }
+
+    void h()
+    {
+        if(l != null)
+            return;
+        o = null;
+        if(a.k.getParameter(f("A*\016\027[Q\005\t\027BQ(\013)[]7\017)\\Q9")) != null)
+            m = 1000 * Integer.parseInt(a.k.getParameter(f("A*\016\027[Q\005\t\027BQ(\013)[]7\017)\\Q9")));
+        n = a.k.getParameter(f("W;\007\023]U\005\003\033H"));
+        if(n != null && n.length() > 0)
+        {
+            l = new Thread(this, f("W;\007\023]U\016\002\004JU>"));
+            l.start();
+        }
+    }
+
+    void i()
+    {
+        if(l != null)
+            try
+            {
+                l.interrupt();
+            }
+            catch(Exception _ex) { }
+    }
+
+    private static String f(String s)
+    {
+        char ac[] = s.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x34;
+                break;
+
+            case 1: // '\001'
+                k1 = 90;
+                break;
+
+            case 2: // '\002'
+                k1 = 106;
+                break;
+
+            case 3: // '\003'
+                k1 = 118;
+                break;
+
+            default:
+                k1 = 47;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    m a;
+    d.b b;
+    h c;
+    v d;
+    v e;
+    Hashtable f;
+    v g;
+    Vector h;
+    static final String i = "" + '\001' + '\t' + f("J*\030\fVW2\005\022U]`J");
+    static final String j = "" + '\001' + '\t' + f("J5\016\025G[>\020\037\025\024");
+    int k;
+    Thread l;
+    int m;
+    String n;
+    Image o;
+    boolean p;
+    int q;
+    static final int r = 300;
+
+}

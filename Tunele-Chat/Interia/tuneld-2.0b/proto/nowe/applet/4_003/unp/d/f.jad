@@ -1,0 +1,1092 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   f.java
+
+package d;
+
+import INTChat;
+import a.a;
+import a.b;
+import a.d;
+import a.e;
+import a.i;
+import a.j;
+import a.k;
+import a.l;
+import a.o;
+import a.p;
+import a.r;
+import a.s;
+import a.z;
+import b.c;
+import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.List;
+import java.awt.Menu;
+import java.awt.MenuComponent;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.TextComponent;
+import java.awt.TextField;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+// Referenced classes of package d:
+//            b, n, x, j, 
+//            r
+
+class f extends j
+    implements s, ItemListener, ActionListener, Runnable, MouseMotionListener, MouseListener
+{
+
+    void a(int i1, String s1)
+    {
+label0:
+        {
+            if(i1 == 0)
+            {
+                t = s1;
+                if(x.bd == 0)
+                    break label0;
+            }
+            u = s1;
+        }
+        if(u != null && t != null && o.br == 1)
+            y.setEnabled(true);
+    }
+
+    void a(String s1, String s2, int i1, boolean flag)
+    {
+        int k1 = x.bd;
+        if(!flag) goto _L2; else goto _L1
+_L1:
+        I.a(s1, s2, i1);
+        if(k1 == 0) goto _L3; else goto _L2
+_L2:
+        int j1 = 0;
+        if(k1 == 0) goto _L5; else goto _L4
+_L4:
+        if(s2.indexOf(K.getItem(j1)) < 0)
+            continue; /* Loop/switch isn't completed */
+        H;
+        s1;
+        s2;
+        i1;
+_L8:
+        a();
+        return;
+_L5:
+        if(j1 < K.getItemCount()) goto _L4; else goto _L6
+_L6:
+        G;
+        s1;
+        s2;
+        i1;
+        if(k1 != 0) goto _L8; else goto _L7
+_L7:
+        a();
+_L3:
+    }
+
+    public void f()
+    {
+        if(o.br != -1)
+        {
+            o.t.a('I', "\0");
+            F.a(null);
+            G.a(null);
+            H.a(null);
+            I.a(null);
+        }
+    }
+
+    void g()
+    {
+        J.c();
+    }
+
+    public void mouseDragged(MouseEvent mouseevent)
+    {
+        if(mouseevent.getY() < 80 || mouseevent.getY() > super.b - 50 || getCursor().getType() != 8)
+        {
+            return;
+        } else
+        {
+            bf = mouseevent.getY();
+            j();
+            return;
+        }
+    }
+
+    public void mouseClicked(MouseEvent mouseevent)
+    {
+    }
+
+    public void mousePressed(MouseEvent mouseevent)
+    {
+    }
+
+    public f(n n1, d.b b1, String s1)
+    {
+        super(c("gW'pZK[)t\bZW(zB_\030") + b1.v + c("\006\030") + b1.r.bk, true);
+        q = false;
+        r = false;
+        R = "";
+        S = new Choice();
+        T = new Choice();
+        U = new Choice();
+        bf = 0;
+        n = n1;
+        o = b1;
+        p = s1;
+        a(70, 80, 600, 600);
+        i();
+        b(true);
+        q = false;
+        u = t = null;
+        bg = new p();
+    }
+
+    public void itemStateChanged(ItemEvent itemevent)
+    {
+label0:
+        {
+            int i1 = x.bd;
+            if(itemevent.getSource().equals(U))
+            {
+                J.d(U.getSelectedItem());
+                if(i1 == 0)
+                    break label0;
+            }
+            if(itemevent.getSource().equals(S))
+            {
+                J.a('\003', "" + (char)S.getSelectedIndex());
+                if(i1 == 0)
+                    break label0;
+            }
+            if(itemevent.getSource().equals(T))
+            {
+                F.b(T.getSelectedIndex());
+                G.b(T.getSelectedIndex());
+                H.b(T.getSelectedIndex());
+                I.b(T.getSelectedIndex());
+            }
+        }
+        J.requestFocus();
+    }
+
+    public void mouseMoved(MouseEvent mouseevent)
+    {
+label0:
+        {
+            if(mouseevent.getY() >= bf - 4 && mouseevent.getY() <= bf)
+            {
+                setCursor(Cursor.getPredefinedCursor(8));
+                if(x.bd == 0)
+                    break label0;
+            }
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    public void mouseReleased(MouseEvent mouseevent)
+    {
+    }
+
+    public void paint(Graphics g1)
+    {
+        int i1;
+        int j1;
+        j1 = x.bd;
+        g1.setColor(x.bb[21]);
+        g1.fillRect(0, 0, super.a, 29);
+        i1 = 4;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        g1.drawImage(x.F[7], i1, 24, null);
+_L4:
+        i1 += 24;
+_L2:
+        if(i1 < super.a - 4)
+            continue; /* Loop/switch isn't completed */
+        g1.drawImage(x.F[0], -5, 24, null);
+        g1.drawImage(x.F[6], super.a - 4, 24, null);
+        g1.setColor(x.bb[1]);
+        g1.fillRect(0, 46, super.a, bf - 51);
+        g1.setColor(x.bb[0]);
+        g1.fillRect(0, bf - 5, super.a, super.b - bf - 27);
+        g1.fillRoundRect(10, bf - 22, 100, 25, 5, 5);
+        g1.setColor(x.bb[1]);
+        g1.drawLine(2, bf - 2, super.a - 4, bf - 2);
+        g1.drawLine(2, bf - 3, super.a - 4, bf - 3);
+        g1.setColor(x.bb[0]);
+        g1.fillRoundRect(10, bf - 22, 100, 25, 6, 6);
+        g1.setColor(Color.white);
+        g1.setFont(x.bc[2]);
+        g1.drawString(c("aW/pBAYceQ^Y\u0107"), 20, bf - 10);
+        super.paint(g1);
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public void a()
+    {
+        F.a();
+        G.a();
+        H.a();
+        super.a();
+    }
+
+    static void a(int ai[])
+    {
+        a(ai, 0, ai.length - 1);
+    }
+
+    static void a(int ai[], int i1, int j1)
+    {
+        int k1;
+        int l1;
+        int k2;
+        int l2;
+        l2 = x.bd;
+        k1 = i1;
+        l1 = j1;
+        if(k1 >= l1)
+            return;
+        if(k1 == l1 - 1)
+        {
+            if(ai[k1] > ai[l1])
+            {
+                int i2 = ai[k1];
+                ai[k1] = ai[l1];
+                ai[l1] = i2;
+            }
+            return;
+        }
+        k2 = ai[(k1 + l1) / 2];
+        ai[(k1 + l1) / 2] = ai[l1];
+        ai[l1] = k2;
+        if(l2 == 0) goto _L2; else goto _L1
+_L1:
+        if(l2 == 0) goto _L4; else goto _L3
+_L3:
+        k1++;
+_L4:
+        ai;
+        k1;
+_L18:
+        JVM INSTR iaload ;
+        k2;
+        JVM INSTR icmpgt 114;
+           goto _L5 _L6
+_L5:
+        k1;
+        l1;
+        if(l2 != 0) goto _L8; else goto _L7
+_L7:
+        JVM INSTR icmplt 92;
+           goto _L6 _L3
+_L6:
+        if(l2 == 0) goto _L10; else goto _L9
+_L9:
+        l1--;
+_L10:
+        k2;
+        ai[l1];
+_L8:
+        JVM INSTR icmpgt 142;
+           goto _L11 _L12
+_L11:
+        k1;
+        l1;
+        if(l2 != 0) goto _L14; else goto _L13
+_L13:
+        JVM INSTR icmplt 119;
+           goto _L12 _L9
+_L12:
+        k1;
+        l1;
+_L14:
+        JVM INSTR icmpge 171;
+           goto _L15 _L16
+_L15:
+        break MISSING_BLOCK_LABEL_148;
+_L16:
+        continue; /* Loop/switch isn't completed */
+        int j2;
+        j2 = ai[k1];
+        ai[k1] = ai[l1];
+        ai;
+        l1;
+        if(l2 != 0) goto _L18; else goto _L17
+_L17:
+        j2;
+        JVM INSTR iastore ;
+_L2:
+        if(k1 < l1) goto _L1; else goto _L19
+_L19:
+        ai[j1] = ai[l1];
+        ai[l1] = k2;
+        a(ai, i1, k1 - 1);
+        a(ai, l1 + 1, j1);
+        if(l2 == 0)
+            return;
+          goto _L4
+    }
+
+    public void a(Component component)
+    {
+label0:
+        {
+            int j1;
+label1:
+            {
+                char c1;
+label2:
+                {
+                    j1 = x.bd;
+                    if(component == W)
+                        F.t = G.t = H.t = W.d();
+                    if(component == X)
+                    {
+                        F.a(X.d(), O);
+                        G.a(X.d(), N);
+                        I.a(X.d(), N);
+                        H.a(X.d(), N);
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == C)
+                    {
+                        G.setVisible(true);
+                        v.setVisible(false);
+                        I.setVisible(false);
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == D)
+                    {
+                        v.setVisible(true);
+                        G.setVisible(false);
+                        I.setVisible(false);
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == E)
+                    {
+                        I.setVisible(true);
+                        v.setVisible(false);
+                        G.setVisible(false);
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == A)
+                    {
+                        if(M.getText().length() != 0)
+                            K.add(M.getText());
+                        M.setText("");
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == B)
+                    {
+                        int i1 = K.getSelectedIndex();
+                        if(i1 >= 0)
+                            K.remove(i1);
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == w || component == J)
+                    {
+                        if(J.k() != null)
+                        {
+                            String s1 = J.e();
+                            char c2 = '\013';
+                            if(Z.d())
+                                s1 = z.w + '\001' + c2 + c("gW'pZKL,g\022\n") + z.x + '\001' + '\0' + s1;
+                            o.t.a('J', a.r.c(s1));
+                        }
+                        J.d(null);
+                        J.requestFocus();
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component == ba)
+                    {
+                        be.setVisible(ba.d());
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component != bb && component != bc && component != bd)
+                        break label1;
+                    if(component == bb)
+                    {
+                        c1 = bb.d() ? '\001' : '\002';
+                        if(j1 == 0)
+                            break label2;
+                    }
+                    if(component == bc)
+                    {
+                        c1 = bc.d() ? '\004' : '\005';
+                        if(j1 == 0)
+                            break label2;
+                    }
+                    c1 = bd.d() ? '\016' : '\017';
+                }
+                J.a('\002', "" + c1);
+                J.requestFocus();
+                if(j1 == 0)
+                    break label0;
+            }
+label3:
+            {
+label4:
+                {
+                    if(component == x)
+                    {
+                        d().toBack();
+                        n.t.a(11);
+                        if(j1 == 0)
+                            break label0;
+                    }
+                    if(component != y)
+                        break label3;
+                    if(!q)
+                    {
+                        s = new Thread(this);
+                        s.start();
+                        if(j1 == 0)
+                            break label4;
+                    }
+                    y.a(c("Y[*tODQ)5XFQ(5R\nH:aIDQ\"xA"));
+                    bg.a(false);
+                }
+                if(j1 == 0)
+                    break label0;
+            }
+            if(component == z)
+            {
+                E.a(true);
+                a(((Component) (E)));
+                if(r)
+                {
+                    bg.a = false;
+                    return;
+                }
+                r = true;
+                z.setName(c("kV6y]@"));
+                s = new Thread(this);
+                s.start();
+                if(j1 == 0)
+                    break label0;
+            }
+            if(component == Y)
+                o.t.a('W', "" + (Y.d() ? '\001' : '\0'));
+        }
+    }
+
+    public void actionPerformed(ActionEvent actionevent)
+    {
+label0:
+        {
+            String s1 = actionevent.getActionCommand();
+            if(s1.equals(c("]A1o]\u012D")))
+            {
+                o.t.a('@', a.r.c(R + c("*9") + n.bk + '\0' + '\007' + c("\nO:gR_[*\u0157\biQ\u015A5R\nH,~G@M")));
+                if(x.bd == 0)
+                    break label0;
+            }
+            if(s1.equals(c("HY-")))
+                o.t.a('D', a.r.a(n.bq) + a.r.c(R) + c("*9") + n.bn + '\0' + '\007' + a.r.c(c("\n\\\"\u0157\000K\021cVA\nZ\"{I\n") + n.bq + c("\nU*{\006\nV\"5\\OVceGA\313)")));
+        }
+    }
+
+    public void mouseEntered(MouseEvent mouseevent)
+    {
+    }
+
+    public void mouseExited(MouseEvent mouseevent)
+    {
+        setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void a(boolean flag, boolean flag1, boolean flag2, int i1, int j1)
+    {
+        S.select(i1);
+        bb.a(flag);
+        bc.a(flag1);
+        bd.a(flag2);
+    }
+
+    void a(String s1, int i1)
+    {
+        J.a('\001', "" + (char)i1);
+        be.setVisible(false);
+        ba.a(false);
+        J.requestFocus();
+    }
+
+    void h()
+    {
+        setBackground(x.bb[0]);
+        v.setBackground(x.bb[1]);
+        a(x.J[0]);
+        w.a(x.x);
+        x.a(x.Y);
+        y.a(x.Y);
+        z.a(x.Y);
+        C.a(x.G, x.H);
+        D.a(x.G, x.H);
+        E.a(x.G, x.H);
+        A.a(x.W);
+        B.a(x.W);
+        W.a(x.L);
+        X.a(x.L);
+        Y.a(x.L);
+        Z.a(x.L);
+        ba.a(x.V[3]);
+        bb.a(x.V[0]);
+        bc.a(x.V[1]);
+        bd.a(x.V[2]);
+    }
+
+    public Image a(String s1, boolean flag)
+    {
+        if(o.br == 1 && s1.indexOf(c("C[,{w")) < 0)
+            return null;
+        else
+            return d.x.a(null, s1, flag);
+    }
+
+    void a(char c1, int i1)
+    {
+        a(c1, i1, ((String) (null)));
+    }
+
+    public void a(Component component, int i1, String s1, int j1, int k1)
+    {
+label0:
+        {
+            int l1;
+label1:
+            {
+label2:
+                {
+label3:
+                    {
+label4:
+                        {
+                            l1 = x.bd;
+                            if(i1 == 1)
+                            {
+                                Image image = a(s1, true);
+                                if(image != null)
+                                    J.a('\005', "" + s1);
+                                J.requestFocus();
+                                if(l1 == 0)
+                                    break label0;
+                            }
+                            if(i1 == 2)
+                            {
+                                n.k.openHTMLWindow(s1);
+                                if(l1 == 0)
+                                    break label0;
+                            }
+                            if(i1 != 5 && i1 != 4 && i1 != 6)
+                                break label1;
+                            if(i1 != 5)
+                                break label3;
+                            if(component == F)
+                            {
+                                J.d(s1);
+                                J.requestFocus();
+                                if(l1 == 0)
+                                    break label4;
+                            }
+                            F.a(null, s1, j1);
+                            o.t.a('K', "" + '\0' + a.r.a(j1, 4) + a.r.c(s1));
+                        }
+                        if(l1 == 0)
+                            break label2;
+                    }
+                    if(i1 == 4)
+                    {
+                        J.d(s1);
+                        J.requestFocus();
+                        if(l1 == 0)
+                            break label2;
+                    }
+                    if(i1 == 6)
+                        o.t.a('J', a.r.c(s1));
+                }
+label5:
+                {
+                    if(component == F)
+                    {
+                        F.l();
+                        if(l1 == 0)
+                            break label5;
+                    }
+                    if(component == G)
+                    {
+                        G.l();
+                        if(l1 == 0)
+                            break label5;
+                    }
+                    if(component == I)
+                    {
+                        I.l();
+                        if(l1 == 0)
+                            break label5;
+                    }
+                    H.l();
+                }
+                if(l1 == 0)
+                    break label0;
+            }
+label6:
+            {
+label7:
+                {
+                    if(i1 != 7)
+                        break label6;
+                    if(j1 >= 0);
+                    if(component == F)
+                    {
+                        o.t.a('K', "" + '\001' + a.r.a(j1, 4));
+                        if(l1 == 0)
+                            break label7;
+                    }
+                    o.t.a('K', "" + '\002' + a.r.a(j1, 4));
+                }
+                if(l1 == 0)
+                    break label0;
+            }
+            if(i1 == 0)
+            {
+                R = s1;
+                Q.setLabel(s1);
+                P.show(this, 2 + j1, 33 + k1);
+            }
+        }
+    }
+
+    public void run()
+    {
+        int i1;
+        int j1;
+        int k1;
+        int l1;
+        String s1;
+        int l2;
+        l2 = x.bd;
+        i1 = 0;
+        j1 = 0;
+        k1 = 0;
+        l1 = 0;
+        bg.a(true);
+        if(!r)
+            break MISSING_BLOCK_LABEL_248;
+        r = false;
+        z.setEnabled(false);
+        s1 = n.k.getHTMLPage(INTChat.getHTMLAddres(c("[M&f\\CW-f\006ZP3"), 0), bg, false);
+        z.setName(c("ZA7tFCYcFey"));
+        if(!bg.a)
+        {
+            r = false;
+            return;
+        }
+        if(l2 == 0) goto _L2; else goto _L1
+_L1:
+        i1 = s1.indexOf('\001', j1 + 1);
+        String s2 = s1.substring(j1, i1);
+        j1 = i1 + 1;
+        i1 = s1.indexOf('\002', j1 + 1);
+        String s3 = s1.substring(j1, i1);
+        j1 = i1 + 1;
+        I.a(s2, z.w + '\001' + c("*\004\020X{\024\030") + s2 + c("\020\030") + z.x + s3, -1);
+_L2:
+        if(bg.a && j1 < s1.length() - 1) goto _L1; else goto _L3
+_L3:
+        r = false;
+        z.setEnabled(true);
+        return;
+        if(q)
+            return;
+        q = true;
+        y.a(c("PY7gRSU\"\177\bYQ\"rIDQ&"));
+        repaint();
+        int j2;
+        int ai[];
+        int ai1[];
+        s1 = n.k.getHTMLPage(p, bg, false);
+        if(!bg.a)
+        {
+            q = false;
+            return;
+        }
+        ai = new int[t.length() / 4 + 1];
+        ai1 = new int[u.length() / 4 + 1];
+        j2 = 0;
+        if(l2 == 0) goto _L5; else goto _L4
+_L4:
+        ai[j2] = a.r.a(t, 4 * j2, 4);
+_L8:
+        j2++;
+_L5:
+        if(j2 < ai.length - 1) goto _L4; else goto _L6
+_L6:
+        j2 = 0;
+        if(l2 != 0) goto _L8; else goto _L7
+_L7:
+        if(l2 == 0) goto _L10; else goto _L9
+_L9:
+        ai1[j2] = a.r.a(u, 4 * j2, 4);
+_L13:
+        j2++;
+_L10:
+        if(j2 < ai1.length - 1) goto _L9; else goto _L11
+_L11:
+        ai1[ai1.length - 1] = 0x7fffffff;
+        a(ai1);
+        ai[ai.length - 1] = -1;
+        ai1[ai1.length - 1] = -1;
+        if(l2 != 0) goto _L13; else goto _L12
+_L12:
+        if(l2 == 0) goto _L15; else goto _L14
+_L14:
+        i1 = a.r.a(s1, j1, 2);
+_L21:
+        int i2;
+        if((i1 <= 0 || i1 > 500) && l2 == 0)
+            break; /* Loop/switch isn't completed */
+        i2 = a.r.a(s1, j1 + 3, 4);
+        if(ai[k1] != i2 && ai1[l1] != i2)
+        {
+            j1 += i1;
+            if(l2 == 0)
+                continue; /* Loop/switch isn't completed */
+        }
+        int k2 = s1.indexOf('\0', j1 + 8);
+        String s4 = s1.substring(j1 + 8, k2);
+        String s5 = n.b(s1.substring(j1 + 7, j1 + i1), false);
+        j1 += i1;
+        if(ai[k1] == i2)
+            G.a(s4, s5, i2);
+        if(ai1[l1] == i2)
+            F.a(null, s5, i2);
+        if(l2 == 0) goto _L17; else goto _L16
+_L16:
+        k1++;
+_L17:
+        if(ai[k1] == i2) goto _L16; else goto _L18
+_L18:
+        for(; ai1[l1] == i2; l1++);
+_L15:
+        if(j1 < s1.length() - 7) goto _L14; else goto _L19
+_L19:
+        if(l2 != 0 || l2 != 0) goto _L21; else goto _L20
+_L20:
+        break MISSING_BLOCK_LABEL_693;
+        Exception exception;
+        exception;
+        exception.printStackTrace();
+        q = false;
+        u = t = null;
+        s = null;
+        y.setVisible(false);
+        repaint();
+        return;
+    }
+
+    private void i()
+    {
+        int i1;
+        int k1;
+        k1 = x.bd;
+        i1 = 0;
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        S.add(r.i[i1]);
+_L5:
+        i1++;
+_L2:
+        if(i1 < r.i.length) goto _L1; else goto _L3
+_L3:
+        i1 = 0;
+        if(k1 != 0) goto _L5; else goto _L4
+_L4:
+        if(k1 == 0) goto _L7; else goto _L6
+_L6:
+        T.add("" + r.k[i1]);
+_L10:
+        i1++;
+_L7:
+        if(i1 < r.k.length) goto _L6; else goto _L8
+_L8:
+        T.select(1);
+        i1 = 0;
+        if(k1 != 0) goto _L10; else goto _L9
+_L9:
+        if(k1 == 0) goto _L12; else goto _L11
+_L11:
+        U.add(V[i1]);
+_L15:
+        i1++;
+_L12:
+        if(i1 < V.length) goto _L11; else goto _L13
+_L13:
+        U.setFont(new Font(c("kJ*tD"), 0, 14));
+        add(bb = new d(null, false));
+        add(bc = new d(null, false));
+        add(bd = new d(null, false));
+        add(ba = new d(null, false));
+        add(J = new l(this));
+        J.b(true);
+        add(U);
+        be = new d.j(J, ba);
+        be.setVisible(false);
+        add(be);
+        add(F = new k(this));
+        add(x = new a.c(c("]A\u0101\u0110KP\030.zLOJ\"vB\u0133")));
+        add(y = new a.c(c("ZA7tFCY")));
+        y.setEnabled(false);
+        add(z = new a.c(c("ZA7tFCYcFey")));
+        add(w = new b());
+        if(k1 != 0) goto _L15; else goto _L14
+_L14:
+        int j1;
+        o o1 = new o();
+        add(C = new e(c("zA7tFCY"), o1, true));
+        C.setBounds(10, 5, 60, 24);
+        add(D = new e(c("i]-o]XY"), o1, false));
+        D.setBounds(70, 5, 60, 24);
+        add(E = new e(c("yu\020l"), o1, false));
+        E.setBounds(130, 5, 60, 24);
+        add(G = new k(this));
+        add(I = new k(this));
+        I.setVisible(false);
+        v = new i();
+        v.setVisible(false);
+        v.a(this);
+        v.add(H = new k(this));
+        v.add(K = new List());
+        j1 = 0;
+        if(k1 == 0) goto _L17; else goto _L16
+_L16:
+        K.add(L[j1]);
+_L19:
+        j1++;
+_L17:
+        if(j1 < L.length)
+            continue; /* Loop/switch isn't completed */
+        v.add(M = new TextField());
+        v.add(A = new a.c(c("NW'tB")));
+        v.add(B = new a.c(c("_K6\u0151")));
+        add(W = new d(c("KM7zXXB&bA@Y-|M"), null, true));
+        add(X = new d(c("ZJ9lKCK(|"), null, true));
+        add(Y = new d(c("IP \u010C\bEL1oQGA4t\u012F\nH:aIDQ\""), null, true));
+        W.a(0, 5);
+        X.a(0, 5);
+        Y.a(0, 5);
+        add(Z = new d(c("]A\u0118yA@\030)tCE\030\016zLOJ\"aGX"), null, false));
+        Z.a(0, 5);
+        G.r = H.r = F.r = I.r = true;
+        U.addItemListener(this);
+        S.addItemListener(this);
+        T.addItemListener(this);
+        add(S);
+        add(T);
+        add(v);
+        P = new PopupMenu();
+        P.add(Q = new MenuItem(c("FW$|F")));
+        Q.setFont(x.bc[2]);
+        P.addSeparator();
+        P.add(new MenuItem(c("]A1o]\u012D")));
+        P.add(new MenuItem(c("HY-")));
+        add(P);
+        P.addActionListener(this);
+        a(W);
+        a(X);
+        a(Y);
+        addMouseMotionListener(this);
+        addMouseListener(this);
+        if(k1 == 0)
+            return;
+        if(true) goto _L19; else goto _L18
+_L18:
+        if(true) goto _L16; else goto _L20
+_L20:
+    }
+
+    void a(char c1, int i1, String s1)
+    {
+label0:
+        {
+            if(c1 == '\001')
+            {
+                a.x x1 = F.a(i1);
+                if(x.bd == 0)
+                    break label0;
+            }
+            a.x x2 = G.a(i1);
+            if(x2 == null)
+                x2 = H.a(i1);
+            if(x2 == null)
+                x2 = I.a(i1);
+            if(c1 == 0)
+                F.a(null, s1, i1);
+        }
+    }
+
+    public void setBounds(int i1, int j1, int k1, int l1)
+    {
+        super.setBounds(i1, j1, k1, l1);
+        bf = 30 + (l1 - 50) / 2;
+        J.setBounds(2, l1 - 25, k1 - 78, 22);
+        x.setBounds(k1 - 120, 0, 118, 22);
+        y.setBounds(k1 - 200, 0, 80, 22);
+        z.setBounds(k1 - 280, 0, 80, 22);
+        w.setBounds(k1 - 55, l1 - 25, 55, 22);
+        ba.setBounds(81, l1 - 50, 26, 24);
+        bb.setBounds(0, l1 - 50, 26, 24);
+        bc.setBounds(27, l1 - 50, 26, 24);
+        bd.setBounds(54, l1 - 50, 26, 24);
+        be.setBounds(80, l1 - 116, 87, 66);
+        Z.setBounds(k1 - 160, l1 - 50, 160, 20);
+        S.setBounds(110, l1 - 48, 80, 22);
+        T.setBounds(195, l1 - 48, 40, 22);
+        U.setSize(k1 - 60, 22);
+        U.setLocation(k1 - 58 - U.getSize().width, l1 - 25);
+        j();
+    }
+
+    void j()
+    {
+        F.setBounds(2, bf + 1, super.a - 4, super.b - bf - 52);
+        G.setBounds(2, 33, super.a - 4, bf - 60);
+        I.setBounds(2, 33, super.a - 4, bf - 60);
+        v.setBounds(2, 33, super.a - 4, bf - 60);
+        H.setBounds(0, 0, super.a - 104, bf - 60);
+        K.setBounds(super.a - 100, 0, 95, bf - 105);
+        M.setBounds(super.a - 100, bf - 103, 95, 20);
+        X.setBounds(250, bf - 27, 100, 20);
+        W.setBounds(120, bf - 27, 130, 20);
+        Y.setBounds(350, bf - 27, 180, 20);
+        A.setBounds(super.a - 100, bf - 82, 49, 22);
+        B.setBounds(super.a - 52, bf - 82, 49, 22);
+        repaint();
+    }
+
+    private static String c(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x2a;
+                break;
+
+            case 1: // '\001'
+                k1 = 56;
+                break;
+
+            case 2: // '\002'
+                k1 = 67;
+                break;
+
+            case 3: // '\003'
+                k1 = 21;
+                break;
+
+            default:
+                k1 = 40;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    n n;
+    d.b o;
+    String p;
+    boolean q;
+    boolean r;
+    Thread s;
+    String t;
+    String u;
+    i v;
+    b w;
+    a.c x;
+    a.c y;
+    a.c z;
+    a.c A;
+    a.c B;
+    e C;
+    e D;
+    e E;
+    k F;
+    k G;
+    k H;
+    k I;
+    l J;
+    List K;
+    static final String L[] = {
+        c("AM1bI"), c("AM1bQ"), c("ZQ&gLET"), c("BM)")
+    };
+    TextField M;
+    String N[] = {
+        c("]A\u0118yA@"), c("AY0`B"), c("AW/pBAY")
+    };
+    String O[] = {
+        c("]A\u0118yA@"), c("AY0`B"), c("O\\:a]@")
+    };
+    PopupMenu P;
+    MenuItem Q;
+    String R;
+    Choice S;
+    Choice T;
+    Choice U;
+    static final String V[] = {
+        c("}Q7tES\030*5G\nJ9p\\OT-lKB\030,qXEO*pLPQcbQGY$tES"), c("dQ(a\bDQ&5EK\030'z\biQ&wAO\0303l\\K\u017C"), c("^J9l\bEK7t\\DQ&5XSL\"{AK\030'z\bMW\u0118vAK")
+    };
+    d W;
+    d X;
+    d Y;
+    d Z;
+    d ba;
+    d bb;
+    d bc;
+    d bd;
+    d.j be;
+    int bf;
+    p bg;
+    static final char bh = 0;
+    static final char bi = 1;
+    static final char bj = 2;
+
+}

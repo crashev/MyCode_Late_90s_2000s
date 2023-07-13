@@ -1,0 +1,440 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   a.java
+
+package b;
+
+import a.i;
+import d.n;
+import java.util.Vector;
+
+// Referenced classes of package b:
+//            c
+
+public class a
+{
+
+    public void a()
+    {
+        int i1 = 0;
+        if(c.B == 0) goto _L2; else goto _L1
+_L1:
+        c c1 = (c)c.elementAt(i1);
+        if(c1.k && (c1.h <= 0 || !c1.j))
+        {
+            c1.g();
+            c.removeElement(c1);
+            c1 = null;
+            i1--;
+        }
+        i1++;
+_L2:
+        if(i1 >= c.size())
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public void b()
+    {
+        int i1;
+        int j1;
+        j1 = c.B;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        ((c)c.elementAt(i1)).l;
+_L7:
+        JVM INSTR ifeq 30;
+           goto _L3 _L4
+_L4:
+        continue; /* Loop/switch isn't completed */
+_L3:
+        break; /* Loop/switch isn't completed */
+_L2:
+        if(i1 < c.size()) goto _L1; else goto _L5
+_L5:
+        i1;
+        if(j1 != 0) goto _L7; else goto _L6
+_L6:
+        c.size();
+        JVM INSTR icmpge 109;
+           goto _L8 _L9
+_L8:
+        i1 = 0;
+        if(j1 == 0) goto _L11; else goto _L10
+_L10:
+        c c1 = (c)c.elementAt(i1);
+        if(c1.k)
+            c1.a('M');
+        c1.l = false;
+        i1++;
+_L11:
+        if(i1 < c.size()) goto _L10; else goto _L9
+_L9:
+    }
+
+    public void a(long l1)
+    {
+label0:
+        {
+            if(l1 - cG <= 0x493e0L)
+                break label0;
+            cG = l1;
+            if(cF)
+            {
+                a('M', null, -1);
+                if(c.B == 0)
+                    break label0;
+            }
+            b();
+        }
+    }
+
+    public a(n n1, String s1)
+    {
+        cF = false;
+        cG = 0L;
+        a = n1;
+        b = s1;
+        c = new Vector();
+    }
+
+    public boolean c()
+    {
+        int i1;
+        int j1;
+        j1 = c.B;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        ((c)c.elementAt(i1)).e();
+_L7:
+        JVM INSTR ifeq 29;
+           goto _L3 _L4
+_L3:
+        break MISSING_BLOCK_LABEL_27;
+_L4:
+        continue; /* Loop/switch isn't completed */
+        return true;
+_L2:
+        if(i1 < c.size()) goto _L1; else goto _L5
+_L5:
+        false;
+        if(j1 != 0) goto _L7; else goto _L6
+_L6:
+        return;
+    }
+
+    public void a(boolean flag)
+    {
+        cF = flag;
+    }
+
+    public void d()
+    {
+        int i1;
+        int j1;
+        j1 = c.B;
+        i1 = 0;
+        if(j1 == 0) goto _L2; else goto _L1
+_L1:
+        ((c)c.elementAt(i1)).g();
+_L4:
+        i1++;
+_L2:
+        if(i1 < c.size())
+            continue; /* Loop/switch isn't completed */
+        c.removeAllElements();
+        if(j1 == 0)
+            return;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L1; else goto _L5
+_L5:
+    }
+
+    public c a(int i1)
+    {
+        c c1 = b(i1);
+        if(c1 != null)
+            c1.h++;
+        return c1;
+    }
+
+    public void a(char c1, int i1)
+    {
+        a(c1, null, i1);
+    }
+
+    public void a(char c1, String s1, int i1)
+    {
+        int j1;
+        int k1;
+        k1 = c.B;
+        j1 = 0;
+        if(k1 == 0) goto _L2; else goto _L1
+_L1:
+        c c2 = (c)c.elementAt(j1++);
+        do
+        {
+            if(c2.e == null)
+                continue; /* Loop/switch isn't completed */
+            if(i1 == -1)
+            {
+                c2.a(c1, s1);
+                if(k1 == 0)
+                    continue; /* Loop/switch isn't completed */
+            }
+            if(i1 != -2 && c2.d != i1)
+                continue; /* Loop/switch isn't completed */
+            c2.a(c1, s1);
+        } while(k1 != 0);
+        return;
+_L2:
+        if(j1 < c.size()) goto _L1; else goto _L3
+_L3:
+    }
+
+    public c a(int i1, int j1)
+    {
+        int k1;
+        int l1;
+        l1 = c.B;
+        k1 = 0;
+        if(l1 == 0) goto _L2; else goto _L1
+_L1:
+        i.i = !i.i;
+_L6:
+        c c1 = (c)c.elementAt(k1);
+_L4:
+        if(c1.j && c1.k && c1.g == i1 && (c1.h <= 0 || c1.d == j1))
+        {
+            c1.d = j1;
+            c1.a(a("b\027k\002XB\020g\033\000O\026i\027\001H\020dV") + j1);
+            return c1;
+        }
+        k1++;
+_L2:
+        if(k1 < c.size())
+            continue; /* Loop/switch isn't completed */
+        c1 = new c(a, b, i1, j1);
+        c.addElement(c1);
+        c1.k();
+        if(l1 == 0)
+            return null;
+        if(true) goto _L4; else goto _L3
+_L3:
+        if(true) goto _L6; else goto _L5
+_L5:
+    }
+
+    public c b(int i1)
+    {
+        int j1;
+        if(i1 == -2 && c())
+            return (c)c.elementAt(0);
+        j1 = 0;
+        if(c.B == 0) goto _L2; else goto _L1
+_L1:
+        c c1 = (c)c.elementAt(j1);
+        if(c1.h() == i1)
+            return c1;
+        j1++;
+_L2:
+        if(j1 >= c.size())
+            return null;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    public void e()
+    {
+        int i1 = 0;
+        if(c.B == 0) goto _L2; else goto _L1
+_L1:
+        c c1 = (c)c.elementAt(i1);
+        if(!c1.e())
+            c1.a();
+        i1++;
+_L2:
+        if(i1 >= c.size())
+            return;
+        if(true) goto _L1; else goto _L3
+_L3:
+    }
+
+    private static String a(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x21;
+                break;
+
+            case 1: // '\001'
+                k1 = 127;
+                break;
+
+            case 2: // '\002'
+                k1 = 10;
+                break;
+
+            case 3: // '\003'
+                k1 = 118;
+                break;
+
+            default:
+                k1 = 117;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    n a;
+    static String b;
+    Vector c;
+    public static final char d = 0;
+    public static final char e = 1;
+    public static final char f = 3;
+    public static final char g = 2;
+    public static final char h = 5;
+    public static final char i = 4;
+    public static final char j = 6;
+    public static final char k = 7;
+    public static final char l = 8;
+    public static final char m = 0;
+    public static final char n = 1;
+    public static final char o = 2;
+    public static final char p = 3;
+    public static final char q = 4;
+    public static final char r = 5;
+    public static final char s = 6;
+    public static final char t = 7;
+    public static final char u = 8;
+    public static final char v = 9;
+    public static final char w = 64;
+    public static final char x = 66;
+    public static final char y = 67;
+    public static final char z = 65;
+    public static final char A = 68;
+    public static final char B = 76;
+    public static final char C = 69;
+    public static final char D = 1;
+    public static final char E = 0;
+    public static final char F = 70;
+    public static final char G = 71;
+    public static final char H = 72;
+    public static final char I = 74;
+    public static final char J = 75;
+    public static final char K = 87;
+    public static final char L = 73;
+    public static final char M = 81;
+    public static final char N = 77;
+    public static final char O = 80;
+    public static final char P = 79;
+    public static final char Q = 78;
+    public static final char R = 85;
+    public static final char S = 86;
+    public static final char T = 154;
+    public static final char U = 83;
+    public static final char V = 84;
+    public static final char W = 155;
+    public static final char X = 32;
+    public static final char Y = 33;
+    public static final char Z = 35;
+    public static final char ba = 36;
+    public static final char bb = 128;
+    public static final char bc = 129;
+    public static final char bd = 130;
+    public static final char be = 131;
+    public static final char bf = 132;
+    public static final char bg = 177;
+    public static final char bh = 178;
+    public static final char bi = 148;
+    public static final char bj = 149;
+    public static final char bk = 133;
+    public static final char bl = 134;
+    public static final char bm = 135;
+    public static final char bn = 136;
+    public static final char bo = 137;
+    public static final char bp = 138;
+    public static final char bq = 179;
+    public static final char br = 139;
+    public static final char bs = 140;
+    public static final char bt = 151;
+    public static final char bu = 156;
+    public static final char bv = 157;
+    public static final char bw = 158;
+    public static final char bx = 159;
+    public static final char by = 163;
+    public static final char bz = 160;
+    public static final char bA = 161;
+    public static final char bB = 94;
+    public static final char bC = 162;
+    public static final char bD = 1;
+    public static final char bE = 2;
+    public static final char bF = 3;
+    public static final char bG = 141;
+    public static final char bH = 142;
+    public static final char bI = 143;
+    public static final char bJ = 144;
+    public static final char bK = 145;
+    public static final char bL = 152;
+    public static final char bM = 146;
+    public static final char bN = 147;
+    public static final char bO = 164;
+    public static final char bP = 2;
+    public static final char bQ = 3;
+    public static final char bR = 5;
+    public static final char bS = 4;
+    public static final char bT = 150;
+    public static final char bU = 0;
+    public static final char bV = 1;
+    public static final char bW = 2;
+    public static final char bX = 3;
+    public static final char bY = 4;
+    public static final char bZ = 5;
+    public static final char ca = 6;
+    public static final char cb = 7;
+    public static final char cc = 8;
+    public static final char cd = 9;
+    public static final char ce = 10;
+    public static final char cf = 11;
+    public static final char cg = 12;
+    public static final char ch = 13;
+    public static final char ci = 14;
+    public static final char cj = 15;
+    public static final char ck = 16;
+    public static final char cl = 17;
+    public static final char cm = 181;
+    public static final char cn = 4;
+    public static final char co = 3;
+    public static final char cp = 5;
+    public static final char cq = 6;
+    public static final char cr = 0;
+    public static final char cs = 0;
+    public static final char ct = 1;
+    public static final char cu = 2;
+    public static final char cv = 3;
+    public static final char cw = 7;
+    public static final char cx = 2;
+    public static final char cy = 1;
+    public static final char cz = 172;
+    public static final char cA = 173;
+    public static final char cB = 175;
+    public static final char cC = 176;
+    public static final int cD = -2;
+    public static final int cE = -1;
+    boolean cF;
+    long cG;
+}

@@ -1,0 +1,65 @@
+Files in the back-end of ourmon:
+
+30 second crontab driver utilities:
+-----------------------------------
+
+omupdate.pl - perl back-end calls rrdtool and drawtopn (topn)
+	and does ourmon logging if desired of topn lists
+
+tcpworm.pl - called to digest front-end produced tcpworm.txt which
+	is not done by omupdate.pl.  produces portreport.txt and tcpworm.txt
+	(same name as input file) which are available on the web,
+	and provide a different view of data associated with ip_srcs
+	deemed suspicious.
+
+	This can also be run manually and used to take the raw tcpworm.txt file 
+	and process it doing reverse DNS lookup.  There is no DNS lookup
+	in the runtime 30 second snapshot of course.
+
+monbackup.pl - used to copy mon.lite file and tcpworm.txt into their respective
+	logging directories (typically after or before omupdate.pl runs) 
+
+drawtopn.c - topn histogram drawing program, called by omupdate.pl to
+		create histograms.
+
+wormtolog.pl - run by back-end shellscript.  takes tcpworm.txt and converts
+	it to a log-file style file.  This is done for the sake of the hourly
+	batch script, ombatchsyn.pl.
+
+Misc/test utilities and other files:
+-------------------------------------
+
+Makefile - for compile of drawtopn
+testdraw.sh - script for testing drawtopn
+udptest.sh - another script for testing drawtopn
+daily.pl - perl script run at midnight to prepare ourmon logs directory for
+		next days logging. 
+
+hourly ourmon batch logging scripts
+---------------------------------------------------------
+ombatchip.pl - Flow logs are input. sort produces top of top report.
+	This one produces top ip flows, etc.
+ombatchipsrc.pl - Flow logs are input.  sort produces top of top report.
+	This one produces top IP src and top IP dst reports.
+ombatchsyn.pl - topn_syn log "sort" produces top of top report. 
+	This is done for the topn syn list.  It is also run
+	on the tcpworm.txt file since it has the same format,
+	in order to produce a daily "summary" of worm activity
+	as well.
+
+# analysis tools - not part of regular runtime ourmon system
+#	These can be used for log analysis at a later time.
+----------------------------------------------------------------------
+makepics.pl - for topn and top syn, generate a web directory of pictures
+	based on an input time and a number of syslog entries (instances).
+	This is an analysis tool and is not part of the ourmon runtime system.
+	It needs work, but may be useful for taking logging info and turning
+	it into a web-based set of pictures so that you can browse an interesting
+	occurance in terms of typical ourmon topn pictures.
+
+Experimental code
+-----------------
+
+topipa.pl - summarizer of log data.  goal is to produce 30 second and hourly
+	report of top of the top ip_src found in more than 1 type of top_n log.
+	

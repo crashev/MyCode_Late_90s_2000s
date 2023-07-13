@@ -1,0 +1,184 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   m.java
+
+package d;
+
+import a.a;
+import a.g;
+import a.i;
+import a.n;
+import a.r;
+import b.c;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.TextComponent;
+import java.util.Vector;
+
+// Referenced classes of package d:
+//            n, b, g, i, 
+//            x
+
+class m extends i
+{
+
+    public m(d.n n1)
+    {
+        t = 0;
+        j = n1;
+        d();
+    }
+
+    public void a(Component component)
+    {
+        String s1;
+        c c1;
+        int i1;
+        int j1;
+        j1 = x.bd;
+        if(component == l)
+        {
+            setVisible(false);
+            if(j1 == 0)
+                break MISSING_BLOCK_LABEL_238;
+        }
+        s1 = m.getText();
+        c1 = null;
+        i1 = 0;
+          goto _L1
+_L3:
+        j.o.elementAt(i1);
+_L5:
+        (b);
+        b b1;
+        b1;
+        if(b1.x != 155)
+            c1 = b1.t;
+        i1++;
+_L1:
+        if(i1 < j.o.size()) goto _L3; else goto _L2
+_L2:
+        c1;
+        if(j1 != 0) goto _L5; else goto _L4
+_L4:
+label0:
+        {
+            if(c1 == null)
+            {
+                j.p.o();
+                if(j1 == 0)
+                    break label0;
+            }
+            if(s1.length() <= 0)
+                break label0;
+            if(j.v.ck == 0)
+            {
+                j.e();
+                if(j1 == 0)
+                    break label0;
+            }
+            if(t == 0)
+            {
+                c1.a('V', a.r.a(s1.length() + 1) + a.r.c(s1) + '\0');
+                if(j1 == 0)
+                    break label0;
+            }
+            if(t == 1)
+            {
+                j.z.g(s1);
+                if(j1 == 0)
+                    break label0;
+            }
+            j.z.b(s1);
+        }
+        setVisible(false);
+    }
+
+    void c()
+    {
+        setBackground(x.bb[16]);
+        k.a(x.Y);
+        k.b(x.bb[27]);
+        l.a(x.Y);
+        l.b(x.bb[27]);
+        n.b(x.bb[19]);
+        o.b(x.bb[19]);
+    }
+
+    void d()
+    {
+        a(true);
+        add(k = new a.c());
+        k.setBounds(25, 57, 75, 24);
+        add(l = new a.c(a("\024q\016u}?")));
+        l.setBounds(100, 57, 75, 24);
+        add(m = new n(false));
+        m.setBounds(55, 29, 135, 22);
+        add(n = new g(a("\031p\034pfo")));
+        n.setBounds(10, 30, 60, 22);
+        n.a(x.bc[2]);
+        add(o = new g(2));
+        o.setBounds(10, 3, 180, 22);
+        o.a(x.bc[2]);
+    }
+
+    void a(int i1)
+    {
+        t = i1;
+        o.a(s[t]);
+        k.a(t != 0 ? a("\021p\037xb") : a("\006e\016ri?"));
+        setVisible(true);
+        m.requestFocus();
+    }
+
+    private static String a(String s1)
+    {
+        char ac[] = s1.toCharArray();
+        int i1 = ac.length;
+        int k1;
+        for(int j1 = 0; j1 < i1; j1++)
+        {
+            switch(j1 % 5)
+            {
+            case 0: // '\0'
+                k1 = 0x55;
+                break;
+
+            case 1: // '\001'
+                k1 = 31;
+                break;
+
+            case 2: // '\002'
+                k1 = 123;
+                break;
+
+            case 3: // '\003'
+                k1 = 25;
+                break;
+
+            default:
+                k1 = 8;
+                break;
+            }
+            ac[j1] ^= k1;
+        }
+
+        return new String(ac);
+    }
+
+    d.n j;
+    a.c k;
+    a.c l;
+    n m;
+    g n;
+    g o;
+    static final int p = 0;
+    static final int q = 1;
+    static final int r = 2;
+    static final String s[] = {
+        a("\017q\032sl\u012F?\024jg7\u0106"), a("\033p\f`(\017q\032sg8f"), a("\033p\f`(\002m\210~")
+    };
+    int t;
+
+}
